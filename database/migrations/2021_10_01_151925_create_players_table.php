@@ -16,7 +16,7 @@ class CreatePlayersTable extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->bigInteger('coin');
+            $table->bigInteger('coin')->default(0);
             $table->timestamps();
         });
     }

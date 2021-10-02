@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Coin extends Model
 {
     use HasFactory;
+
+    protected $guarded = [
+        'id'
+    ];
+
+
+    public function coinPurchases() {
+        return $this->belongsToMany(CoinPurchase::class);
+    }
 }

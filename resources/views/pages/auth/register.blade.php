@@ -41,7 +41,7 @@
                                   @csrf
 
                                   <div class="form-group">
-                                      <input type="text" class="form-control form-control-user" name="name" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required autofocus>
+                                      <input type="text" class="form-control form-control-user" name="first_name" placeholder="{{ __('First Name') }}" value="{{ old('first_name') }}" required autofocus>
                                   </div>
 
                                   <div class="form-group">
@@ -57,7 +57,7 @@
                                   </div>
 
                                   <div class="form-group">
-                                      <input type="password" class="form-control form-control-user" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" required>
+                                      <input type="password" class="form-control form-control-user" name="password_confirm" placeholder="{{ __('Confirm Password') }}" required>
                                   </div>
 
                                   <div class="form-group">

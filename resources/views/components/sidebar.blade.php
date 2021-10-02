@@ -13,10 +13,10 @@
     route="/dashboard" />
   
   <x-sidebar.nav-item
-    active="{{Request::is('topup') }}"
+    active="{{Request::is('coins') }}"
     icon="fa-coins"
-    name="Top Up" 
-    route="/topup" />
+    name="Coins" 
+    route="/coins" />
 
   <x-sidebar.nav-item
     active="{{Request::is('withdrawal') }}"

@@ -3,9 +3,9 @@
     "version": "2.2.6",
     "width": 3000,
     "height": 3000,
-    "scrollTop": -306,
-    "scrollLeft": -118,
-    "zoomLevel": 0.9,
+    "scrollTop": -351,
+    "scrollLeft": -760,
+    "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -231,10 +231,10 @@
           }
         ],
         "ui": {
-          "active": true,
-          "left": 203,
-          "top": 270,
-          "zIndex": 10,
+          "active": false,
+          "left": 75.5,
+          "top": 260,
+          "zIndex": 47,
           "widthName": 60,
           "widthComment": 60
         },
@@ -363,9 +363,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 203.5,
-          "top": 611.5,
-          "zIndex": 1,
+          "left": 76,
+          "top": 599,
+          "zIndex": 48,
           "widthName": 74.998046875,
           "widthComment": 60
         },
@@ -425,9 +425,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 736,
-          "top": 131.75,
-          "zIndex": 6,
+          "left": 566,
+          "top": 16.75,
+          "zIndex": 56,
           "widthName": 60,
           "widthComment": 60
         },
@@ -510,9 +510,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 743,
-          "top": 523,
-          "zIndex": 3,
+          "left": 566.75,
+          "top": 674.25,
+          "zIndex": 59,
           "widthName": 60,
           "widthComment": 60
         },
@@ -641,9 +641,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1735.893,
-          "top": 470.4286,
-          "zIndex": 5,
+          "left": 1622.143,
+          "top": 292.9286,
+          "zIndex": 64,
           "widthName": 60,
           "widthComment": 60
         },
@@ -699,6 +699,29 @@
               "widthDefault": 60
             },
             "id": "d7166884-8244-49a3-9bf7-1e1cfcc694d7"
+          },
+          {
+            "name": "admin_id",
+            "comment": "",
+            "dataType": "BIGINT(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 68.45361328125,
+              "widthDefault": 60
+            },
+            "id": "3288688c-ba20-4a21-b563-69c96022a02d"
           },
           {
             "name": "coin_id",
@@ -795,9 +818,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1255,
-          "top": 460.75,
-          "zIndex": 4,
+          "left": 1146.25,
+          "top": 272,
+          "zIndex": 63,
           "widthName": 93.05712890625,
           "widthComment": 60
         },
@@ -853,6 +876,29 @@
               "widthDefault": 60
             },
             "id": "52470793-cf03-4c01-b77c-ce9c356ce484"
+          },
+          {
+            "name": "admin_id",
+            "comment": "",
+            "dataType": "BIGINT(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 68.45361328125,
+              "widthDefault": 60
+            },
+            "id": "2695ab73-145a-4940-94a0-691d97de6130"
           },
           {
             "name": "coin_reduced",
@@ -972,9 +1018,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1257,
-          "top": 692.5,
-          "zIndex": 7,
+          "left": 615.75,
+          "top": 278.75,
+          "zIndex": 60,
           "widthName": 69.91357421875,
           "widthComment": 60
         },
@@ -998,8 +1044,8 @@
           "columnIds": [
             "336369d1-6b2e-486b-a889-aa5e287f0b26"
           ],
-          "x": 397.506103515625,
-          "y": 503,
+          "x": 270.006103515625,
+          "y": 493,
           "direction": "bottom"
         },
         "end": {
@@ -1007,8 +1053,8 @@
           "columnIds": [
             "c37737ae-9147-4cef-a893-bee634a2a061"
           ],
-          "x": 398.006103515625,
-          "y": 611.5,
+          "x": 270.506103515625,
+          "y": 599,
           "direction": "top"
         },
         "constraintName": "fk_users_to_login_tokens",
@@ -1024,8 +1070,8 @@
           "columnIds": [
             "336369d1-6b2e-486b-a889-aa5e287f0b26"
           ],
-          "x": 592.01220703125,
-          "y": 328.25,
+          "x": 464.51220703125,
+          "y": 318.25,
           "direction": "right"
         },
         "end": {
@@ -1033,8 +1079,8 @@
           "columnIds": [
             "2576bbf4-4aa2-4a71-b69d-d8fdcba85191"
           ],
-          "x": 736,
-          "y": 186.75,
+          "x": 566,
+          "y": 71.75,
           "direction": "left"
         },
         "constraintName": "fk_users_to_admins",
@@ -1050,8 +1096,8 @@
           "columnIds": [
             "336369d1-6b2e-486b-a889-aa5e287f0b26"
           ],
-          "x": 592.01220703125,
-          "y": 444.75,
+          "x": 464.51220703125,
+          "y": 434.75,
           "direction": "right"
         },
         "end": {
@@ -1059,8 +1105,8 @@
           "columnIds": [
             "f533270a-0247-48a8-ae4d-e5fe9784d5cb"
           ],
-          "x": 743,
-          "y": 588.25,
+          "x": 566.75,
+          "y": 739.5,
           "direction": "left"
         },
         "constraintName": "fk_users_to_players",
@@ -1076,8 +1122,8 @@
           "columnIds": [
             "e940124d-f591-4732-a9d2-8a36948cbe3c"
           ],
-          "x": 1098.45361328125,
-          "y": 555.625,
+          "x": 922.20361328125,
+          "y": 739.5,
           "direction": "right"
         },
         "end": {
@@ -1085,8 +1131,8 @@
           "columnIds": [
             "d7166884-8244-49a3-9bf7-1e1cfcc694d7"
           ],
-          "x": 1255,
-          "y": 556.75,
+          "x": 1146.25,
+          "y": 431.375,
           "direction": "left"
         },
         "constraintName": "fk_players_to_player_coins",
@@ -1102,8 +1148,8 @@
           "columnIds": [
             "c97c0aac-4d2f-4aa3-8307-04c9a6982b0f"
           ],
-          "x": 1735.893,
-          "y": 556.1786,
+          "x": 1622.143,
+          "y": 378.6786,
           "direction": "left"
         },
         "end": {
@@ -1111,8 +1157,8 @@
           "columnIds": [
             "3b6ce438-cb2c-4c22-9072-d5e1162df3da"
           ],
-          "x": 1625.93408203125,
-          "y": 556.75,
+          "x": 1517.18408203125,
+          "y": 378.25,
           "direction": "right"
         },
         "constraintName": "fk_coin_prices_to_player_coins",
@@ -1128,22 +1174,74 @@
           "columnIds": [
             "e940124d-f591-4732-a9d2-8a36948cbe3c"
           ],
-          "x": 1098.45361328125,
-          "y": 620.875,
-          "direction": "right"
+          "x": 744.476806640625,
+          "y": 674.25,
+          "direction": "top"
         },
         "end": {
           "tableId": "54081dc4-4876-4bf9-ae08-5e8ae34ba320",
           "columnIds": [
             "52470793-cf03-4c01-b77c-ce9c356ce484"
           ],
-          "x": 1257,
-          "y": 798.75,
-          "direction": "left"
+          "x": 807.7138671875,
+          "y": 511.75,
+          "direction": "bottom"
         },
         "constraintName": "fk_players_to_withdrawals",
         "visible": true,
         "id": "74160be0-9991-4da1-b5d3-710fc857cc33"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "cb0e0992-fcf0-46cb-8194-6f273f321348",
+          "columnIds": [
+            "f74dc2d7-3745-439f-b0e6-c102c5c992ea"
+          ],
+          "x": 921.45361328125,
+          "y": 71.75,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "8bebd313-7d0a-4713-ab8a-8fe60cd75802",
+          "columnIds": [
+            "3288688c-ba20-4a21-b563-69c96022a02d"
+          ],
+          "x": 1146.25,
+          "y": 325.125,
+          "direction": "left"
+        },
+        "constraintName": "fk_admins_to_coin_purchases",
+        "visible": true,
+        "id": "8034cfd3-5fe3-44d4-a34e-2a1a523fe8bf"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "cb0e0992-fcf0-46cb-8194-6f273f321348",
+          "columnIds": [
+            "f74dc2d7-3745-439f-b0e6-c102c5c992ea"
+          ],
+          "x": 743.726806640625,
+          "y": 126.75,
+          "direction": "bottom"
+        },
+        "end": {
+          "tableId": "54081dc4-4876-4bf9-ae08-5e8ae34ba320",
+          "columnIds": [
+            "2695ab73-145a-4940-94a0-691d97de6130"
+          ],
+          "x": 807.7138671875,
+          "y": 278.75,
+          "direction": "top"
+        },
+        "constraintName": "fk_admins_to_withdrawals",
+        "visible": true,
+        "id": "a4f1f5e8-8744-44fa-8512-2ccac73f0b57"
       }
     ]
   }

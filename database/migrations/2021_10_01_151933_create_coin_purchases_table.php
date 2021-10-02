@@ -16,6 +16,7 @@ class CreateCoinPurchasesTable extends Migration
         Schema::create('coin_purchases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('player_id')->constrained();
+            $table->foreignId('admin_id')->constrained();
             $table->foreignId('coin_id')->constrained();
             $table->smallInteger('status')->default(0);
             $table->timestamps();

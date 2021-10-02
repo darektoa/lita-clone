@@ -2,13 +2,25 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Helpers\UsernameHelper;
 use App\Http\Controllers\Controller;
+use App\Models\{User, Admin, Player};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     public function login(Request $request) {
-        return redirect('/dashboard');
+        $username = $request->username;
+        $password = $request->password;
+
+        if(
+            Auth::attempt(['email' => $username, 'password' => $password]) ||
+            Auth::attempt(['username' => $username, 'password' => $password])
+        ) return redirect('/dashboard');
+
+        return back()->withErrors(["Account doesn't match"]);
     }
 
 
@@ -17,8 +29,34 @@ class AuthController extends Controller
     }
 
 
-    public function register(Request $request) {
+    public function logout() {
+        Auth::logout();
+        return redirect('/login');
+    }
 
+
+    public function register(Request $request) {
+        $request->validate([
+            'first_name'        => 'bail|required|alpha|min:2|max:20',
+            'last_name'         => 'required|alpha|min:2|max:20',
+            'email'             => 'required|email|unique:users',
+            'password'          => 'required|min:5|max:16',
+            'password_confirm'  => 'required|same:password'
+        ]);
+
+        $emailName = explode('@', $request->email)[0];
+
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'last_name'  => $request->last_name,
+            'username'   => UsernameHelper::make($emailName),
+            'email'      => $request->email,
+            'password'   => Hash::make($request->password)
+        ]);
+
+        Player::create([
+            'user_id' => $user->id,
+        ]);
 
         return redirect('/login');
     }
