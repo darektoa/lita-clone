@@ -25,7 +25,7 @@ class CoinPurchase extends Model
 
 
     public function coin() {
-        return $this->hasOne(Coin::class);
+        return $this->belongsTo(Coin::class);
     }
 
 

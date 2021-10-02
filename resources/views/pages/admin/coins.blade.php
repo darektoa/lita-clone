@@ -24,9 +24,13 @@
 				<tbody>
 					
 					@foreach ($purchases as $purchase)
+					@php 
+						$user = $purchase->player->user;
+					@endphp
 					<tr>
-						<td>{{ $purchase->coin()->coin }}</td>
-						<td>{{ $purchase->coin()->price }}</td>
+						<td>{{ $user->first_name . ' ' .  $user->last_name}}</td>
+						<td>{{ $purchase->coin->coin }}</td>
+						<td>{{ $purchase->coin->price }}</td>
 						<td>{{ $purchase->created_at->format('d-m-Y') }}</td>
 						<td>{{ $purchase->statusName() }}</td>
 						<td style="white-space: nowrap; width: 82px">
