@@ -1,11 +1,8 @@
 <?php
 
+namespace App\Http\Controllers\Web;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\{
-  AuthController,
-  DashboardController,
-  HomeController,
-};
 
 Route::get('/', HomeController::class);
 
