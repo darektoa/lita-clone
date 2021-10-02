@@ -15,6 +15,8 @@ class CreateCoinsTable extends Migration
     {
         Schema::create('coins', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('coin')->unsigned();
+            $table->bigInteger('price')->unsigned();
             $table->timestamps();
         });
     }

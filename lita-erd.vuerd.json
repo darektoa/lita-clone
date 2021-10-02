@@ -3,8 +3,8 @@
     "version": "2.2.6",
     "width": 3000,
     "height": 3000,
-    "scrollTop": -356,
-    "scrollLeft": -494,
+    "scrollTop": -446,
+    "scrollLeft": -100,
     "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
@@ -832,7 +832,7 @@
             "id": "65dcf094-7bac-4f38-bfcd-a36c67d293e6"
           },
           {
-            "name": "user_id",
+            "name": "player_id",
             "comment": "",
             "dataType": "BIGINT(20)",
             "default": "",
@@ -901,6 +901,29 @@
             "id": "71f49d35-2fb4-46f7-b05b-d325fca7b37d"
           },
           {
+            "name": "status",
+            "comment": "",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "489e8f1c-b4c0-4815-a7cb-245465498ded"
+          },
+          {
             "name": "created_at",
             "comment": "",
             "dataType": "TIMESTAMP",
@@ -949,9 +972,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1254.5,
-          "top": 685,
-          "zIndex": 164,
+          "left": 1257,
+          "top": 692.5,
+          "zIndex": 182,
           "widthName": 69.91357421875,
           "widthComment": 60
         },
@@ -1114,8 +1137,8 @@
           "columnIds": [
             "52470793-cf03-4c01-b77c-ce9c356ce484"
           ],
-          "x": 1254.5,
-          "y": 781,
+          "x": 1257,
+          "y": 798.75,
           "direction": "left"
         },
         "constraintName": "fk_players_to_withdrawals",
