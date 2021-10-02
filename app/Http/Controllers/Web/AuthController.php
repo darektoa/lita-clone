@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function login() {
+    public function login(Request $request) {
         return redirect('/dashboard');
     }
 
@@ -17,7 +17,9 @@ class AuthController extends Controller
     }
 
 
-    public function register() {
+    public function register(Request $request) {
+
+
         return redirect('/login');
     }
 
