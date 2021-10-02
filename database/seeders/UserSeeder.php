@@ -11,19 +11,21 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'first_name'    => 'Admin',
-            'last_name'     => 'B',
-            'username'      => 'admin',
-            'email'         => 'admin@gmail.com',
-            'password'      =>  Hash::make('password')
+            'first_name'        => 'Admin',
+            'last_name'         => 'B',
+            'username'          => 'admin',
+            'email'             => 'admin@gmail.com',
+            'password'          =>  Hash::make('password'),
+            'email_verified_at' => now()
         ])->admin()->create();
 
         User::create([
-            'first_name'    => 'Player',
-            'last_name'     => 'B',
-            'username'      => 'player',
-            'email'         => 'player@gmail.com',
-            'password'      =>  Hash::make('password')
+            'first_name'        => 'Player',
+            'last_name'         => 'B',
+            'username'          => 'player',
+            'email'             => 'player@gmail.com',
+            'password'          =>  Hash::make('password'),
+            'email_verified_at' => now()
         ])->player()->create();
     }
 }
