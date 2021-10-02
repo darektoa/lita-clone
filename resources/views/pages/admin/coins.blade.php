@@ -26,9 +26,10 @@
 					@foreach ($purchases as $purchase)
 					@php 
 						$user = $purchase->player->user;
+						$fullName = $user->first_name . ' ' .  $user->last_name;
 					@endphp
 					<tr>
-						<td>{{ $user->first_name . ' ' .  $user->last_name}}</td>
+						<td>{{ $fullName}}</td>
 						<td>{{ $purchase->coin->coin }}</td>
 						<td>{{ $purchase->coin->price }}</td>
 						<td>{{ $purchase->created_at->format('d-m-Y') }}</td>
