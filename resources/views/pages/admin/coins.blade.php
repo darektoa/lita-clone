@@ -29,7 +29,7 @@
 						$fullName = $user->first_name . ' ' .  $user->last_name;
 					@endphp
 					<tr>
-						<td>{{ $fullName}}</td>
+						<td>{{ $fullName }}</td>
 						<td>{{ $purchase->coin->coin }}</td>
 						<td>{{ $purchase->coin->price }}</td>
 						<td>{{ $purchase->created_at->format('d-m-Y') }}</td>
