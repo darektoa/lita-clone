@@ -1,4 +1,4 @@
-@extends('layouts.guest.app')
-@section('body')
+@extends('layouts.guest')
+@section('content')
 
 @endsection

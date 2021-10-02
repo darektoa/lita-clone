@@ -1,47 +1,29 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+  <x-sidebar.brand 
+    img="{{ asset('assets/images/brand_icons/48x48-transparent.png') }}"
+    name="LITA"
+    route="/dashboard" />
 
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-      <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-      </div>
-      <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-  </a>
+  <x-divider mt mb/>
 
-  <!-- Divider -->
-  <hr class="sidebar-divider my-0">
+  <x-sidebar.nav-item
+    active="{{Request::is('dashboard') }}"
+    icon="fa-tachometer-alt"
+    name="Dashboard" 
+    route="/dashboard" />
+  
+  <x-sidebar.nav-item
+    active="{{Request::is('topup') }}"
+    icon="fa-coins"
+    name="Top Up" 
+    route="/topup" />
 
-  <li class="nav-item {{ Route::is('home') }}">
-      <a class="nav-link" href="{{ '/home' }}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>{{ __('Dashboard') }}</span></a>
-  </li>
+  <x-sidebar.nav-item
+    active="{{Request::is('withdrawal') }}"
+    icon="fa-money-bill-wave"
+    name="Withdrawal" 
+    route="/withdrawal" />
 
-  <!-- Divider -->
-  <hr class="sidebar-divider">
-
-  <div class="sidebar-heading">
-      {{ __('Settings') }}
-  </div>
-
-  <li class="nav-item {{ Route::is('profile') }}">
-      <a class="nav-link" href="{{'/profile' }}">
-          <i class="fas fa-fw fa-user"></i>
-          <span>{{ __('Profile') }}</span>
-      </a>
-  </li>
-
-  <li class="nav-item {{ Route::is('about') }}">
-      <a class="nav-link" href="{{ '/about' }}">
-          <i class="fas fa-fw fa-hands-helping"></i>
-          <span>{{ __('About') }}</span>
-      </a>
-  </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider d-none d-md-block">
-
-  <div class="text-center d-none d-md-inline">
-      <button class="rounded-circle border-0" id="sidebarToggle"></button>
-  </div>
-
+  <x-divider mt mb="4"/>
+  <x-sidebar.toggle/>
 </ul>
