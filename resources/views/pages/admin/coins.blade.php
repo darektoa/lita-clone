@@ -35,8 +35,8 @@
 						<td>{{ $purchase->created_at->format('d-m-Y') }}</td>
 						<td>{{ $purchase->statusName() }}</td>
 						<td style="white-space: nowrap; width: 82px">
-							<a href="#" class="btn btn-success"><i class="fas fa-check"></i></a>
-							<a href="#" class="btn btn-danger"><i class="fas fa-ban"></i></a>
+							<a href="#" class="btn btn-success" title="Approve"><i class="fas fa-check"></i></a>
+							<a href="#" class="btn btn-danger" title="Reject"><i class="fas fa-ban"></i></a>
 						</td>
 					</tr>
 					@endforeach
