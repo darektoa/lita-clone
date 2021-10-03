@@ -50,9 +50,7 @@
                         <td>{{ $purchase->created_at->format('d-m-Y') }}</td>
                         <td>{{ $purchase->status }}</td>
                         <td>
-                            <a href="#" class="btn btn-danger swal-delete">
-                                <i class="fas fa-trash"></i>
-                            </a>
+                            <a href="#" class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     @endforeach
