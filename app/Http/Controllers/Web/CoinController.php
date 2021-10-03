@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class CoinController extends Controller
 {
     public function index() {
-        $purchases = CoinPurchase::paginate(10);
+        $purchases = CoinPurchase::paginate(10)->withQueryString();
 
         return view('pages.general.coins', compact('purchases'));
     }
