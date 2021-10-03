@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{CoinPurchase, Player};
+use App\Models\{CoinPurchase, Player, User};
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +14,13 @@ class DatabaseSeeder extends Seeder
             CoinSeeder::class,
         ]);
 
-        Player::factory()
+        $player = Player::factory()
+            ->count(1)
+            ->hasCoinPurchases(2);
+        
+        User::factory()
             ->count(10)
-            ->hasCoinPurchases(2)
+            ->has($player)
             ->create();
-
-        // \App\Models\User::factory(10)->create();
     }
 }
