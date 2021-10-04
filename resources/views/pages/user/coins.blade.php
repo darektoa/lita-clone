@@ -45,8 +45,8 @@
                           }
                       @endphp --}}
                     <tr>
-                        <td>{{ $purchase->coin()->coin }}</td>
-                        <td>{{ $purchase->coin()->price }}</td>
+                        <td>{{ $purchase->coin->coin }}</td>
+                        <td>{{ $purchase->coin->price }}</td>
                         <td>{{ $purchase->created_at->format('d-m-Y') }}</td>
                         <td>{{ $purchase->status }}</td>
                         <td>
