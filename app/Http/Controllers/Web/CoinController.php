@@ -9,10 +9,17 @@ use Illuminate\Http\Request;
 class CoinController extends Controller
 {
     public function index() {
-        $purchases = CoinPurchase::latest()->paginate(10)->withQueryString();
+        $user = auth()->user();
+        $purchases = [];
+  
+        if($user->admin) $purchases = CoinPurchase::latest();
+        else $purchases = CoinPurchase::where('player_id', $user->player->id);
+
+        $purchases = $purchases->paginate(10)->withQueryString();        
 
         return view('pages.general.coins', compact('purchases'));
     }
+
 
     public function store() {
         CoinPurchase::create([

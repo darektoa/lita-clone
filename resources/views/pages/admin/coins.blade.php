@@ -26,6 +26,7 @@
 					@foreach ($purchases as $purchase)
 					@php 
 						$user = $purchase->player->user;
+						$price = number_format($purchase->coin->price, 0, '.', ',');
 						$fullName = $user->first_name . ' ' .  $user->last_name;
 						$statusClass = 'font-weight-bold';
 
@@ -38,7 +39,7 @@
 					<tr>
 						<td>{{ $fullName }}</td>
 						<td>{{ $purchase->coin->coin }}</td>
-						<td>{{ $purchase->coin->price }}</td>
+						<td>{{ $price }}</td>
 						<td>{{ $purchase->created_at->format('d-m-Y') }}</td>
 						<td class="{{ $statusClass }}">{{ $purchase->statusName() }}</td>
 						<td style="white-space: nowrap; width: 82px">

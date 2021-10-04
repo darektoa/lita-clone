@@ -14,7 +14,7 @@ class CoinPurchaseFactory extends Factory
     {
         $player = Player::inRandomOrder()->first();
         $admin = Admin::inRandomOrder()->first();
-        $coin = Coin::inRandomOrder()->first();
+        $coin = Coin::skip(1)->inRandomOrder()->first();
 
         return [
             'player_id' => $player->id,
