@@ -23,31 +23,19 @@
                 </thead>
                 <tbody>
                     @foreach ($purchases as $purchase)
-                    {{-- @php
-                          $status;
+                    @php
                           $statusClass = 'font-weight-bold';
-                          $user = $users->find($item->user_id);
-                          $name = $user->name .' '. $user->last_name;
 
-                          switch($item->status) {
-                              case 0:
-                                  $status = 'Pending';
-                                  $statusClass .= ' text-warning';
-                                  break;
-                              case 1:
-                                  $status = 'Rejected';
-                                  $statusClass .= ' text-danger';
-                                  break;
-                              case 2:
-                                  $status = 'Approved';
-                                  $statusClass .= ' text-success';
-                                  break;
+                          switch($purchase->status) {
+                              case 0: $statusClass .= ' text-warning'; break;
+                              case 1: $statusClass .= ' text-danger'; break;
+                              case 2: $statusClass .= ' text-success'; break;
                           }
-                      @endphp --}}
+                      @endphp
                     <tr>
                         <td>{{ $purchase->coin->coin }}</td>
                         <td>{{ $purchase->coin->price }}</td>
-                        <td>{{ $purchase->statusName() }}</td>
+                        <td class="{{ $statusClass }}">{{ $purchase->statusName() }}</td>
                         <td>{{ $purchase->created_at->format('d-m-Y') }}</td>
                         <td>
                             <a href="#" class="btn btn-danger swal-delete" title="Cancel"><i class="fas fa-trash"></i></a>
