@@ -24,14 +24,14 @@
                 <tbody>
                     @foreach ($purchases as $purchase)
                     @php
-                          $statusClass = 'font-weight-bold';
+                        $statusClass = 'font-weight-bold';
 
-                          switch($purchase->status) {
-                              case 0: $statusClass .= ' text-warning'; break;
-                              case 1: $statusClass .= ' text-danger'; break;
-                              case 2: $statusClass .= ' text-success'; break;
-                          }
-                      @endphp
+                        switch($purchase->status) {
+                            case 0: $statusClass .= ' text-warning'; break;
+                            case 1: $statusClass .= ' text-danger'; break;
+                            case 2: $statusClass .= ' text-success'; break;
+                        }
+                    @endphp
                     <tr>
                         <td>{{ $purchase->coin->coin }}</td>
                         <td>{{ $purchase->coin->price }}</td>
