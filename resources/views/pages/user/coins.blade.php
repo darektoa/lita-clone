@@ -47,7 +47,7 @@
                     <tr>
                         <td>{{ $purchase->coin->coin }}</td>
                         <td>{{ $purchase->coin->price }}</td>
-                        <td>{{ $purchase->status }}</td>
+                        <td>{{ $purchase->statusName() }}</td>
                         <td>{{ $purchase->created_at->format('d-m-Y') }}</td>
                         <td>
                             <a href="#" class="btn btn-danger swal-delete" title="Cancel"><i class="fas fa-trash"></i></a>
