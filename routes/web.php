@@ -17,4 +17,5 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/dashboard', DashboardController::class)->name('dashboard');
   Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
   Route::get('/coins', [CoinController::class, 'index'])->name('coins.index');
+  
 });
