@@ -27,13 +27,20 @@
 					@php 
 						$user = $purchase->player->user;
 						$fullName = $user->first_name . ' ' .  $user->last_name;
+						$statusClass = 'font-weight-bold';
+
+						switch($purchase->status) {
+								case 0: $statusClass .= ' text-warning'; break;
+								case 1: $statusClass .= ' text-danger'; break;
+								case 2: $statusClass .= ' text-success'; break;
+						}
 					@endphp
 					<tr>
 						<td>{{ $fullName }}</td>
 						<td>{{ $purchase->coin->coin }}</td>
 						<td>{{ $purchase->coin->price }}</td>
 						<td>{{ $purchase->created_at->format('d-m-Y') }}</td>
-						<td>{{ $purchase->statusName() }}</td>
+						<td class="{{ $statusClass }}">{{ $purchase->statusName() }}</td>
 						<td style="white-space: nowrap; width: 82px">
 							<a href="#" class="btn btn-success" title="Approve"><i class="fas fa-check"></i></a>
 							<a href="#" class="btn btn-danger" title="Reject"><i class="fas fa-ban"></i></a>
