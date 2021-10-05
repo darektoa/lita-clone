@@ -7,7 +7,7 @@
   ];
 @endphp
 
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
   <x-sidebar.brand 
     img="{{ asset('assets/images/brand_icons/48x48-transparent.png') }}"
     name="LITA"
