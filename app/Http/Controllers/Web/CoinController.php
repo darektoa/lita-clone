@@ -17,7 +17,7 @@ class CoinController extends Controller
 
         $purchases = $purchases->paginate(10)->withQueryString();        
 
-        return view('pages.general.coins', compact('purchases'));
+        return view('pages.general.coin.index', compact('purchases'));
     }
 
 

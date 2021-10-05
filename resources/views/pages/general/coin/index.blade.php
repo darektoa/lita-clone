@@ -2,8 +2,8 @@
 @section('title', 'Coins')
 @section('content')
   @isset(Auth::user()->admin)
-    @include('pages.admin.coins')
+    @include('pages.admin.coin.index')
   @else
-    @include('pages.user.coins')
+    @include('pages.user.coin.index')
   @endif
 @endsection

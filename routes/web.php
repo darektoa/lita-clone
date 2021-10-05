@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\CoinPurchaseController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);
@@ -18,4 +19,8 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
   Route::get('/coins', [CoinController::class, 'index'])->name('coins.index');
   
+  Route::middleware(['player'])->group(function() {
+    Route::get('/topup', [CoinPurchaseController::class, 'index'])->name('topup.index');
+    Route::post('/topup', [CoinPurchaseController::class, 'store'])->name('topup.store');
+  });
 });
