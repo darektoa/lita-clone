@@ -36,7 +36,7 @@ class CoinPurchase extends Model
         switch($this->status) {
             case 0: $statusName = 'Pending';break;
             case 1: $statusName = 'Rejected';break;
-            case 3: $statusName = 'Approved';break;
+            case 2: $statusName = 'Approved';break;
             default: $statusName = 'Unknown';break;
         }
 
