@@ -17,6 +17,11 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/dashboard', DashboardController::class)->name('dashboard');
   Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
   Route::get('/coins', [CoinController::class, 'index'])->name('coins.index');
+
+  Route::middleware(['admin'])->group(function() {
+    Route::get('/topup/approve/{coinPurchase:id}', [CoinPurchaseController::class, 'approve'])->name('topup.approve');
+    Route::get('/topup/reject/{coinPurchase:id}', [CoinPurchaseController::class, 'reject'])->name('topup.reject');
+  });
   
   Route::middleware(['player'])->group(function() {
     Route::get('/topup', [CoinPurchaseController::class, 'index'])->name('topup.index');

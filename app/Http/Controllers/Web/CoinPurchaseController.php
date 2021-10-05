@@ -82,4 +82,19 @@ class CoinPurchaseController extends Controller
         if(!$coinPurchase) throw new Exception('Invalid Topup Id');
         $coinPurchase->delete();
     }
+
+
+    public function approve(CoinPurchase $coinPurchase) {
+        $coinPurchase->status = 2;
+        $coinPurchase->update();
+        Alert::success('Success', 'Successfully Approved');
+        return back();
+    }
+    
+    public function reject(CoinPurchase $coinPurchase) {
+        $coinPurchase->status = 1;
+        $coinPurchase->update();
+        Alert::success('Success', 'Successfully Rejected');
+        return back();
+    }
 }
