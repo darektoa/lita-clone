@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Models\{Coin, CoinPurchase};
 use Illuminate\Http\Request;
 
@@ -19,9 +20,10 @@ class CoinPurchaseController extends Controller
 
         if($coin) {
             CoinPurchase::create([
-                'user_id' => auth()->user()->id,
+                'player_id' => auth()->user()->player->id,
                 'coin_id' => $coin->id
             ]);
+            Alert::success('Success');
             return back();
         }
 

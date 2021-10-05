@@ -21,6 +21,7 @@
   </head>
   <body id="page-top">
     <div id="wrapper">
+        <x-sweetalert/>
         <x-sidebar/>
 
         <div id="content-wrapper" class="d-flex flex-column">
