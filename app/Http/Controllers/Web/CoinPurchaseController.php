@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use Alert;
+use App\Http\Controllers\Controller;
 use App\Models\{Coin, CoinPurchase};
 use Exception;
 use Illuminate\Http\Request;

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\CoinPurchaseController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);
