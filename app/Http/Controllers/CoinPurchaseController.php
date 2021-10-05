@@ -27,6 +27,7 @@ class CoinPurchaseController extends Controller
             return back();
         }
 
+        Alert::error('Failed');
         return back();
     }
 }
