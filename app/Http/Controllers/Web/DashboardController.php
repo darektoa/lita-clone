@@ -14,7 +14,7 @@ class DashboardController extends Controller
         $total = collect([]);
         $coinPurchase = null;
 
-        if($user->admin) $coinPurchase = CoinPurchase::where('admin_id', $user->admin->id);
+        if($user->admin) $coinPurchase = new CoinPurchase;
         else $coinPurchase = CoinPurchase::where('player_id', $user->player->id);
         
         $total->put('approved', $coinPurchase->where('status', 2)->count());
