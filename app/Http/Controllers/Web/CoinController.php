@@ -10,7 +10,7 @@ class CoinController extends Controller
 {
     public function index(Request $request) {
         $user = auth()->user();
-        $purchases = new CoinPurchase;
+        $purchases = CoinPurchase::withTrashed();
         $statusId = (int)$request->status;
 
         if($statusId >= 0 && $statusId < 5) $purchases = $purchases->where('status', $statusId);

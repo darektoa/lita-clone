@@ -71,6 +71,8 @@ class CoinPurchaseController extends Controller
 
     private function destroyByAdmin($id) {
         $coinPurchase = CoinPurchase::find($id);
+        $coinPurchase->status = 3;
+        $coinPurchase->update();
         $coinPurchase->delete();
     }
 
@@ -80,6 +82,8 @@ class CoinPurchaseController extends Controller
         $coinPurchase = CoinPurchase::where('player_id', $playerId)->find($id);
 
         if(!$coinPurchase) throw new Exception('Invalid Topup Id');
+        $coinPurchase->status = 3;
+        $coinPurchase->update();
         $coinPurchase->delete();
     }
 
