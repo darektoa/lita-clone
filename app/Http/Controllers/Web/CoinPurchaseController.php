@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Alert;
 use App\Http\Controllers\Controller;
-use App\Models\{Coin, CoinPurchase};
+use App\Models\{Coin, CoinPurchase, Player};
 use Exception;
 use Illuminate\Http\Request;
 
@@ -36,12 +36,19 @@ class CoinPurchaseController extends Controller
 
 
     private function storeByAdmin(Request $request) {
-        CoinPurchase::create([
-            'player_id' => $request->player->id,
+        $player = Player::find($request->player_id);
+
+        if(!$player) throw new Exception('User not found');
+        
+        $coinPurchase = CoinPurchase::create([
+            'player_id' => $request->player_id,
             'admin_id' => auth()->user()->admin->id,
             'coin_id' => $request->coin,
             'status' => 2,
         ]);
+
+        $player->coin += $coinPurchase->coin->coin;
+        $player->save();
     }
 
 
