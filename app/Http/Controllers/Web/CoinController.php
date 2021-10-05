@@ -8,14 +8,18 @@ use Illuminate\Http\Request;
 
 class CoinController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
         $user = auth()->user();
-        $purchases = [];
-  
-        if($user->admin) $purchases = CoinPurchase::latest();
-        else $purchases = CoinPurchase::where('player_id', $user->player->id);
+        $purchases = new CoinPurchase;
+        $statusId = (int)$request->status;
 
-        $purchases = $purchases->paginate(10)->withQueryString();        
+        if($statusId >= 0 && $statusId < 5) $purchases = $purchases->where('status', $statusId);
+        if($user->admin) $purchases = $purchases->latest();
+        else $purchases = $purchases->where('player_id', $user->player->id);
+
+        $purchases = $purchases
+            ->paginate(10)
+            ->withQueryString();
 
         return view('pages.general.coin.index', compact('purchases'));
     }

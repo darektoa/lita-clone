@@ -1,3 +1,12 @@
+@php
+  $coinNav = [
+      'Pending'   => route('coins.index') . '?status=0', 
+      'Failed'    => route('coins.index') . '?status=1',
+      'Success'   => route('coins.index') . '?status=2',
+      'Canceled'  => route('coins.index') . '?status=3'
+  ];
+@endphp
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
   <x-sidebar.brand 
     img="{{ asset('assets/images/brand_icons/48x48-transparent.png') }}"
@@ -11,18 +20,19 @@
     icon="fa-tachometer-alt"
     name="Dashboard" 
     route="/dashboard" />
-  
-  <x-sidebar.nav-item
+
+  <x-sidebar.nav-collapse-item
     active="{{Request::is('coins') }}"
     icon="fa-coins"
-    name="Coins" 
-    route="/coins" />
+    name="Coins"
+    routes="{!! json_encode($coinNav) !!}" />
 
   <x-sidebar.nav-item
     active="{{Request::is('withdrawal') }}"
     icon="fa-money-bill-wave"
     name="Withdrawal" 
     route="/withdrawal" />
+
 
   <x-divider mt mb="4"/>
   <x-sidebar.toggle/>
