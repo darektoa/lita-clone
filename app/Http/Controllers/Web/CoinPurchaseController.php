@@ -88,6 +88,8 @@ class CoinPurchaseController extends Controller
         try{
             if($coinPurchase->status != 0) throw new Exception('Cannot edit response');
             $coinPurchase->status = 2;
+            $coinPurchase->player->coin += $coinPurchase->coin->coin;
+            $coinPurchase->player->update();
             $coinPurchase->update();
             Alert::success('Success', 'Successfully Approved');
             return back();
