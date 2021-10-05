@@ -85,16 +85,30 @@ class CoinPurchaseController extends Controller
 
 
     public function approve(CoinPurchase $coinPurchase) {
-        $coinPurchase->status = 2;
-        $coinPurchase->update();
-        Alert::success('Success', 'Successfully Approved');
-        return back();
+        try{
+            if($coinPurchase->status != 0) throw new Exception('Cannot edit response');
+            $coinPurchase->status = 2;
+            $coinPurchase->update();
+            Alert::success('Success', 'Successfully Approved');
+            return back();
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+            return back();
+        }
     }
     
     public function reject(CoinPurchase $coinPurchase) {
-        $coinPurchase->status = 1;
-        $coinPurchase->update();
-        Alert::success('Success', 'Successfully Rejected');
-        return back();
+        try{
+            if($coinPurchase->status != 0) throw new Exception('Cannot edit response');
+            $coinPurchase->status = 1;
+            $coinPurchase->update();
+            Alert::success('Success', 'Successfully Approved');
+            return back();
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+            return back();
+        }
     }
 }

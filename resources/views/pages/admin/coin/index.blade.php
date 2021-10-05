@@ -43,8 +43,8 @@
 						<td>{{ $purchase->created_at->format('d-m-Y') }}</td>
 						<td class="{{ $statusClass }}">{{ $purchase->statusName() }}</td>
 						<td style="white-space: nowrap; width: 82px">
-							<a href="{{ route('topup.approve', [$purchase->id]) }}" class="btn btn-success" title="Approve"><i class="fas fa-check"></i></a>
-							<a href="{{ route('topup.reject', [$purchase->id]) }}" class="btn btn-danger" title="Reject"><i class="fas fa-ban"></i></a>
+							<a href="{{ route('topup.approve', [$purchase->id]) }}" class="btn btn-success {{ $purchase->status ? 'disabled' : '' }}" title="Approve"><i class="fas fa-check"></i></a>
+							<a href="{{ route('topup.reject', [$purchase->id]) }}" class="btn btn-danger {{ $purchase->status ? 'disabled' : '' }}" title="Reject"><i class="fas fa-ban"></i></a>
 						</td>
 					</tr>
 					@endforeach
