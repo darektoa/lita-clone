@@ -16,8 +16,8 @@
 						<th>Nama</th>
 						<th>Coin</th>
 						<th>Price</th>
-						<th>Status</th>
 						<th>Date</th>
+						<th>Status</th>
 						<th>Action</th>
 					</tr>
 				</thead>
