@@ -40,7 +40,7 @@
                         <td>
                             <form action="{{ route('topup.destroy', [$purchase->id]) }}" method="POST">
                                 @method('DELETE') @csrf
-                                <button class="btn btn-danger swal-delete" title="Cancel"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-danger swal-delete {{ $purchase->status ? 'disabled' : '' }}" title="Cancel"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>

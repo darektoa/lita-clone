@@ -23,7 +23,7 @@
 
                         <div class="form-group">
                             <label for="keterangan">Harga</label>
-                            <input id="price" value="100.000" class="form-control" readonly/>
+                            <input id="price" value="0" class="form-control" readonly/>
                         </div>
 
                         <div class="form-group">
