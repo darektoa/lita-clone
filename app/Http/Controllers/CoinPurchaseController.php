@@ -6,9 +6,6 @@ use Alert;
 use App\Models\{Coin, CoinPurchase};
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
-
-use function PHPUnit\Framework\throwException;
 
 class CoinPurchaseController extends Controller
 {
