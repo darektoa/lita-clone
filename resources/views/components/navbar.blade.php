@@ -1,6 +1,7 @@
 @php
-  $first_name = Auth::user()->first_name ?? 'First';
-  $last_name  = Auth::user()->last_name ?? 'Last';
+  $user       = auth()->user();
+  $first_name = $user->first_name ?? 'First';
+  $last_name  = $user->last_name ?? 'Last';
   $name       = $first_name . ' ' . $last_name;
   $initial    = $first_name[0];
 @endphp
@@ -20,10 +21,19 @@
       </a>
 
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+          @isset($user->player)
+          <div class="dropdown-item" title="coins">
+              <i class="fas fa-coins fa-sm fa-fw mr-2 text-warning"></i>
+              {{ number_format(auth()->user()->player->coin) }}
+          </div>
+          @endisset
+
           <a class="dropdown-item" href="{{ '/profile' }}">
               <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
               Profile
           </a>
+
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{{ route('logout') }}">
               <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
