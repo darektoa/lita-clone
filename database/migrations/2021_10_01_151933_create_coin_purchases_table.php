@@ -19,6 +19,7 @@ class CreateCoinPurchasesTable extends Migration
             $table->foreignId('admin_id')->nullable()->constrained();
             $table->foreignId('coin_id')->constrained();
             $table->smallInteger('status')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

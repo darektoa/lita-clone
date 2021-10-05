@@ -22,5 +22,6 @@ Route::middleware(['auth'])->group(function() {
   Route::middleware(['player'])->group(function() {
     Route::get('/topup', [CoinPurchaseController::class, 'index'])->name('topup.index');
     Route::post('/topup', [CoinPurchaseController::class, 'store'])->name('topup.store');
+    Route::delete('/topup/{id}', [CoinPurchaseController::class, 'destroy'])->name('topup.destroy');
   });
 });

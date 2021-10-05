@@ -38,7 +38,10 @@
                         <td class="{{ $statusClass }}">{{ $purchase->statusName() }}</td>
                         <td>{{ $purchase->created_at->format('d-m-Y') }}</td>
                         <td>
-                            <a href="#" class="btn btn-danger swal-delete" title="Cancel"><i class="fas fa-trash"></i></a>
+                            <form action="{{ route('topup.destroy', [$purchase->id]) }}" method="POST">
+                                @method('DELETE') @csrf
+                                <button class="btn btn-danger swal-delete" title="Cancel"><i class="fas fa-trash"></i></button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
