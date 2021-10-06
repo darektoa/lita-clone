@@ -41,7 +41,9 @@
 						<td class="align-middle">{{ $fullName }}</td>
 						<td class="align-middle">{{ $purchase->coin->coin }}</td>
 						<td class="align-middle">{{ $price }}</td>
-						<td class="align-middle">{{ $purchase->created_at->format('d-m-Y') }}</td>
+						<td class="align-middle" style="white-space: nowrap">
+							{{ $purchase->created_at->format('d/m/Y') }}
+						</td>
 						<td class="align-middle {{ $statusClass }}">
 							{{ $purchase->statusName() }}
 						</td>

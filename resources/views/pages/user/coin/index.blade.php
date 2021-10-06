@@ -38,7 +38,9 @@
                         <td class="align-middle {{ $statusClass }}">
                             {{ $purchase->statusName() }}
                         </td>
-                        <td class="align-middle" style="white-space: nowrap">{{ $purchase->created_at->format('d-m-Y') }}</td>
+                        <td class="align-middle" style="white-space: nowrap">
+                            {{ $purchase->created_at->format('d/m/Y') }}
+                        </td>
                         <td class="align-middle">
                             <form action="{{ route('topup.destroy', [$purchase->id]) }}" method="POST">
                                 @method('DELETE') @csrf
