@@ -30,6 +30,7 @@
 						$price = number_format($purchase->coin->price, 0, '.', ',');
 						$created = $purchase->created_at;
 						$fullName = $user->first_name . ' ' .  $user->last_name;
+						$statusName = $purchase->statusName();
 						$statusClass = 'font-weight-bold';
 
 						switch($purchase->status) {
@@ -47,7 +48,12 @@
 							<small class="d-block">{{ $created->format('H:i:s') }}</small>
 						</td>
 						<td class="align-middle {{ $statusClass }}">
-							{{ $purchase->statusName() }}
+							{{ $statusName }}
+
+							@if($statusName != 'Pending')
+							<small class="d-block">{{ $purchase->updated_at->format('d/m/Y') }}</small>
+							@endif
+							
 						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
 							<a href="{{ route('topup.approve', [$purchase->id]) }}" class="btn btn-success {{ $purchase->status ? 'disabled' : '' }}" title="Approve"><i class="fas fa-check"></i></a>

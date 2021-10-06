@@ -16,8 +16,8 @@
                     <tr>
                         <th>Coin</th>
                         <th>Price</th>
-                        <th>Status</th>
                         <th>Ordered</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -25,6 +25,7 @@
                     @foreach ($purchases as $purchase)
                     @php
                         $created = $purchase->created_at;
+                        $statusName = $purchase->statusName();
                         $statusClass = 'font-weight-bold';
 
                         switch($purchase->status) {
@@ -36,12 +37,17 @@
                     <tr>
                         <td class="align-middle">{{ $purchase->coin->coin }}</td>
                         <td class="align-middle">{{ $purchase->coin->price }}</td>
-                        <td class="align-middle {{ $statusClass }}">
-                            {{ $purchase->statusName() }}
-                        </td>
                         <td class="align-middle" style="white-space: nowrap">
                             <small class="d-block">{{ $created->format('d/m/Y') }}</small>
                             <small class="d-block">{{ $created->format('H:i:s') }}</small>
+                        </td>
+                        <td class="align-middle {{ $statusClass }}">
+                            {{ $purchase->statusName() }}
+                            
+							@if($statusName != 'Pending')
+							<small class="d-block">{{ $purchase->updated_at->format('d/m/Y') }}</small>
+							@endif
+							
                         </td>
                         <td class="align-middle">
                             <form action="{{ route('topup.destroy', [$purchase->id]) }}" method="POST">
