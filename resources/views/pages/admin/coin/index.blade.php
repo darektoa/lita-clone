@@ -38,12 +38,14 @@
 						}
 					@endphp
 					<tr>
-						<td>{{ $fullName }}</td>
-						<td>{{ $purchase->coin->coin }}</td>
-						<td>{{ $price }}</td>
-						<td>{{ $purchase->created_at->format('d-m-Y') }}</td>
-						<td class="{{ $statusClass }}">{{ $purchase->statusName() }}</td>
-						<td style="white-space: nowrap; width: 82px">
+						<td class="align-middle">{{ $fullName }}</td>
+						<td class="align-middle">{{ $purchase->coin->coin }}</td>
+						<td class="align-middle">{{ $price }}</td>
+						<td class="align-middle">{{ $purchase->created_at->format('d-m-Y') }}</td>
+						<td class="align-middle {{ $statusClass }}">
+							{{ $purchase->statusName() }}
+						</td>
+						<td class="align-middle" style="white-space: nowrap; width: 82px">
 							<a href="{{ route('topup.approve', [$purchase->id]) }}" class="btn btn-success {{ $purchase->status ? 'disabled' : '' }}" title="Approve"><i class="fas fa-check"></i></a>
 							<a href="{{ route('topup.reject', [$purchase->id]) }}" class="btn btn-danger {{ $purchase->status ? 'disabled' : '' }}" title="Reject"><i class="fas fa-ban"></i></a>
 						</td>
