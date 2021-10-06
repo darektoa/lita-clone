@@ -47,13 +47,13 @@
 							<small class="d-block">{{ $created->format('d/m/Y') }}</small>
 							<small class="d-block">{{ $created->format('H:i:s') }}</small>
 						</td>
-						<td class="align-middle {{ $statusClass }}">
+						<td class="align-middle {{ $statusClass }}" title="{{ $purchase->updated_at->format('d/m/Y H:i:s') }}">
 							{{ $statusName }}
 
 							@if($statusName != 'Pending')
 							<small class="d-block">{{ $purchase->updated_at->format('d/m/Y') }}</small>
 							@endif
-							
+
 						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
 							<a href="{{ route('topup.approve', [$purchase->id]) }}" class="btn btn-success {{ $purchase->status ? 'disabled' : '' }}" title="Approve"><i class="fas fa-check"></i></a>
