@@ -17,7 +17,7 @@
                         <th>Coin</th>
                         <th>Price</th>
                         <th>Status</th>
-                        <th>Date</th>
+                        <th>Ordered</th>
                         <th>Action</th>
                     </tr>
                 </thead>
