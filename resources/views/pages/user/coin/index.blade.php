@@ -33,11 +33,13 @@
                         }
                     @endphp
                     <tr>
-                        <td>{{ $purchase->coin->coin }}</td>
-                        <td>{{ $purchase->coin->price }}</td>
-                        <td class="{{ $statusClass }}">{{ $purchase->statusName() }}</td>
-                        <td>{{ $purchase->created_at->format('d-m-Y') }}</td>
-                        <td>
+                        <td class="align-middle">{{ $purchase->coin->coin }}</td>
+                        <td class="align-middle">{{ $purchase->coin->price }}</td>
+                        <td class="align-middle {{ $statusClass }}">
+                            {{ $purchase->statusName() }}
+                        </td>
+                        <td class="align-middle" style="white-space: nowrap">{{ $purchase->created_at->format('d-m-Y') }}</td>
+                        <td class="align-middle">
                             <form action="{{ route('topup.destroy', [$purchase->id]) }}" method="POST">
                                 @method('DELETE') @csrf
                                 <button class="btn btn-danger swal-delete {{ $purchase->status ? 'disabled' : '' }}" title="Cancel"><i class="fas fa-trash"></i></button>
