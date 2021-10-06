@@ -70,4 +70,14 @@ class AuthController extends Controller
             'token'=> $loginToken->token
         ], 200);
     }
+
+
+    public function logout(Request $request) {
+        $loginToken = LoginToken::where('token', $request->token)->first();
+
+        if(!$loginToken) return response()->json(['message' => 'Unauthorized Token'], 401);
+
+        $loginToken->delete();
+        return response()->json(['message' => 'Logout Success']);
+    }
 }
