@@ -38,16 +38,14 @@ class AuthController extends Controller
             'first_name'        => 'bail|required|alpha|min:2|max:20',
             'last_name'         => 'required|alpha|min:2|max:20',
             'email'             => 'required|email|unique:users',
-            'password'          => 'required|min:5|max:16',
-            'password_confirm'  => 'required|same:password'
+            'password'          => 'required|min:5|max:16'
         ]);
 
         $errors = $validator->errors();
-            // dd($errors);
         if($validator->fails()) {
             return response()->json([
                 'message' => 'invalid field',
-                'errors' => $errors['email']
+                'errors' => $errors->all()
             ], 422);
         }
 
