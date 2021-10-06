@@ -28,6 +28,7 @@
 					@php 
 						$user = $purchase->player->user;
 						$price = number_format($purchase->coin->price, 0, '.', ',');
+						$created = $purchase->created_at;
 						$fullName = $user->first_name . ' ' .  $user->last_name;
 						$statusClass = 'font-weight-bold';
 
@@ -42,7 +43,8 @@
 						<td class="align-middle">{{ $purchase->coin->coin }}</td>
 						<td class="align-middle">{{ $price }}</td>
 						<td class="align-middle" style="white-space: nowrap">
-							<small>{{ $purchase->created_at->format('d/m/Y') }}</small>
+							<small class="d-block">{{ $created->format('d/m/Y') }}</small>
+							<small class="d-block">{{ $created->format('H:i:s') }}</small>
 						</td>
 						<td class="align-middle {{ $statusClass }}">
 							{{ $purchase->statusName() }}

@@ -24,6 +24,7 @@
                 <tbody>
                     @foreach ($purchases as $purchase)
                     @php
+                        $created = $purchase->created_at;
                         $statusClass = 'font-weight-bold';
 
                         switch($purchase->status) {
@@ -39,7 +40,8 @@
                             {{ $purchase->statusName() }}
                         </td>
                         <td class="align-middle" style="white-space: nowrap">
-                            <small>{{ $purchase->created_at->format('d/m/Y') }}</small>
+                            <small class="d-block">{{ $created->format('d/m/Y') }}</small>
+                            <small class="d-block">{{ $created->format('H:i:s') }}</small>
                         </td>
                         <td class="align-middle">
                             <form action="{{ route('topup.destroy', [$purchase->id]) }}" method="POST">
