@@ -1,12 +1,12 @@
-<p align="center">
+<kbd align="center">
   <a href="https://yoshi.kulayuki.com/" target="_blank">
-    <img src="./public/assets/images/brand_icons/512x512.png" width="200" style="border-radius: 1rem" alt="Yukita">
+    <img src="./public/assets/images/brand_icons/512x512.png" width="200" alt="Yukita">
   </a>
-</p>
+</kbd>
 
 ## About Yukita
 
-Yukita adalah aplikasi pencari temen main bareng saat bermain game online.
+Yukita is an application to find _friends_ or _pro players_ to play together when you want to play online games.
 
 
 ## How to Install ?
