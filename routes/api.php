@@ -11,6 +11,6 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::middleware(['auth.api'])->group(function() {
     Route::prefix('/coin')->group(function() {
-        Route::get('/', [CoinController::class, 'index']);
+        Route::get('/history', [CoinController::class, 'history']);
     });
 });
