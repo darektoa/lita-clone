@@ -1,8 +1,10 @@
-<kbd align="center">
-  <a href="https://yoshi.kulayuki.com/" target="_blank">
-    <img src="./public/assets/images/brand_icons/512x512.png" width="200" alt="Yukita">
-  </a>
-</kbd>
+<p align="center">
+  <kbd>
+    <a href="https://yoshi.kulayuki.com/" target="_blank">
+      <img src="./public/assets/images/brand_icons/512x512.png" width="200" alt="Yukita">
+    </a>
+  </kbd>
+</p>
 
 ## About Yukita
 
