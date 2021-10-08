@@ -10,5 +10,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::middleware(['auth.api'])->group(function() {
-    Route::get('/coins', [CoinController::class, 'index']);
+    Route::prefix('/coin')->group(function() {
+        Route::get('/', [CoinController::class, 'index']);
+    });
 });
