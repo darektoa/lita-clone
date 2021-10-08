@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\CoinPurchase;
+use App\Models\{Coin, CoinPurchase};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CoinController extends Controller
 {
-    public function index(Request $request) {
-        
+    public function index() {
+        $coins = Coin::all();
+        return response()->json(['data' => $coins]);
     }
 
 
