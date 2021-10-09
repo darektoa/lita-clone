@@ -3,9 +3,9 @@
     "version": "2.2.6",
     "width": 3000,
     "height": 3000,
-    "scrollTop": -577,
-    "scrollLeft": -606,
-    "zoomLevel": 0.9,
+    "scrollTop": -555,
+    "scrollLeft": -515,
+    "zoomLevel": 1,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -234,7 +234,7 @@
           "active": false,
           "left": 75.5,
           "top": 260,
-          "zIndex": 1,
+          "zIndex": 83,
           "widthName": 60,
           "widthComment": 60
         },
@@ -485,7 +485,7 @@
             "id": "f533270a-0247-48a8-ae4d-e5fe9784d5cb"
           },
           {
-            "name": "game_id",
+            "name": "pro_setting_id",
             "comment": "",
             "dataType": "BIGINT(20)",
             "default": "",
@@ -493,14 +493,14 @@
               "autoIncrement": false,
               "primaryKey": false,
               "unique": false,
-              "notNull": true
+              "notNull": false
             },
             "ui": {
               "active": false,
               "pk": false,
               "fk": true,
               "pfk": false,
-              "widthName": 60,
+              "widthName": 83.6689453125,
               "widthComment": 60,
               "widthDataType": 68.45361328125,
               "widthDefault": 60
@@ -529,13 +529,36 @@
               "widthDefault": 60
             },
             "id": "c65ba8ee-42a2-49fa-aea0-0aa3e33158ec"
+          },
+          {
+            "name": "is_pro",
+            "comment": "",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "fb49f68e-d977-4545-8263-274dc6bcc4e3"
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 566.75,
           "top": 674.25,
-          "zIndex": 44,
+          "zIndex": 89,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1051,7 +1074,7 @@
         "id": "54081dc4-4876-4bf9-ae08-5e8ae34ba320"
       },
       {
-        "name": "games",
+        "name": "pro_settings",
         "comment": "",
         "columns": [
           {
@@ -1078,7 +1101,7 @@
             "id": "79afc8cc-2c40-4e28-8e97-855d640a0d6e"
           },
           {
-            "name": "name",
+            "name": "game",
             "comment": "",
             "dataType": "VARCHAR(100)",
             "default": "",
@@ -1172,10 +1195,10 @@
         ],
         "ui": {
           "active": false,
-          "left": 1045.2224,
-          "top": 806.2204,
-          "zIndex": 40,
-          "widthName": 60,
+          "left": 1097.2224,
+          "top": 820.2204,
+          "zIndex": 62,
+          "widthName": 72.82080078125,
           "widthComment": 60
         },
         "visible": true,
@@ -1260,7 +1283,7 @@
             "f533270a-0247-48a8-ae4d-e5fe9784d5cb"
           ],
           "x": 566.75,
-          "y": 749.75,
+          "y": 760,
           "direction": "left"
         },
         "constraintName": "fk_users_to_players",
@@ -1276,8 +1299,8 @@
           "columnIds": [
             "e940124d-f591-4732-a9d2-8a36948cbe3c"
           ],
-          "x": 922.20361328125,
-          "y": 712,
+          "x": 945.87255859375,
+          "y": 717.125,
           "direction": "right"
         },
         "end": {
@@ -1328,7 +1351,7 @@
           "columnIds": [
             "e940124d-f591-4732-a9d2-8a36948cbe3c"
           ],
-          "x": 744.476806640625,
+          "x": 756.311279296875,
           "y": 674.25,
           "direction": "top"
         },
@@ -1400,14 +1423,14 @@
       {
         "identification": false,
         "relationshipType": "OneOnly",
-        "startRelationshipType": "Dash",
+        "startRelationshipType": "Ring",
         "start": {
           "tableId": "779f8d31-a028-4ae0-986f-30d02da2a50d",
           "columnIds": [
             "79afc8cc-2c40-4e28-8e97-855d640a0d6e"
           ],
-          "x": 1045.2224,
-          "y": 891.9704,
+          "x": 1097.2224,
+          "y": 905.9704,
           "direction": "left"
         },
         "end": {
@@ -1415,8 +1438,8 @@
           "columnIds": [
             "7487cdbd-dd3b-4e85-9b57-8309a48a1b17"
           ],
-          "x": 922.20361328125,
-          "y": 787.5,
+          "x": 945.87255859375,
+          "y": 802.875,
           "direction": "right"
         },
         "constraintName": "fk_games_to_players",
