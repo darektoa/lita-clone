@@ -26,7 +26,7 @@ class IsAdmin
         if(!$loginToken)
             return response()->json(['message' => 'Unauthorized token'], 422);
         if(!isset($loginToken->user->admin))
-            return response()->json(['message' => 'You are not admin'], 403);
+            return response()->json(['message' => 'Forbidden to access'], 403);
 
         return $next($request);
     }
