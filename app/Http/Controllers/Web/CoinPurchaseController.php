@@ -111,6 +111,7 @@ class CoinPurchaseController extends Controller
         }
     }
     
+    
     public function reject(CoinPurchase $coinPurchase) {
         try{
             if($coinPurchase->status != 0) throw new Exception('Cannot edit response');

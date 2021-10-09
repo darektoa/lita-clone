@@ -18,4 +18,12 @@ Route::middleware(['auth.api'])->group(function() {
     Route::prefix('/topup')->group(function() {
         Route::post('/', [CoinPurchaseController::class, 'store']);
     });
+
+    // ONLY ADMIN
+    Route::middleware(['admin.api'])->group(function() {
+        Route::prefix('/topup')->group(function() {
+           Route::get('/approve/{coinPurchase:id}', [CoinPurchaseController::class, 'approve']);
+           Route::get('/reject/{coinPurchase:id}', [CoinPurchaseController::class, 'reject']); 
+        });
+    });
 });

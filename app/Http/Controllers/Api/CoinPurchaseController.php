@@ -48,4 +48,19 @@ class CoinPurchaseController extends Controller
             'coin_id' => $request->coin_id
         ]);
     }
+
+
+    public function approve(CoinPurchase $coinPurchase) {
+        try{
+            if($coinPurchase->status != 0) throw new Exception('Cannot edit response');
+            $coinPurchase->status = 2;
+            $coinPurchase->player->coin += $coinPurchase->coin->coin;
+            $coinPurchase->player->update();
+            $coinPurchase->update();
+            return response()->json(['message' => 'Successfully Approved']);
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            return response()->json(['message' => $errMessage]);
+        }
+    }
 }

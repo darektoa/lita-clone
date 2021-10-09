@@ -3,9 +3,9 @@
     "version": "2.2.6",
     "width": 3000,
     "height": 3000,
-    "scrollTop": -206,
-    "scrollLeft": -44,
-    "zoomLevel": 1,
+    "scrollTop": -255,
+    "scrollLeft": -142,
+    "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -67,6 +67,29 @@
               "widthDefault": 60
             },
             "id": "336369d1-6b2e-486b-a889-aa5e287f0b26"
+          },
+          {
+            "name": "gender_id",
+            "comment": "",
+            "dataType": "BIGINT(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 68.45361328125,
+              "widthDefault": 60
+            },
+            "id": "40501d51-d726-4410-8e0a-748656bddf21"
           },
           {
             "name": "first_name",
@@ -277,10 +300,10 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 75.5,
           "top": 260,
-          "zIndex": 116,
+          "zIndex": 146,
           "widthName": 60,
           "widthComment": 60
         },
@@ -471,9 +494,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 566,
-          "top": 16.75,
-          "zIndex": 3,
+          "left": 684,
+          "top": 13.75,
+          "zIndex": 124,
           "widthName": 60,
           "widthComment": 60
         },
@@ -602,9 +625,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 567.75,
-          "top": 613.25,
-          "zIndex": 93,
+          "left": 669.75,
+          "top": 647.25,
+          "zIndex": 130,
           "widthName": 60,
           "widthComment": 60
         },
@@ -733,9 +756,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1622.143,
-          "top": 292.9286,
-          "zIndex": 7,
+          "left": 1710.143,
+          "top": 293.9286,
+          "zIndex": 135,
           "widthName": 60,
           "widthComment": 60
         },
@@ -910,9 +933,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1146.25,
-          "top": 272,
-          "zIndex": 6,
+          "left": 1236.25,
+          "top": 274,
+          "zIndex": 131,
           "widthName": 93.05712890625,
           "widthComment": 60
         },
@@ -1110,9 +1133,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 615.75,
-          "top": 278.75,
-          "zIndex": 5,
+          "left": 668.75,
+          "top": 267.75,
+          "zIndex": 126,
           "widthName": 69.91357421875,
           "widthComment": 60
         },
@@ -1241,14 +1264,122 @@
         ],
         "ui": {
           "active": false,
-          "left": 1097.2224,
-          "top": 820.2204,
-          "zIndex": 62,
+          "left": 1171.2224,
+          "top": 772.2204,
+          "zIndex": 136,
           "widthName": 72.82080078125,
           "widthComment": 60
         },
         "visible": true,
         "id": "779f8d31-a028-4ae0-986f-30d02da2a50d"
+      },
+      {
+        "name": "genders",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "BIGINT(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 68.45361328125,
+              "widthDefault": 60
+            },
+            "id": "54fe943a-a65f-4d49-ac94-0d6941dff8af"
+          },
+          {
+            "name": "name",
+            "comment": "",
+            "dataType": "VARCHAR(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 87.71875,
+              "widthDefault": 60
+            },
+            "id": "bcf9c02d-abc6-4a97-91eb-48f5870b1013"
+          },
+          {
+            "name": "created_at",
+            "comment": "",
+            "dataType": "TIMESTAMP",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 63.4326171875,
+              "widthComment": 60,
+              "widthDataType": 76.87060546875,
+              "widthDefault": 60
+            },
+            "id": "2cef8581-96f1-496b-900d-84e4f4251934"
+          },
+          {
+            "name": "updated_at",
+            "comment": "",
+            "dataType": "TIMESTAMP",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 67.0634765625,
+              "widthComment": 60,
+              "widthDataType": 76.87060546875,
+              "widthDefault": 60
+            },
+            "id": "7c485e0f-1c4c-42d5-892d-4119bac48665"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 79,
+          "top": 9,
+          "zIndex": 143,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "f4770ab4-6dc1-413b-ba39-aa0c9d7b1b55"
       }
     ],
     "indexes": []
@@ -1268,7 +1399,7 @@
             "336369d1-6b2e-486b-a889-aa5e287f0b26"
           ],
           "x": 270.006103515625,
-          "y": 534,
+          "y": 554.5,
           "direction": "bottom"
         },
         "end": {
@@ -1294,7 +1425,7 @@
             "336369d1-6b2e-486b-a889-aa5e287f0b26"
           ],
           "x": 464.51220703125,
-          "y": 328.5,
+          "y": 333.625,
           "direction": "right"
         },
         "end": {
@@ -1302,8 +1433,8 @@
           "columnIds": [
             "2576bbf4-4aa2-4a71-b69d-d8fdcba85191"
           ],
-          "x": 566,
-          "y": 71.75,
+          "x": 684,
+          "y": 68.75,
           "direction": "left"
         },
         "constraintName": "fk_users_to_admins",
@@ -1320,7 +1451,7 @@
             "336369d1-6b2e-486b-a889-aa5e287f0b26"
           ],
           "x": 464.51220703125,
-          "y": 465.5,
+          "y": 480.875,
           "direction": "right"
         },
         "end": {
@@ -1328,8 +1459,8 @@
           "columnIds": [
             "f533270a-0247-48a8-ae4d-e5fe9784d5cb"
           ],
-          "x": 567.75,
-          "y": 699,
+          "x": 669.75,
+          "y": 733,
           "direction": "left"
         },
         "constraintName": "fk_users_to_players",
@@ -1345,8 +1476,8 @@
           "columnIds": [
             "e940124d-f591-4732-a9d2-8a36948cbe3c"
           ],
-          "x": 946.87255859375,
-          "y": 656.125,
+          "x": 1048.87255859375,
+          "y": 690.125,
           "direction": "right"
         },
         "end": {
@@ -1354,8 +1485,8 @@
           "columnIds": [
             "d7166884-8244-49a3-9bf7-1e1cfcc694d7"
           ],
-          "x": 1146.25,
-          "y": 431.375,
+          "x": 1236.25,
+          "y": 433.375,
           "direction": "left"
         },
         "constraintName": "fk_players_to_player_coins",
@@ -1371,8 +1502,8 @@
           "columnIds": [
             "c97c0aac-4d2f-4aa3-8307-04c9a6982b0f"
           ],
-          "x": 1622.143,
-          "y": 378.6786,
+          "x": 1710.143,
+          "y": 379.6786,
           "direction": "left"
         },
         "end": {
@@ -1380,8 +1511,8 @@
           "columnIds": [
             "3b6ce438-cb2c-4c22-9072-d5e1162df3da"
           ],
-          "x": 1517.18408203125,
-          "y": 378.25,
+          "x": 1607.18408203125,
+          "y": 380.25,
           "direction": "right"
         },
         "constraintName": "fk_coin_prices_to_player_coins",
@@ -1397,8 +1528,8 @@
           "columnIds": [
             "e940124d-f591-4732-a9d2-8a36948cbe3c"
           ],
-          "x": 757.311279296875,
-          "y": 613.25,
+          "x": 859.311279296875,
+          "y": 647.25,
           "direction": "top"
         },
         "end": {
@@ -1406,8 +1537,8 @@
           "columnIds": [
             "52470793-cf03-4c01-b77c-ce9c356ce484"
           ],
-          "x": 807.7138671875,
-          "y": 511.75,
+          "x": 860.7138671875,
+          "y": 500.75,
           "direction": "bottom"
         },
         "constraintName": "fk_players_to_withdrawals",
@@ -1423,8 +1554,8 @@
           "columnIds": [
             "f74dc2d7-3745-439f-b0e6-c102c5c992ea"
           ],
-          "x": 921.45361328125,
-          "y": 71.75,
+          "x": 1039.45361328125,
+          "y": 68.75,
           "direction": "right"
         },
         "end": {
@@ -1432,8 +1563,8 @@
           "columnIds": [
             "3288688c-ba20-4a21-b563-69c96022a02d"
           ],
-          "x": 1146.25,
-          "y": 325.125,
+          "x": 1236.25,
+          "y": 327.125,
           "direction": "left"
         },
         "constraintName": "fk_admins_to_coin_purchases",
@@ -1449,8 +1580,8 @@
           "columnIds": [
             "f74dc2d7-3745-439f-b0e6-c102c5c992ea"
           ],
-          "x": 743.726806640625,
-          "y": 126.75,
+          "x": 861.726806640625,
+          "y": 123.75,
           "direction": "bottom"
         },
         "end": {
@@ -1458,8 +1589,8 @@
           "columnIds": [
             "2695ab73-145a-4940-94a0-691d97de6130"
           ],
-          "x": 807.7138671875,
-          "y": 278.75,
+          "x": 860.7138671875,
+          "y": 267.75,
           "direction": "top"
         },
         "constraintName": "fk_admins_to_withdrawals",
@@ -1475,8 +1606,8 @@
           "columnIds": [
             "79afc8cc-2c40-4e28-8e97-855d640a0d6e"
           ],
-          "x": 1097.2224,
-          "y": 905.9704,
+          "x": 1171.2224,
+          "y": 857.9704,
           "direction": "left"
         },
         "end": {
@@ -1484,13 +1615,39 @@
           "columnIds": [
             "7487cdbd-dd3b-4e85-9b57-8309a48a1b17"
           ],
-          "x": 946.87255859375,
-          "y": 741.875,
+          "x": 1048.87255859375,
+          "y": 775.875,
           "direction": "right"
         },
         "constraintName": "fk_games_to_players",
         "visible": true,
         "id": "e8e869aa-809a-4557-a5dc-0d8dd24f1d09"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Ring",
+        "start": {
+          "tableId": "f4770ab4-6dc1-413b-ba39-aa0c9d7b1b55",
+          "columnIds": [
+            "54fe943a-a65f-4d49-ac94-0d6941dff8af"
+          ],
+          "x": 269.89111328125,
+          "y": 160,
+          "direction": "bottom"
+        },
+        "end": {
+          "tableId": "72733b78-a242-4337-9136-92660cf554e7",
+          "columnIds": [
+            "40501d51-d726-4410-8e0a-748656bddf21"
+          ],
+          "x": 270.006103515625,
+          "y": 260,
+          "direction": "top"
+        },
+        "constraintName": "fk_genders_to_users",
+        "visible": true,
+        "id": "7d37a3d6-919c-47a8-a56e-9d4b7db523e6"
       }
     ]
   }
