@@ -70,7 +70,8 @@ class AuthController extends Controller
         ]);
 
         return response()->json([
-            'token'=> $loginToken->token
+            'token'=> $loginToken->token,
+            'data' => $user,
         ], 200);
     }
 

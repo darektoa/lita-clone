@@ -3,8 +3,8 @@
     "version": "2.2.6",
     "width": 3000,
     "height": 3000,
-    "scrollTop": -506,
-    "scrollLeft": -365,
+    "scrollTop": -577,
+    "scrollLeft": -606,
     "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
@@ -485,6 +485,29 @@
             "id": "f533270a-0247-48a8-ae4d-e5fe9784d5cb"
           },
           {
+            "name": "game_id",
+            "comment": "",
+            "dataType": "BIGINT(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 68.45361328125,
+              "widthDefault": 60
+            },
+            "id": "7487cdbd-dd3b-4e85-9b57-8309a48a1b17"
+          },
+          {
             "name": "coin",
             "comment": "",
             "dataType": "BIGINT(20)",
@@ -512,7 +535,7 @@
           "active": false,
           "left": 566.75,
           "top": 674.25,
-          "zIndex": 4,
+          "zIndex": 44,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1080,13 +1103,13 @@
           {
             "name": "rate",
             "comment": "",
-            "dataType": "FLOAT",
+            "dataType": "FLOAT(1, 2)",
             "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
               "unique": false,
-              "notNull": false
+              "notNull": true
             },
             "ui": {
               "active": false,
@@ -1095,7 +1118,7 @@
               "pfk": false,
               "widthName": 60,
               "widthComment": 60,
-              "widthDataType": 60,
+              "widthDataType": 73.271484375,
               "widthDefault": 60
             },
             "id": "8fafbdd0-b835-4778-a942-150ec742aa06"
@@ -1148,10 +1171,10 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 1045.2224,
           "top": 806.2204,
-          "zIndex": 36,
+          "zIndex": 40,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1237,7 +1260,7 @@
             "f533270a-0247-48a8-ae4d-e5fe9784d5cb"
           ],
           "x": 566.75,
-          "y": 739.5,
+          "y": 749.75,
           "direction": "left"
         },
         "constraintName": "fk_users_to_players",
@@ -1254,7 +1277,7 @@
             "e940124d-f591-4732-a9d2-8a36948cbe3c"
           ],
           "x": 922.20361328125,
-          "y": 739.5,
+          "y": 712,
           "direction": "right"
         },
         "end": {
@@ -1373,6 +1396,32 @@
         "constraintName": "fk_admins_to_withdrawals",
         "visible": true,
         "id": "a4f1f5e8-8744-44fa-8512-2ccac73f0b57"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneOnly",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "779f8d31-a028-4ae0-986f-30d02da2a50d",
+          "columnIds": [
+            "79afc8cc-2c40-4e28-8e97-855d640a0d6e"
+          ],
+          "x": 1045.2224,
+          "y": 891.9704,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "928dfc2e-1988-4f4a-b196-c6f044f18d31",
+          "columnIds": [
+            "7487cdbd-dd3b-4e85-9b57-8309a48a1b17"
+          ],
+          "x": 922.20361328125,
+          "y": 787.5,
+          "direction": "right"
+        },
+        "constraintName": "fk_games_to_players",
+        "visible": true,
+        "id": "e8e869aa-809a-4557-a5dc-0d8dd24f1d09"
       }
     ]
   }
