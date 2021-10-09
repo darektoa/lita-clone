@@ -117,7 +117,7 @@ class CoinPurchaseController extends Controller
             if($coinPurchase->status != 0) throw new Exception('Cannot edit response');
             $coinPurchase->status = 1;
             $coinPurchase->update();
-            Alert::success('Success', 'Successfully Approved');
+            Alert::success('Success', 'Successfully Rejected');
             return back();
         }catch(Exception $err) {
             $errMessage = $err->getMessage();
