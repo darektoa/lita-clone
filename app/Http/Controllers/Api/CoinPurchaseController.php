@@ -63,4 +63,17 @@ class CoinPurchaseController extends Controller
             return response()->json(['message' => $errMessage]);
         }
     }
+    
+
+    public function reject(CoinPurchase $coinPurchase) {
+        try{
+            if($coinPurchase->status != 0) throw new Exception('Cannot edit response');
+            $coinPurchase->status = 1;
+            $coinPurchase->update();
+            return response()->json(['message' => 'Successfully Rejected']);
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            return response()->json(['message' => $errMessage]);
+        }
+    }
 }
