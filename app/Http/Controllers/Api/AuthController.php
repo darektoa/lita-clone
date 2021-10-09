@@ -25,7 +25,10 @@ class AuthController extends Controller
                 'token' => Hash::make(auth()->user()->id)
             ]);
 
-            return response()->json(['token' => $loginToken->token]);
+            return response()->json([
+                'token' => $loginToken->token,
+                'data' => auth()->user(),
+            ]);
         } else {
             return response()->json(['message'=> 'invalid login'], 401);
         }
