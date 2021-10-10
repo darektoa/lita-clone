@@ -10,15 +10,21 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        User::create([
+        $userAdmin = User::create([
             'first_name'        => 'Admin',
             'last_name'         => 'B',
             'username'          => 'admin',
             'email'             => 'admin@gmail.com',
             'password'          =>  Hash::make('password'),
             'email_verified_at' => now()
-        ])->admin()->create();
+        ]);
+        
+        $userAdmin->admin()->create();
+        $userAdmin->loginTokens()->create([
+            'token' => '$2y$10$Ubw/2M/n.VYJLyRI4URRzOlIz/eWoclIZPTl7lIOd0nqcLJXLD26S'
+        ]);
 
+        
         User::create([
             'first_name'        => 'Player',
             'last_name'         => 'B',
