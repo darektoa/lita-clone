@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function player() {
         return $this->hasOne(Player::class);
     }
+
+    public function loginTokens() {
+        return $this->hasMany(LoginToken::class);
+    }
 }
