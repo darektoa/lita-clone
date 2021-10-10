@@ -33,6 +33,21 @@ class AuthController extends Controller
             return response()->json(['message'=> 'invalid login'], 401);
         }
     }
+
+
+    public function loginSSO(Request $request) {
+        
+    }
+
+
+    public function logout(Request $request) {
+        $loginToken = LoginToken::where('token', $request->token)->first();
+
+        if(!$loginToken) return response()->json(['message' => 'Unauthorized Token'], 401);
+
+        $loginToken->delete();
+        return response()->json(['message' => 'Logout Success']);
+    }
     
 
 
@@ -73,15 +88,5 @@ class AuthController extends Controller
             'token'=> $loginToken->token,
             'data' => $user,
         ], 200);
-    }
-
-
-    public function logout(Request $request) {
-        $loginToken = LoginToken::where('token', $request->token)->first();
-
-        if(!$loginToken) return response()->json(['message' => 'Unauthorized Token'], 401);
-
-        $loginToken->delete();
-        return response()->json(['message' => 'Logout Success']);
     }
 }
