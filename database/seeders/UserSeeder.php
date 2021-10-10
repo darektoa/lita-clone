@@ -19,19 +19,24 @@ class UserSeeder extends Seeder
             'email_verified_at' => now()
         ]);
         
-        $userAdmin->admin()->create();
-        $userAdmin->loginTokens()->create([
-            'token' => '$2y$10$Ubw/2M/n.VYJLyRI4URRzOlIz/eWoclIZPTl7lIOd0nqcLJXLD26S'
-        ]);
-
-        
-        User::create([
+        $userPlayer = User::create([
             'first_name'        => 'Player',
             'last_name'         => 'B',
             'username'          => 'player',
             'email'             => 'player@gmail.com',
             'password'          =>  Hash::make('password'),
             'email_verified_at' => now()
-        ])->player()->create();
+        ]);
+
+
+        $userAdmin->admin()->create();
+        $userAdmin->loginTokens()->create([
+            'token' => '$2y$10$Ubw/2M/n.VYJLyRI4URRzOlIz/eWoclIZPTl7lIOd0nqcLJXLD26S'
+        ]);
+        
+        $userPlayer->player()->create();
+        $userPlayer->loginTokens()->create([
+            'token' => '$2y$10$O5ffWLD7nnRqNOkGW2K1Xui5Fe6kmsZUBBY7LVn/nxTcazaxdi5ii'
+        ]);
     }
 }
