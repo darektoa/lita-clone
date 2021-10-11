@@ -20,10 +20,10 @@ class AuthController extends Controller
             Auth::attempt(['email' => $username, 'password' => $password]) ||
             Auth::attempt(['username' => $username, 'password' => $password])
         ) {
-            $loginToken = LoginToken::create([
-                'user_id' => auth()->user()->id,
-                'token' => Hash::make(auth()->user()->id)
-            ]);
+            $loginToken = LoginToken::firstOrCreate(
+                ['user_id' => auth()->user()->id],
+                ['token' => Hash::make(auth()->user()->id)]
+            );
 
             return response()->json([
                 'token' => $loginToken->token,
