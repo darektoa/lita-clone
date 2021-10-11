@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
     public function login(Request $request) {
-        $username = $request->username;
+        $email = $request->email;
         $password = $request->password;
 
         if(
-            Auth::attempt(['email' => $username, 'password' => $password]) ||
-            Auth::attempt(['username' => $username, 'password' => $password])
+            Auth::attempt(['email' => $email, 'password' => $password]) ||
+            Auth::attempt(['username' => $email, 'password' => $password])
         ) {
             $loginToken = LoginToken::firstOrCreate(
                 ['user_id' => auth()->user()->id],
