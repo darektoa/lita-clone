@@ -38,7 +38,11 @@ class AuthController extends Controller
     public function loginSSO(Request $request) {
         $login = $this->login($request)->getData();
 
-        if(isset($login->token)) return $login;
+        if(
+            isset($login->token) ||
+            isset($login->message)
+        ) return $login;
+        
         return $this->register($request);
     }
 
