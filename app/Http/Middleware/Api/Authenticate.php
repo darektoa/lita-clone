@@ -19,7 +19,7 @@ class Authenticate
     public function handle(Request $request, Closure $next)
     {
         if(!$request->hasHeader('X-Auth-Token'))
-            return response()->json(['message' => 'Invalide token field'], 422);
+            return response()->json(['message' => 'Invalid X-Auth-Token header'], 422);
 
         $token = $request->header('X-Auth-Token');
         $loginToken = LoginToken::where('token', $token)->first();
