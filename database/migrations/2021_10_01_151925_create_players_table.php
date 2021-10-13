@@ -17,7 +17,7 @@ class CreatePlayersTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->bigInteger('coin')->default(0);
-            $table->float('rate', 1, 2);
+            $table->float('rate', 3, 2)->default(0);
             $table->text('voice')->nullable();
             $table->smallInteger('is_pro_player')->default(0);
             $table->timestamps();
