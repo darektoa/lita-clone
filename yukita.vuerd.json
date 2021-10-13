@@ -3,9 +3,9 @@
     "version": "2.2.6",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -1493,
-    "scrollLeft": -650,
-    "zoomLevel": 0.8,
+    "scrollTop": -1068,
+    "scrollLeft": -979,
+    "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -648,7 +648,7 @@
           {
             "name": "rate",
             "comment": "",
-            "dataType": "FLOAT(1, 2)",
+            "dataType": "FLOAT(3, 2)",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -716,10 +716,10 @@
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 1125.6779,
           "top": 1096.8571,
-          "zIndex": 347,
+          "zIndex": 504,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1549,7 +1549,7 @@
           {
             "name": "rate",
             "comment": "",
-            "dataType": "FLOAT(1, 2)",
+            "dataType": "FLOAT(3, 2)",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -1666,7 +1666,7 @@
           "active": false,
           "left": 1122.9955,
           "top": 1480.6314,
-          "zIndex": 498,
+          "zIndex": 501,
           "widthName": 98.82080078125,
           "widthComment": 60
         },

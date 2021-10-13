@@ -7,7 +7,7 @@
   ];
 
   $settingNav = [
-    'Game'  => '',
+    'Game'  => route('setting.game.index'),
   ];
 @endphp
 
