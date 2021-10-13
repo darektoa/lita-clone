@@ -27,7 +27,7 @@ class CoinPurchaseController extends Controller
 
     private function storeByAdmin(Request $request) {
         $player = Player::find($request->player_id);
-
+        dd(auth()->user());
         if(!$player) throw new Exception('User not found');
         
         $coinPurchase = CoinPurchase::create([
@@ -43,6 +43,8 @@ class CoinPurchaseController extends Controller
 
 
     private function storeByPlayer(Request $request) {
+        dd(auth()->user());
+
         CoinPurchase::create([
             'player_id' => auth()->user()->player->id,
             'coin_id' => $request->coin_id
