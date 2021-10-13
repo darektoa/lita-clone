@@ -10,4 +10,9 @@ class GameRole extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+
+    public function game() {
+        $this->belongsTo(Game::class);
+    }
 }
