@@ -5,6 +5,10 @@
       'Success'   => route('coins.index') . '?status=2',
       'Canceled'  => route('coins.index') . '?status=3'
   ];
+
+  $settingNav = [
+    'Game'  => '',
+  ];
 @endphp
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
@@ -32,6 +36,12 @@
     icon="fa-money-bill-wave"
     name="Withdrawal" 
     route="/withdrawal" />
+
+  <x-sidebar.nav-collapse-item
+    active="{{Request::is('setting') }}"
+    icon="fa-cogs"
+    name="Settings"
+    routes="{!! json_encode($settingNav) !!}" />
 
 
   <x-divider mt mb="4"/>
