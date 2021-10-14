@@ -23,6 +23,7 @@ Route::middleware(['auth.api'])->group(function() {
     Route::prefix('/games')->group(function() {
         Route::get('/', [GameController::class, 'index']);
         Route::get('/tiers', [GameTierController::class, 'index']);
+        Route::get('/roles', [GameRoleController::class, 'index']);
     });
 
     // ONLY ADMIN
