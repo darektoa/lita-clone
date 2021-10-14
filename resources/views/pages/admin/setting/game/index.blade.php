@@ -1,3 +1,8 @@
+@php
+	$inputsAddGame = [
+		['id' => 'game-name', 'label' => 'Game Name:'],
+	];
+@endphp
 @extends('layouts.app')
 @section('title', 'Games - Setting')
 @section('content')
@@ -15,30 +20,13 @@
 		</div>
 		<div class="card-body table-responsive" style="min-height: 400px">
 
-			<div class="modal fade" id="addGameModal" tabindex="-1" role="dialog" aria-labelledby="addGameModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="addGameModalLabel">Add Game</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<form>
-								<div class="form-group">
-									<label for="recipient-name" class="col-form-label">Game Name:</label>
-									<input type="text" class="form-control" id="game-name">
-								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</div>
-					</div>
-				</div>
-			</div>
+			<x-modal-input 
+				action="{{ '/' }}"
+				id="addGameModal"
+				inputs="{!! json_encode($inputsAddGame) !!}"
+				method="POST"
+				title="Add Game"
+			/>
 
 			<table class="table table-hover " id="dataTable" width="100%" cellspacing="0">
 				<thead>
