@@ -13,6 +13,6 @@ class GameTier extends Model
 
 
     public function game() {
-        $this->belongsTo(Game::class);
+        return $this->belongsTo(Game::class);
     }
 }
