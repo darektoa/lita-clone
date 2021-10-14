@@ -1,6 +1,6 @@
 @php
 	$inputsAddGame = [
-		['id' => 'game-name', 'label' => 'Game Name:'],
+		['id' => 'name', 'label' => 'Game Name:'],
 	];
 @endphp
 @extends('layouts.app')
@@ -21,7 +21,7 @@
 		<div class="card-body table-responsive" style="min-height: 400px">
 
 			<x-modal-input 
-				action="{{ '/' }}"
+				action="{{ route('setting.game.store') }}"
 				id="addGameModal"
 				inputs="{!! json_encode($inputsAddGame) !!}"
 				method="POST"
