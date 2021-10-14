@@ -13,7 +13,7 @@ class GameController extends Controller
     public function index() {
         $games = Game::orderBy('name', 'asc')->paginate(10);
         
-        return view('pages.admin.setting.game.index', compact('games'));
+        return view('pages.admin.setting.games.index', compact('games'));
     }
 
 
@@ -39,6 +39,6 @@ class GameController extends Controller
     public function show() {
         $games = Game::orderBy('name', 'asc')->paginate(1);
 
-        return view('pages.admin.setting.game.show', compact('games'));
+        return view('pages.admin.setting.games.show', compact('games'));
     }
 }

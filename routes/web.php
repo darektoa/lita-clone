@@ -26,9 +26,10 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/topup/reject/{coinPurchase:id}', [CoinPurchaseController::class, 'reject'])->name('topup.reject');
     
     route::prefix('/setting')->name('setting.')->group(function() {
-      Route::get('/game', [GameController::class, 'index'])->name('game.index');
-      Route::post('/game', [GameController::class, 'store'])->name('game.store');
-      Route::get('/game/{game:id}', [GameController::class, 'show'])->name('game.show');
+      Route::get('/games', [GameController::class, 'index'])->name('games.index');
+      Route::post('/games', [GameController::class, 'store'])->name('games.store');
+      Route::get('/games/{game:id}', [GameController::class, 'show'])->name('games.show');
+      Route::post('/games/{game:id}', [GameController::class, 'show'])->name('games.show');
     });
   });
   

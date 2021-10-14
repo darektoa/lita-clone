@@ -24,7 +24,7 @@
   <div class="col-12 mb-3">
     <div class="card">
       <div class="card-header py-3 d-flex align-items-center">
-        <h6 class="m-0 font-weight-bold text-primary">Mobile Legends</h6>
+        <h5 class="m-0 font-weight-bold text-primary">Mobile Legends</h5>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
       <!-- Body Card -->
       <div class="card-body table-responsive" style="min-height: 400px">
         <x-modal-input 
-          action="{{ route('setting.game.store') }}"
+          action="{{ route('setting.games.store') }}"
           id="addTierModal"
           inputs="{!! json_encode($inputsAddTier) !!}"
           method="POST"
@@ -63,7 +63,7 @@
             <tr>
               <td class="align-middle">{{ $loop->iteration }}</td>
               <td class="align-middle" style="white-space: nowrap">
-                <a href="{{ route('setting.game.show', [$game->id]) }}">
+                <a href="{{ route('setting.games.show', [$game->id]) }}">
                   {{ $game->name }}
                 </a>
               </td>
@@ -96,7 +96,7 @@
       <!-- Body Card -->
       <div class="card-body table-responsive" style="min-height: 400px">
         <x-modal-input 
-          action="{{ route('setting.game.store') }}"
+          action="{{ route('setting.games.store') }}"
           id="addRoleModal"
           inputs="{!! json_encode($inputsAddRole) !!}"
           method="POST"
@@ -117,7 +117,7 @@
             <tr>
               <td class="align-middle">{{ $loop->iteration }}</td>
               <td class="align-middle" style="white-space: nowrap">
-                <a href="{{ route('setting.game.show', [$game->id]) }}">
+                <a href="{{ route('setting.games.show', [$game->id]) }}">
                   {{ $game->name }}
                 </a>
               </td>

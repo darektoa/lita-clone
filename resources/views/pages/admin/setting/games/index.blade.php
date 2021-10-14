@@ -25,7 +25,7 @@
 		<div class="card-body table-responsive" style="min-height: 400px">
 
 			<x-modal-input 
-				action="{{ route('setting.game.store') }}"
+				action="{{ route('setting.games.store') }}"
 				id="addGameModal"
 				inputs="{!! json_encode($inputsAddGame) !!}"
 				method="POST"
@@ -46,7 +46,7 @@
 					<tr>
 						<td class="align-middle">{{ $loop->iteration }}</td>
 						<td class="align-middle" style="white-space: nowrap">
-							<a href="{{ route('setting.game.show', [$game->id]) }}">
+							<a href="{{ route('setting.games.show', [$game->id]) }}">
 								{{ $game->name }}
 							</a>
 						</td>
