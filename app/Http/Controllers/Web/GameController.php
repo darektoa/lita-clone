@@ -36,9 +36,9 @@ class GameController extends Controller
     }
 
 
-    public function show() {
-        $games = Game::orderBy('name', 'asc')->paginate(1);
+    public function show($gameId) {
+        $game = Game::find($gameId);
 
-        return view('pages.admin.setting.games.show', compact('games'));
+        return view('pages.admin.setting.games.show', compact('game'));
     }
 }

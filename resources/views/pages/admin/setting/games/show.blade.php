@@ -59,16 +59,16 @@
           </thead>
           <tbody>
             
-            @foreach ($games as $game)
+            @foreach ($game->gameTiers as $gameTier)
             <tr>
               <td class="align-middle">{{ $loop->iteration }}</td>
               <td class="align-middle" style="white-space: nowrap">
-                <a href="{{ route('setting.games.show', [$game->id]) }}">
-                  {{ $game->name }}
+                <a href="{{ route('setting.games.show', [$gameTier->id]) }}">
+                  {{ $gameTier->name }}
                 </a>
               </td>
               <td class="align-middle" style="white-space: nowrap; width: 82px">
-                <form action="{{ route('topup.destroy', [$game->id]) }}" method="POST">
+                <form action="{{ route('topup.destroy', [$gameTier->id]) }}" method="POST">
                   @method('DELETE') @csrf
                   <button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
                 </form>
@@ -78,7 +78,6 @@
   
           </tbody>
         </table>
-        {{ $games->links() }}
       </div>
     </div>
   </div>
@@ -113,16 +112,16 @@
           </thead>
           <tbody>
             
-            @foreach ($games as $game)
+            @foreach ($game->gameRoles as $gameRole)
             <tr>
               <td class="align-middle">{{ $loop->iteration }}</td>
               <td class="align-middle" style="white-space: nowrap">
-                <a href="{{ route('setting.games.show', [$game->id]) }}">
-                  {{ $game->name }}
+                <a href="{{ route('setting.games.show', [$gameRole->id]) }}">
+                  {{ $gameRole->name }}
                 </a>
               </td>
               <td class="align-middle" style="white-space: nowrap; width: 82px">
-                <form action="{{ route('topup.destroy', [$game->id]) }}" method="POST">
+                <form action="{{ route('topup.destroy', [$gameRole->id]) }}" method="POST">
                   @method('DELETE') @csrf
                   <button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
                 </form>
@@ -132,7 +131,6 @@
   
           </tbody>
         </table>
-        {{ $games->links() }}
       </div>
     </div>
   </div>

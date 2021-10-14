@@ -12,12 +12,12 @@ class Game extends Model
     protected $guarded = ['id'];
 
 
-    public function gameRole() {
-        $this->hasMany(GameRole::class);
+    public function gameRoles() {
+        return $this->hasMany(GameRole::class);
     }
 
 
-    public function gameTier() {
-        $this->hasMany(GameTier::class);
+    public function gameTiers() {
+        return $this->hasMany(GameTier::class);
     }
 }
