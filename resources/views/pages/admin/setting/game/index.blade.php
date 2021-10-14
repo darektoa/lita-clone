@@ -1,6 +1,10 @@
 @php
 	$inputsAddGame = [
-		['id' => 'name', 'label' => 'Game Name:'],
+		[
+			'id' 		=> 'game-name',
+			'label' => 'Game Name:',
+			'name'	=> 'name'
+		],
 	];
 @endphp
 @extends('layouts.app')
