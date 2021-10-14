@@ -41,4 +41,20 @@ class GameController extends Controller
 
         return view('pages.admin.setting.games.show', compact('game'));
     }
+
+    
+    public function destroy($gameId) {
+        $game = Game::find($gameId);
+
+        try{
+            if(!$game) throw new Exception('Game not found', 404);
+            $game->delete();
+            Alert::success('Success', 'Game deleted successfully');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally{
+            return back();
+        }
+    }
 }
