@@ -30,7 +30,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/', [GameController::class, 'index'])->name('index');
         Route::post('/', [GameController::class, 'store'])->name('store');
         Route::get('/{gameId}', [GameController::class, 'show'])->name('show');
-        Route::post('/{gameId}/tiers', [GameTierController::class, 'show'])->name('tiers.store');
+        Route::post('/{gameId}/tiers', [GameTierController::class, 'store'])->name('tiers.store');
       });
     });
   });

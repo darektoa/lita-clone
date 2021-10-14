@@ -42,7 +42,7 @@
       <!-- Body Card -->
       <div class="card-body table-responsive" style="min-height: 400px">
         <x-modal-input 
-          action="{{ route('setting.games.store') }}"
+          action="{{ route('setting.games.tiers.store', [$game->id]) }}"
           id="addTierModal"
           inputs="{!! json_encode($inputsAddTier) !!}"
           method="POST"
