@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/{gameId}', [GameController::class, 'show'])->name('show');
         Route::delete('/{gameId}', [GameController::class, 'destroy'])->name('destroy');
         Route::post('/{gameId}/tiers', [GameTierController::class, 'store'])->name('tiers.store');
+        Route::delete('/{gameId}/tiers/{gameTierId}', [GameTierController::class, 'destroy'])->name('tiers.destroy');
         Route::post('/{gameId}/roles', [GameRoleController::class, 'store'])->name('roles.store');
       });
     });

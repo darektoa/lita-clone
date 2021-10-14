@@ -68,7 +68,7 @@
                 </a>
               </td>
               <td class="align-middle" style="white-space: nowrap; width: 82px">
-                <form action="{{ route('topup.destroy', [$gameTier->id]) }}" method="POST">
+                <form action="{{ route('setting.games.tiers.destroy', [$game->id, $gameTier->id]) }}" method="POST">
                   @method('DELETE') @csrf
                   <button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
                 </form>
