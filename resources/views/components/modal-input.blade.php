@@ -7,9 +7,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form action="{{ $action }}" method="{{ $method }}">
-
+            <form action="{{ $action }}" method="{{ $method }}">
+                <div class="modal-body">
+                    @csrf
+                    
                     @foreach($inputs as $input)
                     <div class="form-group">
                         <label for="{{ $input->id }}" class="col-form-label">{{ $input->label }}</label>
@@ -17,12 +18,12 @@
                     </div>
                     @endforeach
 
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
