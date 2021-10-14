@@ -37,7 +37,7 @@ class GameController extends Controller
 
 
     public function show($gameId) {
-        $game = Game::find($gameId);
+        $game = Game::findOrFail($gameId);
 
         return view('pages.admin.setting.games.show', compact('game'));
     }
