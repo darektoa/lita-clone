@@ -64,9 +64,7 @@
             <tr>
               <td class="align-middle">{{ $loop->iteration }}</td>
               <td class="align-middle" style="white-space: nowrap">
-                <a href="{{ route('setting.games.show', [$gameTier->id]) }}">
-                  {{ $gameTier->name }}
-                </a>
+                {{ $gameTier->name }}
               </td>
               <td class="align-middle" style="white-space: nowrap; width: 82px">
                 <form action="{{ route('setting.games.tiers.destroy', [$game->id, $gameTier->id]) }}" method="POST">
@@ -117,9 +115,7 @@
             <tr>
               <td class="align-middle">{{ $loop->iteration }}</td>
               <td class="align-middle" style="white-space: nowrap">
-                <a href="{{ route('setting.games.show', [$gameRole->id]) }}">
-                  {{ $gameRole->name }}
-                </a>
+                {{ $gameRole->name }}
               </td>
               <td class="align-middle" style="white-space: nowrap; width: 82px">
                 <form action="{{ route('setting.games.roles.destroy', [$game->id, $gameRole->id]) }}" method="POST">
