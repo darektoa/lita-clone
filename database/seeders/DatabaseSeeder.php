@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             CoinSeeder::class,
+            GameSeeder::class
         ]);
 
         $player = Player::factory()
