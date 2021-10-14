@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\web;
 
-use App\Models\{GameTier};
 use App\Http\Controllers\Controller;
+use App\Models\{GameTier};
+use Exception;
 use Illuminate\Http\Request;
 
 class GameTierController extends Controller
