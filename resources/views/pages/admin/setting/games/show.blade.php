@@ -24,7 +24,7 @@
   <div class="col-12 mb-3">
     <div class="card">
       <div class="card-header py-3 d-flex align-items-center">
-        <h5 class="m-0 font-weight-bold text-primary">Mobile Legends</h5>
+        <h5 class="m-0 font-weight-bold text-primary">{{ $game->name }}</h5>
       </div>
     </div>
   </div>
