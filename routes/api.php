@@ -20,6 +20,10 @@ Route::middleware(['auth.api'])->group(function() {
         Route::post('/', [CoinPurchaseController::class, 'store']);
     });
 
+    Route::prefix('/games')->group(function() {
+        Route::get('/', [GameController::class, 'index']);
+    });
+
     // ONLY ADMIN
     Route::middleware(['admin.api'])->group(function() {
         Route::prefix('/user')->group(function() {
