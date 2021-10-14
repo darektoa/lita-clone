@@ -34,4 +34,11 @@ class GameController extends Controller
             return back();
         }
     }
+
+
+    public function show() {
+        $games = Game::orderBy('name', 'asc')->paginate(1);
+
+        return view('pages.admin.setting.game.show', compact('games'));
+    }
 }

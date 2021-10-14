@@ -45,7 +45,11 @@
 					@foreach ($games as $game)
 					<tr>
 						<td class="align-middle">{{ $loop->iteration }}</td>
-						<td class="align-middle" style="white-space: nowrap">{{ $game->name }}</td>
+						<td class="align-middle" style="white-space: nowrap">
+							<a href="{{ route('setting.game.show', [$game->id]) }}">
+								{{ $game->name }}
+							</a>
+						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
 							<form action="{{ route('topup.destroy', [$game->id]) }}" method="POST">
                 @method('DELETE') @csrf
