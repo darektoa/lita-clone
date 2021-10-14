@@ -19,7 +19,7 @@ class GameRoleController extends Controller
                 'game_id' => $gameId,
                 'name' => $request->name,
             ]);
-            Alert::success('Success', 'Game role successfully created');
+            Alert::success('Success', 'Game role created successfully');
         }catch(Exception $err) {
             $errMessage = $err->getMessage();
             Alert::error('Failed', $errMessage);

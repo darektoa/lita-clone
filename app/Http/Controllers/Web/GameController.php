@@ -26,7 +26,7 @@ class GameController extends Controller
             Game::create([
                 'name' => $request->name,
             ]);
-            Alert::success('Success', 'Game Successfully Created');
+            Alert::success('Success', 'Game created successfully');
         } catch(Exception $err) {
             $errMessage = $err->getMessage();
             Alert::error('Failde', $errMessage);
@@ -42,7 +42,7 @@ class GameController extends Controller
         return view('pages.admin.setting.games.show', compact('game'));
     }
 
-    
+
     public function destroy($gameId) {
         $game = Game::find($gameId);
 

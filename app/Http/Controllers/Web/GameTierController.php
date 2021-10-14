@@ -19,7 +19,7 @@ class GameTierController extends Controller
                 'game_id' => $gameId,
                 'name' => $request->name,
             ]);
-            Alert::success('Success', 'Game tier successfully created');
+            Alert::success('Success', 'Game tier created successfully');
         }catch(Exception $err) {
             $errMessage = $err->getMessage();
             Alert::error('Failed', $errMessage);
