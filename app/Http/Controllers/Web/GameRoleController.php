@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\{GameRole};
 use Exception;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class GameRoleController extends Controller
 {

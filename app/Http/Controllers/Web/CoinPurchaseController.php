@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Web;
 
-use Alert;
 use App\Http\Controllers\Controller;
 use App\Models\{Coin, CoinPurchase, Player};
 use Exception;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CoinPurchaseController extends Controller
 {
