@@ -25,6 +25,7 @@ Route::middleware(['auth.api'])->group(function() {
         Route::get('/tiers', [GameTierController::class, 'index']);
         Route::get('/roles', [GameRoleController::class, 'index']);
         Route::get('/tiers/{game:id}', [GameTierController::class, 'show']);
+        Route::get('/roles/{game:id}', [GameRoleController::class, 'show']);
     });
 
     // ONLY ADMIN

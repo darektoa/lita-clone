@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\GameRole;
+use App\Models\{Game, GameRole};
 use Illuminate\Http\Request;
 
 class GameRoleController extends Controller
@@ -13,6 +13,13 @@ class GameRoleController extends Controller
             ->select('game_roles.*', 'games.name as game_name')
             ->get()
             ->groupBy('game_name');
+
+        return response()->json(['data' => $gameRoles]);
+    }
+
+
+    public function show(Game $game) {
+        $gameRoles = $game->gameRoles;
 
         return response()->json(['data' => $gameRoles]);
     }
