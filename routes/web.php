@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\web\GameController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);
