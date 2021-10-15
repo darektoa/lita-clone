@@ -17,12 +17,13 @@ class CreateProPlayerSkillsTable extends Migration
             $table->id();
             $table->foreignId('player_id')->constrained();
             $table->foreignId('game_id')->constrained();
-            $table->string('tier', 50);
-            $table->string('roles');
-            $table->smallInteger('level');
+            $table->string('game_tier', 50);
+            $table->string('game_roles');
+            $table->smallInteger('game_level');
+            $table->smallInteger('tier')->default(0);
             $table->float('rate', 3, 2)->default(0);
             $table->text('voice')->nullable();
-            $table->smallInteger('status');
+            $table->smallInteger('status')->default(0);
             $table->timestamps();
         });
     }
