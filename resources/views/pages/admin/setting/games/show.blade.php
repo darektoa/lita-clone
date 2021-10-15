@@ -39,7 +39,7 @@
   <div class="col-lg-6 mb-4">
     <div class="card shadow">
       <!-- Header Card -->
-      <div class="card-header py-3 d-flex align-items-center">
+      <div class="card-header py-3 d-flex align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">Tier List</h6>
         <button type="button" class="btn btn-primary ml-4" data-toggle="modal" data-target="#addTierModal">Add Tier</button>
       </div>
@@ -90,7 +90,7 @@
   <div class="col-lg-6 mb-4">
     <div class="card shadow">
       <!-- Header Card -->
-      <div class="card-header py-3 d-flex align-items-center">
+      <div class="card-header py-3 d-flex align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">Role List</h6>
         <button type="button" class="btn btn-primary ml-4" data-toggle="modal" data-target="#addRoleModal">Add Role</button>
       </div>
