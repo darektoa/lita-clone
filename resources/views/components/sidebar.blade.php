@@ -5,6 +5,12 @@
       'Success'   => route('coins.index') . '?status=2',
       'Canceled'  => route('coins.index') . '?status=3'
   ];
+  
+  $proPlayerNav = [
+      'Pending'   => route('pro-players.index') . '?status=0', 
+      'Rejected'  => route('pro-players.index') . '?status=1',
+      'Approved'  => route('pro-players.index') . '?status=2'
+  ];
 
   $settingNav = [
     'Games'  => route('setting.games.index'),
@@ -30,6 +36,14 @@
     icon="fa-coins"
     name="Coins"
     routes="{!! json_encode($coinNav) !!}" />
+  
+  @isset(auth()->user()->admin)
+  <x-sidebar.nav-collapse-item
+    active="{{Request::is('pro-players') }}"
+    icon="fa-users"
+    name="Pro Players"
+    routes="{!! json_encode($proPlayerNav) !!}" />
+  @endisset
 
   <x-sidebar.nav-item
     active="{{Request::is('withdrawal') }}"
