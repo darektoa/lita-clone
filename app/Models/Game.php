@@ -21,4 +21,9 @@ class Game extends Model
     public function gameTiers() {
         return $this->hasMany(GameTier::class);
     }
+
+
+    public function proPlayerSkill() {
+        return $this->hasMany(ProPlayerSkill::class);
+    }
 }
