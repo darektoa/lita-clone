@@ -25,7 +25,7 @@ class Player extends Model
         return $this->hasMany(CoinPurchase::class);
     }
 
-    public function proPlayerSkill() {
+    public function proPlayerSkills() {
         return $this->hasMany(ProPlayerSkill::class);
     }
 }

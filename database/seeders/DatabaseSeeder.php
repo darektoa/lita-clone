@@ -17,10 +17,11 @@ class DatabaseSeeder extends Seeder
 
         $player = Player::factory()
             ->count(1)
+            ->hasProPlayerSkills(2)
             ->hasCoinPurchases(2);
         
         User::factory()
-            ->count(10)
+            ->count(20)
             ->has($player)
             ->create();
     }
