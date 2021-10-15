@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\GameTier;
+use App\Models\{Game, GameTier};
 use Illuminate\Http\Request;
 
 class GameTierController extends Controller
@@ -13,6 +13,13 @@ class GameTierController extends Controller
             ->select('game_tiers.*', 'games.name as game_name')
             ->get()
             ->groupBy('game_name');
+
+        return response()->json(['data' => $gameTiers]);
+    }
+
+
+    public function show(Game $game) {
+        $gameTiers = $game->gameTiers;
 
         return response()->json(['data' => $gameTiers]);
     }
