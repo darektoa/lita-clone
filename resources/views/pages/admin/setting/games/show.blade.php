@@ -57,7 +57,7 @@
         <table class="table table-hover " id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>#</th>
+              <th class="col-1">#</th>
               <th>Tier</th>
               <th>Action</th>
             </tr>
@@ -108,7 +108,7 @@
         <table class="table table-hover " id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>#</th>
+              <th class="col-1">#</th>
               <th>Role</th>
               <th>Action</th>
             </tr>
