@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\web\ProPlayerSkillController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);
@@ -23,6 +24,8 @@ Route::middleware(['auth'])->group(function() {
   Route::middleware(['admin'])->group(function() {
     Route::get('/topup/approve/{coinPurchase:id}', [CoinPurchaseController::class, 'approve'])->name('topup.approve');
     Route::get('/topup/reject/{coinPurchase:id}', [CoinPurchaseController::class, 'reject'])->name('topup.reject');
+
+    Route::get('/pro-players', [ProPlayerSkillController::class, 'index'])->name('pro-players.index');
     
     route::prefix('/setting')->name('setting.')->group(function() {
       Route::prefix('/games')->name('games.')->group(function() {
