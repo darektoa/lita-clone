@@ -58,14 +58,14 @@
 						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
 							<a href="{{ route('pro-players.approve', [$proPlayer->id]) }}" class="btn btn-success {{ $proPlayer->status ? 'disabled' : '' }}" title="Approve"><i class="fas fa-check"></i></a>
-							<a href="{{ route('topup.reject', [$proPlayer->id]) }}" class="btn btn-danger {{ $proPlayer->status ? 'disabled' : '' }}" title="Reject"><i class="fas fa-ban"></i></a>
+							<a href="{{ route('pro-players.reject', [$proPlayer->id]) }}" class="btn btn-danger {{ $proPlayer->status ? 'disabled' : '' }}" title="Reject"><i class="fas fa-ban"></i></a>
 						</td>
 					</tr>
 					@endforeach
 
 				</tbody>
 			</table>
-			{{-- {{ $proPlayers->links() }} --}}
+			{{ $proPlayers->links() }}
 		</div>
 	</div>
 </div>

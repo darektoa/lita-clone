@@ -40,4 +40,24 @@ class ProPlayerSkillController extends Controller
             return back();
         }
     }
+
+
+    public function reject(ProPlayerSkill $proPlayerSkill) {
+        try{
+            $player = $proPlayerSkill->player;
+            $proPlayerSkill->status = 1;
+            $proPlayerSkill->update();
+            $player->update();
+            
+            if($player->proPlayerSkills->where('status', '!=', 0)->count() === 0)
+                $player->is_pro_player = 0;
+
+            Alert::success('Success', 'Successfully rejected to become a pro player');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally{
+            return back();
+        }
+    }
 }
