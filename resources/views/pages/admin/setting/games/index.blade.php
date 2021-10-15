@@ -35,7 +35,7 @@
 			<table class="table table-hover " id="dataTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>
-            <th>#</th>
+            <th class="col-1">#</th>
 						<th>Game</th>
 						<th>Action</th>
 					</tr>
