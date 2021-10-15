@@ -4,7 +4,9 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProPlayerSkill;
+use Exception;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProPlayerSkillController extends Controller
 {
@@ -21,5 +23,21 @@ class ProPlayerSkillController extends Controller
             ->withQueryString();
 
         return view('pages.admin.pro-players.index', compact('proPlayers'));
+    }
+
+
+    public function approve(ProPlayerSkill $proPlayerSkill) {
+        try{
+            $proPlayerSkill->status = 2;
+            $proPlayerSkill->player->is_pro_player = 1;
+            $proPlayerSkill->player->update();
+            $proPlayerSkill->update();
+            Alert::success('Success', 'Successfully made a pro player');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally{
+            return back();
+        }
     }
 }
