@@ -1,4 +1,8 @@
 @php
+  $gameTiers = $game->gameTiers()->paginate(5);
+  $gameRoles = $game->gameRoles()->paginate(5);
+  $paginator = $game->gameTiers()->count() > $game->gameRoles()->count() ? $gameTiers : $gameRoles;
+
 	$inputsAddTier = [
 		[
 			'id' 		=> 'tier-name',
@@ -60,7 +64,7 @@
           </thead>
           <tbody>
             
-            @foreach ($game->gameTiers as $gameTier)
+            @foreach ($gameTiers as $gameTier)
             <tr>
               <td class="align-middle">{{ $loop->iteration }}</td>
               <td class="align-middle" style="white-space: nowrap">
@@ -111,7 +115,7 @@
           </thead>
           <tbody>
             
-            @foreach ($game->gameRoles as $gameRole)
+            @foreach ($gameRoles as $gameRole)
             <tr>
               <td class="align-middle">{{ $loop->iteration }}</td>
               <td class="align-middle" style="white-space: nowrap">
@@ -130,6 +134,10 @@
         </table>
       </div>
     </div>
+  </div>
+
+  <div class="col-12 mb-2">
+    {{ $paginator->links() }}
   </div>
 </div>
 @endsection
