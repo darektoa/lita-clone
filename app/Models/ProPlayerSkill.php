@@ -20,4 +20,18 @@ class ProPlayerSkill extends Model
     public function game() {
         return $this->belongsTo(Game::class);
     }
+
+
+    public function statusName() {
+        $statusName = null;
+
+        switch($this->status) {
+            case 0: $statusName = 'Pending'; break;
+            case 1: $statusName = 'Rejected'; break;
+            case 2: $statusName = 'Approved'; break;
+            default: $statusName = 'Unknown';
+        }
+
+        return $statusName;
+    }
 }
