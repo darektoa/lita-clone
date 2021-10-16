@@ -10,6 +10,14 @@ Route::post('/login/sso', [AuthController::class, 'loginSSO']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::post('/register', [AuthController::class, 'register']);
 
+Route::prefix('/games')->group(function() {
+    Route::get('/', [GameController::class, 'index']);
+    Route::get('/tiers', [GameTierController::class, 'index']);
+    Route::get('/roles', [GameRoleController::class, 'index']);
+    Route::get('/tiers/{game:id}', [GameTierController::class, 'show']);
+    Route::get('/roles/{game:id}', [GameRoleController::class, 'show']);
+});
+
 Route::middleware(['auth.api'])->group(function() {
     Route::prefix('/coin')->group(function() {
         Route::get('/', [CoinController::class, 'index']);
@@ -22,14 +30,6 @@ Route::middleware(['auth.api'])->group(function() {
 
     Route::prefix('/pro-players')->group(function () {
         Route::post('/register', [ProPlayerSkillController::class, 'store']);
-    });
-
-    Route::prefix('/games')->group(function() {
-        Route::get('/', [GameController::class, 'index']);
-        Route::get('/tiers', [GameTierController::class, 'index']);
-        Route::get('/roles', [GameRoleController::class, 'index']);
-        Route::get('/tiers/{game:id}', [GameTierController::class, 'show']);
-        Route::get('/roles/{game:id}', [GameRoleController::class, 'show']);
     });
 
     // ONLY ADMIN
