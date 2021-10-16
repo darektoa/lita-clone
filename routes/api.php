@@ -20,6 +20,10 @@ Route::middleware(['auth.api'])->group(function() {
         Route::post('/', [CoinPurchaseController::class, 'store']);
     });
 
+    Route::prefix('/pro-players')->group(function () {
+        Route::post('/register', [ProPlayerSkillController::class, 'store']);
+    });
+
     Route::prefix('/games')->group(function() {
         Route::get('/', [GameController::class, 'index']);
         Route::get('/tiers', [GameTierController::class, 'index']);
