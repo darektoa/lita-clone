@@ -23,19 +23,19 @@ class GameSeeder extends Seeder
 
 
         // Mobile Legends
-        $game = Game::create(['name' => 'Mobile Legends']);
+        $game = Game::create(['name' => 'Mobile Legends', 'icon' => '/']);
         foreach($tiers['mobileLegends'] as $tier) $game->gameTiers()->create(['name' => $tier]);
         foreach($roles['mobileLegends'] as $role) $game->gameRoles()->create(['name' => $role]);
         
 
         // Free Fire
-        $game = Game::create(['name' => 'Free Fire']);
+        $game = Game::create(['name' => 'Free Fire', 'icon' => '/']);
         foreach($tiers['freeFire'] as $tier) $game->gameTiers()->create(['name' => $tier]);
         foreach($roles['freeFire'] as $role) $game->gameRoles()->create(['name' => $role]);
         
         
         // PUBG Mobile
-        $game = Game::create(['name' => 'PUBG Mobile']);
+        $game = Game::create(['name' => 'PUBG Mobile', 'icon' => '/']);
         foreach($tiers['pubgMobile'] as $tier) $game->gameTiers()->create(['name' => $tier]);
         foreach($roles['pubgMobile'] as $role) $game->gameRoles()->create(['name' => $role]);
     }
