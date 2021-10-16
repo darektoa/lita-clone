@@ -21,6 +21,7 @@ class ProPlayerSkillFactory extends Factory
         return [
             'player_id'     => $player->id,
             'game_id'       => $game->id,
+            'game_user_id'  => $this->faker->randomNumber(6, true),
             'game_tier'     => $gameTier->name,
             'game_roles'    => $gameRole->name,
             'game_level'    => rand(10, 30),
