@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Game;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class GameController extends Controller
@@ -24,12 +26,24 @@ class GameController extends Controller
                 'icon' => 'required|image|max:2048'
             ]);
 
-            
+            $icon       = $request->icon;
+            $iconExt    = $icon->getClientOriginalExtension();
+            $iconName   = $icon->getClientOriginalName();
+            $iconName   = explode('.', $iconName, -1);
+            $iconName   = join('.', $iconName);
+            $iconName   = Str::replace(' ', '-', $iconName);
+            $iconName   = $iconName . now()->toISOString() . Str::uuid() . $iconExt;
+
+            Storage::disk('s3')->put("images/$iconName", $icon->getContent());
+
             Game::create([
+                'icon' => "images/$iconName",
                 'name' => $request->name,
             ]);
+            
             Alert::success('Success', 'Game created successfully');
         } catch(Exception $err) {
+            dd($err);
             $errMessage = $err->getMessage();
             Alert::error('Failde', $errMessage);
         }finally{
