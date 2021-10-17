@@ -32,7 +32,7 @@ class GameController extends Controller
             $iconName   = explode('.', $iconName, -1);
             $iconName   = join('.', $iconName);
             $iconName   = Str::replace(' ', '-', $iconName);
-            $iconName   = $iconName . now()->toISOString() . Str::uuid() . $iconExt;
+            $iconName   = $iconName . Str::uuid() . ".$iconExt";
 
             Storage::disk('s3')->put("images/$iconName", $icon->getContent());
 
