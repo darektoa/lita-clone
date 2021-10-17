@@ -7,7 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ $action }}" method="{{ $method }}">
+            <form action="{{ $action }}" method="{{ $method }}" enctype="multipart/form-data">
                 <div class="modal-body">
                     @csrf
 
