@@ -19,7 +19,8 @@ class GameController extends Controller
 
     public function store(Request $request) {
         $request->validate([
-            'name' => 'required|min:2|max:100'
+            'name' => 'required|min:2|max:100',
+            'icon' => 'required|image|max:2048'
         ]);
 
         try{
