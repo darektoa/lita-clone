@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', HomeController::class);
+Route::get('/', fn() => redirect('/login'));
 
 Route::middleware(['guest'])->group(function() {
   Route::get('/login', [AuthController::class, 'loginView'])->name('login.loginView');
