@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\web;
 
+use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Game;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class GameController extends Controller
@@ -26,18 +25,10 @@ class GameController extends Controller
                 'icon' => 'required|image|max:2048'
             ]);
 
-            $icon       = $request->icon;
-            $iconExt    = $icon->getClientOriginalExtension();
-            $iconName   = $icon->getClientOriginalName();
-            $iconName   = explode('.', $iconName, -1);
-            $iconName   = join('.', $iconName);
-            $iconName   = Str::replace(' ', '-', $iconName);
-            $iconName   = $iconName . Str::uuid() . ".$iconExt";
-
-            Storage::disk('s3')->put("images/$iconName", $icon->getContent());
+            $iconPath = StorageHelper::put("images/game-icons", $request->icon);
 
             Game::create([
-                'icon' => "images/$iconName",
+                'icon' => $iconPath,
                 'name' => $request->name,
             ]);
             
