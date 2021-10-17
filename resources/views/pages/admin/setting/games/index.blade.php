@@ -5,6 +5,12 @@
 			'label' => 'Game Name:',
 			'name'	=> 'name'
 		],
+		[
+			'id' 		=> 'game-icon',
+			'label' => 'Game Icon:',
+			'name'	=> 'icon',
+			'type' 	=> 'file'
+		],
 	];
 @endphp
 @extends('layouts.app')

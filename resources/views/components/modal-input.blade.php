@@ -14,7 +14,7 @@
                     @foreach($inputs as $input)
                     <div class="form-group">
                         <label for="{{ $input->id }}" class="col-form-label">{{ $input->label }}</label>
-                        <input type="text" class="form-control" id="{{ $input->id }}" name={{ $input->name }}>
+                        <input type="{{ $input->type ?? 'text' }}" class="form-control" id="{{ $input->id }}" name={{ $input->name }}>
                     </div>
                     @endforeach
 
