@@ -30,13 +30,7 @@ class StorageHelper{
 
 
   static public function get($path) {
-    try{
-      $content = Storage::disk('s3')->get($path);
-      if(!$content) throw new Exception('File not found');
-      return $content;
-    }catch(Exception $err){
-      return $err;
-    }
+    return Storage::disk('s3')->get($path);
   }
 
 
