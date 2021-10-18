@@ -6,6 +6,8 @@ use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+use function PHPUnit\Framework\returnSelf;
+
 class StorageHelper{
   static public function put($path, $file) {
     try{
@@ -28,9 +30,13 @@ class StorageHelper{
 
 
   static public function get($path) {
-    $content = Storage::get($path);
-
-    return $content;
+    try{
+      $content = Storage::disk('s3')->get($path);
+      if(!$content) throw new Exception('File not found');
+      return $content;
+    }catch(Exception $err){
+      return $err;
+    }
   }
 
 
