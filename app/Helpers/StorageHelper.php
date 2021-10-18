@@ -13,7 +13,7 @@ class StorageHelper{
       $fileName   = Str::uuid() . ".$fileExt";
       $pathName   = "$path/$fileName";
   
-      Storage::disk('s3')->put($pathName, $file->getContent());
+      Storage::disk('s3')->put($pathName, $file->getContent(), 'public');
 
       return $pathName;
     } catch(Exception $err) {
