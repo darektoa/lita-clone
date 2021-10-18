@@ -22,6 +22,13 @@ class StorageHelper{
   }
 
 
+  static public function get($path) {
+    $content = Storage::get($path);
+
+    return $content;
+  }
+
+
   static public function url($path) {
     $AWS_BUCKET         = env('AWS_BUCKET');
     $AWS_DEFAULT_REGION = env('AWS_DEFAULT_REGION');
