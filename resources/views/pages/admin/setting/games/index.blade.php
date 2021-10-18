@@ -37,6 +37,14 @@
 				method="POST"
 				title="Add Game"
 			/>
+			
+			<x-modal-input 
+				action="{{ route('setting.games.update', [1]) }}"
+				id="editGameModal"
+				inputs="{!! json_encode($inputsAddGame) !!}"
+				method="PUT"
+				title="Edit Game"
+			/>
 
 			<table class="table table-hover " id="dataTable" width="100%" cellspacing="0">
 				<thead>
@@ -58,7 +66,10 @@
 							</a>
 						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
-							<form action="{{ route('setting.games.destroy', [$game->id]) }}" method="POST">
+							<button class="btn btn-warning edit-game" data-game="{{ $game }}" data-toggle="modal" data-target="#editGameModal">
+								<i class="fas fa-edit" onclick=""></i>
+							</button>
+							<form action="{{ route('setting.games.destroy', [$game->id]) }}" method="POST" class="d-inline">
                 @method('DELETE') @csrf
                 <button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
               </form>
@@ -72,4 +83,21 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+	const editGameButtons = document.querySelectorAll('button.edit-game');
+
+	editGameButtons.forEach((item) => {
+		item.addEventListener('click', () => {
+			const editForm	= document.querySelector('#editGameModal form');
+			const nameField = editForm.querySelector('#game-name');
+			const gameData 	= JSON.parse(item.dataset.game);
+			const endpoint	= `{{ route('setting.games.update', ['']) }}/${gameData.id}`;
+			editForm.action = endpoint;
+			nameField.value = gameData.name;
+		});
+	});
+</script>
 @endsection

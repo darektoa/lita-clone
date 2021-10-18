@@ -74,13 +74,18 @@ class GameController extends Controller
         try{
             $request->validate([
                 'name' => 'required|min:2|max:100',
-                'icon' => 'required|image|max:2048'
+                'icon' => 'image|max:2048'
             ]);
 
             if(!$game) throw new Exception('Game not found');
             
             $game->name = $request->name;
-            $game->icon = $request->icon;
+            if($request->icon) {
+                $iconPath = StorageHelper::put('images/game-icons', $request->icon);
+                StorageHelper::delete($game->icon);
+                $game->icon = $iconPath;
+            }
+
             $game->update();
 
         }catch(Exception $err) {
