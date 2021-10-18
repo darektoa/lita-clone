@@ -66,4 +66,28 @@ class GameController extends Controller
             return back();
         }
     }
+
+
+    public function update(Request $request, $gameId) {
+        $game = Game::find($gameId);
+
+        try{
+            $request->validate([
+                'name' => 'required|min:2|max:100',
+                'icon' => 'required|image|max:2048'
+            ]);
+
+            if(!$game) throw new Exception('Game not found');
+            
+            $game->name = $request->name;
+            $game->icon = $request->icon;
+            $game->update();
+
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally{
+            return back();
+        }
+    }
 }
