@@ -7,9 +7,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ $action }}" method="{{ $method }}" enctype="multipart/form-data">
+            <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     @csrf
+                    @method("$method")
 
                     @foreach($inputs as $input)
                     <div class="form-group">
