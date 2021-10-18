@@ -86,6 +86,9 @@ class AuthController extends Controller
             'password'   => Hash::make($request->password)
         ]);
 
+        //Create Player
+        $user->player()->create();
+
         // Login User
         $userId = $user->id;
         $loginToken = LoginToken::create([
