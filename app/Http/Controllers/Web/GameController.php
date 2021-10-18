@@ -55,6 +55,7 @@ class GameController extends Controller
 
         try{
             if(!$game) throw new Exception('Game not found', 404);
+            StorageHelper::delete($game->icon);
             $game->delete();
             Alert::success('Success', 'Game deleted successfully');
         }catch(Exception $err) {
