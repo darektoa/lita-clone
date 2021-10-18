@@ -53,7 +53,7 @@
 						<td class="align-middle">{{ $loop->iteration }}</td>
 						<td class="align-middle" style="white-space: nowrap">
 							<a href="{{ route('setting.games.show', [$game->id]) }}">
-								<img src="{{ StorageHelper::get($game->icon) }}" alt="" width="100" class="mr-3">
+								<img src="{{ StorageHelper::url($game->icon) }}" alt="" width="100" class="mr-3">
 								{{ $game->name }}
 							</a>
 						</td>
