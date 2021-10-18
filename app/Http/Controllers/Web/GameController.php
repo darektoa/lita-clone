@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Game;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class GameController extends Controller
@@ -60,7 +61,7 @@ class GameController extends Controller
             Alert::success('Success', 'Game deleted successfully');
         }catch(Exception $err) {
             $errMessage = $err->getMessage();
-            Alert::error('Failed', $errMessage);
+            Alert::error('Failed', Str::limit($errMessage));
         }finally{
             return back();
         }
