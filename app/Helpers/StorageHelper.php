@@ -20,4 +20,13 @@ class StorageHelper{
       return null;
     }
   }
+
+
+  static public function get($path) {
+    $AWS_BUCKET         = env('AWS_BUCKET');
+    $AWS_DEFAULT_REGION = env('AWS_DEFAULT_REGION');
+    $AWS_DOMAIN         = 'amazonaws.com';
+
+    return "https://$AWS_BUCKET.s3.$AWS_DEFAULT_REGION.$AWS_DOMAIN/$path";
+  }
 }
