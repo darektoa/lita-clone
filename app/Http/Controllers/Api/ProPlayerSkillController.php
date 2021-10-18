@@ -9,6 +9,22 @@ use Illuminate\Support\Facades\Validator;
 
 class ProPlayerSkillController extends Controller
 {
+    public function index(Request $request) {
+        $playerId   = auth()->user()->player->id;
+        $mySkills   = ProPlayerSkill::where('player_id', $playerId);
+        $statusId   = $request->status;
+
+        if($statusId > -1 && $statusId <= 2)
+            $mySkills = $mySkills->where('status', $statusId);
+        
+        $mySkills = $mySkills
+            ->latest()
+            ->get();
+
+        return response()->json(['data' => $mySkills]);
+    }
+
+
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
             'game_id'       => 'bail|required|exists:games,id',
