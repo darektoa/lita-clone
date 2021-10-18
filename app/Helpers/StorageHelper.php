@@ -22,6 +22,11 @@ class StorageHelper{
   }
 
 
+  static public function delete($path) {
+    return Storage::disk('s3')->delete($path);
+  }
+
+
   static public function get($path) {
     $content = Storage::get($path);
 
