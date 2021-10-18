@@ -10,11 +10,7 @@ class StorageHelper{
   static public function put($path, $file) {
     try{
       $fileExt    = $file->getClientOriginalExtension();
-      $fileName   = $file->getClientOriginalName();
-      $fileName   = explode('.', $fileName, -1);
-      $fileName   = join('.', $fileName);
-      $fileName   = Str::replace(' ', '-', $fileName);
-      $fileName   = $fileName . Str::uuid() . ".$fileExt";
+      $fileName   = Str::uuid() . ".$fileExt";
       $pathName   = "$path/$fileName";
   
       Storage::disk('s3')->put($pathName, $file->getContent());
