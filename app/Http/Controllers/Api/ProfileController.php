@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -71,6 +72,6 @@ class ProfileController extends Controller
             'voice' => $voicePath,
         ]);
 
-        return response()->json(['data' => $user]);
+        return new UserResource($user);
     }
 }
