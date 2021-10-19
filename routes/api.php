@@ -28,9 +28,13 @@ Route::middleware(['auth.api'])->group(function() {
         Route::post('/', [CoinPurchaseController::class, 'store']);
     });
 
-    Route::prefix('/pro-players')->group(function () {
+    Route::prefix('/pro-players')->group(function() {
         Route::get('/', [ProPlayerSkillController::class, 'index']);
         Route::post('/register', [ProPlayerSkillController::class, 'store']);
+    });
+
+    Route::prefix('/profile')->group(function() {
+        Route::put('/', [ProfileController::class, 'update']);
     });
 
     // ONLY ADMIN
