@@ -64,6 +64,13 @@ class ProPlayerSkillController extends Controller
     }
 
 
+    public function show(ProPlayerSkill $proPlayerSkill) {
+        $proPlayerSkill->load('player');
+
+        return response()->json(['data' => $proPlayerSkill]);
+    }
+
+
     public function applied(Request $request) {
         $playerId   = auth()->user()->player->id;
         $mySkills   = ProPlayerSkill::where('player_id', $playerId);
