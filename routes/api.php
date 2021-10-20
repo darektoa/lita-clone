@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\ProPlayerSkill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,8 +31,8 @@ Route::middleware(['auth.api'])->group(function() {
 
     Route::prefix('/pro-players')->group(function() {
         Route::get('/', [ProPlayerSkillController::class, 'index']);
+        Route::get('/applied', [ProPlayerSkillController::class, 'applied']);
         Route::post('/register', [ProPlayerSkillController::class, 'store']);
-        Route::get('/recommendation', [ProPlayerSkillController::class, 'recommendation']);
     });
 
     Route::prefix('/profile')->group(function() {

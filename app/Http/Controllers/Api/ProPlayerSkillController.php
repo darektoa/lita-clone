@@ -12,18 +12,22 @@ use Illuminate\Support\Facades\Validator;
 class ProPlayerSkillController extends Controller
 {
     public function index(Request $request) {
-        $playerId   = auth()->user()->player->id;
-        $mySkills   = ProPlayerSkill::where('player_id', $playerId);
-        $statusId   = $request->status;
+        $sortBy     = $request->sort;
+        $proPlayers = ProPlayerSkill::with('player');
 
-        if($statusId > -1 && $statusId <= 2)
-            $mySkills = $mySkills->where('status', $statusId);
-        
-        $mySkills = $mySkills
-            ->latest()
-            ->get();
+        try {
+            if(!$proPlayers->first()->$sortBy && $sortBy) 
+                throw new Exception('Field to sort not found', 404);
+            if($sortBy)
+                $proPlayers = $proPlayers->orderBy($sortBy, 'desc');
 
-        return response()->json(['data' => $mySkills]);
+            $proPlayers = $proPlayers->paginate(10);
+            return response()->json(['data' => $proPlayers]);
+        } catch(Exception $err) {
+            $errCode    = $err->getCode();
+            $errMessage = $err->getMessage();
+            return response()->json(['message' => $errMessage], $errCode);
+        }
     }
 
 
@@ -60,22 +64,18 @@ class ProPlayerSkillController extends Controller
     }
 
 
-    public function recommendation(Request $request) {
-        $sortBy     = $request->sort;
-        $proPlayers = ProPlayerSkill::with('player');
+    public function applied(Request $request) {
+        $playerId   = auth()->user()->player->id;
+        $mySkills   = ProPlayerSkill::where('player_id', $playerId);
+        $statusId   = $request->status;
 
-        try {
-            if(!$proPlayers->first()->$sortBy && $sortBy) 
-                throw new Exception('Field to sort not found', 404);
-            if($sortBy)
-                $proPlayers = $proPlayers->orderBy($sortBy, 'desc');
+        if($statusId > -1 && $statusId <= 2)
+            $mySkills = $mySkills->where('status', $statusId);
+        
+        $mySkills = $mySkills
+            ->latest()
+            ->get();
 
-            $proPlayers = $proPlayers->paginate(10);
-            return response()->json(['data' => $proPlayers]);
-        } catch(Exception $err) {
-            $errCode    = $err->getCode();
-            $errMessage = $err->getMessage();
-            return response()->json(['message' => $errMessage], $errCode);
-        }
+        return response()->json(['data' => $mySkills]);
     }
 }
