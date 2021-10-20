@@ -3,8 +3,8 @@
     "version": "2.2.6",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -934,
-    "scrollLeft": -807,
+    "scrollTop": -896,
+    "scrollLeft": -524,
     "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
@@ -623,7 +623,7 @@
             "id": "f533270a-0247-48a8-ae4d-e5fe9784d5cb"
           },
           {
-            "name": "balance",
+            "name": "coin",
             "comment": "",
             "dataType": "BIGINT(20)",
             "default": "",
@@ -719,7 +719,7 @@
           "active": false,
           "left": 1125.6779,
           "top": 1096.8571,
-          "zIndex": 8,
+          "zIndex": 18,
           "widthName": 60,
           "widthComment": 60
         },
@@ -727,7 +727,7 @@
         "id": "928dfc2e-1988-4f4a-b196-c6f044f18d31"
       },
       {
-        "name": "defined_balances",
+        "name": "defined_coins",
         "comment": "",
         "columns": [
           {
@@ -754,7 +754,7 @@
             "id": "c97c0aac-4d2f-4aa3-8307-04c9a6982b0f"
           },
           {
-            "name": "balance",
+            "name": "coin",
             "comment": "",
             "dataType": "BIGINT(20)",
             "default": "",
@@ -850,15 +850,15 @@
           "active": false,
           "left": 2258.7144,
           "top": 442.857,
-          "zIndex": 6,
-          "widthName": 103.91796875,
+          "zIndex": 25,
+          "widthName": 82.22802734375,
           "widthComment": 60
         },
         "visible": true,
         "id": "e38b0fb3-549f-4065-a828-7f00d8a79ca3"
       },
       {
-        "name": "balance_purchases",
+        "name": "coin_purchases",
         "comment": "",
         "columns": [
           {
@@ -1004,8 +1004,8 @@
           "active": false,
           "left": 2262.5,
           "top": 636.5,
-          "zIndex": 2,
-          "widthName": 114.7470703125,
+          "zIndex": 21,
+          "widthName": 93.05712890625,
           "widthComment": 60
         },
         "visible": true,
@@ -1395,9 +1395,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 133.5005,
-          "top": 669.4163,
-          "zIndex": 4,
+          "left": 126.8337,
+          "top": 677.7496,
+          "zIndex": 16,
           "widthName": 79.32080078125,
           "widthComment": 60
         },
@@ -2608,8 +2608,8 @@
           "columnIds": [
             "ac29c91c-191b-4373-a02c-9a6b888c78d2"
           ],
-          "x": 488.95411328125,
-          "y": 734.6663,
+          "x": 482.28731328125,
+          "y": 742.9996,
           "direction": "right"
         },
         "constraintName": "fk_users_to_user_settings",
