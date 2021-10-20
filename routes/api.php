@@ -31,7 +31,7 @@ Route::middleware(['auth.api'])->group(function() {
     Route::prefix('/pro-players')->group(function() {
         Route::get('/', [ProPlayerSkillController::class, 'index']);
         Route::post('/register', [ProPlayerSkillController::class, 'store']);
-        Route::get('/recomendation', [ProPlayerSkillController::class, 'recomendation']);
+        Route::get('/recommendation', [ProPlayerSkillController::class, 'recommendation']);
     });
 
     Route::prefix('/profile')->group(function() {

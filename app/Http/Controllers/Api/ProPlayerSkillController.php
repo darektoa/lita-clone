@@ -60,7 +60,7 @@ class ProPlayerSkillController extends Controller
     }
 
 
-    public function recomendation(Request $request) {
+    public function recommendation(Request $request) {
         $sortBy     = $request->sort;
         $proPlayers = ProPlayerSkill::with('player');
 
