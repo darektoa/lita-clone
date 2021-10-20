@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Player;
 use App\Models\ProPlayerSkill;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -55,5 +57,25 @@ class ProPlayerSkillController extends Controller
         ]);
 
         return response()->json(['message' => 'Request sent successfully']);
+    }
+
+
+    public function recomendation(Request $request) {
+        $sortBy     = $request->sort;
+        $proPlayers = ProPlayerSkill::with('player');
+
+        try {
+            if(!$proPlayers->first()->$sortBy && $sortBy) 
+                throw new Exception('Field to sort not found', 404);
+            if($sortBy)
+                $proPlayers = $proPlayers->orderBy($sortBy, 'desc');
+
+            $proPlayers = $proPlayers->paginate(10);
+            return response()->json(['data' => $proPlayers]);
+        } catch(Exception $err) {
+            $errCode    = $err->getCode();
+            $errMessage = $err->getMessage();
+            return response()->json(['message' => $errMessage], $errCode);
+        }
     }
 }
