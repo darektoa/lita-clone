@@ -69,4 +69,33 @@ class ProPlayerController extends Controller
             ], $errCode);
         }
     }
+    
+    
+    public function unfollow(Player $player) {
+        $user = auth()->user();
+
+        try{
+            if(!isset($user->player)) 
+                throw new Exception('Unproccessable, Only player can unfollow other player', 422);
+            if($user->player->id === $player->id)
+                throw new Exception('Unproccessable, Cannot unfollow yourself', 422);
+            if(!$player->followers->where('follower_id', $user->player->id)->first())
+                throw new Exception("Unproccessable, You haven't followed this player", 422);
+                
+            PlayerFollower::where('follower_id', $user->player->id)
+                ->delete();
+    
+            return response()->json([
+                'status'    =>  200,
+                'message'   => 'OK, Successfully unfollowed'
+            ]);
+        }catch(Exception $err) {
+            $errCode    = $err->getCode();
+            $errMessage = $err->getMessage();
+            return response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage
+            ], $errCode);
+        }
+    }
 }

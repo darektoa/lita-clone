@@ -38,6 +38,7 @@ Route::middleware(['auth.api'])->group(function() {
         });
 
         Route::get('/{player:id}/follow', [ProPlayerController::class, 'follow']);
+        Route::get('/{player:id}/unfollow', [ProPlayerController::class, 'unfollow']);
     });
 
     // PROFILE
