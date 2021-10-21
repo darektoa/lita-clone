@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\ProPlayerSkill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
