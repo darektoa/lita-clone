@@ -62,8 +62,8 @@ class AuthController extends Controller
     public function register(Request $request) {
         $isSSO     = $request->is('api/login/sso');
         $validator = Validator::make($request->all(), [
-            'first_name'        => 'bail|required|alpha|min:2|max:20',
-            'last_name'         => 'required|alpha|min:2|max:20',
+            'first_name'        => 'bail|required|alpha|min:2|max:15',
+            'last_name'         => 'required|alpha|min:2|max:15',
             'email'             => 'required|email|unique:users',
             'password'          => $isSSO ? 'required|min:5' : 'required|min:5|max:16'
         ]);
