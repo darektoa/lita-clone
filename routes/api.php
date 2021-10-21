@@ -37,7 +37,7 @@ Route::middleware(['auth.api'])->group(function() {
             Route::get('/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'show']);
         });
 
-        // Route::get('/', [ProPlayerController::class, 'index']);
+        Route::get('/', [ProPlayerController::class, 'index']);
     });
 
     Route::prefix('/profile')->group(function() {
