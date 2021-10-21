@@ -68,6 +68,7 @@ class ProPlayerSkillController extends Controller
 
     public function show(ProPlayerSkill $proPlayerSkill) {
         $proPlayerSkill->load('player');
+        $proPlayerSkill->player->load('user');
         $status = $proPlayerSkill->status;
         
         if($status !== 2) return response()->json([
