@@ -23,6 +23,7 @@ class CreateProPlayerSkillsTable extends Migration
             $table->smallInteger('game_level');
             $table->smallInteger('tier')->default(0);
             $table->float('rate', 3, 2)->default(0);
+            $table->string('bio')->nullable();
             $table->text('voice')->nullable();
             $table->smallInteger('status')->default(0);
             $table->timestamps();
