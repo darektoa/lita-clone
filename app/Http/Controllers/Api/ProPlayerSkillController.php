@@ -20,7 +20,10 @@ class ProPlayerSkillController extends Controller
             if($sortBy)
                 $proPlayers = $proPlayers->orderBy($sortBy, 'desc');
 
-            $proPlayers = $proPlayers->paginate(10);
+            $proPlayers = $proPlayers
+                ->where('status', 2)
+                ->paginate(10);
+
             return response()->json(['data' => $proPlayers]);
         } catch(Exception $err) {
             $errCode    = $err->getCode();
