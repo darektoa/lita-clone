@@ -36,6 +36,8 @@ Route::middleware(['auth.api'])->group(function() {
             Route::get('/applied', [ProPlayerSkillController::class, 'applied']);
             Route::post('/register', [ProPlayerSkillController::class, 'store']);
         });
+
+        Route::get('/{player:id}/follow', [ProPlayerController::class, 'follow']);
     });
 
     // PROFILE
