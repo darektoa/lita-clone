@@ -65,4 +65,5 @@ Route::prefix('/pro-players')->group(function() {
     });
 
     Route::get('/', [ProPlayerController::class, 'index']);
+    Route::get('/{player:id}', [ProPlayerController::class, 'show']);
 });

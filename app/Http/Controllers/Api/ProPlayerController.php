@@ -23,4 +23,15 @@ class ProPlayerController extends Controller
             'data'      => $proPlayers,
         ]);
     }
+
+
+    public function show(Player $player) {
+        $player->load('user');
+
+        return response()->json([
+            'status'    => 200,
+            'message'   => 'OK',
+            'data'      => $player
+        ]);
+    }
 }
