@@ -26,7 +26,7 @@ class ProPlayerController extends Controller
 
 
     public function show(Player $player) {
-        $player->load('user');
+        $player->load(['user', 'proPlayerSkills']);
 
         return response()->json([
             'status'    => 200,
