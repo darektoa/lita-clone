@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\ProPlayerSkill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,10 +33,12 @@ Route::middleware(['auth.api'])->group(function() {
         Route::get('/history', [CoinController::class, 'history']);
     });
 
+    // TOPUP
     Route::prefix('/topup')->group(function() {
         Route::post('/', [CoinPurchaseController::class, 'store']);
     });
 
+    // PRO PLAYER
     Route::prefix('/pro-players')->group(function() {
         Route::prefix('/skill')->group(function() {
             Route::get('/applied', [ProPlayerSkillController::class, 'applied']);
@@ -46,6 +49,7 @@ Route::middleware(['auth.api'])->group(function() {
         Route::get('/', [ProPlayerController::class, 'index']);
     });
 
+    // PROFILE
     Route::prefix('/profile')->group(function() {
         Route::put('/', [ProfileController::class, 'update']);
     });
