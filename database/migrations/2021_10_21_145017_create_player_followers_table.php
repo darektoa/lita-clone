@@ -16,7 +16,7 @@ class CreatePlayerFollowersTable extends Migration
         Schema::create('player_followers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('following_id')->constrained('players');
-            $table->foreignId('folloer_id')->constrained('players');
+            $table->foreignId('follower_id')->constrained('players');
             $table->timestamps();
         });
     }
