@@ -25,6 +25,7 @@ class ProPlayerSkillFactory extends Factory
             'game_tier'     => $gameTier->name,
             'game_roles'    => $gameRole->name,
             'game_level'    => rand(10, 30),
+            'bio'           => $this->faker->realText(255)
         ];
     }
 }
