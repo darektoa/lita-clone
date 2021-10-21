@@ -9,11 +9,11 @@ class Player extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'id'
-    ];
+    protected $guarded   = ['id'];
+    
+    protected $withCount = ['followers'];
 
-    public $timestamps = false;
+    public $timestamps   = false;
 
 
     public function user() {
