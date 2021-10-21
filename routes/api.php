@@ -33,10 +33,10 @@ Route::middleware(['auth.api'])->group(function() {
         Route::prefix('/skill')->group(function() {
             Route::get('/', [ProPlayerSkillController::class, 'index']);
             Route::get('/skill/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'show']);
+            Route::get('/applied', [ProPlayerSkillController::class, 'applied']);
+            Route::post('/register', [ProPlayerSkillController::class, 'store']);
         });
 
-        Route::get('/applied', [ProPlayerSkillController::class, 'applied']);
-        Route::post('/register', [ProPlayerSkillController::class, 'store']);
         Route::get('/{player:id}', [ProPlayerController::class, 'index']);
     });
 
