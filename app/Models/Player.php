@@ -11,7 +11,7 @@ class Player extends Model
 
     protected $guarded   = ['id'];
     
-    protected $withCount = ['followers'];
+    protected $withCount = ['followers', 'followings'];
 
     public $timestamps   = false;
 
