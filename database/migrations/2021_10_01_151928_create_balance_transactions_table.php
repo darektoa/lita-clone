@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class CreateBalanceTransactionsTable extends Migration
 {
@@ -14,7 +15,7 @@ class CreateBalanceTransactionsTable extends Migration
     public function up()
     {
         Schema::create('balance_transactions', function (Blueprint $table) {
-            $table->uuid('uuid');
+            $table->uuid('uuid')->default(Str::uuid());
             $table->foreignId('sender_id')->nullable()->constrained('users');
             $table->foreignId('receiver_id')->constrained('users');
             $table->smallInteger('type');

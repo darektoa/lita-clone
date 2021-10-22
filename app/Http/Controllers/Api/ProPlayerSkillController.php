@@ -42,8 +42,8 @@ class ProPlayerSkillController extends Controller
             'game_level'    => 'required|digits_between:1,6'
         ]);
 
-        $errors = $validator->errors();
         if($validator->fails()) {
+            $errors = $validator->errors();
             return response()->json([
                 'message'   => 'Invalid field',
                 'errors'    => $errors->all()
