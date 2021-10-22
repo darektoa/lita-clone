@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index() {
-        $users = User::all();
+        $users = User::with(['admin', 'player'])->get();
 
         return response()->json([
             'status'    => 200,
