@@ -27,7 +27,7 @@ class CoinTransactionController extends Controller
             }
 
             $predefineCoin = PredefineCoin::where('coin', $request->coin)->first();
-            // dd($predefineCoin->balance);
+            
             $topup = CoinTransaction::create([
                 'receiver_id'   => auth()->user()->id,
                 'coin'          => $request->coin,
@@ -35,20 +35,20 @@ class CoinTransactionController extends Controller
                 'type'          => 0,
                 'description'   => $request->description
             ]);
-            dd($topup);
+            $topup->type_name = $topup->typeName();
+
             return response()->json([
                 'status'    => 200,
                 'message'   => 'OK',
                 'data'      => $topup
             ]);
-
         }catch(Exception $err){
             $errCode    = $err->getCode();
             $errMessage = $err->getMessage();
             return response()->json([
                 'status'    => $errCode,
                 'message'   => $errMessage
-            ]);
+            ], $errCode ?? 400);
         }
     }
 }
