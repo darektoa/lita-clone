@@ -42,6 +42,10 @@ Route::middleware(['auth'])->group(function() {
         Route::delete('/{gameId}/tiers/{gameTierId}', [GameTierController::class, 'destroy'])->name('tiers.destroy');
         Route::delete('/{gameId}/roles/{gameRoleId}', [GameRoleController::class, 'destroy'])->name('roles.destroy');
       });
+
+      Route::prefix('/coins')->name('coins.')->group(function() {
+        Route::get('/', [PredefineCoinController::class, 'index'])->name('index');
+      });
     });
   });
   
