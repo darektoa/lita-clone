@@ -27,7 +27,7 @@ Route::prefix('/coins')->group(function() {
 // WITH AUTHENTICATION
 Route::middleware(['auth.api'])->group(function() {
     Route::prefix('/coins')->group(function() {
-        // Route::get('/history', [CoinController::class, 'history']);
+        Route::get('/history', [CoinTransactionController::class, 'index']);
         Route::post('/topup', [CoinTransactionController::class, 'store']);
     });
 

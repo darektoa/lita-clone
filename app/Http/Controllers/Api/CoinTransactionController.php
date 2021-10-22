@@ -11,6 +11,20 @@ use Illuminate\Support\Facades\Validator;
 
 class CoinTransactionController extends Controller
 {
+    public function index() {
+        $user               = auth()->user();
+        $coinTransactions   = CoinTransaction::where('receiver_id', $user->id)
+            ->orWhere('sender_id', $user->id)
+            ->paginate(10);
+        
+        return response()->json([
+            'status'    => 200,
+            'message'   => 'OK',
+            'data'      => $coinTransactions
+        ]);
+    }
+
+
     public function store(Request $request) {
         try{
             $validator = Validator::make($request->all(), [
