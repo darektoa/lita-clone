@@ -36,4 +36,21 @@ class PredefineCoinController extends Controller
            return back(); 
         }
     }
+
+
+    public function destroy($coinId) {
+        $coin = PredefineCoin::find($coinId);
+
+        try{
+            if(!$coin) throw new Exception('Coin not found');
+
+            $coin->delete();
+            Alert::success('Success', 'Coin deleted successfully');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally{
+            return back();
+        }
+    }
 }

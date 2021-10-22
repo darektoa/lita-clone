@@ -61,7 +61,7 @@
 							<button class="btn btn-warning edit-coin" data-coin="{{ $coin }}" data-toggle="modal" data-target="#editcoinModal">
 								<i class="fas fa-edit" onclick=""></i>
 							</button>
-							<form action="{{ '#' }}" method="POST" class="d-inline">
+							<form action="{{ route('setting.coins.destroy', [$coin->id]) }}" method="POST" class="d-inline">
                 @method('DELETE') @csrf
                 <button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
               </form>
