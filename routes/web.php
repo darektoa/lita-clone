@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function() {
 
       Route::prefix('/coins')->name('coins.')->group(function() {
         Route::get('/', [PredefineCoinController::class, 'index'])->name('index');
+        Route::post('/', [PredefineCoinController::class, 'store'])->name('store');
       });
     });
   });

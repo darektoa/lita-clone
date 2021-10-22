@@ -3,12 +3,12 @@
     [
       'id'    => 'coin-amount',
       'label' => 'Coin Amount',
-      'name'  => 'coin_amount'
+      'name'  => 'coin'
     ],
     [
       'id'    => 'balance-amount',
       'label' => 'Price',
-      'name'  => 'balance_amount'
+      'name'  => 'balance'
     ]
   ];
 @endphp
@@ -30,7 +30,7 @@
 		<div class="card-body table-responsive" style="min-height: 400px">
 
 			<x-modal-input 
-				action="{{ route('setting.coins.index') }}"
+				action="{{ route('setting.coins.store') }}"
 				id="addCoinModal"
 				inputs="{!! json_encode($inputsAddCoin) !!}"
 				method="POST"
@@ -42,6 +42,7 @@
 					<tr>
             <th class="col-1">#</th>
 						<th>Coin</th>
+						<th>Price</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -51,16 +52,16 @@
 					<tr>
 						<td class="align-middle">{{ $loop->iteration }}</td>
 						<td class="align-middle" style="white-space: nowrap">
-							<a href="{{ route('setting.coins.show', [$coin->id]) }}">
-								<img src="{{ StorageHelper::url($coin->icon) }}" alt="" width="100" class="mr-3">
-								{{ $coin->name }}
-							</a>
+              {{ $coin->coin }}
+						</td>
+						<td class="align-middle" style="white-space: nowrap">
+              {{ $coin->balance }}
 						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
 							<button class="btn btn-warning edit-coin" data-coin="{{ $coin }}" data-toggle="modal" data-target="#editcoinModal">
 								<i class="fas fa-edit" onclick=""></i>
 							</button>
-							<form action="{{ route('setting.coins.destroy', [$coin->id]) }}" method="POST" class="d-inline">
+							<form action="{{ '#' }}" method="POST" class="d-inline">
                 @method('DELETE') @csrf
                 <button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
               </form>
