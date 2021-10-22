@@ -37,6 +37,14 @@
 				title="Add Coin"
 			/>
 
+			<x-modal-input 
+				action="{{ route('setting.coins.update', [1]) }}"
+				id="editCoinModal"
+				inputs="{!! json_encode($inputsAddCoin) !!}"
+				method="PUT"
+				title="Edit Coin"
+			/>
+
 			<table class="table table-hover " id="dataTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>
@@ -58,7 +66,7 @@
               {{ $coin->balance }}
 						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
-							<button class="btn btn-warning edit-coin" data-coin="{{ $coin }}" data-toggle="modal" data-target="#editcoinModal">
+							<button class="btn btn-warning edit-coin" data-coin="{{ $coin }}" data-toggle="modal" data-target="#editCoinModal">
 								<i class="fas fa-edit" onclick=""></i>
 							</button>
 							<form action="{{ route('setting.coins.destroy', [$coin->id]) }}" method="POST" class="d-inline">
@@ -75,4 +83,23 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+	const editCoinButtons = document.querySelectorAll('button.edit-coin');
+
+	editCoinButtons.forEach((item) => {
+		item.addEventListener('click', () => {
+			const editForm			= document.querySelector('#editCoinModal form');
+			const coinField 		= editForm.querySelector('#coin-amount');
+			const balanceField	= editForm.querySelector('#balance-amount');
+			const coinData 			= JSON.parse(item.dataset.coin);
+			const endpoint			= `{{ route('setting.coins.update', ['']) }}/${coinData.id}`;
+			editForm.action 		= endpoint;
+			coinField.value 		= coinData.coin;
+			balanceField.value 	= coinData.balance;
+		});
+	});
+</script>
 @endsection

@@ -53,4 +53,29 @@ class PredefineCoinController extends Controller
             return back();
         }
     }
+
+
+    public function update(Request $request, $coinId) {
+        $coin = PredefineCoin::find($coinId);
+
+        try{
+            $request->validate([
+                'coin'      => 'bail|required|numeric|digits_between:0,18',
+                'balance'   => 'required|numeric|digits_between:0,18'
+            ]);
+            
+            if(!$coin) throw new Exception('Coin not found');
+
+            $coin->update([
+                'coin'      => $request->coin,
+                'balance'   => $request->balance
+            ]);
+            Alert::success('Success', 'Coin edited successfully');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally{
+            return back();
+        }
+    }
 }

@@ -87,7 +87,7 @@ class GameController extends Controller
             }
 
             $game->update();
-
+            Alert::success('Success', 'Game edited successfully');
         }catch(Exception $err) {
             $errMessage = $err->getMessage();
             Alert::error('Failed', $errMessage);
