@@ -9,12 +9,18 @@ Route::post('/login/sso', [AuthController::class, 'loginSSO']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::post('/register', [AuthController::class, 'register']);
 
+// GAME
 Route::prefix('/games')->group(function() {
     Route::get('/', [GameController::class, 'index']);
     Route::get('/tiers', [GameTierController::class, 'index']);
     Route::get('/roles', [GameRoleController::class, 'index']);
     Route::get('/tiers/{game:id}', [GameTierController::class, 'show']);
     Route::get('/roles/{game:id}', [GameRoleController::class, 'show']);
+});
+
+// COIN
+Route::prefix('/coins')->group(function() {
+    Route::get('/', [PredefineCoinController::class, 'index']);
 });
 
 
