@@ -14,6 +14,7 @@
 
   $settingNav = [
     'Games'  => route('setting.games.index'),
+    'Coins'  => route('setting.coins.index'),
   ];
 @endphp
 
