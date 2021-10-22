@@ -1,5 +1,5 @@
 @php
-  $inputAddCoin = [
+  $inputsAddCoin = [
     [
       'id'    => 'coin-amount',
       'label' => 'Coin Amount',
