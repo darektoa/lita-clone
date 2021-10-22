@@ -3,9 +3,9 @@
     "version": "2.2.6",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -934,
-    "scrollLeft": -1481,
-    "zoomLevel": 0.8,
+    "scrollTop": -1044,
+    "scrollLeft": -1298,
+    "zoomLevel": 0.7,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -372,7 +372,7 @@
           "active": false,
           "left": 1066.75,
           "top": 585.0006,
-          "zIndex": 5,
+          "zIndex": 63,
           "widthName": 60,
           "widthComment": 60
         },
@@ -871,9 +871,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 2055.5204,
-          "top": 672.8291,
-          "zIndex": 22,
+          "left": 1983.4572,
+          "top": 675.2102,
+          "zIndex": 75,
           "widthName": 93.787109375,
           "widthComment": 60
         },
@@ -1403,8 +1403,8 @@
         "ui": {
           "active": false,
           "left": 1553.8293,
-          "top": 1482.2983,
-          "zIndex": 12,
+          "top": 1484.2983,
+          "zIndex": 103,
           "widthName": 98.82080078125,
           "widthComment": 60
         },
@@ -1534,8 +1534,8 @@
         "ui": {
           "active": false,
           "left": 1051.8609,
-          "top": 1574.0646,
-          "zIndex": 16,
+          "top": 1576.0646,
+          "zIndex": 99,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1665,8 +1665,8 @@
         "ui": {
           "active": false,
           "left": 569.4296,
-          "top": 1706.1948,
-          "zIndex": 14,
+          "top": 1708.1948,
+          "zIndex": 100,
           "widthName": 66.30810546875,
           "widthComment": 60
         },
@@ -1796,8 +1796,8 @@
         "ui": {
           "active": false,
           "left": 568.4569,
-          "top": 1424.5967,
-          "zIndex": 15,
+          "top": 1426.5967,
+          "zIndex": 101,
           "widthName": 69.92626953125,
           "widthComment": 60
         },
@@ -1926,9 +1926,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1570.2347,
-          "top": 844.8769,
-          "zIndex": 11,
+          "left": 2069.9841,
+          "top": 1138.4604,
+          "zIndex": 105,
           "widthName": 95.9326171875,
           "widthComment": 60
         },
@@ -2058,8 +2058,8 @@
         "ui": {
           "active": false,
           "left": 1070.715,
-          "top": 1894.698,
-          "zIndex": 13,
+          "top": 1896.698,
+          "zIndex": 98,
           "widthName": 169.6416015625,
           "widthComment": 60
         },
@@ -2222,7 +2222,7 @@
               "widthDataType": 68.45361328125,
               "widthDefault": 60
             },
-            "id": "1dfb80b7-cc99-410d-8f6d-570a1dba7721"
+            "id": "8ffc4ba7-c512-4277-b95c-312a8601b9bb"
           },
           {
             "name": "receiver_id",
@@ -2245,7 +2245,7 @@
               "widthDataType": 68.45361328125,
               "widthDefault": 60
             },
-            "id": "73039c15-0a83-47a1-8cf6-3d360eb07919"
+            "id": "0d32801b-8fc2-4007-804e-cd6054453948"
           },
           {
             "name": "uuid",
@@ -2411,9 +2411,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 2057.614,
-          "top": 866.8245,
-          "zIndex": 29,
+          "left": 1564.9469,
+          "top": 476.8239,
+          "zIndex": 56,
           "widthName": 103.1689453125,
           "widthComment": 60
         },
@@ -2468,7 +2468,7 @@
               "widthDataType": 68.45361328125,
               "widthDefault": 60
             },
-            "id": "417ab85c-99a8-42c7-8d1f-53a6eaefbbbf"
+            "id": "b97d6f5d-bbcc-4b0e-b981-bcb2e462dcf8"
           },
           {
             "name": "receiver_id",
@@ -2491,7 +2491,7 @@
               "widthDataType": 68.45361328125,
               "widthDefault": 60
             },
-            "id": "cf9c0c27-219c-4d87-9aaa-1903edec7e56"
+            "id": "f2393308-4ada-4495-a84f-6820edf0110e"
           },
           {
             "name": "uuid",
@@ -2657,9 +2657,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 2057.4452,
-          "top": 1284.4451,
-          "zIndex": 31,
+          "left": 1564.7782,
+          "top": 771.111,
+          "zIndex": 72,
           "widthName": 124.85888671875,
           "widthComment": 60
         },
@@ -2814,7 +2814,7 @@
             "86b8ae06-e6b6-4492-8ffe-b9f8bc97193f"
           ],
           "x": 1051.8609,
-          "y": 1702.6896,
+          "y": 1704.6896,
           "direction": "left"
         },
         "end": {
@@ -2823,7 +2823,7 @@
             "f1a112e4-f772-4ef8-a1e3-4bed9fb6a2c8"
           ],
           "x": 951.2118265625,
-          "y": 1791.9448,
+          "y": 1793.9448,
           "direction": "right"
         },
         "constraintName": "fk_games_to_game_tiers",
@@ -2840,7 +2840,7 @@
             "86b8ae06-e6b6-4492-8ffe-b9f8bc97193f"
           ],
           "x": 1440.87310703125,
-          "y": 1659.8146,
+          "y": 1661.8146,
           "direction": "right"
         },
         "end": {
@@ -2849,7 +2849,7 @@
             "76d7b75d-c5f9-4d81-8296-faf307a788b2"
           ],
           "x": 1553.8293,
-          "y": 1660.2983,
+          "y": 1662.2983,
           "direction": "left"
         },
         "constraintName": "fk_games_to_pro_player_skills",
@@ -2866,7 +2866,7 @@
             "86b8ae06-e6b6-4492-8ffe-b9f8bc97193f"
           ],
           "x": 1051.8609,
-          "y": 1616.9396,
+          "y": 1618.9396,
           "direction": "left"
         },
         "end": {
@@ -2875,7 +2875,7 @@
             "12168048-4eab-4a76-9595-d0fd22c05b3d"
           ],
           "x": 950.2391265625,
-          "y": 1510.3467,
+          "y": 1512.3467,
           "direction": "right"
         },
         "constraintName": "fk_games_to_game_roles",
@@ -2901,7 +2901,7 @@
             "f760a166-3172-4b7f-9b27-95ae9402e02e"
           ],
           "x": 1756.99678046875,
-          "y": 1482.2983,
+          "y": 1484.2983,
           "direction": "top"
         },
         "constraintName": "fk_players_to_pro_player_skills",
@@ -2917,18 +2917,18 @@
           "columnIds": [
             "e940124d-f591-4732-a9d2-8a36948cbe3c"
           ],
-          "x": 1857.173373046875,
-          "y": 1115.1906,
-          "direction": "top"
+          "x": 1957.6716640625,
+          "y": 1274.5656,
+          "direction": "right"
         },
         "end": {
           "tableId": "2e682e40-49c4-4dae-94f1-8e777cbde9e5",
           "columnIds": [
             "a3c7e829-b563-4c5c-bf4b-823e9888ce25"
           ],
-          "x": 1850.5871169921875,
-          "y": 1016.3769,
-          "direction": "bottom"
+          "x": 2069.9841,
+          "y": 1267.0854,
+          "direction": "left"
         },
         "constraintName": "fk_players_to_pro_player_followers",
         "visible": true,
@@ -2943,18 +2943,18 @@
           "columnIds": [
             "e940124d-f591-4732-a9d2-8a36948cbe3c"
           ],
-          "x": 1656.176791015625,
-          "y": 1115.1906,
-          "direction": "top"
+          "x": 1957.6716640625,
+          "y": 1168.3156,
+          "direction": "right"
         },
         "end": {
           "tableId": "2e682e40-49c4-4dae-94f1-8e777cbde9e5",
           "columnIds": [
             "dcde6dbb-4a8d-4075-877f-1a6925d27513"
           ],
-          "x": 1663.6855056640625,
-          "y": 1016.3769,
-          "direction": "bottom"
+          "x": 2069.9841,
+          "y": 1181.3354,
+          "direction": "left"
         },
         "constraintName": "fk_players_to_pro_player_followers",
         "visible": true,
@@ -2970,7 +2970,7 @@
             "b17a9e3c-f09c-410f-94db-0c77294013e5"
           ],
           "x": 1756.99678046875,
-          "y": 1838.2983,
+          "y": 1840.2983,
           "direction": "bottom"
         },
         "end": {
@@ -2979,7 +2979,7 @@
             "3ce5292e-dff4-4f72-a5b5-2d694d9e2fae"
           ],
           "x": 1484.25455078125,
-          "y": 1980.448,
+          "y": 1982.448,
           "direction": "right"
         },
         "constraintName": "fk_pro_player_skills_to_pro_player_skill_screenshots",
@@ -2991,104 +2991,104 @@
         "relationshipType": "OneN",
         "startRelationshipType": "Ring",
         "start": {
-          "tableId": "928dfc2e-1988-4f4a-b196-c6f044f18d31",
+          "tableId": "72733b78-a242-4337-9136-92660cf554e7",
           "columnIds": [
-            "e940124d-f591-4732-a9d2-8a36948cbe3c"
+            "336369d1-6b2e-486b-a889-aa5e287f0b26"
           ],
-          "x": 1957.6716640625,
-          "y": 1194.8781,
+          "x": 1465.86767578125,
+          "y": 718.5006,
           "direction": "right"
         },
         "end": {
           "tableId": "b5589bd2-50bf-4b21-b5b5-044c6307c842",
           "columnIds": [
-            "1dfb80b7-cc99-410d-8f6d-570a1dba7721"
+            "8ffc4ba7-c512-4277-b95c-312a8601b9bb"
           ],
-          "x": 2057.614,
-          "y": 935.3245,
+          "x": 1564.9469,
+          "y": 545.3239,
           "direction": "left"
         },
-        "constraintName": "fk_players_to_coin_transactions",
+        "constraintName": "fk_users_to_coin_transactions",
         "visible": true,
-        "id": "fa9b2ce6-6bd2-40ac-919b-658b9c48c5a9"
+        "id": "054924f9-1d09-46fc-9223-af821500713f"
       },
       {
         "identification": false,
         "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
-          "tableId": "928dfc2e-1988-4f4a-b196-c6f044f18d31",
+          "tableId": "72733b78-a242-4337-9136-92660cf554e7",
           "columnIds": [
-            "e940124d-f591-4732-a9d2-8a36948cbe3c"
+            "336369d1-6b2e-486b-a889-aa5e287f0b26"
           ],
-          "x": 1957.6716640625,
-          "y": 1141.7531,
+          "x": 1465.86767578125,
+          "y": 629.5006,
           "direction": "right"
         },
         "end": {
           "tableId": "b5589bd2-50bf-4b21-b5b5-044c6307c842",
           "columnIds": [
-            "73039c15-0a83-47a1-8cf6-3d360eb07919"
+            "0d32801b-8fc2-4007-804e-cd6054453948"
           ],
-          "x": 2057.614,
-          "y": 1072.3245,
+          "x": 1564.9469,
+          "y": 682.3239,
           "direction": "left"
         },
-        "constraintName": "fk_players_to_coin_transactions",
+        "constraintName": "fk_users_to_coin_transactions",
         "visible": true,
-        "id": "cd05cb7e-54fa-4348-9eb6-96905c66920e"
+        "id": "5fbd6e83-60bd-4268-9130-79f6f9ef187a"
       },
       {
         "identification": false,
         "relationshipType": "OneN",
         "startRelationshipType": "Ring",
         "start": {
-          "tableId": "928dfc2e-1988-4f4a-b196-c6f044f18d31",
+          "tableId": "72733b78-a242-4337-9136-92660cf554e7",
           "columnIds": [
-            "e940124d-f591-4732-a9d2-8a36948cbe3c"
+            "336369d1-6b2e-486b-a889-aa5e287f0b26"
           ],
-          "x": 1957.6716640625,
-          "y": 1301.1281,
+          "x": 1465.86767578125,
+          "y": 896.5006,
           "direction": "right"
         },
         "end": {
           "tableId": "3d08a335-b02a-4e1f-8f3a-5efbbfe06713",
           "columnIds": [
-            "417ab85c-99a8-42c7-8d1f-53a6eaefbbbf"
+            "b97d6f5d-bbcc-4b0e-b981-bcb2e462dcf8"
           ],
-          "x": 2057.4452,
-          "y": 1352.9451,
+          "x": 1564.7782,
+          "y": 839.611,
           "direction": "left"
         },
-        "constraintName": "fk_players_to_",
+        "constraintName": "fk_users_to_balance_transactions",
         "visible": true,
-        "id": "10b63eb7-cd46-46d6-913d-3c3e60433c09"
+        "id": "531eb764-2ecd-4cf6-bcf9-5d858e67a3d3"
       },
       {
         "identification": false,
         "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
-          "tableId": "928dfc2e-1988-4f4a-b196-c6f044f18d31",
+          "tableId": "72733b78-a242-4337-9136-92660cf554e7",
           "columnIds": [
-            "e940124d-f591-4732-a9d2-8a36948cbe3c"
+            "336369d1-6b2e-486b-a889-aa5e287f0b26"
           ],
-          "x": 1957.6716640625,
-          "y": 1248.0031,
+          "x": 1465.86767578125,
+          "y": 807.5006,
           "direction": "right"
         },
         "end": {
           "tableId": "3d08a335-b02a-4e1f-8f3a-5efbbfe06713",
           "columnIds": [
-            "cf9c0c27-219c-4d87-9aaa-1903edec7e56"
+            "f2393308-4ada-4495-a84f-6820edf0110e"
           ],
-          "x": 2057.4452,
-          "y": 1489.9451,
+          "x": 1564.7782,
+          "y": 976.611,
           "direction": "left"
         },
-        "constraintName": "fk_players_to_",
+        "constraintName": "fk_users_to_balance_transactions",
         "visible": true,
-        "id": "a4292f31-14d6-4cf9-8b1b-266e6c20b662"
+        "id": "2f0d4370-7c70-49f3-a5b1-cad9093321cb"
       }
     ]
   }

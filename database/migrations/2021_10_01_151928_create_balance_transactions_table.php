@@ -15,8 +15,8 @@ class CreateBalanceTransactionsTable extends Migration
     {
         Schema::create('balance_transactions', function (Blueprint $table) {
             $table->uuid('uuid');
-            $table->foreignId('sender_id')->nullable()->constrained('players');
-            $table->foreignId('receiver_id')->constrained('players');
+            $table->foreignId('sender_id')->nullable()->constrained('users');
+            $table->foreignId('receiver_id')->constrained('users');
             $table->smallInteger('type');
             $table->bigInteger('coin')->unsigned();
             $table->bigInteger('balance');

@@ -28,12 +28,8 @@ Route::prefix('/coins')->group(function() {
 Route::middleware(['auth.api'])->group(function() {
     Route::prefix('/coin')->group(function() {
         Route::get('/', [CoinController::class, 'index']);
-        Route::get('/history', [CoinController::class, 'history']);
-    });
-
-    // TOPUP
-    Route::prefix('/topup')->group(function() {
-        Route::post('/', [CoinPurchaseController::class, 'store']);
+        // Route::get('/history', [CoinController::class, 'history']);
+        // Route::get('/topup', []);
     });
 
     // PRO PLAYER
