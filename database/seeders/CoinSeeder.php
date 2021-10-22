@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Coin;
+use App\Models\PredefineCoin;
 use Illuminate\Database\Seeder;
 
 class CoinSeeder extends Seeder
@@ -11,37 +11,33 @@ class CoinSeeder extends Seeder
     {
         $coins = [
             [
-                'coin' => 1,
-                'price' => 120,
+                'coin' => 100,
+                'balance' => 14000,
             ],
             [
-                'coin' => 105,
-                'price' => 14000,
+                'coin' => 200,
+                'balance' => 27000,
             ],
             [
-                'coin' => 103,
-                'price' => 25000,
+                'coin' => 500,
+                'balance' => 68000,
             ],
             [
-                'coin' => 301,
-                'price' => 36000,
+                'coin' => 1000,
+                'balance' => 135000,
             ],
             [
-                'coin' => 525,
-                'price' => 61000,
+                'coin' => 2000,
+                'balance' => 260000,
             ],
             [
-                'coin' => 1043,
-                'price' => 118000,
-            ],
-            [
-                'coin' => 2093,
-                'price' => 230000,
+                'coin' => 5000,
+                'balance' => 650000,
             ],
         ];
 
         foreach($coins as $coin){
-            Coin::create($coin);
+            PredefineCoin::create($coin);
         }
     }
 }
