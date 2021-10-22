@@ -71,7 +71,11 @@ class ProfileController extends Controller
         $user->player->update([
             'voice' => $voicePath,
         ]);
-
-        return new UserResource($user);
+        
+        return [
+            'status'    => 200,
+            'message'   => 'OK',
+            'data'      => new UserResource($user)
+        ];
     }
 }
