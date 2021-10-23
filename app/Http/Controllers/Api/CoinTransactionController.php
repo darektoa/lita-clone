@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\CoinTransaction;
 use App\Models\PredefineCoin;
+use App\Traits\XenditTrait;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class CoinTransactionController extends Controller
 {
+    use XenditTrait;
+
     public function index() {
         $user               = auth()->user();
         $coinTransactions   = CoinTransaction::where('receiver_id', $user->id)
@@ -42,19 +45,22 @@ class CoinTransactionController extends Controller
 
             $predefineCoin = PredefineCoin::where('coin', $request->coin)->first();
             
-            $topup = CoinTransaction::create([
+            $transaction = CoinTransaction::create([
                 'receiver_id'   => auth()->user()->id,
                 'coin'          => $request->coin,
                 'balance'       => $predefineCoin->balance ?? 1,
                 'type'          => 0,
                 'description'   => $request->description
             ]);
-            $topup->type_name = $topup->typeName();
+            
+            $transaction = CoinTransaction::with(['receiver'])->find($transaction->id);
+            $transaction->invoice = XenditTrait::invoice($transaction);
+            $transaction->type_name = $transaction->typeName();
 
             return response()->json([
                 'status'    => 200,
                 'message'   => 'OK',
-                'data'      => $topup
+                'data'      => $transaction
             ]);
         }catch(Exception $err){
             $errCode    = $err->getCode();
