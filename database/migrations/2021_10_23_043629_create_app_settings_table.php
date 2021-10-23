@@ -17,6 +17,7 @@ class CreateAppSettingsTable extends Migration
             $table->id();
             $table->smallInteger('company_revenue_percentage')->default(30);
             $table->bigInteger('coin_conversion')->unsigned();
+            $table->text('terms_rules');
             $table->timestamps();
         });
     }
