@@ -11,6 +11,8 @@ class CoinTransaction extends Model
 
     protected $guarded  = ['id'];
 
+    protected $appends  = ['type_name'];
+
 
     public function sender() {
         return $this->belongsTo(User::class, 'sender_id');
@@ -22,7 +24,7 @@ class CoinTransaction extends Model
     }
 
 
-    public function typeName() {
+    public function getTypeNameAttribute() {
         $typeName = null;
 
         switch($this->type){

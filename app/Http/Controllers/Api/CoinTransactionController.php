@@ -57,7 +57,6 @@ class CoinTransactionController extends Controller
             $transaction->update([
                 'invoice' => XenditTrait::invoice($transaction)
             ]);
-            $transaction->type_name = $transaction->typeName();
 
             return response()->json([
                 'status'    => 200,
