@@ -13,7 +13,7 @@ trait XenditTrait{
       'for-user-id'   => $ownerId,
       'external_id'   => $transaction->uuid,
       'amount'        => $transaction->balance,
-      'description'   => $transaction->description ?? 'Deskripsi',
+      'description'   => $transaction->description ?? 'Nothing',
       'payer_email'   => $transaction->receiver->email,
       'fixed_va'      => true,
       'customer'      => [
