@@ -54,7 +54,9 @@ class CoinTransactionController extends Controller
             ]);
             
             $transaction = CoinTransaction::with(['receiver'])->find($transaction->id);
-            $transaction->invoice = XenditTrait::invoice($transaction);
+            $transaction->update([
+                'invoice' => XenditTrait::invoice($transaction)
+            ]);
             $transaction->type_name = $transaction->typeName();
 
             return response()->json([
