@@ -13,14 +13,14 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    protected $guarded = [
-        'id'
-    ];
+    protected $appends  = ['full_name'];
 
-    protected $hidden = [
+    protected $hidden   = [
         'password',
         'remember_token',
     ];
+
+    protected $guarded  = ['id'];
 
     /**
      * The attributes that should be cast.
@@ -44,5 +44,13 @@ class User extends Authenticatable
     
     public function loginTokens() {
         return $this->hasMany(LoginToken::class);
+    }
+
+
+    public function getFullNameAttribute() {
+        $firstName  = $this->first_name;
+        $lastName   = $this->last_name;
+
+        return "$firstName $lastName";
     }
 }
