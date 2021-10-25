@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class CoinTransaction extends Model
 {
@@ -12,6 +13,15 @@ class CoinTransaction extends Model
     protected $guarded  = ['id'];
 
     protected $appends  = ['type_name'];
+
+
+    static protected function boot() {
+        parent::boot();
+
+        static::creating(function($model) {
+            $model->uuid = Str::uuid();
+        });
+    }
 
 
     public function sender() {
