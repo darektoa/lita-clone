@@ -44,6 +44,7 @@ Route::middleware(['auth.api'])->group(function() {
 
     // PROFILE
     Route::prefix('/profile')->group(function() {
+        Route::get('/', [ProfileController::class, 'index']);
         Route::put('/', [ProfileController::class, 'update']);
     });
 

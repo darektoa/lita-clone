@@ -12,6 +12,21 @@ use Illuminate\Support\Facades\{Hash, Validator};
 
 class ProfileController extends Controller
 {
+    public function index() {
+        $user   = User::with([
+            'admin',
+            'player', 
+            'player.proPlayerSkills'
+        ])->find(auth()->user()->id);
+
+        return response()->json([
+            'status'    => 200,
+            'message'   => 'OK',
+            'data'      => new UserResource($user),
+        ]);
+    }
+
+
     public function update(Request $request) {
         $user      = auth()->user();
         $isSSO     = Str::length($user->password) > 255;
