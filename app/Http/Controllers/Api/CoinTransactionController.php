@@ -77,17 +77,29 @@ class CoinTransactionController extends Controller
     }
 
 
-    // public function xenditCallback(Request $request) {
-    //     try{
-    //         CoinTransaction::where('uuid', $request->external_id)->firstOrFail();
+    public function xenditCallback(Request $request) {
+        try{
+            $transaction = CoinTransaction::where('uuid', $request->external_id)->first();
+            
+            if(!$transaction) throw new Exception('Not found', 404);
 
-    //     }catch(Exception $err) {
-    //         $errCode    = $err->getCode() ?? 400;
-    //         $errMessage = $err->getMessage();
-    //         response()->json([
-    //             'status'    => $errCode,
-    //             'message'   => $errMessage,
-    //         ], $errCode);
-    //     }
-    // }
+            $invoice     = $transaction->invoice;
+            $status      = $request->status;
+
+            dd($transaction);
+            $transaction->update([
+                'status'    => $status,
+                'invoice'   => []
+            ]);
+
+        }catch(Exception $err) {
+            dd($err);
+            $errCode    = $err->getCode() ?? 400;
+            $errMessage = $err->getMessage();
+            response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage,
+            ], $errCode);
+        }
+    }
 }

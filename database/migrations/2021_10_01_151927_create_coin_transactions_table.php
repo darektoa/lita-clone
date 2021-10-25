@@ -16,7 +16,7 @@ class CreateCoinTransactionsTable extends Migration
     {
         Schema::create('coin_transactions', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->default(Str::uuid());
+            $table->uuid('uuid');
             $table->foreignId('sender_id')->nullable()->constrained('users');
             $table->foreignId('receiver_id')->constrained('users');
             $table->smallInteger('type');
