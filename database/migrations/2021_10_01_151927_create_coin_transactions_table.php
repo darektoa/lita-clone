@@ -23,6 +23,7 @@ class CreateCoinTransactionsTable extends Migration
             $table->bigInteger('coin')->unsigned();
             $table->bigInteger('balance');
             $table->string('description')->nullable();
+            $table->string('status', 20);
             $table->json('invoice')->nullable();
             $table->timestamps();
         });
