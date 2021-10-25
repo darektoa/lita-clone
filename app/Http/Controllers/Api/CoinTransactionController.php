@@ -57,7 +57,7 @@ class CoinTransactionController extends Controller
             $invoice     = XenditTrait::invoice($transaction);
             
             $transaction->update([
-                'invoice' => ['Pending' => $invoice],
+                'invoice' => ['pending' => $invoice],
                 'status'  => $invoice['status']
             ]);
 
@@ -83,15 +83,19 @@ class CoinTransactionController extends Controller
             
             if(!$transaction) throw new Exception('Not found', 404);
 
-            $invoice     = $transaction->invoice;
+            $invoice     = collect(json_decode($transaction->invoice));
             $status      = $request->status;
 
-            dd($transaction);
+            $invoice->put(strtolower($status), $request->all());
             $transaction->update([
                 'status'    => $status,
-                'invoice'   => []
+                'invoice'   => $invoice
             ]);
 
+            return response()->json([
+                'status'    => 200,
+                'message'   => 'OK'
+            ]);
         }catch(Exception $err) {
             dd($err);
             $errCode    = $err->getCode() ?? 400;
