@@ -71,3 +71,11 @@ Route::prefix('/pro-players')->group(function() {
     Route::get('/', [ProPlayerController::class, 'index']);
     Route::get('/{player:id}', [ProPlayerController::class, 'show']);
 });
+
+
+// XENDIT
+Route::prefix('/xendit')->group(function() {
+    Route::middleware(['xendit.callback'])->group(function() {
+        Route::post('/callback', [CoinTransactionController::class, 'callback']);
+    });
+});
