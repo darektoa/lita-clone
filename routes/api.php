@@ -76,6 +76,6 @@ Route::prefix('/pro-players')->group(function() {
 // XENDIT
 Route::prefix('/xendit')->group(function() {
     Route::middleware(['xendit.callback'])->group(function() {
-        Route::post('/callback', [CoinTransactionController::class, 'callback']);
+        Route::post('/callback', [CoinTransactionController::class, 'xenditCallback']);
     });
 });
