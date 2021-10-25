@@ -54,8 +54,11 @@ class CoinTransactionController extends Controller
             ]);
             
             $transaction = CoinTransaction::with(['receiver'])->find($transaction->id);
+            $invoice     = XenditTrait::invoice($transaction);
+            
             $transaction->update([
-                'invoice' => ['Pending' => XenditTrait::invoice($transaction)]
+                'invoice' => ['Pending' => $invoice],
+                'status'  => $invoice['status']
             ]);
 
             return response()->json([
@@ -64,12 +67,12 @@ class CoinTransactionController extends Controller
                 'data'      => $transaction
             ]);
         }catch(Exception $err){
-            $errCode    = $err->getCode();
+            $errCode    = $err->getCode() ?? 400;
             $errMessage = $err->getMessage();
             return response()->json([
                 'status'    => $errCode,
                 'message'   => $errMessage
-            ], $errCode ?? 400);
+            ], $errCode);
         }
     }
 
