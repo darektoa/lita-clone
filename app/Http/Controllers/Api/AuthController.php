@@ -88,7 +88,8 @@ class AuthController extends Controller
 
         //Create Player
         $user->player()->create();
-
+        $user->load('player');
+        
         // Login User
         $userId = $user->id;
         $loginToken = LoginToken::create([
