@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\UsernameHelper;
 use App\Models\{ User, LoginToken };
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -36,13 +37,13 @@ class AuthController extends Controller
 
 
     public function loginSSO(Request $request) {
-        $login = $this->login($request)->getData();
-        $register = $this->register($request)->getData();
+        $user       = User::where('email', $request->email)->first();
+        $login      = $this->login($request)->getData();
+        $register   = $this->register($request)->getData();
 
         if(isset($login->token)) return $login;
         if(isset($register->token)) return $register;
 
-        $user = User::where('email', $request->email)->first();
         if($user) return $login;
         return $register;
     }
@@ -88,18 +89,21 @@ class AuthController extends Controller
 
         //Create Player
         $user->player()->create();
-        $user->load('player');
+
         
         // Login User
-        $userId = $user->id;
+        $userId     = $user->id;
+        $user       = User::find($userId);
         $loginToken = LoginToken::create([
             'user_id' => $userId,
             'token'   => Hash::make($userId),
         ]);
 
+        $user->token = $loginToken->token;
         return response()->json([
-            'token'=> $loginToken->token,
-            'data' => $user,
-        ], 200);
+            'status'    => 200,
+            'message'   => 'OK',
+            'data'      => new UserResource($user),
+        ]);
     }
 }
