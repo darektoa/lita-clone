@@ -36,11 +36,11 @@ class ProfileController extends Controller
             'username'          => 'required|alpha_num|min:5|max:30',
             'email'             => 'required|email|unique:users,email,'.$user->id,
             'password'          => $isSSO ? 'exclude' : 'required|min:5|max:16',
-            'profile_photo'     => 'image|max:10240',
-            'cover_photo'       => 'image:max:10240',
-            'birthday'          => 'date',
+            'profile_photo'     => 'nullable|image|max:10240',
+            'cover_photo'       => 'nullable|image:max:10240',
+            'birthday'          => 'nullable|date',
             'bio'               => 'max:255',
-            'voice'             => 'file'
+            'voice'             => 'nullable|file',
         ]);
 
         // VALIDATOR ERROR VALIDATION
