@@ -49,6 +49,10 @@ Route::middleware(['auth'])->group(function() {
         Route::put('/{coinId}', [PredefineCoinController::class, 'update'])->name('update');
         Route::delete('/{coinId}', [PredefineCoinController::class, 'destroy'])->name('destroy');
       });
+
+      Route::prefix('/general')->name('general.')->group(function() {
+        Route::get('/', [AppSettingController::class, 'index']);
+      });
     });
   });
   
