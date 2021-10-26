@@ -15,16 +15,22 @@ class CoinTransactionController extends Controller
 {
     use XenditTrait;
 
-    public function index() {
+    public function index(Request $request) {
         $user               = auth()->user();
-        $coinTransactions   = CoinTransaction::where('receiver_id', $user->id)
+        $status             = $request->status;
+        $transactions       = CoinTransaction::where('receiver_id', $user->id);
+
+        if($status) 
+            $transactions = $transactions->where('status', $status);
+            
+        $transactions = $transactions
             ->orWhere('sender_id', $user->id)
             ->paginate(10);
         
         return response()->json([
             'status'    => 200,
             'message'   => 'OK',
-            'data'      => $coinTransactions
+            'data'      => $transactions
         ]);
     }
 
