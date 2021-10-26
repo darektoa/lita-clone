@@ -9,7 +9,7 @@ use App\Traits\XenditTrait;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
+use Illuminate\Support\{Arr, Str};
 
 class CoinTransactionController extends Controller
 {
@@ -24,13 +24,13 @@ class CoinTransactionController extends Controller
             
         $transactions = $transactions
             ->orWhere('sender_id', $user->id)
-            ->paginate(10);
+            ->paginate(10)
+            ->toArray();
         
-        return response()->json([
+        return response()->json(array_merge([
             'status'    => 200,
-            'message'   => 'OK',
-            'data'      => $transactions
-        ]);
+            'message'   => 'OK'
+        ], $transactions));
     }
 
 
