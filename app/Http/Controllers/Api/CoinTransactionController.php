@@ -9,6 +9,7 @@ use App\Traits\XenditTrait;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class CoinTransactionController extends Controller
 {
@@ -55,10 +56,11 @@ class CoinTransactionController extends Controller
             
             $transaction = CoinTransaction::with(['receiver'])->find($transaction->id);
             $invoice     = XenditTrait::invoice($transaction);
+            $status      = Str::lower($invoice['status']);
             
             $transaction->update([
-                'invoice' => ['pending' => $invoice],
-                'status'  => $invoice['status']
+                'invoice' => [$status => $invoice],
+                'status'  => $status
             ]);
 
             return response()->json([
@@ -84,9 +86,9 @@ class CoinTransactionController extends Controller
             if(!$transaction) throw new Exception('Not found', 404);
 
             $invoice     = collect(json_decode($transaction->invoice));
-            $status      = $request->status;
+            $status      = Str::lower($request->status);
 
-            $invoice->put(strtolower($status), $request->all());
+            $invoice->put($status, $request->all());
             $transaction->update([
                 'status'    => $status,
                 'invoice'   => $invoice
