@@ -20,8 +20,7 @@ class CoinTransactionController extends Controller
         $status             = $request->status;
         $transactions       = CoinTransaction::where('receiver_id', $user->id);
 
-        if($status) 
-            $transactions = $transactions->where('status', $status);
+        if($status) $transactions = $transactions->where('status', $status);
             
         $transactions = $transactions
             ->orWhere('sender_id', $user->id)
@@ -105,7 +104,6 @@ class CoinTransactionController extends Controller
                 'message'   => 'OK'
             ]);
         }catch(Exception $err) {
-            dd($err);
             $errCode    = $err->getCode() ?? 400;
             $errMessage = $err->getMessage();
             response()->json([
