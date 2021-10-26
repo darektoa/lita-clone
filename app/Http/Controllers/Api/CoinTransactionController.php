@@ -34,6 +34,32 @@ class CoinTransactionController extends Controller
     }
 
 
+    public function show($transactionId) {
+        try{
+            $user           = auth()->user();
+            $transaction    = CoinTransaction::where('id', $transactionId)
+                ->where('receiver_id', $user->id)
+                ->orWhere('sender_id', $user->id)
+                ->first();
+
+            if(!$transaction) throw new Exception('Not found', 404);
+
+            return response()->json([
+                'status'    => 200,
+                'message'   => 'OK',
+                'data'      => $transaction
+            ]);
+        }catch(Exception $err) {
+            $errCode    = $err->getCode() ?? 400;
+            $errMessage = $err->getMessage();
+            return response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage
+            ], $errCode);
+        }
+    }
+
+
     public function store(Request $request) {
         try{
             $validator = Validator::make($request->all(), [
