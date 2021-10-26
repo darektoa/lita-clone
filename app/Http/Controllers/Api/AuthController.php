@@ -31,7 +31,10 @@ class AuthController extends Controller
                 'data' => auth()->user(),
             ]);
         } else {
-            return response()->json(['message'=> 'invalid login'], 401);
+            return response()->json([
+                'status'    => 401,
+                'message'   => "Unauthorized, Account doesn't match"
+            ], 401);
         }
     }
 
