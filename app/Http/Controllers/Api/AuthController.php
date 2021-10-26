@@ -58,7 +58,10 @@ class AuthController extends Controller
         if(!$loginToken) return response()->json(['message' => 'Unauthorized Token'], 401);
 
         $loginToken->delete();
-        return response()->json(['message' => 'Logout Success']);
+        return response()->json([
+            'status'    => 200,
+            'message'   => 'Logout Success'
+        ]);
     }
     
 
