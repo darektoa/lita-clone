@@ -35,6 +35,8 @@ class StorageHelper{
 
 
   static public function url($path) {
+    if(!$path) return null;
+    
     $AWS_BUCKET         = env('AWS_BUCKET');
     $AWS_DEFAULT_REGION = env('AWS_DEFAULT_REGION');
     $AWS_DOMAIN         = 'amazonaws.com';
