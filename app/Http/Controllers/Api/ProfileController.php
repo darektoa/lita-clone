@@ -40,7 +40,7 @@ class ProfileController extends Controller
             'cover_photo'       => 'nullable|image:max:10240',
             'birthday'          => 'nullable|date',
             'bio'               => 'max:255',
-            'voice'             => 'nullable|file',
+            'voice'             => 'nullable|mimes:mp3,m4a,aac,ogg',
         ]);
 
         // VALIDATOR ERROR VALIDATION
