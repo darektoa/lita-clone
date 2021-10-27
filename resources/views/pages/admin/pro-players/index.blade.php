@@ -30,20 +30,19 @@
 					
 					@foreach ($proPlayers as $proPlayer)
 					@php 
-						$user = $proPlayer->player->user;
-						$created = $proPlayer->created_at;
-						$fullName = $user->first_name . ' ' .  $user->last_name;
-						$statusName = $proPlayer->statusName();
-						$statusClass = 'font-weight-bold';
+						$user 				= $proPlayer->player->user;
+						$created 			= $proPlayer->created_at;
+						$statusName 	= $proPlayer->statusName();
+						$statusClass 	= 'font-weight-bold';
 
 						switch($proPlayer->status) {
-								case 0: $statusClass .= ' text-warning'; break;
-								case 1: $statusClass .= ' text-danger'; break;
-								case 2: $statusClass .= ' text-success'; break;
+							case 0: $statusClass .= ' text-warning'; break;
+							case 1: $statusClass .= ' text-danger'; break;
+							case 2: $statusClass .= ' text-success'; break;
 						}
 					@endphp
 					<tr>
-						<td class="align-middle h6">{{ $fullName }}</td>
+						<td class="align-middle h6">{{ $user->full_name }}</td>
 						<td class="align-middle h6">{{ $proPlayer->game->name }}</td>
 						<td class="align-middle h6">{{ $proPlayer->game_level }}</td>
 						<td class="align-middle h6">{{ $proPlayer->game_tier }}</td>
