@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function() {
       });
 
       Route::prefix('/general')->name('general.')->group(function() {
-        Route::get('/', [AppSettingController::class, 'index']);
+        Route::get('/', [AppSettingController::class, 'index'])->name('index');
       });
     });
   });
