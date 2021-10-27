@@ -15,8 +15,8 @@ class CreateAppSettingsTable extends Migration
     {
         Schema::create('app_settings', function (Blueprint $table) {
             $table->id();
-            $table->smallInteger('company_revenue')->default(30);
-            $table->bigInteger('coin_conversion')->unsigned()->default();
+            $table->smallInteger('company_revenue');
+            $table->bigInteger('coin_conversion')->unsigned();
             $table->text('terms_rules');
             $table->timestamps();
         });
