@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\CoinTransaction;
-use App\Models\PredefineCoin;
+use App\Models\{AppSetting, CoinTransaction, PredefineCoin};
 use App\Traits\XenditTrait;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\{Arr, Str};
+use Illuminate\Support\Str;
 
 class CoinTransactionController extends Controller
 {
@@ -76,11 +75,12 @@ class CoinTransactionController extends Controller
             }
 
             $predefineCoin = PredefineCoin::where('coin', $request->coin)->first();
+            $coinToBalance = AppSetting::first()->coin_conversion * $request->coin;
             
             $transaction = CoinTransaction::create([
                 'receiver_id'   => auth()->user()->id,
                 'coin'          => $request->coin,
-                'balance'       => $predefineCoin->balance ?? 1,
+                'balance'       => $predefineCoin->balance ?? $coinToBalance,
                 'type'          => 0,
                 'description'   => $request->description
             ]);
