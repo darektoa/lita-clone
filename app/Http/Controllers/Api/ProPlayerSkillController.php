@@ -22,13 +22,13 @@ class ProPlayerSkillController extends Controller
 
             $proPlayers = $proPlayers
                 ->where('status', 2)
-                ->paginate(10);
+                ->paginate(10)
+                ->toArray();
 
-            return response()->json([
+            return response()->json(array_merge([
                 'status'    => 200,
-                'message'   => 'OK',
-                'data'      => $proPlayers
-            ]);
+                'message'   => 'OK'
+            ], $proPlayers));
         } catch(Exception $err) {
             $errCode    = $err->getCode() ?? 400;
             $errMessage = $err->getMessage();
