@@ -24,11 +24,18 @@ class ProPlayerSkillController extends Controller
                 ->where('status', 2)
                 ->paginate(10);
 
-            return response()->json(['data' => $proPlayers]);
+            return response()->json([
+                'status'    => 200,
+                'message'   => 'OK',
+                'data'      => $proPlayers
+            ]);
         } catch(Exception $err) {
-            $errCode    = $err->getCode();
+            $errCode    = $err->getCode() ?? 400;
             $errMessage = $err->getMessage();
-            return response()->json(['message' => $errMessage], $errCode);
+            return response()->json([
+                'status'  => $errCode, 
+                'message' => $errMessage
+            ], $errCode);
         }
     }
 
