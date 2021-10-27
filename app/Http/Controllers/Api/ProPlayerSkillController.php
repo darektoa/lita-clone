@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Player, ProPlayerSkill};
+use App\Models\{ProPlayerOrder, ProPlayerSkill};
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -100,4 +100,35 @@ class ProPlayerSkillController extends Controller
 
         return response()->json(['data' => $mySkills]);
     }
+
+
+    public function order(ProPlayerSkill $proPlayerSkill) {
+        try{
+            $user  = auth()->user();
+
+            if($user->player->coin < 100)
+                throw new Exception('Not enough coins', 422);
+
+            $order = ProPlayerOrder::create([
+                'player_id'             => $user->id,
+                'pro_player_skill_id'   => $proPlayerSkill->id,
+                'coin'                  => 100,
+                'balance'               => 15000,
+                'status'                => 0
+            ]);
+
+            return response()->json([
+                'satus'     => 200,
+                'message'   => 'OK',
+                'data'      => $order
+            ]);            
+        }catch(Exception $err) {dd($err);
+            $errCode    = $err->getCode() ?? 400;
+            $errMessage = $err->getMessage();
+            return response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage,
+            ], $errCode);
+        }
+    }    
 }
