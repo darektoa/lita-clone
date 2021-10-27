@@ -35,7 +35,7 @@ class ProfileController extends Controller
             'last_name'         => 'required|alpha|min:2|max:15',
             'username'          => 'required|alpha_num|min:5|max:30',
             'email'             => 'required|email|unique:users,email,'.$user->id,
-            'password'          => $isSSO ? 'exclude' : 'required|min:5|max:16',
+            'password'          => $isSSO ? 'exclude' : 'nullable|min:5|max:16',
             'profile_photo'     => 'nullable|image|max:10240',
             'cover_photo'       => 'nullable|image:max:10240',
             'birthday'          => 'nullable|date',
@@ -70,19 +70,22 @@ class ProfileController extends Controller
 
 
         // UPDATE USER DATA
-        $user = User::find($user->id);
-        $user->update([
+        $user       = User::find($user->id);
+        $password   = $request->password;
+        $updateData = [
             'first_name'    => $request->first_name,
             'last_name'     => $request->last_name,
             'username'      => $request->username,
-            'email'         => $request->email,
-            'password'      => Hash::make($request->password),
+            'email'         => $request->email,            
             'profile_photo' => $profilePhotoPath,
             'cover_photo'   => $coverPhotoPath,
             'birthday'      => $request->birthday,
             'bio'           => $request->bio,
-        ]);
-        
+        ];
+
+        if($password) $updateData['password'] = Hash::make($password);
+
+        $user->update($updateData);
         $user->player->update([
             'voice' => $voicePath,
         ]);
