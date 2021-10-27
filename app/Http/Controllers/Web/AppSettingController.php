@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\AppSetting;
 use Illuminate\Http\Request;
 
 class AppSettingController extends Controller
 {
     public function index() {
-        return 'Test';
+        $settings = AppSetting::first();
+
+        return view('pages.admin.setting.generals.index', compact('settings'));
     }
 }
