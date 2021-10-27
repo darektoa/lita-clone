@@ -9,7 +9,8 @@
 
     <div class="card-body">
       <div class="card-body">
-        <form action="{{url('save-karyawan')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('setting.general.index')}}" method="POST" enctype="multipart/form-data">
+          @method('PUT')
           @csrf
 
           <div class="form-group">
