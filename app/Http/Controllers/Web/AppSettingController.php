@@ -11,6 +11,6 @@ class AppSettingController extends Controller
     public function index() {
         $settings = AppSetting::first();
 
-        return view('pages.admin.setting.generals.index', compact('settings'));
+        return view('pages.admin.setting.general.index', compact('settings'));
     }
 }
