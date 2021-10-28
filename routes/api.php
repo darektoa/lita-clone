@@ -23,6 +23,11 @@ Route::prefix('/coins')->group(function() {
     Route::get('/', [PredefineCoinController::class, 'index']);
 });
 
+// GENDER
+Route::prefix('/genders')->group(function() {
+    Route::get('/', [GenderController::class, 'index']);
+});
+
 
 // WITH AUTHENTICATION
 Route::middleware(['auth.api'])->group(function() {
