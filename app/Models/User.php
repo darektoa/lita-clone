@@ -24,7 +24,8 @@ class User extends Authenticatable
 
     protected $with     = [
         'player',
-        'admin'
+        'admin',
+        'gender'
     ];
 
     /**
@@ -44,6 +45,11 @@ class User extends Authenticatable
 
     public function player() {
         return $this->hasOne(Player::class);
+    }
+
+
+    public function gender() {
+        return $this->belongsTo(Gender::class);
     }
 
     
