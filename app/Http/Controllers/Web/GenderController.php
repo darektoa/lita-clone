@@ -37,13 +37,38 @@ class GenderController extends Controller
     }
 
 
+    public function update(Request $request, $genderId) {
+        try{
+            $request->validate([
+                'name'  => 'required'
+            ]);
+
+            $gender = Gender::find($genderId);
+
+            if(!$gender)
+                throw new Exception('Gender not found', 404);
+
+            $gender->update([
+                'name'  => $request->name
+            ]);
+
+            Alert::success('Success', 'Gender updated successfully');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally {
+            return back();
+        }
+    }
+
+
     public function destroy($genderId) {
         try{
             $gender = Gender::find($genderId);
 
             if(!$gender)
                 throw new Exception('Gender not found', 404);
-                
+
             $gender->delete();
 
             Alert::success('Success', 'Gender deleted successfully');

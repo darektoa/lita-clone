@@ -57,7 +57,7 @@
               {{ $gender->name }}
 						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
-							<button class="btn btn-warning edit-coin" data-gender="{{ $gender }}" data-toggle="modal" data-target="#editGenderModal">
+							<button class="btn btn-warning edit-gender" data-gender="{{ $gender }}" data-toggle="modal" data-target="#editGenderModal">
 								<i class="fas fa-edit" onclick=""></i>
 							</button>
 							<form action="{{ route('setting.genders.destroy', [$gender->id]) }}" method="POST" class="d-inline">
@@ -74,4 +74,21 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+  const editGenderButtons = document.querySelectorAll('button.edit-gender');
+
+  editGenderButtons.forEach((item) => {
+    item.addEventListener('click', () => {
+      const editForm	  = document.querySelector('#editGenderModal form');
+      const nameField   = editForm.querySelector('#gender-name');
+      const genderData 	= JSON.parse(item.dataset.gender);
+      const endpoint	  = `{{ route('setting.genders.update', ['']) }}/${genderData.id}`;
+      editForm.action   = endpoint;
+      nameField.value   = genderData.name;
+    });
+  });
+</script>
 @endsection

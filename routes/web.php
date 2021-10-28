@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function() {
       Route::prefix('/genders')->name('genders.')->group(function() {
         Route::get('/', [GenderController::class, 'index'])->name('index');
         Route::post('/', [GenderController::class, 'store'])->name('store');
+        Route::put('/{genderId}', [GenderController::class, 'update'])->name('update');
         Route::delete('/{genderId}', [GenderController::class, 'destroy'])->name('destroy');
       });
 
