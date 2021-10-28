@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CoinSeeder::class,
             GameSeeder::class,
+            GenderSeeder::class,
             AppSettingSeeder::class,
         ]);
 
