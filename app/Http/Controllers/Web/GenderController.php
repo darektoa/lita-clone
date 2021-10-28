@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class GenderController extends Controller
 {
     public function index() {
-        return view('Test');
+        return 'Test';
     }
 }
