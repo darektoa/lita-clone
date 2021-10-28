@@ -122,7 +122,7 @@ class ProPlayerSkillController extends Controller
                 'message'   => 'OK',
                 'data'      => $order
             ]);            
-        }catch(Exception $err) {dd($err);
+        }catch(Exception $err) {
             $errCode    = $err->getCode() ?? 400;
             $errMessage = $err->getMessage();
             return response()->json([
