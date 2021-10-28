@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function() {
 
       Route::prefix('/genders')->name('genders.')->group(function() {
         Route::get('/', [GenderController::class, 'index'])->name('index');
+        Route::post('/', [GenderController::class, 'store'])->name('store');
       });
 
       Route::prefix('/general')->name('general.')->group(function() {

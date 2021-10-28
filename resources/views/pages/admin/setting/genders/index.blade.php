@@ -25,7 +25,7 @@
 		<div class="card-body table-responsive" style="min-height: 400px">
 
 			<x-modal-input 
-				action="{{ route('setting.coins.store') }}"
+				action="{{ route('setting.genders.store') }}"
 				id="addGenderModal"
 				inputs="{!! json_encode($inputsAddGender) !!}"
 				method="POST"
