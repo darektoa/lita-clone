@@ -27,7 +27,7 @@ class ProPlayerSkillResource extends JsonResource
             "voice"                         => null,
             "status"                        => 0,
             "status_name"                   => "Pending",
-            "pro_player_skill_screenshots"  => $this->proPlayerSkillScreenshots
+            "pro_player_skill_screenshots"  => ProPlayerSkillScreenshotResource::collection($this->proPlayerSkillScreenshots)
         ];
     }
 }
