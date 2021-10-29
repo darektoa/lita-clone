@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProPlayerSkillResource;
 use App\Models\{ProPlayerOrder, ProPlayerSkill, ProPlayerSkillScreenshot};
 use Exception;
 use Illuminate\Http\Request;
@@ -87,7 +88,7 @@ class ProPlayerSkillController extends Controller
         return response()->json([
             'status'  => 200,
             'message' => 'OK',
-            'data'    => $proPlayerSkill
+            'data'    => new ProPlayerSkillResource($proPlayerSkill)
         ]);
     }
 
