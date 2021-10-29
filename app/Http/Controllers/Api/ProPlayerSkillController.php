@@ -81,7 +81,10 @@ class ProPlayerSkillController extends Controller
             ]);
         };
 
-        return response()->json(['message' => 'Request sent successfully']);
+        return response()->json([
+            'status'  => 200,
+            'message' => 'OK'
+        ]);
     }
 
 
