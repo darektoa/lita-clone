@@ -46,7 +46,9 @@ class ProPlayerSkillController extends Controller
             'game_user_id'  => 'required|alpha_num|min:2|max:20',
             'game_tier'     => 'required|min:2|max:50',
             'game_roles'    => 'required|min:2|max:255',
-            'game_level'    => 'required|digits_between:1,6'
+            'game_level'    => 'required|digits_between:1,6',
+            'screenshots'   => 'required|array|max:5',
+            'screenshots.*' => 'image|max:10240'
         ]);
 
         if($validator->fails()) {
