@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
-use App\Models\{ProPlayerOrder, ProPlayerSkill};
+use App\Models\{ProPlayerOrder, ProPlayerSkill, ProPlayerSkillScreenshot};
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -62,7 +63,7 @@ class ProPlayerSkillController extends Controller
         if(!isset(auth()->user()->player))
             return response()->json(['message' => 'Only player can become a pro player']);
         
-        ProPlayerSkill::create([
+        $proPlayerSkill = ProPlayerSkill::create([
             'player_id'     => auth()->user()->player->id,
             'game_id'       => $request->game_id,
             'game_user_id'  => $request->game_user_id,
@@ -70,6 +71,15 @@ class ProPlayerSkillController extends Controller
             'game_roles'    => $request->game_roles,
             'game_level'    => $request->game_level
         ]);
+        
+        // INSERT A PLAYER SKILL SCREENSHOTS
+        foreach($request->screenshots as $screenshot) {
+            $screenshotPath = StorageHelper::put('/images/pro-players/skills', $screenshot);
+            ProPlayerSkillScreenshot::create([
+                'pro_player_skill_id'   => $proPlayerSkill->id,
+                'url'                   => $screenshotPath
+            ]);
+        };
 
         return response()->json(['message' => 'Request sent successfully']);
     }
