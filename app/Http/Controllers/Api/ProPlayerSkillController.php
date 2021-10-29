@@ -81,9 +81,13 @@ class ProPlayerSkillController extends Controller
             ]);
         };
 
+        $proPlayerSkill = ProPlayerSkill::with('proPlayerSkillScreenshots')
+            ->find($proPlayerSkill->id);
+
         return response()->json([
             'status'  => 200,
-            'message' => 'OK'
+            'message' => 'OK',
+            'data'    => $proPlayerSkill
         ]);
     }
 
