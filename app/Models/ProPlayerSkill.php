@@ -24,6 +24,11 @@ class ProPlayerSkill extends Model
     }
 
 
+    public function proPlayerSkillScreenshots() {
+        return $this->hasMany(ProPlayerSkillScreenshot::class);
+    }
+
+
     public function getStatusNameAttribute() {
         $statusName = null;
 
