@@ -9,7 +9,9 @@ class ProPlayerSkill extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $appends  = ['status_name'];
+
+    protected $guarded  = ['id'];
 
 
     public function player() {
@@ -22,7 +24,7 @@ class ProPlayerSkill extends Model
     }
 
 
-    public function statusName() {
+    public function getStatusNameAttribute() {
         $statusName = null;
 
         switch($this->status) {

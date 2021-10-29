@@ -32,7 +32,7 @@
 					@php 
 						$user 				= $proPlayer->player->user;
 						$created 			= $proPlayer->created_at;
-						$statusName 	= $proPlayer->statusName();
+						$statusName 	= $proPlayer->status_name;
 						$statusClass 	= 'font-weight-bold';
 
 						switch($proPlayer->status) {
