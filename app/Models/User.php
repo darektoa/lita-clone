@@ -13,8 +13,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    protected $appends  = ['full_name'];
-
     protected $hidden   = [
         'password',
         'remember_token',
@@ -55,13 +53,5 @@ class User extends Authenticatable
     
     public function loginTokens() {
         return $this->hasMany(LoginToken::class);
-    }
-
-
-    public function getFullNameAttribute() {
-        $firstName  = $this->first_name;
-        $lastName   = $this->last_name;
-
-        return "$firstName $lastName";
     }
 }
