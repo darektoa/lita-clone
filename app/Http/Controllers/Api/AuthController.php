@@ -72,10 +72,9 @@ class AuthController extends Controller
     public function register(Request $request) {
         $isSSO     = $request->is('api/login/sso');
         $validator = Validator::make($request->all(), [
-            'first_name'        => 'bail|required|alpha|min:2|max:15',
-            'last_name'         => 'required|alpha|min:2|max:15',
-            'email'             => 'required|email|unique:users',
-            'password'          => $isSSO ? 'required|min:5' : 'required|min:5|max:16'
+            'name'      => 'bail|required|alpha|min:2|max:30',
+            'email'     => 'required|email|unique:users',
+            'password'  => $isSSO ? 'required|min:5' : 'required|min:5|max:16'
         ]);
 
         $errors = $validator->errors();
@@ -89,11 +88,10 @@ class AuthController extends Controller
         // Create Account
         $emailName = explode('@', $request->email)[0];
         $user = User::create([
-            'first_name' => $request->first_name,
-            'last_name'  => $request->last_name,
-            'username'   => UsernameHelper::make($emailName),
-            'email'      => $request->email,
-            'password'   => Hash::make($request->password)
+            'name'      => $request->name,
+            'username'  => UsernameHelper::make($emailName),
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password)
         ]);
 
         //Create Player
