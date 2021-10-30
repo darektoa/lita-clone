@@ -41,11 +41,7 @@
                                   @csrf
 
                                   <div class="form-group">
-                                      <input type="text" class="form-control form-control-user" name="first_name" placeholder="{{ __('First Name') }}" value="{{ old('first_name') }}" required autofocus>
-                                  </div>
-
-                                  <div class="form-group">
-                                      <input type="text" class="form-control form-control-user" name="last_name" placeholder="{{ __('Last Name') }}" value="{{ old('last_name') }}" required>
+                                      <input type="text" class="form-control form-control-user" name="first_name" placeholder="{{ __('First Name') }}" value="{{ old('name') }}" required autofocus>
                                   </div>
 
                                   <div class="form-group">
