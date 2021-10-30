@@ -82,7 +82,7 @@
 						}
 					@endphp
 					<tr>
-						<td class="align-middle h6">{{ $user->full_name }}</td>
+						<td class="align-middle h6">{{ $user->name }}</td>
 						<td class="align-middle h6">{{ $proPlayer->game->name }}</td>
 						<td class="align-middle h6">{{ $proPlayer->game_level }}</td>
 						<td class="align-middle h6">{{ $proPlayer->game_tier }}</td>
