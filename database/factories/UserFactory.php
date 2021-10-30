@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
@@ -13,8 +14,10 @@ class UserFactory extends Factory
     
     public function definition()
     {
+        $gender = Arr::random(['male', 'female']);
+
         return [
-            'name'              => $this->faker->name('male'),
+            'name'              => $this->faker->name($gender),
             'username'          => $this->faker->unique()->userName(),
             'email'             => $this->faker->unique()->companyEmail(),
             'bio'               => $this->faker->realText(255),
