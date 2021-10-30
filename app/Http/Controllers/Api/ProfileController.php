@@ -78,13 +78,13 @@ class ProfileController extends Controller
             'last_name'     => $request->last_name,
             'username'      => $request->username,
             'email'         => $request->email,
-            'gender_id'     => $request->gender_id,            
-            'profile_photo' => $profilePhotoPath,
-            'cover_photo'   => $coverPhotoPath,
+            'gender_id'     => $request->gender_id,
             'birthday'      => $request->birthday,
             'bio'           => $request->bio,
         ];
 
+        if($profilePhoto) $updateData['profile_photo'] = $profilePhotoPath;
+        if($coverPhoto) $updateData['cover_photo'] = $coverPhotoPath;
         if($password) $updateData['password'] = Hash::make($password);
 
         $user->update($updateData);
