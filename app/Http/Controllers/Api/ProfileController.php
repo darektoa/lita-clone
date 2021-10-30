@@ -31,17 +31,16 @@ class ProfileController extends Controller
         $user      = auth()->user();
         $isSSO     = Str::length($user->password) > 255;
         $validator = Validator::make($request->all(), [
-            'first_name'        => 'bail|required|alpha|min:2|max:15',
-            'last_name'         => 'required|alpha|min:2|max:15',
-            'username'          => 'required|alpha_num|min:5|max:30',
-            'email'             => 'required|email|unique:users,email,'.$user->id,
-            'password'          => $isSSO ? 'exclude' : 'nullable|min:5|max:16',
-            'gender_id'         => 'nullable|exists:genders,id',
-            'profile_photo'     => 'nullable|image|max:10240',
-            'cover_photo'       => 'nullable|image:max:10240',
-            'birthday'          => 'nullable|date',
-            'bio'               => 'max:255',
-            'voice'             => 'nullable|mimes:mp3,m4a,aac,ogg',
+            'name'          => 'bail|required|alpha|min:2|max:15',
+            'username'      => 'required|alpha_num|min:5|max:30',
+            'email'         => 'required|email|unique:users,email,'.$user->id,
+            'password'      => $isSSO ? 'exclude' : 'nullable|min:5|max:16',
+            'gender_id'     => 'nullable|exists:genders,id',
+            'profile_photo' => 'nullable|image|max:10240',
+            'cover_photo'   => 'nullable|image:max:10240',
+            'birthday'      => 'nullable|date',
+            'bio'           => 'max:255',
+            'voice'         => 'nullable|mimes:mp3,m4a,aac,ogg',
         ]);
 
         // VALIDATOR ERROR VALIDATION
@@ -74,13 +73,12 @@ class ProfileController extends Controller
         $user       = User::find($user->id);
         $password   = $request->password;
         $updateData = [
-            'first_name'    => $request->first_name,
-            'last_name'     => $request->last_name,
-            'username'      => $request->username,
-            'email'         => $request->email,
-            'gender_id'     => $request->gender_id,
-            'birthday'      => $request->birthday,
-            'bio'           => $request->bio,
+            'name'      => $request->name,
+            'username'  => $request->username,
+            'email'     => $request->email,
+            'gender_id' => $request->gender_id,
+            'birthday'  => $request->birthday,
+            'bio'       => $request->bio,
         ];
 
         if($profilePhoto) $updateData['profile_photo'] = $profilePhotoPath;
