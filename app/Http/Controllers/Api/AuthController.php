@@ -26,9 +26,12 @@ class AuthController extends Controller
                 ['token' => Hash::make(auth()->user()->id)]
             );
 
+            $user   = User::find(auth()->user()->id);
+            $user->token = $loginToken->token;
             return response()->json([
-                'token' => $loginToken->token,
-                'data' => auth()->user(),
+                'status'    => 200,
+                'message'   => 'OK',
+                'data'      => new UserResource($user),
             ]);
         } else {
             return response()->json([
