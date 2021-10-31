@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             'token' => '$2y$10$Ubw/2M/n.VYJLyRI4URRzOlIz/eWoclIZPTl7lIOd0nqcLJXLD26S'
         ]);
         
-        $userPlayer->player()->create();
+        $userPlayer->player()->create(['id' => 100000]);
         $userPlayer->loginTokens()->create([
             'token' => '$2y$10$O5ffWLD7nnRqNOkGW2K1Xui5Fe6kmsZUBBY7LVn/nxTcazaxdi5ii'
         ]);

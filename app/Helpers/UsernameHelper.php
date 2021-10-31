@@ -10,6 +10,12 @@ class UsernameHelper{
         0 => 'unique:users,username'
     ]);
 
+    // $unique = false;
+
+    // while(!$unique) {
+      
+    // }
+
     return $validateToUsername->fails() ? $string . rand(pow(10, 8 - 1), pow(10, 8) -1) : $string;
   }
 }
