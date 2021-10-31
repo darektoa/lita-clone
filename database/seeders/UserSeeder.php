@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
         ]);
 
 
-        $userAdmin->admin()->create();
+        $userAdmin->admin()->create(['id' => 100000]);
         $userAdmin->loginTokens()->create([
             'token' => '$2y$10$Ubw/2M/n.VYJLyRI4URRzOlIz/eWoclIZPTl7lIOd0nqcLJXLD26S'
         ]);
