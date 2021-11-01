@@ -1,9 +1,7 @@
 @php
   $user       = auth()->user();
-  $first_name = $user->first_name ?? 'First';
-  $last_name  = $user->last_name ?? 'Last';
-  $name       = $first_name . ' ' . $last_name;
-  $initial    = $first_name[0];
+  $name       = $user->name ?? 'Name';
+  $initial    = $name[0];
 @endphp
 
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
