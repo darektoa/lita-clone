@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProPlayeSkillTiersTable extends Migration
+class CreateProPlayerSkillTiersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateProPlayeSkillTiersTable extends Migration
      */
     public function up()
     {
-        Schema::create('pro_playe_skill_tiers', function (Blueprint $table) {
+        Schema::create('pro_player_skill_tiers', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
             $table->smallInteger('price_increase');
@@ -28,6 +28,6 @@ class CreateProPlayeSkillTiersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pro_playe_skill_tiers');
+        Schema::dropIfExists('pro_player_skill_tiers');
     }
 }
