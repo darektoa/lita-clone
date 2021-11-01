@@ -32,7 +32,7 @@ class ProfileController extends Controller
         $isSSO     = Str::length($user->password) > 255;
         $validator = Validator::make($request->all(), [
             'name'          => 'bail|required|alpha|min:2|max:30',
-            'username'      => 'required|alpha_num|min:5|max:30',
+            'username'      => 'required|alpha_num|min:5|max:15',
             'email'         => 'required|email|unique:users,email,'.$user->id,
             'password'      => $isSSO ? 'exclude' : 'nullable|min:5|max:16',
             'gender_id'     => 'nullable|exists:genders,id',
