@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             GameSeeder::class,
             GenderSeeder::class,
             AppSettingSeeder::class,
+            ProPlayerSkillTierSeeder::class,
         ]);
 
         $proPlayerSkills = ProPlayerSkill::factory()
