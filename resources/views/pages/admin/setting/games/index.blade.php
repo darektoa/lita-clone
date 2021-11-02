@@ -11,6 +11,12 @@
 			'name'	=> 'icon',
 			'type' 	=> 'file'
 		],
+		[
+			'id' 		=> 'game-base-price',
+			'label' => 'Base Price:',
+			'name'	=> 'base_price',
+			'type' 	=> 'number'
+		],
 	];
 @endphp
 @extends('layouts.app')
@@ -50,8 +56,9 @@
 				<thead>
 					<tr>
             <th class="col-1">#</th>
-						<th>Game</th>
-						<th>Action</th>
+						<th class="text-nowrap">Game</th>
+						<th class="text-nowrap">Base Price</th>
+						<th class="text-nowrap">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -59,13 +66,14 @@
 					@foreach ($games as $game)
 					<tr>
 						<td class="align-middle">{{ $loop->iteration }}</td>
-						<td class="align-middle" style="white-space: nowrap">
+						<td class="align-middle text-nowrap">
 							<a href="{{ route('setting.games.show', [$game->id]) }}">
 								<img src="{{ StorageHelper::url($game->icon) }}" alt="" width="70" class="mr-3 rounded">
 								{{ $game->name }}
 							</a>
 						</td>
-						<td class="align-middle" style="white-space: nowrap; width: 82px">
+						<td class="align-middle text-nowrap">{{ $game->base_price }} Coin</td>
+						<td class="align-middle text-nowrap" style="width: 82px">
 							<button class="btn btn-warning edit-game" data-game="{{ $game }}" data-toggle="modal" data-target="#editGameModal">
 								<i class="fas fa-edit" onclick=""></i>
 							</button>
@@ -91,12 +99,14 @@
 
 	editGameButtons.forEach((item) => {
 		item.addEventListener('click', () => {
-			const editForm	= document.querySelector('#editGameModal form');
-			const nameField = editForm.querySelector('#game-name');
-			const gameData 	= JSON.parse(item.dataset.game);
-			const endpoint	= `{{ route('setting.games.update', ['']) }}/${gameData.id}`;
-			editForm.action = endpoint;
-			nameField.value = gameData.name;
+			const editForm		= document.querySelector('#editGameModal form');
+			const nameField 	= editForm.querySelector('#game-name');
+			const priceField 	= editForm.querySelector('#game-base-price');
+			const gameData 		= JSON.parse(item.dataset.game);
+			const endpoint		= `{{ route('setting.games.update', ['']) }}/${gameData.id}`;
+			editForm.action 	= endpoint;
+			nameField.value 	= gameData.name;
+			priceField.value 	= gameData.base_price;
 		});
 	});
 </script>

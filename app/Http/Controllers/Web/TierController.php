@@ -22,7 +22,7 @@ class TierController extends Controller
             $request->validate([
                 'name'           => 'required|max:50',
                 'price_increase' => 'required|numeric|digits_between:1,6',
-                'min_order'      => 'required|numeric|digits_between:1,20'
+                'min_order'      => 'required|numeric|digits_between:1,18'
             ]);
 
             Tier::create([
@@ -65,7 +65,7 @@ class TierController extends Controller
             $request->validate([
                 'name'           => 'required|max:50',
                 'price_increase' => 'required|numeric|digits_between:1,6',
-                'min_order'      => 'required|numeric|digits_between:1,20'
+                'min_order'      => 'required|numeric|digits_between:1,18'
             ]);
 
             $tier = Tier::find($tierId);

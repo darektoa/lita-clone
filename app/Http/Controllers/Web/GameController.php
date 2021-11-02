@@ -22,22 +22,24 @@ class GameController extends Controller
     public function store(Request $request) {
         try{
             $request->validate([
-                'name' => 'required|min:2|max:100',
-                'icon' => 'required|image|max:2048'
+                'name'       => 'required|min:2|max:100',
+                'icon'       => 'required|image|max:2048',
+                'base_price' => 'required|numeric|digits_between:0,18'
             ]);
 
             $iconPath = StorageHelper::put("images/game-icons", $request->icon);
 
             Game::create([
-                'icon' => $iconPath,
-                'name' => $request->name,
+                'icon'       => $iconPath,
+                'name'       => $request->name,
+                'base_price' => $request->base_price,
             ]);
             
             Alert::success('Success', 'Game created successfully');
         } catch(Exception $err) {
             dd($err);
             $errMessage = $err->getMessage();
-            Alert::error('Failde', $errMessage);
+            Alert::error('Failed', $errMessage);
         }finally{
             return back();
         }
@@ -73,13 +75,15 @@ class GameController extends Controller
 
         try{
             $request->validate([
-                'name' => 'required|min:2|max:100',
-                'icon' => 'image|max:2048'
+                'name'       => 'required|min:2|max:100',
+                'icon'       => 'image|max:2048',
+                'base_price' => 'required|numeric|digits_between:0,18',
             ]);
 
             if(!$game) throw new Exception('Game not found');
             
-            $game->name = $request->name;
+            $game->name       = $request->name;
+            $game->base_price = $request->base_price;
             if($request->icon) {
                 $iconPath = StorageHelper::put('images/game-icons', $request->icon);
                 StorageHelper::delete($game->icon);
