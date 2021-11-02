@@ -52,8 +52,9 @@ class GameSeeder extends Seeder
         
         foreach($games as $game) {
             $model = Game::create([
-                'name' => $game['name'],
-                'icon' => $game['icon'],
+                'name'       => $game['name'],
+                'icon'       => $game['icon'],
+                'base_price' => 100, 
             ]);
 
             foreach($game['tiers'] as $tier) $model->gameTiers()->create(['name' => $tier]);

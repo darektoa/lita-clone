@@ -17,6 +17,7 @@ class CreateGamesTable extends Migration
             $table->id();
             $table->text('icon');
             $table->string('name', 100);
+            $table->bigInteger('base_price');
             $table->softDeletes();
             $table->timestamps();
         });
