@@ -60,9 +60,26 @@ class TierController extends Controller
     }
 
 
-    public function update() {
+    public function update(Request $request, $tierId) {
         try{
+            $request->validate([
+                'name'           => 'required|max:50',
+                'price_increase' => 'required|numeric|digits_between:1,6',
+                'min_order'      => 'required|numeric|digits_between:1,20'
+            ]);
 
+            $tier = Tier::find($tierId);
+
+            if(!$tier)
+                throw new Exception('Tier not found', 404);
+
+            $tier->update([
+                'name'           => $request->name,
+                'price_increase' => $request->price_increase,
+                'min_order'      => $request->min_order
+            ]);
+
+            Alert::success('Success', 'Tier edited successfully');
         }catch(Exception $err) {
             $errMessage = $err->getMessage();
             Alert::error('Failed', $errMessage);

@@ -99,7 +99,7 @@
       const priceField  = editForm.querySelector('#tier-price-increase');
       const orderField  = editForm.querySelector('#tier-min-order');
       const tierData 		= JSON.parse(item.dataset.tier);
-      const endpoint	  = `{{ route('setting.coins.update', ['']) }}/${tierData.id}`;
+      const endpoint	  = `{{ route('setting.tiers.update', ['']) }}/${tierData.id}`;
       editForm.action   = endpoint;
       nameField.value   = tierData.name;
       priceField.value  = tierData.price_increase;
