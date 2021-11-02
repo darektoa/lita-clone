@@ -17,6 +17,7 @@ class CreateTiersTable extends Migration
             $table->id();
             $table->string('name', 50);
             $table->smallInteger('price_increase');
+            $table->bigInteger('min_order');
             $table->timestamps();
         });
     }
