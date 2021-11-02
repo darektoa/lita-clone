@@ -17,6 +17,7 @@
     'Games'   => route('setting.games.index'),
     'General' => route('setting.general.index'),
     'Genders' => route('setting.genders.index'),
+    'Tiers'   => route('setting.tiers.index'),
   ];
 @endphp
 
