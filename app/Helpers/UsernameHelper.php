@@ -7,17 +7,17 @@ use Illuminate\Support\Str;
 
 class UsernameHelper{
   static public function make($string) {
-    $string   = Str::slug(Str::limit($string, 30, ''), '.');
+    $string   = Str::slug(Str::limit($string, 15, ''), '.');
 
     $rules    = 'regex:/[0-9a-z\._]{5,15}/i|unique:users,username';
     $validate = Validator::make([$string], [0 => $rules]);
     $unique   = false;
 
-    if($validate->fails()) $string = Str::limit($string, 20, '');
+    if($validate->fails()) $string = Str::limit($string, 10, '');
     else $unique = true;
 
     while(!$unique) {
-      $newString  = $string . rand(1, 9999999999);
+      $newString  = $string . rand(1, 99999);
       $validates   = Validator::make([$newString], [0 => $rules]);
 
       if(!$validates->fails()){
