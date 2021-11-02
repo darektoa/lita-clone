@@ -34,7 +34,7 @@ class TierController extends Controller
             Alert::success('Success', 'Tier created successfully');
         }catch(Exception $err) {
             $errMessage = $err->getMessage();
-            Alert::success('Success', $errMessage);
+            Alert::success('Failed', $errMessage);
         }finally {
             return back();
         }
@@ -51,6 +51,18 @@ class TierController extends Controller
             $tier->delete();
 
             Alert::success('Success', 'Tier deleted successfully');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally {
+            return back();
+        }
+    }
+
+
+    public function update() {
+        try{
+
         }catch(Exception $err) {
             $errMessage = $err->getMessage();
             Alert::error('Failed', $errMessage);

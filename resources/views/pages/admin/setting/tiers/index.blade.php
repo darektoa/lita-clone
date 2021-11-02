@@ -10,7 +10,7 @@
       'name'  => 'price_increase',
 			'type'	=> 'number'
 		], [
-      'id'    => 'tier-minimum-Order',
+      'id'    => 'tier-min-order',
       'label' => 'Minimum Order',
       'name'  => 'min_order',
 			'type'	=> 'number'
@@ -96,10 +96,14 @@
     item.addEventListener('click', () => {
       const editForm	  = document.querySelector('#editTierModal form');
       const nameField   = editForm.querySelector('#tier-name');
-      const tierData 	= JSON.parse(item.dataset.tier);
+      const priceField  = editForm.querySelector('#tier-price-increase');
+      const orderField  = editForm.querySelector('#tier-min-order');
+      const tierData 		= JSON.parse(item.dataset.tier);
       const endpoint	  = `{{ route('setting.coins.update', ['']) }}/${tierData.id}`;
       editForm.action   = endpoint;
       nameField.value   = tierData.name;
+      priceField.value  = tierData.price_increase;
+      orderField.value   = tierData.min_order;
     });
   });
 </script>
