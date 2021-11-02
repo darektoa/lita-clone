@@ -10,4 +10,9 @@ class Tier extends Model
     use HasFactory;
 
     protected $guarded  = ['id'];
+
+
+    public function proPlayerSkills() {
+        return $this->hasMany(ProPlayerSkill::class);
+    }
 }
