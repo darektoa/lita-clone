@@ -45,32 +45,36 @@
 					<tr>
             <th class="col-1">#</th>
 						<th>Tier</th>
+						<th>Increase</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					
-					{{-- @foreach ($tiers as $tier)
+					@foreach ($tiers as $tier)
 					<tr>
 						<td class="align-middle">{{ $loop->iteration }}</td>
 						<td class="align-middle" style="white-space: nowrap">
               {{ $tier->name }}
 						</td>
+						<td class="align-middle" style="white-space: nowrap">
+              {{ $tier->price_increase }}%
+						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
 							<button class="btn btn-warning edit-tier" data-tier="{{ $tier }}" data-toggle="modal" data-target="#editTierModal">
 								<i class="fas fa-edit" onclick=""></i>
 							</button>
-							<form action="{{ route('setting.tiers.destroy', [$tier->id]) }}" method="POST" class="d-inline">
+							<form action="" method="POST" class="d-inline">
                 @method('DELETE') @csrf
                 <button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
               </form>
 						</td>
 					</tr>
-					@endforeach --}}
+					@endforeach
 
 				</tbody>
 			</table>
-			{{-- {{ $tiers->links() }} --}}
+			{{ $tiers->links() }}
 		</div>
 	</div>
 </div>
