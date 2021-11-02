@@ -17,6 +17,30 @@ class TierController extends Controller
     }
 
 
+    public function store(Request $request) {
+        try{
+            $request->validate([
+                'name'           => 'required|max:50',
+                'price_increase' => 'required|numeric|digits_between:1,6',
+                'min_order'      => 'required|numeric|digits_between:1,20'
+            ]);
+
+            Tier::create([
+                'name'           => $request->name,
+                'price_increase' => $request->price_increase,
+                'min_order'      => $request->min_order
+            ]);
+
+            Alert::success('Success', 'Tier created successfully');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::success('Success', $errMessage);
+        }finally {
+            return back();
+        }
+    }
+
+
     public function destroy($tierId) {
         try{
             $tier = Tier::find($tierId);

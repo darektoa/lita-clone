@@ -4,7 +4,17 @@
       'id'    => 'tier-name',
       'label' => 'Tier Name',
       'name'  => 'name'
-    ]
+		], [
+      'id'    => 'tier-price-increase',
+      'label' => 'Price Increase (%)',
+      'name'  => 'price_increase',
+			'type'	=> 'number'
+		], [
+      'id'    => 'tier-minimum-Order',
+      'label' => 'Minimum Order',
+      'name'  => 'min_order',
+			'type'	=> 'number'
+		],
   ];
 @endphp
 @extends('layouts.app')
@@ -25,7 +35,7 @@
 		<div class="card-body table-responsive" style="min-height: 400px">
 
 			<x-modal-input 
-				action="{{ route('setting.genders.store') }}"
+				action="{{ route('setting.tiers.store') }}"
 				id="addTierModal"
 				inputs="{!! json_encode($inputsAddTier) !!}"
 				method="POST"
