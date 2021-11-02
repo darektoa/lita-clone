@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class TierController extends Controller
 {
     public function index() {
-        return 'Test';
+        return view('pages.admin.setting.tiers.index');
     }
 }
