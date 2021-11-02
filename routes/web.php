@@ -61,6 +61,10 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/', [AppSettingController::class, 'index'])->name('index');
         Route::put('/', [AppSettingController::class, 'update'])->name('update');
       });
+
+      Route::prefix('/tiers')->name('tiers.')->group(function() {
+        // Route::get('/', [])->name('index');
+      });
     });
   });
   
