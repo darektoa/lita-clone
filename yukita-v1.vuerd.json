@@ -3,9 +3,9 @@
     "version": "2.2.6",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -2106,
-    "scrollLeft": -101,
-    "zoomLevel": 0.8,
+    "scrollTop": -1636,
+    "scrollLeft": -1511,
+    "zoomLevel": 0.2,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -1147,7 +1147,7 @@
             "id": "76d7b75d-c5f9-4d81-8296-faf307a788b2"
           },
           {
-            "name": "pro_player_skill_tier_id",
+            "name": "tiers_id",
             "comment": "",
             "dataType": "BIGINT(20)",
             "default": "",
@@ -1162,7 +1162,7 @@
               "pk": false,
               "fk": true,
               "pfk": false,
-              "widthName": 134.9580078125,
+              "widthName": 60,
               "widthComment": 60,
               "widthDataType": 68.45361328125,
               "widthDefault": 60
@@ -1285,29 +1285,6 @@
             "id": "d041dd75-ab98-423f-9f2d-14f1aa649f9a"
           },
           {
-            "name": "tier",
-            "comment": "",
-            "dataType": "VARCHAR(20)",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 87.71875,
-              "widthDefault": 60
-            },
-            "id": "7bc149d8-8871-4103-a24e-78bac1aaba19"
-          },
-          {
             "name": "rate",
             "comment": "",
             "dataType": "FLOAT(3, 2)",
@@ -1425,9 +1402,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 631.6674,
-          "top": 2030.1317,
-          "zIndex": 18,
+          "left": 660.0005,
+          "top": 2045.1315,
+          "zIndex": 38,
           "widthName": 98.82080078125,
           "widthComment": 60
         },
@@ -1556,9 +1533,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 666.8618,
-          "top": 2531.8985,
-          "zIndex": 11,
+          "left": 458.5293,
+          "top": 2626.898,
+          "zIndex": 55,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1687,9 +1664,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 873.2635,
-          "top": 2915.6954,
-          "zIndex": 17,
+          "left": 652.5978,
+          "top": 2993.0285,
+          "zIndex": 52,
           "widthName": 66.30810546875,
           "widthComment": 60
         },
@@ -1818,9 +1795,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 470.6244,
-          "top": 2916.5971,
-          "zIndex": 10,
+          "left": 259.9588,
+          "top": 3000.5968,
+          "zIndex": 31,
           "widthName": 69.92626953125,
           "widthComment": 60
         },
@@ -2080,9 +2057,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 64.0498,
-          "top": 1972.5313,
-          "zIndex": 16,
+          "left": 115.7157,
+          "top": 2137.5308,
+          "zIndex": 58,
           "widthName": 169.6416015625,
           "widthComment": 60
         },
@@ -3019,8 +2996,8 @@
         "ui": {
           "active": false,
           "left": 1240.4602,
-          "top": 1885.8409,
-          "zIndex": 14,
+          "top": 1888.3409,
+          "zIndex": 36,
           "widthName": 107.50439453125,
           "widthComment": 60
         },
@@ -3028,7 +3005,7 @@
         "id": "87470652-277a-43b9-a93d-f722fae8128e"
       },
       {
-        "name": "pro_player_skill_tiers",
+        "name": "tiers",
         "comment": "",
         "columns": [
           {
@@ -3149,10 +3126,10 @@
         ],
         "ui": {
           "active": false,
-          "left": 82.3061,
-          "top": 2301.6111,
-          "zIndex": 21,
-          "widthName": 124.10986328125,
+          "left": 869.8062,
+          "top": 2623.2779,
+          "zIndex": 56,
+          "widthName": 60,
           "widthComment": 60
         },
         "visible": true,
@@ -3305,8 +3282,8 @@
           "columnIds": [
             "86b8ae06-e6b6-4492-8ffe-b9f8bc97193f"
           ],
-          "x": 958.6209552734375,
-          "y": 2703.3985,
+          "x": 750.2884552734374,
+          "y": 2798.398,
           "direction": "bottom"
         },
         "end": {
@@ -3314,8 +3291,8 @@
           "columnIds": [
             "f1a112e4-f772-4ef8-a1e3-4bed9fb6a2c8"
           ],
-          "x": 1064.15461328125,
-          "y": 2915.6954,
+          "x": 843.48891328125,
+          "y": 2993.0285,
           "direction": "top"
         },
         "constraintName": "fk_games_to_game_tiers",
@@ -3331,8 +3308,8 @@
           "columnIds": [
             "86b8ae06-e6b6-4492-8ffe-b9f8bc97193f"
           ],
-          "x": 861.367903515625,
-          "y": 2531.8985,
+          "x": 653.0354035156249,
+          "y": 2626.898,
           "direction": "top"
         },
         "end": {
@@ -3340,8 +3317,8 @@
           "columnIds": [
             "76d7b75d-c5f9-4d81-8296-faf307a788b2"
           ],
-          "x": 860.120769140625,
-          "y": 2406.6317,
+          "x": 761.584240234375,
+          "y": 2401.1315,
           "direction": "bottom"
         },
         "constraintName": "fk_games_to_pro_player_skills",
@@ -3357,8 +3334,8 @@
           "columnIds": [
             "86b8ae06-e6b6-4492-8ffe-b9f8bc97193f"
           ],
-          "x": 764.1148517578125,
-          "y": 2703.3985,
+          "x": 555.7823517578124,
+          "y": 2798.398,
           "direction": "bottom"
         },
         "end": {
@@ -3366,8 +3343,8 @@
           "columnIds": [
             "12168048-4eab-4a76-9595-d0fd22c05b3d"
           ],
-          "x": 661.5155132812499,
-          "y": 2916.5971,
+          "x": 450.84991328125,
+          "y": 3000.5968,
           "direction": "top"
         },
         "constraintName": "fk_games_to_game_roles",
@@ -3392,8 +3369,8 @@
           "columnIds": [
             "f760a166-3172-4b7f-9b27-95ae9402e02e"
           ],
-          "x": 860.120769140625,
-          "y": 2030.1317,
+          "x": 863.16798046875,
+          "y": 2045.1315,
           "direction": "top"
         },
         "constraintName": "fk_players_to_pro_player_skills",
@@ -3461,8 +3438,8 @@
           "columnIds": [
             "b17a9e3c-f09c-410f-94db-0c77294013e5"
           ],
-          "x": 631.6674,
-          "y": 2124.2567,
+          "x": 660.0005,
+          "y": 2223.1315,
           "direction": "left"
         },
         "end": {
@@ -3470,8 +3447,8 @@
           "columnIds": [
             "3ce5292e-dff4-4f72-a5b5-2d694d9e2fae"
           ],
-          "x": 477.58935078125,
-          "y": 2058.2813,
+          "x": 529.25525078125,
+          "y": 2223.2808,
           "direction": "right"
         },
         "constraintName": "fk_pro_player_skills_to_pro_player_skill_screenshots",
@@ -3601,7 +3578,7 @@
             "ed099f36-fa9e-4965-aa40-5b686b6c66d4"
           ],
           "x": 1240.4602,
-          "y": 1954.3409,
+          "y": 1956.8409,
           "direction": "left"
         },
         "constraintName": "fk_players_to_player_orders",
@@ -3617,8 +3594,8 @@
           "columnIds": [
             "b17a9e3c-f09c-410f-94db-0c77294013e5"
           ],
-          "x": 1088.57413828125,
-          "y": 2218.3817,
+          "x": 1066.3354609375,
+          "y": 2223.1315,
           "direction": "right"
         },
         "end": {
@@ -3627,7 +3604,7 @@
             "f3b4209b-3977-46ad-8183-f4f3fdc80852"
           ],
           "x": 1240.4602,
-          "y": 2091.3409,
+          "y": 2093.8409,
           "direction": "left"
         },
         "constraintName": "fk_pro_player_skills_to_player_orders",
@@ -3643,18 +3620,18 @@
           "columnIds": [
             "621b348a-fe9d-4be0-abcf-4f08e5919f8e"
           ],
-          "x": 483.56928359375,
-          "y": 2387.3611,
-          "direction": "right"
+          "x": 1070.437791796875,
+          "y": 2623.2779,
+          "direction": "top"
         },
         "end": {
           "tableId": "36240fef-0a2b-4c95-a776-f7d03fb4d01c",
           "columnIds": [
             "bad857ae-8851-4787-a2ff-7b24f0d4760c"
           ],
-          "x": 631.6674,
-          "y": 2312.5067,
-          "direction": "left"
+          "x": 964.751720703125,
+          "y": 2401.1315,
+          "direction": "bottom"
         },
         "constraintName": "fk_pro_player_skill_tiers_to_pro_player_skills",
         "visible": true,

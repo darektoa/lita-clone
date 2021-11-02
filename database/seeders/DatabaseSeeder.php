@@ -12,10 +12,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             CoinSeeder::class,
+            TierSeeder::class,
             GameSeeder::class,
             GenderSeeder::class,
             AppSettingSeeder::class,
-            ProPlayerSkillTierSeeder::class,
         ]);
 
         $proPlayerSkills = ProPlayerSkill::factory()

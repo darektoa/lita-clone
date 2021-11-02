@@ -2,14 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\ProPlayerSkillTier;
+use App\Models\Tier;
 use Illuminate\Database\Seeder;
 
-class ProPlayerSkillTierSeeder extends Seeder
+class TierSeeder extends Seeder
 {
     public function run()
     {
-        $tier = new ProPlayerSkillTier();
+        $tier = new Tier();
 
         $tier->create(['name' => 'B',   'price_increase' => 10]);
         $tier->create(['name' => 'B+',  'price_increase' => 20]);
