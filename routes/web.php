@@ -63,7 +63,7 @@ Route::middleware(['auth'])->group(function() {
       });
 
       Route::prefix('/tiers')->name('tiers.')->group(function() {
-        // Route::get('/', [])->name('index');
+        Route::get('/', [TierController::class, 'index'])->name('index');
       });
     });
   });
