@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
-use App\Models\ProPlayerSkill;
+use App\Models\{ProPlayerSkill, Tier};
 use Exception;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -28,7 +28,12 @@ class ProPlayerSkillController extends Controller
 
     public function approve(ProPlayerSkill $proPlayerSkill) {
         try{
-            $proPlayerSkill->status = 2;
+            $tier = Tier::orderBy('min_order', 'desc')
+                ->where('min_order', '<=', 0)
+                ->first();
+
+            $proPlayerSkill->tier_id = $tier->id;
+            $proPlayerSkill->status  = 2;
             $proPlayerSkill->player->is_pro_player = 1;
             $proPlayerSkill->player->update();
             $proPlayerSkill->update();
