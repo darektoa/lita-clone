@@ -17,6 +17,7 @@ class CreateProPlayerSkillsTable extends Migration
             $table->id();
             $table->foreignId('player_id')->constrained();
             $table->foreignId('game_id')->constrained();
+            $table->foreignId('tier_id')->nullable()->constrained();
             $table->string('game_user_id', 20);
             $table->string('game_tier', 50);
             $table->string('game_roles');

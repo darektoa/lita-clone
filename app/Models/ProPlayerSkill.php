@@ -24,6 +24,11 @@ class ProPlayerSkill extends Model
     }
 
 
+    public function tier() {
+        return $this->belongsTo(Tier::class);
+    }
+
+
     public function proPlayerSkillScreenshots() {
         return $this->hasMany(ProPlayerSkillScreenshot::class);
     }

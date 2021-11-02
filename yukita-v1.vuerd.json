@@ -3,9 +3,9 @@
     "version": "2.2.6",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -2494,
-    "scrollLeft": -396,
-    "zoomLevel": 1,
+    "scrollTop": -1897,
+    "scrollLeft": -736,
+    "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -1155,7 +1155,7 @@
               "autoIncrement": false,
               "primaryKey": false,
               "unique": false,
-              "notNull": true
+              "notNull": false
             },
             "ui": {
               "active": false,
@@ -1401,10 +1401,10 @@
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 660.0005,
           "top": 2045.1315,
-          "zIndex": 14,
+          "zIndex": 20,
           "widthName": 98.82080078125,
           "widthComment": 60
         },
@@ -1535,7 +1535,7 @@
           "active": false,
           "left": 458.5293,
           "top": 2626.898,
-          "zIndex": 16,
+          "zIndex": 14,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1666,7 +1666,7 @@
           "active": false,
           "left": 652.5978,
           "top": 3000.8062,
-          "zIndex": 32,
+          "zIndex": 17,
           "widthName": 66.30810546875,
           "widthComment": 60
         },
@@ -2059,7 +2059,7 @@
           "active": false,
           "left": 115.7157,
           "top": 2137.5308,
-          "zIndex": 18,
+          "zIndex": 15,
           "widthName": 169.6416015625,
           "widthComment": 60
         },
@@ -3151,7 +3151,7 @@
           "active": false,
           "left": 868.8062,
           "top": 2626.2779,
-          "zIndex": 30,
+          "zIndex": 16,
           "widthName": 60,
           "widthComment": 60
         },
@@ -3637,7 +3637,7 @@
       {
         "identification": false,
         "relationshipType": "OneOnly",
-        "startRelationshipType": "Dash",
+        "startRelationshipType": "Ring",
         "start": {
           "tableId": "880ba0b7-9745-4429-9a0c-fca15d9fbead",
           "columnIds": [
