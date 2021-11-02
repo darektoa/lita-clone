@@ -64,6 +64,7 @@ Route::middleware(['auth'])->group(function() {
 
       Route::prefix('/tiers')->name('tiers.')->group(function() {
         Route::get('/', [TierController::class, 'index'])->name('index');
+        Route::delete('/{tierId}', [TierController::class, 'destroy'])->name('destroy');
       });
     });
   });
