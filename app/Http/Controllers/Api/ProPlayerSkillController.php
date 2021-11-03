@@ -17,7 +17,7 @@ class ProPlayerSkillController extends Controller
         $proPlayers = ProPlayerSkill::with(['game', 'player', 'player.user', 'tier']);
 
         try {
-            if(!$proPlayers->first()->$sortBy && $sortBy) 
+            if($proPlayers->first() && !$proPlayers->first()->$sortBy && $sortBy) 
                 throw new Exception('Field to sort not found', 404);
             if($sortBy)
                 $proPlayers = $proPlayers->orderBy($sortBy, 'desc');
