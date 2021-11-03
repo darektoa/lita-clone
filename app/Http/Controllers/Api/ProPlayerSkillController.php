@@ -10,6 +10,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use function PHPSTORM_META\map;
+
 class ProPlayerSkillController extends Controller
 {
     public function index(Request $request) {
@@ -98,19 +100,25 @@ class ProPlayerSkillController extends Controller
 
 
     public function show(ProPlayerSkill $proPlayerSkill) {
-        $proPlayerSkill->load(['game', 'player', 'player.user']);
-        $status = $proPlayerSkill->status;
-        
-        if($status !== 2) return response()->json([
-            'status'    => 404,
-            'message'   => 'Not found'
-        ]);
-
-        return response()->json([
-            'status'    => 200,
-            'message'   => 'OK',
-            'data' => $proPlayerSkill
-        ]);
+        try{
+            $proPlayerSkill->load(['game', 'player', 'player.user']);
+            $status = $proPlayerSkill->status;
+            
+            if($status !== 2) throw new Exception('Not found', 404);
+    
+            return response()->json([
+                'status'    => 200,
+                'message'   => 'OK',
+                'data' => $proPlayerSkill
+            ]);
+        }catch(Exception $err) {
+            $errCode        = $err->getCode() ?? 400;
+            $errMessage     = $err->getMessage();
+            return response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage
+            ], $errCode);
+        }
     }
 
 
@@ -126,7 +134,11 @@ class ProPlayerSkillController extends Controller
             ->latest()
             ->get();
 
-        return response()->json(['data' => $mySkills]);
+        return response()->json([
+            'satatus'   => 200,
+            'message'   => 'OK',
+            'data'      => $mySkills
+        ]);
     }
 
 
