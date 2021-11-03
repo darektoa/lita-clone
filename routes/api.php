@@ -55,7 +55,7 @@ Route::middleware(['auth.api'])->group(function() {
 
     // ORDER
     Route::prefix('/orders')->group(function() {
-        Route::get('/', []);
+        Route::get('/', [ProPlayerOrderController::class, 'index']);
     });
 
     // PROFILE
