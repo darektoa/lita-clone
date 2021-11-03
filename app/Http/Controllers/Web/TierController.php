@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tier;
+use App\Models\{AppSetting, Game, Tier};
 use Exception;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -18,8 +18,12 @@ class TierController extends Controller
     }
 
 
-    public function show() {
-        return 'Test';
+    public function show($tierId) {
+        $tier       = Tier::find($tierId);
+        $games      = Game::orderBy('name', 'asc')->paginate(10);
+        $appSetting = AppSetting::first();
+
+        return view('pages.admin.setting.tiers.show', compact('tier', 'games', 'appSetting'));
     }
 
 

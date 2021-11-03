@@ -65,7 +65,11 @@
 					@foreach ($tiers as $tier)
 					<tr>
 						<td class="align-middle">{{ $loop->iteration }}</td>
-						<td class="align-middle text-nowrap">{{ $tier->name }}</td>
+						<td class="align-middle text-nowrap">
+							<a href="{{ route('setting.tiers.show', [$tier->id]) }}">
+								{{ $tier->name }}
+							</a>
+						</td>
 						<td class="align-middle text-nowrap">{{ $tier->price_increase }}%</td>
 						<td class="align-middle text-nowrap">{{ $tier->min_order }}</td>
 						<td class="align-middle text-nowrap" style="width: 82px">
