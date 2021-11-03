@@ -14,20 +14,23 @@ class ProPlayerSkillResource extends JsonResource
      */
     public function toArray($request)
     {
+        $user = $this->player->user;
+
         return [
-            "id"                            => 47,
-            "game_id"                       => 1,
-            "game_user_id"                  => "22668",
-            "game_tier"                     => "Mythic",
-            "game_roles"                    => "Assasin",
-            "game_level"                    => 30,
-            "tier"                          => 0,
-            "rate"                          => 0,
-            "bio"                           => null,
-            "voice"                         => null,
-            "status"                        => 0,
-            "status_name"                   => "Pending",
-            "pro_player_skill_screenshots"  => ProPlayerSkillScreenshotResource::collection($this->proPlayerSkillScreenshots)
+            'id'                            => $this->id,
+            'game_user_id'                  => $this->game_user_id,
+            'game_tier'                     => $this->game_tier,
+            'game_roles'                    => $this->game_roles,
+            'game_level'                    => $this->game_level,
+            'rate'                          => $this->rate,
+            'bio'                           => $this->bio,
+            'voice'                         => $this->voice,
+            'status'                        => $this->status,
+            'status_name'                   => $this->status_name,
+            'game'                          => GameResource::make($this->whenLoaded('game')),
+            'tier'                          => TierResource::make($this->whenLoaded('tier')),
+            'user'                          => UserResource::make($this->when($user, $user)),
+            'pro_player_skill_screenshots'  => ProPlayerSkillScreenshotResource::collection($this->whenLoaded('proPlayerSkillScreenshots'))
         ];
     }
 }

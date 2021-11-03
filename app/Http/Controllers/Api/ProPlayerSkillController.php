@@ -14,7 +14,7 @@ class ProPlayerSkillController extends Controller
 {
     public function index(Request $request) {
         $sortBy     = $request->sort;
-        $proPlayers = ProPlayerSkill::with(['game', 'player', 'player.user']);
+        $proPlayers = ProPlayerSkill::with(['game', 'player', 'player.user', 'tier']);
 
         try {
             if(!$proPlayers->first()->$sortBy && $sortBy) 
@@ -24,13 +24,17 @@ class ProPlayerSkillController extends Controller
 
             $proPlayers = $proPlayers
                 ->where('status', 2)
-                ->paginate(10)
-                ->toArray();
+                ->paginate(10);
 
-            return response()->json(array_merge([
-                'status'    => 200,
-                'message'   => 'OK'
-            ], $proPlayers));
+            return response()->json(collect($proPlayers)
+                ->merge([
+                    'status'    => 200,
+                    'message'   => 'OK'
+                ])
+                ->merge($proPlayers)
+                ->merge(['data' => ProPlayerSkillResource::collection($proPlayers)])
+            );
+            
         } catch(Exception $err) {
             $errCode    = $err->getCode() ?? 400;
             $errMessage = $err->getMessage();

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\ProPlayerResource;
 use App\Models\{Player, PlayerFollower};
 use Exception;
 use Illuminate\Http\Request;
@@ -17,13 +17,12 @@ class ProPlayerController extends Controller
                 $query->where('status', 2);
             }])
             ->orderBy('pro_player_skills_count', 'desc')
-            ->paginate(10)
-            ->toArray();
+            ->paginate(10);
 
-        return response()->json(array_merge([
+        return response()->json(collect([
             'status'    => 200,
-            'message'   => 'OK',
-        ], $proPlayers));
+            'message'   => 'OK'
+        ])->merge($proPlayers));
     }
 
 
