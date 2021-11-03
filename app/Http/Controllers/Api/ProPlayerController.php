@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProPlayerResource;
 use App\Models\{Player, PlayerFollower};
 use Exception;
 use Illuminate\Http\Request;

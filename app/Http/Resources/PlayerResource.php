@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProPlayerResource extends JsonResource
+class PlayerResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,18 +14,15 @@ class ProPlayerResource extends JsonResource
      */
     public function toArray($request)
     {
-        $pro_player_skills_count = $this->pro_player_skills_count;
-
         return [
             'id'                        => $this->id,
             'coin'                      => $this->coin,
+            'rate'                      => $this->rate,
             'voice'                     => $this->voice,
             'is_pro_player'             => $this->is_pro_player,
             'followers_count'           => $this->followers_count,
             'followings_count'          => $this->following_count,
-            'pro_player_skills_count'   => $this->when($pro_player_skills_count, $pro_player_skills_count),
-            // 'user'                      => $this->whenLoaded('user', new UserResource($this->user)),
-            'pro_player_skills'         => $this->whenLoaded('pro_player_skills', ProPlayerSkillResource::collection($this->pro_player_skills)),
+            'user'                      => $this->whenLoaded('user'),
             'created_at'                => $this->created_at,
             'updated_at'                => $this->updated_at,
         ];
