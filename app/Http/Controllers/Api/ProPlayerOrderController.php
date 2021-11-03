@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 
 class ProPlayerOrderController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
         $player = auth()->user()->player;
-        $orders = ProPlayerOrder::where('player_id', $player->id)
+        $orders = ProPlayerOrder::with(['proPlayerSkill'])
+            ->where('player_id', $player->id)
             ->latest()
             ->paginate(10);
 
