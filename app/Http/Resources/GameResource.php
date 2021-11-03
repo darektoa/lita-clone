@@ -19,9 +19,6 @@ class GameResource extends JsonResource
             'id'            => $this->id,
             'icon'          => StorageHelper::url($this->icon),
             'name'          => $this->name,
-            'deleted_at'    => $this->deleted_at,
-            'created_at'    => $this->created_at,
-            'updated_at'    => $this->updated_at,
         ];
     }
 }
