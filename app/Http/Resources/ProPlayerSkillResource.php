@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Helpers\StorageHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProPlayerSkillResource extends JsonResource
@@ -24,7 +25,7 @@ class ProPlayerSkillResource extends JsonResource
             'game_level'                    => $this->game_level,
             'rate'                          => $this->rate,
             'bio'                           => $this->bio,
-            'voice'                         => $this->voice,
+            'voice'                         => StorageHelper::url($this->voice),
             'status'                        => $this->status,
             'status_name'                   => $this->status_name,
             'game'                          => GameResource::make($this->whenLoaded('game')),
