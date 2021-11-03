@@ -11,7 +11,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 class TierController extends Controller
 {
     public function index() {
-        $tiers  = Tier::paginate(10);
+        $tiers  = Tier::orderBy('price_increase', 'asc')
+            ->paginate(10);
 
         return view('pages.admin.setting.tiers.index', compact('tiers'));
     }
