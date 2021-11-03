@@ -10,8 +10,13 @@ class ProPlayerOrderController extends Controller
 {
     public function index(Request $request) {
         $player = auth()->user()->player;
-        $orders = ProPlayerOrder::with(['proPlayerSkill'])
-            ->where('player_id', $player->id)
+        $orders = ProPlayerOrder::with(['proPlayerSkill']);
+        $status = $request->status;
+            
+        if($status !== null && $status >= 0 && $status <= 3)
+            $orders = $orders->where('status', $status);
+
+        $orders = $orders->where('player_id', $player->id)
             ->latest()
             ->paginate(10);
 
