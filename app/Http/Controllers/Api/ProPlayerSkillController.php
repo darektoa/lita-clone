@@ -10,8 +10,6 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-use function PHPSTORM_META\map;
-
 class ProPlayerSkillController extends Controller
 {
     public function index(Request $request) {
@@ -142,7 +140,7 @@ class ProPlayerSkillController extends Controller
     }
 
 
-    public function order(ProPlayerSkill $proPlayerSkill) {
+    public function order(Request $request, ProPlayerSkill $proPlayerSkill) {
         try{
             if($proPlayerSkill->status !== 2)
                 throw new Exception('Pro player skill not valid', 422);
@@ -158,6 +156,7 @@ class ProPlayerSkillController extends Controller
                 'pro_player_skill_id'   => $proPlayerSkill->id,
                 'coin'                  => $price['coin'],
                 'balance'               => $price['balance'],
+                'expired_in'            => $request->expired_in ?? 5,
                 'status'                => 0
             ]);
 
