@@ -60,7 +60,8 @@ class ProPlayerSkillController extends Controller
         if($validator->fails()) {
             $errors = $validator->errors();
             return response()->json([
-                'message'   => 'Invalid field',
+                'status'    => 422,
+                'message'   => 'Unprocessable, Invalid field',
                 'errors'    => $errors->all()
             ], 422);
         }
@@ -142,6 +143,19 @@ class ProPlayerSkillController extends Controller
 
     public function order(Request $request, ProPlayerSkill $proPlayerSkill) {
         try{
+            $validator = Validator::make($request->all(), [
+                'expired_in'    => 'numeric|digits_between:0,5'
+            ]);
+
+            if($validator->fails()) {
+                $errors = $validator->errors();
+                return response()->json([
+                    'status'    => 422,
+                    'message'   => 'Unprocessable, Invalid field',
+                    'errors'    => $errors->all(),
+                ]);
+            }
+
             if($proPlayerSkill->status !== 2)
                 throw new Exception('Pro player skill not valid', 422);
 
@@ -156,7 +170,7 @@ class ProPlayerSkillController extends Controller
                 'pro_player_skill_id'   => $proPlayerSkill->id,
                 'coin'                  => $price['coin'],
                 'balance'               => $price['balance'],
-                'expired_in'            => $request->expired_in ?? 5,
+                'expired_in'            => intval($request->expired_in) ?? 5,
                 'status'                => 0
             ]);
 
