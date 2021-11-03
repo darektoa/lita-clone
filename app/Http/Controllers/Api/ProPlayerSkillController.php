@@ -28,8 +28,8 @@ class ProPlayerSkillController extends Controller
                 ->where('status', 2)
                 ->paginate(10);
 
-            return response()->json(collect($proPlayers)
-                ->merge([
+            return response()->json(
+                collect([
                     'status'    => 200,
                     'message'   => 'OK'
                 ])
