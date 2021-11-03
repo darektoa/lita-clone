@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Player, PlayerFollower};
+use App\Models\{Player, PlayerFollower, User};
 use Exception;
 use Illuminate\Http\Request;
 
@@ -99,5 +99,21 @@ class ProPlayerController extends Controller
                 'message'   => $errMessage
             ], $errCode);
         }
+    }
+
+
+    public function search(Request $request) {
+        $proPlayers = Player::with(['user'])
+            ->withCount(['proPlayerSkills'])
+            ->where('is_pro_player', 1)
+            ->paginate(10);
+
+        return response()->json(
+            collect([
+                'status'    => 200,
+                'message'   => 'OK',
+            ])
+            ->merge($proPlayers)
+        );
     }
 }
