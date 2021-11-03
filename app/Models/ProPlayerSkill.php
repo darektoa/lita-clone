@@ -9,7 +9,10 @@ class ProPlayerSkill extends Model
 {
     use HasFactory;
 
-    protected $appends  = ['status_name'];
+    protected $appends  = [
+        'status_name',
+        'price_permatch'
+    ];
 
     protected $guarded  = ['id'];
 
@@ -45,5 +48,13 @@ class ProPlayerSkill extends Model
         }
 
         return $statusName;
+    }
+
+
+    public function getPricePermatchAttribute() {
+        $basePrice      = $this->game->base_price;
+        $priceIncrease  = $basePrice * ($this->tier->price_increase/100);
+
+        return $basePrice + $priceIncrease;
     }
 }
