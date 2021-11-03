@@ -23,6 +23,8 @@ class TierController extends Controller
         $games      = Game::orderBy('name', 'asc')->paginate(10);
         $appSetting = AppSetting::first();
 
+        if(!$tier) return abort(404);
+
         return view('pages.admin.setting.tiers.show', compact('tier', 'games', 'appSetting'));
     }
 
