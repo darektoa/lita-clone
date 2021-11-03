@@ -52,6 +52,12 @@ Route::middleware(['auth.api'])->group(function() {
         Route::get('/{player:id}/unfollow', [ProPlayerController::class, 'unfollow']);
     });
 
+
+    // ORDER
+    Route::prefix('/orders')->group(function() {
+        Route::get('/', []);
+    });
+
     // PROFILE
     Route::prefix('/profile')->group(function() {
         Route::get('/', [ProfileController::class, 'index']);
