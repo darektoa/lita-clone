@@ -18,6 +18,11 @@ class TierController extends Controller
     }
 
 
+    public function show() {
+        return 'Test';
+    }
+
+
     public function store(Request $request) {
         try{
             $request->validate([
