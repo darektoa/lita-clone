@@ -106,7 +106,11 @@ class ProPlayerSkillController extends Controller
             'message'   => 'Not found'
         ]);
 
-        return response()->json(['data' => $proPlayerSkill]);
+        return response()->json([
+            'status'    => 200,
+            'message'   => 'OK',
+            'data' => $proPlayerSkill
+        ]);
     }
 
 
