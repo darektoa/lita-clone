@@ -52,9 +52,15 @@ class ProPlayerSkill extends Model
 
 
     public function getPricePermatchAttribute() {
+        $coinConversion = AppSetting::first()->coin_conversion;
         $basePrice      = $this->game->base_price;
         $priceIncrease  = $basePrice * ($this->tier->price_increase/100);
+        $coinPrice      = $basePrice + $priceIncrease;
+        $balancePrice   = $coinPrice * $coinConversion;
 
-        return $basePrice + $priceIncrease;
+        return [
+            'coin'      => $coinPrice,
+            'balance'   => $balancePrice,
+        ];
     }
 }

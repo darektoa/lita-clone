@@ -145,15 +145,16 @@ class ProPlayerSkillController extends Controller
     public function order(ProPlayerSkill $proPlayerSkill) {
         try{
             $user  = auth()->user();
-
-            if($user->player->coin < 100)
+            $price = $proPlayerSkill->price_permatch;
+            
+            if($user->player->coin < $price)
                 throw new Exception('Not enough coins', 422);
 
             $order = ProPlayerOrder::create([
                 'player_id'             => $user->id,
                 'pro_player_skill_id'   => $proPlayerSkill->id,
-                'coin'                  => 100,
-                'balance'               => 15000,
+                'coin'                  => $price->coin,
+                'balance'               => $price->balance,
                 'status'                => 0
             ]);
 
