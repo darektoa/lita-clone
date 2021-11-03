@@ -18,10 +18,13 @@ class ProPlayerController extends Controller
             ->orderBy('pro_player_skills_count', 'desc')
             ->paginate(10);
 
-        return response()->json(collect([
-            'status'    => 200,
-            'message'   => 'OK'
-        ])->merge($proPlayers));
+        return response()->json(
+            collect([
+                'status'    => 200,
+                'message'   => 'OK'
+            ])
+            ->merge($proPlayers)
+        );
     }
 
 

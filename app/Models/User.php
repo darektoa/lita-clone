@@ -21,8 +21,6 @@ class User extends Authenticatable
     protected $guarded  = ['id'];
 
     protected $with     = [
-        'player',
-        'admin',
         'gender'
     ];
 
