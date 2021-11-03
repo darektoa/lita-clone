@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -52,15 +53,19 @@ class ProPlayerSkill extends Model
 
 
     public function getPricePermatchAttribute() {
-        $coinConversion = AppSetting::first()->coin_conversion;
-        $basePrice      = $this->game->base_price;
-        $priceIncrease  = $basePrice * ($this->tier->price_increase/100);
-        $coinPrice      = $basePrice + $priceIncrease;
-        $balancePrice   = $coinPrice * $coinConversion;
-
-        return [
-            'coin'      => $coinPrice,
-            'balance'   => $balancePrice,
-        ];
+        try{
+            $coinConversion = AppSetting::first()->coin_conversion;
+            $basePrice      = $this->game->base_price;
+            $priceIncrease  = $basePrice * ($this->tier->price_increase/100);
+            $coinPrice      = $basePrice + $priceIncrease;
+            $balancePrice   = $coinPrice * $coinConversion;
+    
+            return [
+                'coin'      => $coinPrice,
+                'balance'   => $balancePrice,
+            ];
+        }catch(Exception $err) {
+            return [];
+        }
     }
 }

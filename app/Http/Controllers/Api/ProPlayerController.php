@@ -103,11 +103,17 @@ class ProPlayerController extends Controller
 
 
     public function search(Request $request) {
+        $search     = $request->search;
         $proPlayers = Player::with(['user'])
-            ->withCount(['proPlayerSkills'])
+            ->withCount('proPlayerSkills')
             ->where('is_pro_player', 1)
+            ->whereHas('user', function($query) use($search){
+                $query
+                ->where('users.username', 'LIKE', "%$search%")
+                ->orWhere('users.name', 'LIKE', "%$search%");
+            })
             ->paginate(10);
-
+        
         return response()->json(
             collect([
                 'status'    => 200,
