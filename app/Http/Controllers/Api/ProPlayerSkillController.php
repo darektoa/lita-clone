@@ -14,7 +14,13 @@ class ProPlayerSkillController extends Controller
 {
     public function index(Request $request) {
         $sortBy     = $request->sort;
-        $proPlayers = ProPlayerSkill::with(['game', 'player', 'player.user', 'tier']);
+        $proPlayers = ProPlayerSkill::with([
+            'game',
+            'player',
+            'player.user',
+            'tier',
+            'proPlayerSkillScreenshots'
+        ]);
 
         try {
             if($proPlayers->first() && !$proPlayers->first()->$sortBy && $sortBy) 
