@@ -114,7 +114,7 @@ class ProPlayerSkillController extends Controller
             return response()->json([
                 'status'    => 200,
                 'message'   => 'OK',
-                'data' => $proPlayerSkill
+                'data'      => ProPlayerSkillResource::make($proPlayerSkill)
             ]);
         }catch(Exception $err) {
             $errCode        = $err->getCode() ?? 400;
