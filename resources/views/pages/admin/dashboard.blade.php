@@ -4,4 +4,4 @@
   <x-dashboard.info-box title="Topup Pending" value="{{ $total['pending'] }}" color="warning" icon="fa-clock text-gray-300"/>
   <x-dashboard.info-box title="Topup Rejected" value="{{ $total['rejected'] }}" color="danger" icon="fa-ban text-gray-300"/>
 
-</div>{}
+</div>
