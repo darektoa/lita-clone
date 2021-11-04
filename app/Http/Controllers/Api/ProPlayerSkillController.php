@@ -106,7 +106,7 @@ class ProPlayerSkillController extends Controller
 
     public function show(ProPlayerSkill $proPlayerSkill) {
         try{
-            $proPlayerSkill->load(['game', 'player', 'player.user']);
+            $proPlayerSkill->load(['game', 'player', 'player.user', 'proPlayerSkillScreenshots']);
             $status = $proPlayerSkill->status;
             
             if($status !== 2) throw new Exception('Not found', 404);
