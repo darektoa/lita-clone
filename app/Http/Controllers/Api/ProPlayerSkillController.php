@@ -221,6 +221,10 @@ class ProPlayerSkillController extends Controller
             $order->update([
                 'status' => 3,
             ]);
+
+            $player->update([
+                'coin'  => $player->coin + $order->coin
+            ]);
             
             return response()->json([
                 'status'    => 200,
