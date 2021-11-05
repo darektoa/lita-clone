@@ -70,6 +70,7 @@ Route::middleware(['auth.api'])->group(function() {
         Route::prefix('/pro')->group(function() {
             Route::get('/orders', [ProPlayerOrderController::class, 'proIndex']);
             Route::get('/orders/{proPlayerOrder:id}/approve', [ProPlayerOrderController::class, 'approve']);
+            Route::get('/orders/{proPlayerOrder:id}/reject', [ProPlayerOrderController::class, 'reject']);
         });
     }); 
 

@@ -81,4 +81,33 @@ class ProPlayerOrderController extends Controller
             ], $errCode);
         }
     }
+
+
+    public function reject(ProPlayerOrder $proPlayerOrder) {
+        try{
+            $player = auth()->user()->player;
+
+            if($proPlayerOrder->proPlayerSkill->player_id !== $player->id)
+                throw new Exception('Not found', 404);
+            if($proPlayerOrder->status !== 0)
+                throw new Exception('Unprocessable, Order is not pending', 422);
+            
+            $proPlayerOrder->update([
+                'status'    => 1,
+            ]);
+
+            return response()->json([
+                'status'    => 200,
+                'message'   => 'OK',
+                'data'      => $proPlayerOrder
+            ]);
+        }catch(Exception $err) {
+            $errCode    = $err->getCode() ?? 400;
+            $errMessage = $err->getMessage();
+            return response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage,
+            ], $errCode);
+        }
+    }
 }
