@@ -167,6 +167,13 @@ class ProPlayerSkillController extends Controller
 
             $player = auth()->user()->player;
             $price  = $proPlayerSkill->price_permatch;
+            $orders = $player->proPlayerOrders;
+
+            if( $orders
+                ->where('pro_player_skill_id', $proPlayerSkill->id)
+                ->where('status', 0)
+                ->first()
+            ) throw new Exception('You have ordered this skill', 422);
 
             if($player->coin < $price['coin'])
                 throw new Exception('Not enough coins', 422);
