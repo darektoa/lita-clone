@@ -24,7 +24,7 @@ class IsPlayer
         $loginToken = LoginToken::where('token', $token);
 
         if(!$loginToken)
-            return response()->json(['message' => 'Unauthorized token'], 422);
+            return response()->json(['message' => 'Unauthorized token'], 401);
         if(!isset($loginToken->user->player))
             return response()->json(['message' => 'Forbidden to access'], 403);
 
