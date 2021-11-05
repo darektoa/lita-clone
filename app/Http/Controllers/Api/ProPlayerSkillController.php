@@ -219,7 +219,7 @@ class ProPlayerSkillController extends Controller
                 throw new Exception("Unprocessable, No pending orders", 422);
 
             $order->update([
-                'status' => 4,
+                'status' => 3,
             ]);
             
             return response()->json([
