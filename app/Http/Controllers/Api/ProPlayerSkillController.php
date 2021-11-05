@@ -197,5 +197,14 @@ class ProPlayerSkillController extends Controller
                 'message'   => $errMessage,
             ], $errCode);
         }
-    }    
+    }
+
+
+    public function unorder(ProPlayerSkill $proPlayerSkill) {
+        return response()->json([
+            'status'    => 200,
+            'message'   => 'OK',
+            'data'      => [],
+        ]);
+    }
 }

@@ -46,6 +46,7 @@ Route::middleware(['auth.api'])->group(function() {
             Route::get('/applied', [ProPlayerSkillController::class, 'applied']);
             Route::post('/register', [ProPlayerSkillController::class, 'store']);
             Route::post('/{proPlayerSkill:id}/order', [ProPlayerSkillController::class, 'order']);
+            Route::post('/{proPlayerSkill:id}/unorder', [ProPlayerSkillController::class, 'unorder']);
         });
 
         Route::get('/{player:id}/follow', [ProPlayerController::class, 'follow']);
