@@ -21,7 +21,7 @@ class IsPlayer
             return response()->json(['message' => 'Invalid X-Auth-Token header'], 422);
 
         $token = $request->header('X-Auth-Token');
-        $loginToken = LoginToken::where('token', $token);
+        $loginToken = LoginToken::where('token', $token)->first();
 
         if(!$loginToken)
             return response()->json(['message' => 'Unauthorized token'], 401);
