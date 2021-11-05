@@ -69,6 +69,7 @@ Route::middleware(['auth.api'])->group(function() {
     Route::middleware(['pro.player.api'])->group(function() {
         Route::prefix('/pro')->group(function() {
             Route::get('/orders', [ProPlayerOrderController::class, 'proIndex']);
+            Route::get('/orders/{proPlayerOrder:id}/approve', [ProPlayerOrderController::class, 'approve']);
         });
     }); 
 

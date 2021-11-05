@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProPlayerOrder;
+use Exception;
 use Illuminate\Http\Request;
 
 class ProPlayerOrderController extends Controller
@@ -50,5 +51,34 @@ class ProPlayerOrderController extends Controller
             ])
             ->merge($orders)
         );
+    }
+
+
+    public function approve(ProPlayerOrder $proPlayerOrder) {
+        try{
+            $player = auth()->user()->player;
+
+            if($proPlayerOrder->proPlayerSkill->player_id !== $player->id)
+                throw new Exception('Not found', 404);
+            if($proPlayerOrder->status !== 0)
+                throw new Exception('Unprocessable, Order is not pending', 422);
+            
+            $proPlayerOrder->update([
+                'status'    => 2,
+            ]);
+
+            return response()->json([
+                'status'    => 200,
+                'message'   => 'OK',
+                'data'      => $proPlayerOrder
+            ]);
+        }catch(Exception $err) {
+            $errCode    = $err->getCode() ?? 400;
+            $errMessage = $err->getMessage();
+            return response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage,
+            ], $errCode);
+        }
     }
 }
