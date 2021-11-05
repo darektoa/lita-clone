@@ -23,6 +23,7 @@ class CreateProPlayerOrders extends Migration
             $table->smallInteger('expired_in');
             $table->timestamp('max_ends_at')->nullable();
             $table->timestamp('ended_at')->nullable();
+            $table->timestamp('expired_at')->nullable();
             $table->timestamps();
         });
     }
