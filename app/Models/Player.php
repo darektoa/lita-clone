@@ -31,6 +31,11 @@ class Player extends Model
     }
 
 
+    public function proPlayerOrders() {
+        return $this->hasMany(ProPlayerOrder::class);
+    }
+
+
     public function followers() {
         return $this->hasMany(PlayerFollower::class, 'following_id');
     }

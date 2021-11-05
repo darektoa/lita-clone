@@ -3,9 +3,9 @@
     "version": "2.2.6",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -1560,
-    "scrollLeft": -1299,
-    "zoomLevel": 0.4,
+    "scrollTop": -1780,
+    "scrollLeft": -1050,
+    "zoomLevel": 0.5,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -2901,7 +2901,53 @@
             "id": "8ec05702-2663-429f-9d3c-2f439edb29cf"
           },
           {
-            "name": "max_ends_at",
+            "name": "expiry_duration",
+            "comment": "",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 90.88623046875,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "0ab01697-5d80-441e-a4bf-fb47be0df415"
+          },
+          {
+            "name": "play_duration",
+            "comment": "",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 80.05712890625,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "b3150701-f5b2-408d-a0b7-964e8767cccf"
+          },
+          {
+            "name": "expired_at",
             "comment": "",
             "dataType": "TIMESTAMP",
             "default": "",
@@ -2916,12 +2962,12 @@
               "pk": false,
               "fk": false,
               "pfk": false,
-              "widthName": 80.05078125,
+              "widthName": 62.708984375,
               "widthComment": 60,
               "widthDataType": 76.87060546875,
               "widthDefault": 60
             },
-            "id": "b3150701-f5b2-408d-a0b7-964e8767cccf"
+            "id": "fef619cf-b4d6-4c67-94ba-a875ad04e786"
           },
           {
             "name": "ended_at",
@@ -2997,7 +3043,7 @@
           "active": false,
           "left": 1240.4602,
           "top": 1888.3409,
-          "zIndex": 13,
+          "zIndex": 29,
           "widthName": 107.50439453125,
           "widthComment": 60
         },
@@ -3601,7 +3647,7 @@
             "ed099f36-fa9e-4965-aa40-5b686b6c66d4"
           ],
           "x": 1240.4602,
-          "y": 1956.8409,
+          "y": 1967.0909,
           "direction": "left"
         },
         "constraintName": "fk_players_to_player_orders",
@@ -3627,7 +3673,7 @@
             "f3b4209b-3977-46ad-8183-f4f3fdc80852"
           ],
           "x": 1240.4602,
-          "y": 2093.8409,
+          "y": 2124.5909,
           "direction": "left"
         },
         "constraintName": "fk_pro_player_skills_to_player_orders",
