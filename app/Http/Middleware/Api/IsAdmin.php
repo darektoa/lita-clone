@@ -24,7 +24,7 @@ class IsAdmin
         $loginToken = LoginToken::where('token', $token)->first();
         
         if(!$loginToken)
-            return response()->json(['message' => 'Unauthorized token'], 422);
+            return response()->json(['message' => 'Unauthorized token'], 401);
         if(!isset($loginToken->user->admin))
             return response()->json(['message' => 'Forbidden to access'], 403);
 
