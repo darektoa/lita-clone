@@ -12,9 +12,7 @@ class ProPlayerController extends Controller
     public function index() {
         $proPlayers = Player::with('user')
             ->where('is_pro_player', 1)
-            ->withCount(['proPlayerSkills' => function($query) {
-                $query->where('status', 2);
-            }])
+            ->withCount(['proPlayerSkills' => fn($query) => $query->where('status', 2)])
             ->orderBy('pro_player_skills_count', 'desc')
             ->paginate(10);
 
