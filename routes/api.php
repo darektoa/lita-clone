@@ -53,7 +53,6 @@ Route::middleware(['auth.api'])->group(function() {
         Route::get('/{player:id}/unfollow', [ProPlayerController::class, 'unfollow']);
     });
 
-
     // ORDER
     Route::prefix('/orders')->group(function() {
         Route::get('/', [ProPlayerOrderController::class, 'index']);
@@ -64,6 +63,15 @@ Route::middleware(['auth.api'])->group(function() {
         Route::get('/', [ProfileController::class, 'index']);
         Route::put('/', [ProfileController::class, 'update']);
     });
+
+
+    // ONLY PRO PLAYER
+    Route::middleware(['pro.player.api'])->group(function() {
+        Route::prefix('/pro')->group(function() {
+            Route::get('/orders', [ProPlayerOrderController::class, 'proIndex']);
+        });
+    }); 
+
 
     // ONLY ADMIN
     Route::middleware(['admin.api'])->group(function() {

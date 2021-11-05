@@ -28,4 +28,27 @@ class ProPlayerOrderController extends Controller
             ->merge($orders)
         );
     }
+
+
+    public function proIndex(Request $request) {
+        $player     = auth()->user()->player;
+        $orders     = ProPlayerOrder::with(['proPlayerSkill']);
+        $status     = $request->status;
+
+
+        if($status !== null && $status >= 0 && $status <= 3)
+            $orders = $orders->where('status', $status);
+
+        $orders = $orders->whereRelation('proPlayerSkill', 'player_id', $player->id)
+            ->latest()
+            ->paginate();
+
+        return response()->json(
+            collect([
+                'status'    => 200,
+                'message'   => 'OK',
+            ])
+            ->merge($orders)
+        );
+    }
 }
