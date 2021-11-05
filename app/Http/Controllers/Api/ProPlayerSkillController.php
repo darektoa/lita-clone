@@ -208,10 +208,32 @@ class ProPlayerSkillController extends Controller
 
 
     public function unorder(ProPlayerSkill $proPlayerSkill) {
-        return response()->json([
-            'status'    => 200,
-            'message'   => 'OK',
-            'data'      => [],
-        ]);
+        try{
+            $player = auth()->user()->player;
+            $order  = $player->proPlayerOrders()
+                ->where('pro_player_skill_id', $proPlayerSkill->id)
+                ->where('status', 0)
+                ->first();
+
+            if(!$order)
+                throw new Exception("Unprocessable, No pending orders", 422);
+
+            $order->update([
+                'status' => 4,
+            ]);
+            
+            return response()->json([
+                'status'    => 200,
+                'message'   => 'OK',
+                'data'      => $order,
+            ]);
+        }catch(Exception $err) {
+            $errCode    = $err->getCode() ?? 400;
+            $errMessage = $err->getMessage();
+            return response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage,
+            ], $errCode);
+        }
     }
 }
