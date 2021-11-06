@@ -15,7 +15,7 @@ class ProPlayerSkillResource extends JsonResource
      */
     public function toArray($request)
     {
-        $user = $this->player->user;
+        $userLoaded = $this->player->relationLoaded('user');
 
         return [
             'id'                            => $this->id,
@@ -31,7 +31,7 @@ class ProPlayerSkillResource extends JsonResource
             'price_permatch'                => $this->price_permatch,
             'game'                          => GameResource::make($this->whenLoaded('game')),
             'tier'                          => TierResource::make($this->whenLoaded('tier')),
-            'user'                          => UserResource::make($this->when($user, $user)),
+            'user'                          => UserResource::make($this->when($userLoaded, $this->player->user)),
             'pro_player_skill_screenshots'  => ProPlayerSkillScreenshotResource::collection($this->whenLoaded('proPlayerSkillScreenshots'))
         ];
     }
