@@ -3,9 +3,9 @@
     "version": "2.2.6",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -1780,
-    "scrollLeft": -1050,
-    "zoomLevel": 0.5,
+    "scrollTop": -1742,
+    "scrollLeft": -849,
+    "zoomLevel": 0.6,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -646,6 +646,29 @@
             "id": "c65ba8ee-42a2-49fa-aea0-0aa3e33158ec"
           },
           {
+            "name": "balance",
+            "comment": "",
+            "dataType": "BIGINT(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 68.45361328125,
+              "widthDefault": 60
+            },
+            "id": "797cf642-5b62-4e87-a810-26e1445d106e"
+          },
+          {
             "name": "bio",
             "comment": "",
             "dataType": "VARCHAR(255)",
@@ -742,7 +765,7 @@
           "active": false,
           "left": 661.512,
           "top": 1676.8572,
-          "zIndex": 8,
+          "zIndex": 23,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1404,7 +1427,7 @@
           "active": false,
           "left": 660.0005,
           "top": 2045.1315,
-          "zIndex": 18,
+          "zIndex": 17,
           "widthName": 98.82080078125,
           "widthComment": 60
         },
@@ -1535,7 +1558,7 @@
           "active": false,
           "left": 458.5293,
           "top": 2626.898,
-          "zIndex": 14,
+          "zIndex": 13,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1666,7 +1689,7 @@
           "active": false,
           "left": 652.5978,
           "top": 3000.8062,
-          "zIndex": 17,
+          "zIndex": 16,
           "widthName": 66.30810546875,
           "widthComment": 60
         },
@@ -1926,9 +1949,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 152.9999,
-          "top": 1696.7931,
-          "zIndex": 9,
+          "left": 151.8888,
+          "top": 1705.6819,
+          "zIndex": 24,
           "widthName": 95.9326171875,
           "widthComment": 60
         },
@@ -2059,7 +2082,7 @@
           "active": false,
           "left": 115.7157,
           "top": 2137.5308,
-          "zIndex": 15,
+          "zIndex": 14,
           "widthName": 169.6416015625,
           "widthComment": 60
         },
@@ -3042,8 +3065,8 @@
         "ui": {
           "active": false,
           "left": 1240.4602,
-          "top": 1888.3409,
-          "zIndex": 29,
+          "top": 1881.6743,
+          "zIndex": 25,
           "widthName": 107.50439453125,
           "widthComment": 60
         },
@@ -3197,7 +3220,7 @@
           "active": false,
           "left": 868.8062,
           "top": 2626.2779,
-          "zIndex": 16,
+          "zIndex": 15,
           "widthName": 60,
           "widthComment": 60
         },
@@ -3283,7 +3306,7 @@
             "f533270a-0247-48a8-ae4d-e5fe9784d5cb"
           ],
           "x": 1063.5051640625,
-          "y": 1729.9822,
+          "y": 1735.1072,
           "direction": "right"
         },
         "constraintName": "fk_users_to_players",
@@ -3430,7 +3453,7 @@
             "e940124d-f591-4732-a9d2-8a36948cbe3c"
           ],
           "x": 862.50858203125,
-          "y": 1889.3572,
+          "y": 1909.8572,
           "direction": "bottom"
         },
         "end": {
@@ -3456,7 +3479,7 @@
             "e940124d-f591-4732-a9d2-8a36948cbe3c"
           ],
           "x": 661.512,
-          "y": 1729.9822,
+          "y": 1735.1072,
           "direction": "left"
         },
         "end": {
@@ -3464,8 +3487,8 @@
           "columnIds": [
             "a3c7e829-b563-4c5c-bf4b-823e9888ce25"
           ],
-          "x": 526.80312265625,
-          "y": 1739.6681,
+          "x": 525.69202265625,
+          "y": 1748.5569,
           "direction": "right"
         },
         "constraintName": "fk_players_to_pro_player_followers",
@@ -3482,7 +3505,7 @@
             "e940124d-f591-4732-a9d2-8a36948cbe3c"
           ],
           "x": 661.512,
-          "y": 1836.2322,
+          "y": 1851.6072,
           "direction": "left"
         },
         "end": {
@@ -3490,8 +3513,8 @@
           "columnIds": [
             "dcde6dbb-4a8d-4075-877f-1a6925d27513"
           ],
-          "x": 526.80312265625,
-          "y": 1825.4181,
+          "x": 525.69202265625,
+          "y": 1834.3069,
           "direction": "right"
         },
         "constraintName": "fk_players_to_pro_player_followers",
@@ -3638,7 +3661,7 @@
             "e940124d-f591-4732-a9d2-8a36948cbe3c"
           ],
           "x": 1063.5051640625,
-          "y": 1836.2322,
+          "y": 1851.6072,
           "direction": "right"
         },
         "end": {
@@ -3647,7 +3670,7 @@
             "ed099f36-fa9e-4965-aa40-5b686b6c66d4"
           ],
           "x": 1240.4602,
-          "y": 1967.0909,
+          "y": 1960.4243,
           "direction": "left"
         },
         "constraintName": "fk_players_to_player_orders",
@@ -3673,7 +3696,7 @@
             "f3b4209b-3977-46ad-8183-f4f3fdc80852"
           ],
           "x": 1240.4602,
-          "y": 2124.5909,
+          "y": 2117.9242999999997,
           "direction": "left"
         },
         "constraintName": "fk_pro_player_skills_to_player_orders",
