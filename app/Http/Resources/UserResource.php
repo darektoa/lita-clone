@@ -25,7 +25,7 @@ class UserResource extends JsonResource
             'birthday'      => $this->birthday,
             'bio'           => $this->bio,
             'gender'        => GenderResource::make($this->when($this->gender, $this->gender)),
-            'player'        => $this->when($this->player, $this->player),
+            'player'        => PlayerResource::make($this->when($this->player, $this->player)),
             'admin'         => $this->when($this->admin, $this->admin)
         ];
     }
