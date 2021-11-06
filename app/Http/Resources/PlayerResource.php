@@ -17,14 +17,13 @@ class PlayerResource extends JsonResource
         return [
             'id'                        => $this->id,
             'coin'                      => $this->coin,
+            'balance'                   => $this->balance,
             'rate'                      => $this->rate,
             'voice'                     => $this->voice,
             'is_pro_player'             => $this->is_pro_player,
             'followers_count'           => $this->followers_count,
             'followings_count'          => $this->following_count,
-            'user'                      => $this->whenLoaded('user'),
-            'created_at'                => $this->created_at,
-            'updated_at'                => $this->updated_at,
+            'user'                      => $this->whenLoaded('user')
         ];
     }
 }
