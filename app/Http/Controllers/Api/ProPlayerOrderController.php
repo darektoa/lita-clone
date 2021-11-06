@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProPlayerOrderResource;
 use App\Models\ProPlayerOrder;
 use Exception;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class ProPlayerOrderController extends Controller
 {
     public function index(Request $request) {
         $player = auth()->user()->player;
-        $orders = ProPlayerOrder::with(['proPlayerSkill']);
+        $orders = ProPlayerOrder::with(['proPlayerSkill.player.user']);
         $status = $request->status;
             
         if($status !== null && $status >= 0 && $status <= 3)
@@ -27,6 +28,7 @@ class ProPlayerOrderController extends Controller
                 'message'   => 'OK'
             ])
             ->merge($orders)
+            ->merge(['data' => ProPlayerOrderResource::collection($orders)])
         );
     }
 
