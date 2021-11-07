@@ -26,7 +26,7 @@ class UserResource extends JsonResource
             'bio'           => $this->bio,
             'gender'        => GenderResource::make($this->whenLoaded('gender')),
             'player'        => PlayerResource::make($this->whenLoaded('player')),
-            'admin'         => $this->whenLoaded('admin')
+            'admin'         => AdminResource::make($this->whenLoaded('admin'))
         ];
     }
 }
