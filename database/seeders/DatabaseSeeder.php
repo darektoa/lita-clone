@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{CoinPurchase, Player, ProPlayerSkill, User};
+use App\Models\{AppBanner, Player, ProPlayerSkill, User};
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             GenderSeeder::class,
             AppSettingSeeder::class,
         ]);
+
+        AppBanner::factory()->count(6)->create();
 
         $proPlayerSkills = ProPlayerSkill::factory()
             ->count(2)
