@@ -43,6 +43,10 @@ Route::middleware(['auth'])->group(function() {
         Route::delete('/{gameId}/roles/{gameRoleId}', [GameRoleController::class, 'destroy'])->name('roles.destroy');
       });
 
+      Route::prefix('/banners')->name('banners.')->group(function() {
+        Route::get('/', [AppBannerController::class, 'index'])->name('index');
+      });
+
       Route::prefix('/coins')->name('coins.')->group(function() {
         Route::get('/', [PredefineCoinController::class, 'index'])->name('index');
         Route::post('/', [PredefineCoinController::class, 'store'])->name('store');
