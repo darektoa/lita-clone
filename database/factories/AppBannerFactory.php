@@ -13,7 +13,7 @@ class AppBannerFactory extends Factory
     public function definition()
     {
         return [
-            'url'   => 'https://https://source.unsplash.com/335x115/?game',
+            'url'   => 'https://source.unsplash.com/335x115/?game',
             'alt'   => $this->faker->realText(100)
         ];
     }
