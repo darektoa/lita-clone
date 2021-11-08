@@ -45,14 +45,14 @@
       <h6 class="m-0 font-weight-bold text-primary">Banner Settings</h6>
     </div>
 
-    <div class="card-body">
+    <div class="card-body table-responsive" style="min-height: 400px">
       <div class="card-body">
-        <table class="table table-hover " id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
               <th class="col-1">#</th>
-              <th class="col-6 text-nowrap">Banner</th>
-              <th class="col-4 text-nowrap">Alt</th>
+              <th class="col-4 text-nowrap">Banner</th>
+              <th class="col-6 text-nowrap">Alt</th>
               <th class="text-nowrap">Action</th>
             </tr>
           </thead>
@@ -62,9 +62,9 @@
             <tr>
               <td class="align-middle">{{ $loop->iteration }}</td>
               <td class="align-middle text-nowrap">
-                <img src="{{ $banner->url }}" alt="" width="70" class="mr-3 rounded">
+                <img src="{{ $banner->url }}" alt="" class="mr-3 rounded">
               </td>
-              <td class="align-middle text-nowrap">{{ $banner->alt }}</td>
+              <td class="align-middle">{{ $banner->alt }}</td>
               <td class="align-middle text-nowrap" style="width: 82px">
                 <button class="btn btn-warning edit-banner" data-banner="{{ $banner }}" data-toggle="modal" data-target="#editbannerModal">
                   <i class="fas fa-edit" onclick=""></i>
