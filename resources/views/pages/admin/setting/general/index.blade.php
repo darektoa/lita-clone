@@ -105,7 +105,7 @@
               <button class="btn btn-warning edit-banner" data-banner="{{ $banner }}" data-toggle="modal" data-target="#editbannerModal">
                 <i class="fas fa-edit" onclick=""></i>
               </button>
-              <form action="{{ route('setting.games.destroy', [$banner->id]) }}" method="POST" class="d-inline">
+              <form action="{{ route('setting.banners.destroy', [$banner->id]) }}" method="POST" class="d-inline">
                 @method('DELETE') @csrf
                 <button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
               </form>

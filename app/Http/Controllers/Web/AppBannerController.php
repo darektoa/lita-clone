@@ -39,4 +39,21 @@ class AppBannerController extends Controller
             return back();
         }
     }
+
+
+    public function destroy($bannerId) {
+        $banner = AppBanner::find($bannerId);
+
+        try{
+            if(!$banner) throw new Exception('Banner not found', 404);
+            StorageHelper::delete($banner->url);
+            $banner->delete();
+            Alert::success('Success', 'Banner deleted successfully');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally{
+            return back();
+        }
+    }
 }

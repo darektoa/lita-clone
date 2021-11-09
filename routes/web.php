@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function() {
       Route::prefix('/banners')->name('banners.')->group(function() {
         Route::get('/', [AppBannerController::class, 'index'])->name('index');
         Route::post('/', [AppBannerController::class, 'store'])->name('store');
+        Route::delete('/{bannerId}', [AppBannerController::class, 'destroy'])->name('destroy');
       });
 
       Route::prefix('/coins')->name('coins.')->group(function() {
