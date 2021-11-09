@@ -16,7 +16,7 @@ class CreateAppBannersTable extends Migration
         Schema::create('app_banners', function (Blueprint $table) {
             $table->id();
             $table->string('alt', 100);
-            $table->text('url');
+            $table->text('image');
             $table->text('link')->nullable();
             $table->timestamps();
         });
