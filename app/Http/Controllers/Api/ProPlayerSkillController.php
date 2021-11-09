@@ -255,7 +255,8 @@ class ProPlayerSkillController extends Controller
                 throw new Exception('Unprocessable, this order is not an approved order', 422);
 
             $order->update([
-                'ended_at'  => now()
+                'status'    => 4,
+                'ended_at'  => now(),
             ]);
 
             return response()->json([

@@ -32,6 +32,7 @@ class ProPlayerOrder extends Model
             case 1: $statusName = 'Rejected'; break;
             case 2: $statusName = 'Approved'; break;
             case 3: $statusName = 'Canceled'; break;
+            case 4: $statusName = 'Ended'; break;
             default: $statusName = 'Unknown';
         }
 
