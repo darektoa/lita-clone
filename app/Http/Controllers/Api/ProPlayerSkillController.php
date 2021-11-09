@@ -240,4 +240,36 @@ class ProPlayerSkillController extends Controller
             ], $errCode);
         }
     }
+
+
+    public function endOrder(ProPlayerSkill $proPlayerSkill) {
+        try{
+            $player = auth()->user()->player;
+            $order  = $player->proPlayerOrders()
+                ->where('pro_player_skill_id', $proPlayerSkill->id)
+                ->where('status', 2)
+                ->latest()
+                ->first();
+
+            if(!$order)
+                throw new Exception('Unprocessable, this order is not an approved order', 422);
+
+            $order->update([
+                'ended_at'  => now()
+            ]);
+
+            return response()->json([
+                'status'    => 200,
+                'message'   => 'OK',
+                'data'      => $order,
+            ]);
+        }catch(Exception $err) {
+            $errCode    = $err->getCode() ?? 400;
+            $errMessage = $err->getMessage();
+            return response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage
+            ]);
+        }
+    }
 }
