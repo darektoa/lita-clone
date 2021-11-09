@@ -4,12 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class BalanceTransaction extends Model
 {
     use HasFactory;
 
     protected $guarded  = ['id'];
+
+
+    static protected function boot() {
+        parent::boot();
+
+        parent::creating(function($model) {
+            $model->uuid = Str::uuid();
+        });
+    }
 
 
     public function sender() {
