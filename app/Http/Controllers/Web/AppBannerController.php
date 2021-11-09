@@ -12,7 +12,9 @@ use RealRashid\SweetAlert\Facades\Alert;
 class AppBannerController extends Controller
 {
     public function index() {
-        return 'Test';
+        $banners = AppBanner::paginate(10);
+
+        return view('pages.admin.setting.banners.index', compact('banners'));
     }
 
 

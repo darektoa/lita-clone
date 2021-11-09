@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\{AppSetting, AppBanner};
+use App\Models\{AppSetting};
 use Exception;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -12,9 +12,8 @@ class AppSettingController extends Controller
 {
     public function index() {
         $settings   = AppSetting::first();
-        $banners    = AppBanner::all();
 
-        return view('pages.admin.setting.general.index', compact('settings', 'banners'));
+        return view('pages.admin.setting.general.index', compact('settings'));
     }
 
 
