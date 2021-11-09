@@ -48,7 +48,17 @@ class User extends Authenticatable
         return $this->belongsTo(Gender::class);
     }
 
+
+    public function coinSendingTransactions() {
+        return $this->hasMany(CoinTransaction::class, 'sender_id');
+    }
     
+
+    public function coinReceivingTransactions() {
+        return $this->hasMany(CoinTransaction::class, 'receiver_id');
+    }
+
+
     public function loginTokens() {
         return $this->hasMany(LoginToken::class);
     }
