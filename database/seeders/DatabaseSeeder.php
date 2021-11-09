@@ -15,11 +15,9 @@ class DatabaseSeeder extends Seeder
             TierSeeder::class,
             GameSeeder::class,
             GenderSeeder::class,
-            AppBannerSeeder::class,
+            AppBannerSeeder::class, 
             AppSettingSeeder::class,
         ]);
-
-        AppBanner::factory()->count(6)->create();
 
         $proPlayerSkills = ProPlayerSkill::factory()
             ->count(2)
