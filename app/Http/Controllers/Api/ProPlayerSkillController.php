@@ -254,10 +254,10 @@ class ProPlayerSkillController extends Controller
             if(!$order)
                 throw new Exception('Unprocessable, this order is not an approved order', 422);
 
-            // $order->update([
-            //     'status'    => 4,
-            //     'ended_at'  => now(),
-            // ]);
+            $order->update([
+                'status'    => 4,
+                'ended_at'  => now(),
+            ]);
 
             // ADDING BALANCE PRO PLAYER
             $proPlayer = $order->player;
