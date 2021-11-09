@@ -76,7 +76,7 @@
       />
       
       <x-modal-input 
-        action="{{ route('setting.games.update', [1]) }}"
+        action="{{ route('setting.banners.update', [1]) }}"
         id="editBannerModal"
         inputs="{!! json_encode($inputsAddBanner) !!}"
         method="PUT"
@@ -102,7 +102,7 @@
             </td>
             <td class="align-middle">{{ $banner->alt }} </td>
             <td class="align-middle text-nowrap" style="width: 82px">
-              <button class="btn btn-warning edit-banner" data-banner="{{ $banner }}" data-toggle="modal" data-target="#editbannerModal">
+              <button class="btn btn-warning edit-banner" data-banner="{{ $banner }}" data-toggle="modal" data-target="#editBannerModal">
                 <i class="fas fa-edit" onclick=""></i>
               </button>
               <form action="{{ route('setting.banners.destroy', [$banner->id]) }}" method="POST" class="d-inline">
@@ -118,4 +118,23 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+  const editBannerButtons = document.querySelectorAll('button.edit-banner');
+
+  editBannerButtons.forEach((item) => {
+    item.addEventListener('click', () => {
+      const editForm		= document.querySelector('#editBannerModal form');
+      const altField 	  = editForm.querySelector('#banner-alt');
+      const linkField 	= editForm.querySelector('#banner-link');
+      const bannerData 	= JSON.parse(item.dataset.banner);
+      const endpoint		= `{{ route('setting.banners.update', ['']) }}/${bannerData.id}`;
+      editForm.action 	= endpoint;
+      altField.value 	  = bannerData.alt;
+      linkField.value 	= bannerData.link;
+    });
+  });
+</script>
 @endsection

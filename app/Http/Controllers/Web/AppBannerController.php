@@ -56,4 +56,33 @@ class AppBannerController extends Controller
             return back();
         }
     }
+
+
+    public function update(Request $request, $bannerId) {
+        try{
+            $request->validate([
+                'alt'   => 'required|max:100',
+                'image' => 'image|max:2048',
+            ]);
+            
+            $banner = AppBanner::find($bannerId);
+            if(!$banner) throw new Exception('Banner not found', 404);
+
+            $banner->alt    = $request->alt;
+            $banner->link   = $request->link;
+            if($request->image) {
+                $imagePath  = StorageHelper::put('images/banners', $request->image);
+                StorageHelper::delete($banner->url);
+                $banner->url = $imagePath;
+            }
+
+            $banner->update();
+            Alert::success('Success', 'Banner edited successfully');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally{
+            return back();
+        }
+    }
 }
