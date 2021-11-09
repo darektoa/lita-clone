@@ -259,6 +259,11 @@ class ProPlayerSkillController extends Controller
                 'ended_at'  => now(),
             ]);
 
+            // ADDING BALANCE PRO PLAYER
+            $order->player()->update([
+                'balance'   => $order->balance
+            ]);
+
             return response()->json([
                 'status'    => 200,
                 'message'   => 'OK',
