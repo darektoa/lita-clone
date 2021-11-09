@@ -26,7 +26,7 @@ class AppBannerController extends Controller
             $imagePath = StorageHelper::put('images/banners', $request->image);
 
             AppBanner::create([
-                'url'   => $imagePath,
+                'image' => $imagePath,
                 'alt'   => $request->alt,
                 'link'  => $request->link
             ]);
@@ -46,7 +46,7 @@ class AppBannerController extends Controller
 
         try{
             if(!$banner) throw new Exception('Banner not found', 404);
-            StorageHelper::delete($banner->url);
+            StorageHelper::delete($banner->image);
             $banner->delete();
             Alert::success('Success', 'Banner deleted successfully');
         }catch(Exception $err) {
@@ -72,8 +72,8 @@ class AppBannerController extends Controller
             $banner->link   = $request->link;
             if($request->image) {
                 $imagePath  = StorageHelper::put('images/banners', $request->image);
-                StorageHelper::delete($banner->url);
-                $banner->url = $imagePath;
+                StorageHelper::delete($banner->image);
+                $banner->image = $imagePath;
             }
 
             $banner->update();

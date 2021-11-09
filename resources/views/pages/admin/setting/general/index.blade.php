@@ -98,7 +98,7 @@
           <tr>
             <td class="align-middle">{{ $loop->iteration }}</td>
             <td class="align-middle text-nowrap">
-              <img src="{{ StorageHelper::url($banner->url) }}" alt="" class="w-100 mr-3 rounded">
+              <img src="{{ StorageHelper::url($banner->image) }}" alt="" class="w-100 mr-3 rounded">
             </td>
             <td class="align-middle">{{ $banner->alt }} </td>
             <td class="align-middle text-nowrap" style="width: 82px">
