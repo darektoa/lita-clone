@@ -59,6 +59,16 @@ class User extends Authenticatable
     }
 
 
+    public function balanceSendingTransactions() {
+        return $this->hasMany(BalanceTransaction::class, 'sender_id');
+    }
+
+
+    public function balanceReceivingTransactions() {
+        return $this->hasMany(BalanceTransaction::class, 'receiver_id');
+    }
+
+
     public function loginTokens() {
         return $this->hasMany(LoginToken::class);
     }
