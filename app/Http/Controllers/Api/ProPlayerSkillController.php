@@ -247,7 +247,7 @@ class ProPlayerSkillController extends Controller
             $player = auth()->user()->player;
             $order  = $player->proPlayerOrders()
                 ->where('pro_player_skill_id', $proPlayerSkill->id)
-                // ->where('status', 2)
+                ->where('status', 2)
                 ->latest()
                 ->first();
 
