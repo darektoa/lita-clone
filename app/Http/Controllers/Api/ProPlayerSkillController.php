@@ -163,7 +163,7 @@ class ProPlayerSkillController extends Controller
             }
 
             if($proPlayerSkill->status !== 2)
-                throw new Exception('Pro player skill not valid', 422);
+                throw new Exception('Unprocessable, Pro player skill not valid', 422);
 
             $player = auth()->user()->player;
             $price  = $proPlayerSkill->price_permatch;
@@ -173,10 +173,10 @@ class ProPlayerSkillController extends Controller
                 ->where('pro_player_skill_id', $proPlayerSkill->id)
                 ->where('status', 0)
                 ->first()
-            ) throw new Exception('You have ordered this skill', 422);
+            ) throw new Exception('Unprocessable, You have ordered this skill', 422);
 
             if($player->coin < $price['coin'])
-                throw new Exception('Not enough coins', 422);
+                throw new Exception('Unprocessable, Not enough coins', 422);
 
             $order = ProPlayerOrder::create([
                 'player_id'             => $player->id,
