@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProPlayerSkillResource;
+use App\Http\Resources\{ProPlayerSkillResource, ProPlayerOrderResource};
 use App\Models\{ProPlayerOrder, ProPlayerSkill, ProPlayerSkillScreenshot};
 use Exception;
 use Illuminate\Http\Request;
@@ -279,7 +279,7 @@ class ProPlayerSkillController extends Controller
             return response()->json([
                 'status'    => 200,
                 'message'   => 'OK',
-                'data'      => $order,
+                'data'      => ProPlayerOrderResource::make($order),
             ]);
         }catch(Exception $err) {
             $errCode    = $err->getCode() ?? 400;
