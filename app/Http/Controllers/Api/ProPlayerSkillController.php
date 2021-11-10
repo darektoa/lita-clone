@@ -247,7 +247,7 @@ class ProPlayerSkillController extends Controller
             $player = auth()->user()->player;
             $order  = $player->proPlayerOrders()
                 ->where('pro_player_skill_id', $proPlayerSkill->id)
-                ->where('status', 2)
+                // ->where('status', 2)
                 ->latest()
                 ->first();
 
@@ -259,11 +259,13 @@ class ProPlayerSkillController extends Controller
                 'ended_at'  => now(),
             ]);
 
-            // ADDING BALANCE PRO PLAYER
-            $proPlayer = $order->player;
-            $proPlayer->update([
-                'balance'   => $order->balance
-            ]);
+            // ADDING PRO PLAYER BALANCE
+            $proPlayer = $order->proPlayerSkill->player;
+
+            $proPlayer
+                ->update([
+                    'balance'   => $order->balance
+                ]);
 
             $proPlayer
                 ->user
