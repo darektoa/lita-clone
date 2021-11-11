@@ -15,6 +15,7 @@ class CreateBalanceTransactionsTable extends Migration
     public function up()
     {
         Schema::create('balance_transactions', function (Blueprint $table) {
+            $table->id();
             $table->uuid('uuid');
             $table->foreignId('sender_id')->nullable()->constrained('users');
             $table->foreignId('receiver_id')->constrained('users');
