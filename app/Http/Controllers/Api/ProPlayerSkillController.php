@@ -256,7 +256,9 @@ class ProPlayerSkillController extends Controller
 
     public function endOrder(ProPlayerSkill $proPlayerSkill) {
         try{
-            $player = auth()->user()->player;
+            $userId = auth()->user()->id;
+            $user   = User::with(['player.proPlayerOrders.proPlayerSkill'])->find($userId);
+            $player = $user->player;
             $order  = $player->proPlayerOrders()
                 ->where('pro_player_skill_id', $proPlayerSkill->id)
                 ->where('status', 2)
