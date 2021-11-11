@@ -287,6 +287,7 @@ class ProPlayerSkillController extends Controller
                 ->user
                 ->balanceReceivingTransactions()
                 ->create([
+                    'sender_id' => $userId,
                     'coin'      => $order->coin,
                     'balance'   => $order->balance,
                     'type'      => 2,
