@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\{ProPlayerSkillResource, ProPlayerOrderResource};
-use App\Models\{ProPlayerOrder, ProPlayerSkill, ProPlayerSkillScreenshot};
+use App\Models\{ProPlayerOrder, ProPlayerSkill, ProPlayerSkillScreenshot, User};
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -165,7 +165,8 @@ class ProPlayerSkillController extends Controller
             if($proPlayerSkill->status !== 2)
                 throw new Exception('Unprocessable, Pro player skill not valid', 422);
 
-            $user   = auth()->user();
+            $userId = auth()->user()->id;
+            $user   = User::with(['player', 'coinSendingTransactions'])->find($userId);
             $player = $user->player;
             $price  = $proPlayerSkill->price_permatch;
             $orders = $player->proPlayerOrders;
