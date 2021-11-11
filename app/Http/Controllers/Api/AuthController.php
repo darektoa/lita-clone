@@ -26,7 +26,7 @@ class AuthController extends Controller
                 ['token' => Hash::make(auth()->user()->id)]
             );
 
-            $user   = User::with(['player'])->find(auth()->user()->id);
+            $user   = User::find(auth()->user()->id);
             $user->token = $loginToken->token;
             return response()->json([
                 'status'    => 200,
@@ -100,7 +100,7 @@ class AuthController extends Controller
         
         // Login User
         $userId     = $user->id;
-        $user       = User::with(['player'])->find($userId);
+        $user       = User::find($userId);
         $loginToken = LoginToken::create([
             'user_id' => $userId,
             'token'   => Hash::make($userId),
