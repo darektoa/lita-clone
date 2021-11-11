@@ -100,7 +100,7 @@ class AuthController extends Controller
         
         // Login User
         $userId     = $user->id;
-        $user       = User::find($userId);
+        $user       = User::with(['player'])->find($userId);
         $loginToken = LoginToken::create([
             'user_id' => $userId,
             'token'   => Hash::make($userId),
