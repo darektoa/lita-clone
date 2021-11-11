@@ -165,7 +165,8 @@ class ProPlayerSkillController extends Controller
             if($proPlayerSkill->status !== 2)
                 throw new Exception('Unprocessable, Pro player skill not valid', 422);
 
-            $player = auth()->user()->player;
+            $user   = auth()->user();
+            $player = $user->player;
             $price  = $proPlayerSkill->price_permatch;
             $orders = $player->proPlayerOrders;
 
@@ -187,9 +188,19 @@ class ProPlayerSkillController extends Controller
                 'status'                => 0
             ]);
 
-            $player->update([
-                'coin'  => $player->coin - $order->coin,
-            ]);
+            $player
+                ->update([
+                    'coin'  => $player->coin - $order->coin,
+                ]);
+
+            $user
+                ->coinSendingTransactions()
+                ->create([
+                    'receiver_id'   => $order->proPlayerSkill->player->user->id,
+                    'coin'          => $order->coin,
+                    'balance'       => $order->balance,
+                    'type'          => 1,
+                ]);
 
             return response()->json([
                 'satus'     => 200,
