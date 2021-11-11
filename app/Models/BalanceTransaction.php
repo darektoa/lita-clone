@@ -37,6 +37,7 @@ class BalanceTransaction extends Model
 
         switch($this->type){
             case 0: $typeName = 'Topup'; break;
+            case 1: $typeName = 'Order'; break;
             default: $typeName = 'Unknown';
         }
 
