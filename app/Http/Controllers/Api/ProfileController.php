@@ -14,8 +14,7 @@ class ProfileController extends Controller
 {
     public function index() {
         $user   = User::with([
-            'admin',
-            'player', 
+            'player',
             'player.proPlayerSkills'
         ])->find(auth()->user()->id);
 
