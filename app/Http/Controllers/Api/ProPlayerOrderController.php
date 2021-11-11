@@ -15,7 +15,7 @@ class ProPlayerOrderController extends Controller
         $orders = ProPlayerOrder::with(['proPlayerSkill.player.user']);
         $status = $request->status;
             
-        if($status !== null && $status >= 0 && $status <= 3)
+        if($status !== null && $status >= 0 && $status <= 4)
             $orders = $orders->where('status', $status);
 
         $orders = $orders->where('player_id', $player->id)
