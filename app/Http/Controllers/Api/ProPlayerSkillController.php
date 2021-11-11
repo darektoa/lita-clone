@@ -14,6 +14,7 @@ class ProPlayerSkillController extends Controller
 {
     public function index(Request $request) {
         $sortBy     = $request->sort;
+        $sortValue  = $request->sort_value;
         $proPlayers = ProPlayerSkill::with([
             'game',
             'player',
@@ -27,6 +28,8 @@ class ProPlayerSkillController extends Controller
                 throw new Exception('Field to sort not found', 404);
             if($sortBy)
                 $proPlayers = $proPlayers->orderBy($sortBy, 'desc');
+            if($sortValue)
+                $proPlayers = $proPlayers->where($sortBy, $sortValue);
 
             $proPlayers = $proPlayers
                 ->where('status', 2)
