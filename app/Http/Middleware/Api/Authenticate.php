@@ -23,7 +23,7 @@ class Authenticate
 
         $token = $request->header('X-Auth-Token');
         $loginToken = LoginToken::where('token', $token)->first();
-        if(!$loginToken) return response()->json(['message' => 'Unauthorized token'], 422);
+        if(!$loginToken) return response()->json(['message' => 'Unauthorized token'], 401);
 
         Auth::login($loginToken->user);
         return $next($request);
