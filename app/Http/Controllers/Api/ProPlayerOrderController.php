@@ -58,6 +58,7 @@ class ProPlayerOrderController extends Controller
                 'message'   => 'OK',
             ])
             ->merge($orders)
+            ->merge(['data' => ProPlayerOrderResource::collection($orders)])
         );
     }
 
