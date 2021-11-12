@@ -25,17 +25,9 @@ class ProPlayerOrder extends Model
 
 
     public function getStatusAttribute($value) {
-        // AUTO EXPIRED
         $this->autoExpired($value);
-
-        // AUTO ENDED
-        if($value === 2)
-            if(now()->diffInMinutes($this->created_at) >= $this->play_duration)
-                $this->update([
-                    'status'    => 4,
-                    'ended_at'  => now(),
-                ]);
-
+        $this->autoEnded($value);
+        
         return $value;
     }
 
@@ -69,6 +61,22 @@ class ProPlayerOrder extends Model
                 ]);
             }
         
+        return;
+    }
+
+
+    protected function autoEnded($status) {
+        $updatedAt      = $this->updated_at;
+        $playDuration   = $this->play_duration;
+
+        if($status === 2)
+            if(now()->diffInMinutes($updatedAt) >= $playDuration) {
+                $this->update([
+                    'status'    => 4,
+                    'ended_at'  => now(),
+                ]);
+            }
+
         return;
     }
 }
