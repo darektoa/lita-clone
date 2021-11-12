@@ -12,8 +12,12 @@ class ProPlayerOrderController extends Controller
 {
     public function index(Request $request) {
         $player = auth()->user()->player;
-        $orders = ProPlayerOrder::with(['proPlayerSkill.player.user']);
         $status = $request->status;
+        $orders = ProPlayerOrder::with([
+            'proPlayerSkill.game',
+            'proPlayerSkill.tier',
+            'proPlayerSkill.player.user'
+        ]);
             
         if($status !== null && $status >= 0 && $status <= 5)
             $orders = $orders->where('status', $status);
