@@ -29,7 +29,7 @@ class ProPlayerSkillController extends Controller
                 throw new Exception('Field to sort not found', 404);
             if($sortBy)
                 $proPlayers = $proPlayers->orderBy($sortBy, 'desc');
-            if($sortValue)
+            if($sortBy && $sortValue)
                 $proPlayers = $proPlayers->where($sortBy, $sortValue);
             if($search)
                 $proPlayers = $proPlayers->whereHas('player', function($query) use($search) {
