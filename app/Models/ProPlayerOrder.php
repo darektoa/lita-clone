@@ -25,13 +25,21 @@ class ProPlayerOrder extends Model
 
 
     public function getStatusAttribute($value) {
+        // AUTO EXPIRED
         if($value === 0)
             if(now()->diffInMinutes($this->created_at) >= $this->expiry_duration)
-                $this->update(['status' => 5]);
+                $this->update([
+                    'status'     => 5,
+                    'expired_at' => now(),   
+                ]);
 
+        // AUTO ENDED
         if($value === 2)
-            if(now()->diffInMinutes($this->created_at) >= 30)
-                $this->update(['status' => 4]);
+            if(now()->diffInMinutes($this->created_at) >= $this->play_duration)
+                $this->update([
+                    'status'    => 4,
+                    'ended_at'  => now(),
+                ]);
 
         return $value;
     }
