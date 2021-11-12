@@ -11,7 +11,7 @@ class ProPlayerOrder extends Model
 
     protected $guarded  = ['id'];
 
-    protected $appends  = ['status_name'];
+    protected $appends  = ['status', 'status_name'];
 
 
     public function player() {
@@ -24,6 +24,15 @@ class ProPlayerOrder extends Model
     }
 
 
+    public function getStatusAttribute($value) {
+        if($value === 0)
+            if(now()->diffInMinutes($this->created_at) >= $this->expiry_duration)
+                $this->update(['status' => 5]);
+
+        return $value;
+    }
+
+
     public function getStatusNameAttribute() {
         $statusName = null;
 
@@ -33,6 +42,7 @@ class ProPlayerOrder extends Model
             case 2: $statusName = 'Approved'; break;
             case 3: $statusName = 'Canceled'; break;
             case 4: $statusName = 'Ended'; break;
+            case 5: $statusName = 'Expired'; break;
             default: $statusName = 'Unknown';
         }
 
