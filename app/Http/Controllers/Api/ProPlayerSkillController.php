@@ -15,6 +15,7 @@ class ProPlayerSkillController extends Controller
     public function index(Request $request) {
         $sortBy     = $request->sort;
         $sortValue  = $request->sort_value;
+        $search     = $request->search;
         $proPlayers = ProPlayerSkill::with([
             'game',
             'player',
@@ -30,6 +31,10 @@ class ProPlayerSkillController extends Controller
                 $proPlayers = $proPlayers->orderBy($sortBy, 'desc');
             if($sortValue)
                 $proPlayers = $proPlayers->where($sortBy, $sortValue);
+            if($search)
+                $proPlayers = $proPlayers->whereHas('player', function($query) use($search) {
+                    $query->whereRelation('user', 'username', 'LIKE', "%$search%");
+                });
 
             $proPlayers = $proPlayers
                 ->where('status', 2)
