@@ -53,13 +53,21 @@ class ProPlayerOrder extends Model
         $createdAt      = $this->created_at;
         $expiryDuration = $this->expiry_duration;
 
-        if($status === 0)
+        if($status === 0){
             if(now()->diffInMinutes($createdAt) >= $expiryDuration) {
                 $this->update([
                     'status'     => 5,
                     'expired_at' => now(),
                 ]);
             }
+
+            CoinTransaction::create([
+                'receiver_id'   => $this->player->user->id,
+                'coin'          => $this->proPlayerSkill->price_permatch['coin'],
+                'balance'       => $this->proPlayerSkill->price_permatch['balance'],
+                'type'          => 3,
+            ]);
+        }
         
         return;
     }
