@@ -29,6 +29,10 @@ class ProPlayerOrder extends Model
             if(now()->diffInMinutes($this->created_at) >= $this->expiry_duration)
                 $this->update(['status' => 5]);
 
+        if($value === 2)
+            if(now()->diffInMinutes($this->created_at) >= 30)
+                $this->update(['status' => 4]);
+
         return $value;
     }
 
