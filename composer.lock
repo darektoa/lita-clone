@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "428cd116b35f9c236bf6a46df30b2a64",
+    "content-hash": "07a9898ad664cfddc4f8aaffe3f8bf90",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1098,6 +1098,57 @@
                 }
             ],
             "time": "2021-10-06T17:43:30+00:00"
+        },
+        {
+            "name": "kawankoding/laravel-fcm",
+            "version": "0.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kawankoding/laravel-fcm.git",
+                "reference": "f0f9fe1478de6a6b9146231b47341c68f1ac98e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kawankoding/laravel-fcm/zipball/f0f9fe1478de6a6b9146231b47341c68f1ac98e7",
+                "reference": "f0f9fe1478de6a6b9146231b47341c68f1ac98e7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.1|^6.0|^7.0|^8.0",
+                "php": "^5.6|^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kawankoding\\Fcm\\FcmServiceProvider"
+                    ],
+                    "aliases": {
+                        "Fcm": "Kawankoding\\Fcm\\FcmFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kawankoding\\Fcm\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Muhammad Amirul Ihsan",
+                    "email": "muh.amirul.ihsan@gmail.com"
+                }
+            ],
+            "description": "A package to send Firebase notification cross Laravel Application",
+            "support": {
+                "issues": "https://github.com/kawankoding/laravel-fcm/issues",
+                "source": "https://github.com/kawankoding/laravel-fcm/tree/0.2.5"
+            },
+            "time": "2021-07-19T15:43:19+00:00"
         },
         {
             "name": "laravel/framework",

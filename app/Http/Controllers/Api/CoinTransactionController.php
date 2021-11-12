@@ -37,8 +37,11 @@ class CoinTransactionController extends Controller
         try{
             $user           = auth()->user();
             $transaction    = CoinTransaction::where('id', $transactionId)
-                ->where('receiver_id', $user->id)
-                ->orWhere('sender_id', $user->id)
+                ->where(function($query) use($user) {
+                  $query
+                    ->where('receiver_id', $user->id)
+                    ->orWhere('sender_id', $user->id);
+                })
                 ->first();
 
             if(!$transaction) throw new Exception('Not found', 404);
