@@ -44,6 +44,7 @@ class ProPlayerOrderController extends Controller
         $player     = auth()->user()->player;
         $status     = $request->status;
         $orders     = ProPlayerOrder::with([
+            'player.user',
             'proPlayerSkill.game'
         ]);
 
