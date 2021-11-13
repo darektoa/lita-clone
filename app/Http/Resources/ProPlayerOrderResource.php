@@ -27,6 +27,7 @@ class ProPlayerOrderResource extends JsonResource
             "created_at"            => $this->created_at,
             "updated_at"            => $this->updated_at,
             "status_name"           => $this->status_name,
+            "player"                => PlayerResource::make($this->whenLoaded('player')),
             "pro_player_skill"      => ProPlayerSkillResource::make($this->whenLoaded('proPlayerSkill'))
         ];
     }
