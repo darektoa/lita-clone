@@ -210,8 +210,8 @@ class ProPlayerSkillController extends Controller
                 ->coinSendingTransactions()
                 ->create([
                     'receiver_id'   => $order->proPlayerSkill->player->user->id,
-                    'coin'          => $order->coin,
-                    'balance'       => $order->balance,
+                    'coin'          => -$order->coin,
+                    'balance'       => -$order->balance,
                     'type'          => 1,
                     'status'        => 'success'
                 ]);
