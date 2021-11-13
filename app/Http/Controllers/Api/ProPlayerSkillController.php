@@ -154,7 +154,7 @@ class ProPlayerSkillController extends Controller
         return response()->json([
             'satatus'   => 200,
             'message'   => 'OK',
-            'data'      => $mySkills
+            'data'      => ProPlayerSkillResource::collection($mySkills)
         ]);
     }
 
