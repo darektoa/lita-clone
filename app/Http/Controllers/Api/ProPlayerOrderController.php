@@ -11,29 +11,32 @@ use Illuminate\Http\Request;
 class ProPlayerOrderController extends Controller
 {
     public function index(Request $request) {
-        $player = auth()->user()->player;
-        $status = $request->status;
-        $orders = ProPlayerOrder::with([
-            'proPlayerSkill.game',
-            'proPlayerSkill.tier',
-            'proPlayerSkill.player.user'
-        ]);
-            
-        if($status !== null && $status >= 0 && $status <= 5)
-            $orders = $orders->where('status', $status);
+        try{
 
-        $orders = $orders->where('player_id', $player->id)
-            ->latest()
-            ->paginate(10);
-
-        return response()->json(
-            collect([
-                'status'    => 200,
-                'message'   => 'OK'
-            ])
-            ->merge($orders)
-            ->merge(['data' => ProPlayerOrderResource::collection($orders)])
-        );
+            $player = auth()->user()->player;
+            $status = $request->status;
+            $orders = ProPlayerOrder::with([
+                'proPlayerSkill.game',
+                'proPlayerSkill.tier',
+                'proPlayerSkill.player.user'
+            ]);
+                
+            if($status !== null && $status >= 0 && $status <= 5)
+                $orders = $orders->where('status', $status);
+    
+            $orders = $orders->where('player_id', $player->id)
+                ->latest()
+                ->paginate(10);
+    
+            return response()->json(
+                collect([
+                    'status'    => 200,
+                    'message'   => 'OK'
+                ])
+                ->merge($orders)
+                ->merge(['data' => ProPlayerOrderResource::collection($orders)])
+            );
+        }catch(Exception $err) {dd($err);}
     }
 
 
