@@ -66,7 +66,7 @@ class ProPlayerOrder extends Model
                 'receiver_id'   => $order->player->user->id,
                 'coin'          => $order->proPlayerSkill->price_permatch['coin'],
                 'balance'       => $order->proPlayerSkill->price_permatch['balance'],
-                'type'          => 3,
+                'type'          => 2,
             ]);
         }
         
@@ -92,7 +92,7 @@ class ProPlayerOrder extends Model
                 'receiver_id'   => $order->proPlayerSkill->player->user->id,
                 'coin'          => $order->proPlayerSkill->price_permatch['coin'],
                 'balance'       => $order->proPlayerSkill->price_permatch['balance'],
-                'type'          => 3
+                'type'          => 2
             ]);
         }
 
