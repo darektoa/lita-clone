@@ -31,7 +31,7 @@ class ProPlayerSkillResource extends JsonResource
             'price_permatch'                => $this->price_permatch,
             'game'                          => GameResource::make($this->whenLoaded('game')),
             'tier'                          => TierResource::make($this->whenLoaded('tier')),
-            'user'                          => UserResource::make($this->when($userLoaded, $this->player->user)),
+            'user'                          => UserResource::make($this->when($userLoaded, $this->player->user->load('player'))),
             'pro_player_skill_screenshots'  => ProPlayerSkillScreenshotResource::collection($this->whenLoaded('proPlayerSkillScreenshots'))
         ];
     }
