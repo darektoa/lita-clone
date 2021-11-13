@@ -18,7 +18,6 @@ class ProPlayerSkillController extends Controller
         $search     = $request->search;
         $proPlayers = ProPlayerSkill::with([
             'game',
-            'player',
             'player.user',
             'tier',
             'proPlayerSkillScreenshots'
@@ -114,7 +113,11 @@ class ProPlayerSkillController extends Controller
 
     public function show(ProPlayerSkill $proPlayerSkill) {
         try{
-            $proPlayerSkill->load(['game', 'player', 'player.user', 'proPlayerSkillScreenshots']);
+            $proPlayerSkill->load([
+                'game',
+                'player.user',
+                'proPlayerSkillScreenshots'
+            ]);
             $status = $proPlayerSkill->status;
             
             if($status !== 2) throw new Exception('Not found', 404);

@@ -28,7 +28,7 @@ class ProPlayerController extends Controller
 
     public function show(Player $player) {
         $player->load([
-            'user',
+            'user.player',
             'proPlayerSkills' => fn($query) => $query->where('status', 2),
             'proPlayerSkills.game',
         ]);
