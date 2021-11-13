@@ -20,11 +20,11 @@ class UserSeeder extends Seeder
         ]);
         
         $userPlayer = User::create([
-            'name'        => 'Player',
+            'name'              => 'Player',
             'username'          => 'player',
             'email'             => 'player@gmail.com',
             'password'          => Hash::make('password'),
-            'bio'               => 'Hii introdouce myself, i am a pro player',
+            'bio'               => 'Hii introdouce myself, i will order a pro player',
             'email_verified_at' => now()
         ]);
 

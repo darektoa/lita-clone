@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             TierSeeder::class,
             GameSeeder::class,
             GenderSeeder::class,
+            ProPlayerSeeder::class,
             AppBannerSeeder::class, 
             AppSettingSeeder::class,
         ]);
