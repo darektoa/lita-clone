@@ -304,6 +304,7 @@ class ProPlayerSkillController extends Controller
                     'coin'      => $order->coin,
                     'balance'   => $order->balance,
                     'type'      => 2,
+                    'status'    => 'success'
                 ]);
 
             return response()->json([
