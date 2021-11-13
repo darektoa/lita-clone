@@ -28,8 +28,8 @@ class ProPlayerSeeder extends Seeder
         $userPro->player->proPlayerSkills()->create([
             'game_id'       => $game->id,
             'game_user_id'  => 810720,
-            'game_tier'     => $game->tiers()->first()->name,
-            'game_roles'    => $game->roles()->first()->name,
+            'game_tier'     => $game->gameTiers()->first()->name,
+            'game_roles'    => $game->gameRoles()->first()->name,
             'game_level'    => 25,
             'tier_id'       => Tier::first()->id,
             'status'        => 2,
