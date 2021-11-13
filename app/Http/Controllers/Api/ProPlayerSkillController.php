@@ -252,6 +252,15 @@ class ProPlayerSkillController extends Controller
             $player->update([
                 'coin'  => $player->coin + $order->coin
             ]);
+
+            $user
+                ->coinReceivingTransactions()
+                ->create([
+                    'coin'      => $order->coin,
+                    'balance'   => $order->balance,
+                    'type'      => 2,
+                    'status'    => 'success'
+                ]);
             
             return response()->json([
                 'status'    => 200,
