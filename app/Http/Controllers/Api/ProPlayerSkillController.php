@@ -140,13 +140,14 @@ class ProPlayerSkillController extends Controller
 
     public function applied(Request $request) {
         $playerId   = auth()->user()->player->id;
-        $mySkills   = ProPlayerSkill::where('player_id', $playerId);
+        $mySkills   = ProPlayerSkill::with(['game']);
         $statusId   = $request->status;
 
         if($statusId > -1 && $statusId <= 2)
             $mySkills = $mySkills->where('status', $statusId);
         
         $mySkills = $mySkills
+            ->where('player_id', $playerId)
             ->latest()
             ->get();
 
