@@ -45,7 +45,7 @@ class ProPlayerOrderController extends Controller
         ]);
 
 
-        if($status !== null && $status >= 0 && $status <= 3)
+        if($status !== null && $status >= 0 && $status <= 5)
             $orders = $orders->where('status', $status);
 
         $orders = $orders->whereRelation('proPlayerSkill', 'player_id', $player->id)

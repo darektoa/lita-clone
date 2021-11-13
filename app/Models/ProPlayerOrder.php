@@ -14,6 +14,13 @@ class ProPlayerOrder extends Model
     protected $appends  = ['status', 'status_name'];
 
 
+    static protected function booted() {
+        static::retrieved(function($model) {
+            $model->updateAllStatus();
+        });
+    }
+
+
     public function player() {
         return $this->belongsTo(Player::class);
     }
@@ -70,6 +77,11 @@ class ProPlayerOrder extends Model
         }
         
         return;
+    }
+
+
+    public function updateAllStatus() {
+        $this->all();
     }
 
 
