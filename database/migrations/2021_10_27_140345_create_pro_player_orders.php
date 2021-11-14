@@ -20,6 +20,7 @@ class CreateProPlayerOrders extends Migration
             $table->bigInteger('coin');
             $table->bigInteger('balance');
             $table->smallInteger('status');
+            $table->string('rejected_reason')->nullable();
             $table->smallInteger('expiry_duration');
             $table->smallInteger('play_duration')->nullable();
             $table->timestamp('ended_at')->nullable();
