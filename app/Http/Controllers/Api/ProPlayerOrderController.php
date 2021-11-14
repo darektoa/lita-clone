@@ -8,6 +8,7 @@ use App\Models\ProPlayerOrder;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
 
 class ProPlayerOrderController extends Controller
 {
@@ -121,9 +122,21 @@ class ProPlayerOrderController extends Controller
     }
 
 
-    public function reject(ProPlayerOrder $proPlayerOrder) {
+    public function reject(Request $request, ProPlayerOrder $proPlayerOrder) {
         try{
-            $player = auth()->user()->player;
+            $validator = Validator::make($request->all(), [
+                'reason'    => 'required|min:5|max:50'
+            ]);
+
+            if($validator->fails())
+                return response()->json([
+                    'status'    => 422,
+                    'message'   => 'Unprocessable, Invalid field',
+                    'errors'    =>  $validator->errors()->all()
+                ], 422);
+
+            $user   = auth()->user();
+            $player = $user->player;
 
             if($proPlayerOrder->proPlayerSkill->player_id !== $player->id)
                 throw new Exception('Not found', 404);
@@ -131,8 +144,32 @@ class ProPlayerOrderController extends Controller
                 throw new Exception('Unprocessable, Order is not pending', 422);
             
             $proPlayerOrder->update([
-                'status'    => 1,
+                'status'            => 1,
+                'rejected_reason'   => $request->reason,
             ]);
+
+            // SEND PUSH NOTIFICATION
+            $recipients = Arr::flatten([
+                $proPlayerOrder
+                ->player
+                ->user
+                ->deviceIds()
+                ->select('device_id')
+                ->get()
+                ->makeHidden('status_name')
+                ->toArray()
+            ]);
+
+            $payloads = [
+                'title' => 'Maaf, order kamu di tolak',
+                'body'  => "{$user->username}[{$proPlayerOrder->proPlayerSkill->game->name}]: \"{$proPlayerOrder->rejected_reason}\""
+            ];
+
+            fcm()->to($recipients) // Must an array
+            ->timeToLive(2419200) // 28 days
+            ->data($payloads)
+            ->notification($payloads)
+            ->send();
 
             return response()->json([
                 'status'    => 200,
