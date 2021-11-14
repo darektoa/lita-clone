@@ -147,7 +147,7 @@ class ProPlayerOrderController extends Controller
                 'status'            => 1,
                 'rejected_reason'   => $request->reason,
             ]);
-
+            
             // SEND PUSH NOTIFICATION
             $recipients = Arr::flatten([
                 $proPlayerOrder
@@ -162,7 +162,7 @@ class ProPlayerOrderController extends Controller
 
             $payloads = [
                 'title' => 'Maaf, order kamu di tolak',
-                'body'  => "{$user->username}[{$proPlayerOrder->proPlayerSkill->game->name}]: \"{$proPlayerOrder->rejected_reason}\""
+                'body'  => "{$user->username}[{$proPlayerOrder->proPlayerSkill->game->name}]: \"{$proPlayerOrder->rejected_reason}\"",
             ];
 
             fcm()->to($recipients) // Must an array
