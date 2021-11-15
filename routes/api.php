@@ -34,6 +34,11 @@ Route::prefix('/genders')->group(function() {
     Route::get('/', [GenderController::class, 'index']);
 });
 
+// NOTIFICATION
+Route::prefix('/notification')->group(function() {
+    Route::get('/', [NotificationController::class, 'index']);
+});
+
 
 // WITH AUTHENTICATION
 Route::middleware(['auth.api'])->group(function() {
