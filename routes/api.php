@@ -36,7 +36,7 @@ Route::prefix('/genders')->group(function() {
 
 // NOTIFICATION
 Route::prefix('/notification')->group(function() {
-    Route::get('/', [NotificationController::class, 'index']);
+    Route::get('/subscribe', [NotificationController::class, 'store']);
 });
 
 
