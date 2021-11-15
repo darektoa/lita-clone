@@ -35,8 +35,8 @@ Route::prefix('/genders')->group(function() {
 });
 
 // NOTIFICATION
-Route::prefix('/notification')->group(function() {
-    Route::get('/subscribe', [NotificationController::class, 'store']);
+Route::prefix('/notifications')->group(function() {
+    Route::post('/subscribe', [NotificationController::class, 'store']);
 });
 
 
