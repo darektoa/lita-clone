@@ -6,13 +6,35 @@ use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Traits\FCMTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\{Hash, Validator};
 
 class ProfileController extends Controller
 {
+    use FCMTrait;
+
     public function index() {
+        $recipients = [];
+
+        fcm()
+        ->to($recipients) // $recipients must an array
+        ->priority('high')
+        ->timeToLive(0)
+        ->data([
+            'title' => 'Test FCM',
+            'body'  => 'This is a test of FCM',
+            'icon'  => 'https://yoshi.kulayuki.com/assets/images/brand_icons/48x48-transparent.png'
+        ])
+        ->notification([
+            'title' => 'Test FCM',
+            'body'  => 'This is a test of FCM',
+            'icon'  => 'https://yoshi.kulayuki.com/assets/images/brand_icons/48x48-transparent.png'
+        ])
+        ->send();
+
+
         $user   = User::with([
             'player',
             'player.proPlayerSkills'

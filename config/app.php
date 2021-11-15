@@ -165,7 +165,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Kawankoding\Fcm\FcmServiceProvider::class,
 
         /*
          * Application Service Providers...
