@@ -11,11 +11,13 @@ class NotificationController extends Controller
     public function store(Request $request) {
         $user   = auth()->user();
 
-        $deviceId = DeviceId::create([
-            'user_id'   => $user->id ?? null,
-            'device_id' => $request->device_id,
-            'status'    => 1,
-        ]);
+        $deviceId = DeviceId::firstOrCreate(
+            ['device_id' => $request->device_id],
+            [
+                'user_id'   => $user->id ?? null,
+                'status'    => 1,
+            ]
+        );
 
         return response()->json([
             'status'    => 200,
