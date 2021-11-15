@@ -18,8 +18,7 @@ class ProfileController extends Controller
     public function index() {
         $recipients = [];
 
-        fcm()
-        ->to($recipients) // $recipients must an array
+        fcm()->to($recipients) // $recipients must an array
         ->priority('high')
         ->timeToLive(0)
         ->data([
