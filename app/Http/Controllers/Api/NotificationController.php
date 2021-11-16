@@ -21,7 +21,7 @@ class NotificationController extends Controller
         );
 
         $deviceId->update([
-            'status'    => 1
+            'status' => 1
         ]);
 
         return response()->json([
@@ -34,16 +34,19 @@ class NotificationController extends Controller
 
     public function unsubscribe() {
         try{
-            $user = auth()->user();
+            $user       = auth()->user();
+            $deviceIds  = DeviceId::where('user_id', $user->id);
 
-            $deviceIds = DeviceId::where('user_id', $user->id)->get();
+            $deviceIds->update([
+                'status' => 0
+            ]);
             
             return response()->json([
                 'status'    => 200,
                 'message'   => 'OK',
-                'data'      => $user->id
+                'data'      => $deviceIds->get()
             ]);
-            
+
         }catch(Exception $err) {
             $errCode    = $err->getCode() ?? 400;
             $errMessage = $err->getMessage();
