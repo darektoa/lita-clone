@@ -7,6 +7,7 @@ use App\Models\{AppSetting, CoinTransaction, PredefineCoin};
 use App\Traits\XenditTrait;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -132,6 +133,24 @@ class CoinTransactionController extends Controller
             $player->update([
                 'coin'      => $player->coin + $transaction->coin
             ]);
+
+            // SEND PUSH NOTIFICATION
+            $recipients = Arr::flatten($player
+                ->user
+                ->deviceIds()
+                ->select('device_id')
+                ->get()
+                ->makeHidden('status_name')
+                ->toArray()
+            );
+
+            fcm()->to($recipients) // Must an array
+            ->timeToLive(0)
+            ->notification([
+                'title' => 'Pembayaran Berhasil',
+                'body'  => "Pembayaran {$request->external_id} Berhasil di selesaikan",
+            ])
+            ->send();
 
             return response()->json([
                 'status'    => 200,
