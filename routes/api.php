@@ -51,6 +51,11 @@ Route::middleware(['auth.api'])->group(function() {
         Route::post('/topup', [CoinTransactionController::class, 'store']);
     });
 
+    // NOTIFICATION
+    Route::prefix('/notifications')->group(function() {
+        Route::get('/unsubscribe', [NotificationController::class, 'unsubscribe']);
+    });
+
     // PRO PLAYER
     Route::prefix('/pro-players')->group(function() {
         Route::prefix('/skill')->group(function() {

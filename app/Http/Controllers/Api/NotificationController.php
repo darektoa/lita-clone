@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\DeviceId;
+use Exception;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller
@@ -12,11 +13,11 @@ class NotificationController extends Controller
         $user   = auth()->user();
 
         $deviceId = DeviceId::firstOrCreate(
-            ['device_id' => $request->device_id],
             [
+                'device_id' => $request->device_id,
                 'user_id'   => $user->id ?? null,
-                'status'    => 1,
-            ]
+            ],
+            ['status'    => 1]
         );
 
         return response()->json([
@@ -24,5 +25,28 @@ class NotificationController extends Controller
             'message'   => 'OK',
             'data'      => $deviceId,
         ]);
+    }
+
+
+    public function unsubscribe() {
+        try{
+            $user = auth()->user();
+
+            $deviceIds = DeviceId::where('user_id', $user->id)->get();
+            
+            return response()->json([
+                'status'    => 200,
+                'message'   => 'OK',
+                'data'      => $user->id
+            ]);
+            
+        }catch(Exception $err) {
+            $errCode    = $err->getCode() ?? 400;
+            $errMessage = $err->getMessage();
+            return response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage
+            ], $errCode);
+        }
     }
 }

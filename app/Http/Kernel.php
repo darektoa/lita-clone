@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'optional.auth.api' => \App\Http\Middleware\Api\OptionalAuth::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'player' => \App\Http\Middleware\IsPlayer::class,
         'player.api' => \App\Http\Middleware\Api\IsPlayer::class,
