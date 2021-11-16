@@ -35,7 +35,7 @@ Route::prefix('/genders')->group(function() {
 });
 
 // NOTIFICATION
-Route::prefix('/notifications')->group(function() {
+Route::prefix('/notifications')->middleware('optional.auth.api')->group(function() {
     Route::post('/subscribe', [NotificationController::class, 'store']);
 });
 
