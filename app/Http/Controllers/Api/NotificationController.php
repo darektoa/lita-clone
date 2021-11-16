@@ -20,6 +20,10 @@ class NotificationController extends Controller
             ['status'    => 1]
         );
 
+        $deviceId->update([
+            'status'    => 1
+        ]);
+
         return response()->json([
             'status'    => 200,
             'message'   => 'OK',
