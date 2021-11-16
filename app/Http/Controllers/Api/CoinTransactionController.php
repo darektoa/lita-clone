@@ -135,7 +135,8 @@ class CoinTransactionController extends Controller
             ]);
 
             // SEND PUSH NOTIFICATION
-            $recipients = Arr::flatten($player
+            $recipients = Arr::flatten(
+                $player
                 ->user
                 ->deviceIds()
                 ->select('device_id')

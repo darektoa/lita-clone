@@ -8,6 +8,7 @@ use App\Http\Resources\{ProPlayerSkillResource, ProPlayerOrderResource};
 use App\Models\{ProPlayerOrder, ProPlayerSkill, ProPlayerSkillScreenshot, User};
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 
 class ProPlayerSkillController extends Controller
@@ -216,6 +217,25 @@ class ProPlayerSkillController extends Controller
                     'type'          => 1,
                     'status'        => 'success'
                 ]);
+
+            $recipients = Arr::flatten(
+                $proPlayerSkill
+                ->player
+                ->user
+                ->deviceIds()
+                ->select('device_id')
+                ->get()
+                ->makeHidden('status_name')
+                ->toArray()
+            );
+
+            fcm()->to($recipients) // Must an array
+            ->timeToLive(580) // In seconds
+            ->notification([
+                'title' => 'Ada Orderan Nih !',
+                'body'  => "Orderan game [{$proPlayerSkill->game->name}] dari pemain ({$user->username})"
+            ])
+            ->send();
 
             return response()->json([
                 'satus'     => 200,
