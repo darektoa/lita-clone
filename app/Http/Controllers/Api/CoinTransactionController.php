@@ -146,7 +146,7 @@ class CoinTransactionController extends Controller
             );
 
             fcm()->to($recipients) // Must an array
-            ->timeToLive(0)
+            ->timeToLive(2419200) // 28 days
             ->notification([
                 'title' => 'Pembayaran Berhasil',
                 'body'  => "Pembayaran {$request->external_id} Berhasil di selesaikan",
