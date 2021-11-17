@@ -230,7 +230,7 @@ class ProPlayerSkillController extends Controller
             );
 
             fcm()->to($recipients) // Must an array
-            ->timeToLive(580) // In seconds
+            ->timeToLive($order->expiry_duration * 60) // In seconds
             ->notification([
                 'title' => 'Ada Orderan Nih !',
                 'body'  => "Orderan game [{$proPlayerSkill->game->name}] dari pemain ({$user->username})"
