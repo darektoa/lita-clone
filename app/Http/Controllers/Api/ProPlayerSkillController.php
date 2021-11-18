@@ -218,6 +218,7 @@ class ProPlayerSkillController extends Controller
                     'status'        => 'success'
                 ]);
 
+            // SEND PUSH NOTIFICATION
             $recipients = Arr::flatten(
                 $proPlayerSkill
                 ->player

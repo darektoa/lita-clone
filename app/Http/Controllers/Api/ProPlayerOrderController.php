@@ -7,6 +7,7 @@ use App\Http\Resources\ProPlayerOrderResource;
 use App\Models\ProPlayerOrder;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class ProPlayerOrderController extends Controller
 {
@@ -69,9 +70,10 @@ class ProPlayerOrderController extends Controller
 
     public function approve(ProPlayerOrder $proPlayerOrder) {
         try{
-            $player = auth()->user()->player;
+            $player         = auth()->user()->player;
+            $proPlayerSkill = $proPlayerOrder->proPlayerSkill; 
 
-            if($proPlayerOrder->proPlayerSkill->player_id !== $player->id)
+            if($proPlayerSkill->player_id !== $player->id)
                 throw new Exception('Not found', 404);
             if($proPlayerOrder->status !== 0)
                 throw new Exception('Unprocessable, Order is not pending', 422);
@@ -79,6 +81,26 @@ class ProPlayerOrderController extends Controller
             $proPlayerOrder->update([
                 'status'    => 2,
             ]);
+
+            // SEND PUSH NOTIFICATION
+            $receipients = Arr::flatten(
+                $proPlayerOrder
+                ->player
+                ->user
+                ->deviceIds()
+                ->select('device_id')
+                ->get()
+                ->makeHidden('status_name')
+                ->toArray()
+            );
+ 
+            fcm()->to($receipients) // Must an array
+            ->timeToLive($proPlayerOrder->play_duration *60) // In seconds
+            ->notification([
+                'title' => 'Order di terima !',
+                'body'  => "Ayo main! {$player->user->username}[{$proPlayerSkill->game->name}] diterima"
+            ])
+            ->send();
 
             return response()->json([
                 'status'    => 200,
