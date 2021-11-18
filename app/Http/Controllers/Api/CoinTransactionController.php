@@ -24,6 +24,7 @@ class CoinTransactionController extends Controller
             
         $transactions = $transactions
             ->orWhere('sender_id', $user->id)
+            ->latest()
             ->paginate(10)
             ->toArray();
         
