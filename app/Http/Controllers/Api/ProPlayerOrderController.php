@@ -96,9 +96,13 @@ class ProPlayerOrderController extends Controller
  
             fcm()->to($receipients) // Must an array
             ->timeToLive($proPlayerOrder->play_duration *60) // In seconds
+            ->data([
+                'title' => 'Ayo main, order di terima !',
+                'body'  => "{$player->user->username} menerima orderan anda pada game [{$proPlayerSkill->game->name}]"
+            ])
             ->notification([
-                'title' => 'Order di terima !',
-                'body'  => "Ayo main! {$player->user->username}[{$proPlayerSkill->game->name}] diterima"
+                'title' => 'Ayo main, order di terima !',
+                'body'  => "{$player->user->username} menerima orderan anda pada game [{$proPlayerSkill->game->name}]"
             ])
             ->send();
 
