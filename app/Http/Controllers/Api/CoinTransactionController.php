@@ -146,12 +146,14 @@ class CoinTransactionController extends Controller
                 ->toArray()
             );
 
-            fcm()->to($recipients) // Must an array
-            ->timeToLive(2419200) // 28 days
-            ->notification([
+            $payloads = [
                 'title' => 'Pembayaran Berhasil',
                 'body'  => "Pembayaran {$request->external_id} Berhasil di selesaikan",
-            ])
+            ];
+
+            fcm()->to($recipients) // Must an array
+            ->timeToLive(2419200) // 28 days
+            ->notification($payloads)
             ->send();
 
             return response()->json([
