@@ -84,7 +84,7 @@ class ProPlayerOrderController extends Controller
             ]);
 
             // SEND PUSH NOTIFICATION
-            $receipients = Arr::flatten(
+            $recipients = Arr::flatten(
                 $proPlayerOrder
                 ->player
                 ->user
@@ -100,7 +100,7 @@ class ProPlayerOrderController extends Controller
                 'body'  => "{$player->user->username} menerima orderan game [{$proPlayerSkill->game->name}] anda"
             ];
  
-            fcm()->to($receipients) // Must an array
+            fcm()->to($recipients) // Must an array
             ->timeToLive($proPlayerOrder->play_duration *60) // In seconds
             ->data($payloads)
             ->notification($payloads)
