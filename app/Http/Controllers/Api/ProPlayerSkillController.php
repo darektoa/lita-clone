@@ -260,7 +260,7 @@ class ProPlayerSkillController extends Controller
     public function unorder(ProPlayerSkill $proPlayerSkill) {
         try{
             $userId = auth()->user()->id;
-            $user   = User::with(['player.proPlayerOrders.proPlayerSkill'])->find($userId);
+            $user   = User::with(['player.proPlayerOrders.proPlayerSkill.game'])->find($userId);
             $player = $user->player;
             $order  = $player->proPlayerOrders()
                 ->where('pro_player_skill_id', $proPlayerSkill->id)
@@ -269,6 +269,11 @@ class ProPlayerSkillController extends Controller
 
             if(!$order)
                 throw new Exception("Unprocessable, No pending orders", 422);
+
+            $proPlayerSkill->load([
+                'game',
+                'player.user',
+            ]);
 
             $order->update([
                 'status' => 3,
@@ -299,7 +304,7 @@ class ProPlayerSkillController extends Controller
 
             $payloads = [
                 'title' => 'Order berhasil dibatalkan',
-                'body'  => "Orderan {$order->proPlayerSkill->player->user->username} game [{$order->proPlayerSkill->game->name}] berhasil anda batalkan"
+                'body'  => "Orderan {$proPlayerSkill->player->user->username} game [{$proPlayerSkill->game->name}] berhasil anda batalkan"
             ];
 
             fcm()->to($recipients) // Must an array
