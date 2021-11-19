@@ -93,17 +93,16 @@ class ProPlayerOrderController extends Controller
                 ->makeHidden('status_name')
                 ->toArray()
             );
+
+            $payloads = [
+                'title' => 'Ayo main, order di terima !',
+                'body'  => "{$player->user->username} menerima orderan game [{$proPlayerSkill->game->name}] anda"
+            ];
  
             fcm()->to($receipients) // Must an array
             ->timeToLive($proPlayerOrder->play_duration *60) // In seconds
-            ->data([
-                'title' => 'Ayo main, order di terima !',
-                'body'  => "{$player->user->username} menerima orderan anda pada game [{$proPlayerSkill->game->name}]"
-            ])
-            ->notification([
-                'title' => 'Ayo main, order di terima !',
-                'body'  => "{$player->user->username} menerima orderan anda pada game [{$proPlayerSkill->game->name}]"
-            ])
+            ->data($payloads)
+            ->notification($payloads)
             ->send();
 
             return response()->json([
