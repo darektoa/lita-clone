@@ -153,6 +153,7 @@ class CoinTransactionController extends Controller
 
             fcm()->to($recipients) // Must an array
             ->timeToLive(2419200) // 28 days
+            ->data($payloads)
             ->notification($payloads)
             ->send();
 
