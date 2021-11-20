@@ -163,7 +163,8 @@ class ProPlayerSkillController extends Controller
     public function order(Request $request, ProPlayerSkill $proPlayerSkill) {
         try{
             $validator = Validator::make($request->all(), [
-                'expiry_duration'    => 'required|numeric|min:3|max:60'
+                'expiry_duration'   => 'required|numeric|min:3|max:60',
+                'quantity'          => 'required|numeric|min:1|max:10'
             ]);
 
             if($validator->fails()) {
@@ -201,7 +202,7 @@ class ProPlayerSkillController extends Controller
                 'pro_player_skill_id'   => $proPlayerSkill->id,
                 'coin'                  => $price['coin'],
                 'balance'               => $price['balance'],
-                'play_duration'         => 30,
+                'play_duration'         => 30 * $request->quantity,
                 'expiry_duration'       => intval($request->expiry_duration),
                 'status'                => 0
             ]);
