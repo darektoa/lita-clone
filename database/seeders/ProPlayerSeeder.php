@@ -19,7 +19,7 @@ class ProPlayerSeeder extends Seeder
             'email_verified_at' => now()
         ]);
 
-        $userPro->player()->create();
+        $userPro->player()->create(['is_pro_player' => 1]);
         $userPro->loginTokens()->create([
             'token' => '$2y$10$rbtnK1LTxxrkQaAHxRsHXOWSkPa6KHG6oPFMGypLHse/vdaQqpZoW'
         ]);
