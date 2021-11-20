@@ -23,7 +23,7 @@ class OptionalAuth
         $token = $request->header('X-Auth-Token');
         $loginToken = LoginToken::where('token', $token)->first();
 
-        if($token === null) return $next($request);
+        if(!$token) return $next($request);
         if(!$loginToken) return response()->json(['message' => 'Unauthorized token'], 401);
 
         Auth::login($loginToken->user);
