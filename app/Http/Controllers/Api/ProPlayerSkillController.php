@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 class ProPlayerSkillController extends Controller
 {
     public function index(Request $request) {
+        $playerId   = auth()->user()->player->id ?? null;
         $sortBy     = $request->sort;
         $sortValue  = $request->sort_value;
         $search     = $request->search;
@@ -38,6 +39,7 @@ class ProPlayerSkillController extends Controller
 
             $proPlayers = $proPlayers
                 ->where('status', 2)
+                ->where('player_id', '!=', $playerId)
                 ->paginate(10);
 
             return response()->json(
