@@ -202,6 +202,7 @@ class ProPlayerSkillController extends Controller
                 'pro_player_skill_id'   => $proPlayerSkill->id,
                 'coin'                  => $price['coin'],
                 'balance'               => $price['balance'],
+                'quantity'              => $request->quantity,
                 'play_duration'         => 30 * $request->quantity,
                 'expiry_duration'       => intval($request->expiry_duration),
                 'status'                => 0
