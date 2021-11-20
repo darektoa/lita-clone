@@ -34,11 +34,6 @@ Route::prefix('/genders')->group(function() {
     Route::get('/', [GenderController::class, 'index']);
 });
 
-// NOTIFICATION
-Route::prefix('/notifications')->middleware('optional.auth.api')->group(function() {
-    Route::post('/subscribe', [NotificationController::class, 'store']);
-});
-
 
 // WITH AUTHENTICATION
 Route::middleware(['auth.api'])->group(function() {
@@ -106,16 +101,23 @@ Route::middleware(['auth.api'])->group(function() {
 });
 
 
-// PRO PLAYER
-Route::prefix('/pro-players')->group(function() {
-    Route::prefix('/skill')->group(function() {
-        Route::get('/', [ProPlayerSkillController::class, 'index']);
-        Route::get('/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'show']);
+Route::middleware(['optional.auth.api'])->group(function() {
+    // NOTIFICATION
+    Route::prefix('/notifications')->group(function() {
+        Route::post('/subscribe', [NotificationController::class, 'store']);
     });
-
-    Route::get('/', [ProPlayerController::class, 'index']);
-    Route::get('/search', [ProPlayerController::class, 'search']);
-    Route::get('/{player:id}', [ProPlayerController::class, 'show']);
+    
+    // PRO PLAYER
+    Route::prefix('/pro-players')->group(function() {
+        Route::prefix('/skill')->group(function() {
+            Route::get('/', [ProPlayerSkillController::class, 'index']);
+            Route::get('/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'show']);
+        });
+    
+        Route::get('/', [ProPlayerController::class, 'index']);
+        Route::get('/search', [ProPlayerController::class, 'search']);
+        Route::get('/{player:id}', [ProPlayerController::class, 'show']);
+    });
 });
 
 
