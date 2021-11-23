@@ -15,6 +15,7 @@
   $settingNav = [
     'Banners' => route('setting.banners.index'),
     'Coins'   => route('setting.coins.index'),
+    'Faqs'    => route('setting.faqs.index'),
     'Games'   => route('setting.games.index'),
     'General' => route('setting.general.index'),
     'Genders' => route('setting.genders.index'),
