@@ -7,24 +7,24 @@ use App\Http\Resources\ProPlayerOrderResource;
 use App\Models\ProPlayerOrder;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
+use Illuminate\Support\{Arr, Str};
 use Illuminate\Support\Facades\Validator;
 
 class ProPlayerOrderController extends Controller
 {
     public function index(Request $request) {
         try{
-
-            $player = auth()->user()->player;
-            $status = $request->status;
-            $orders = ProPlayerOrder::with([
+            $player   = auth()->user()->player;
+            $status   = $request->status;
+            $statuses = explode(',', $status);
+            $orders   = ProPlayerOrder::with([
                 'proPlayerSkill.game',
                 'proPlayerSkill.tier',
                 'proPlayerSkill.player.user'
             ]);
                 
-            if($status !== null && $status >= 0 && $status <= 5)
-                $orders = $orders->where('status', $status);
+            if($status !== null)
+                $orders = $orders->whereIn('status', $statuses);
     
             $orders = $orders->where('player_id', $player->id)
                 ->latest()
