@@ -33,7 +33,7 @@
 			/>
 
 			<x-modal-input 
-				action="{{ route('setting.coins.update', [1]) }}"
+				action="{{ route('setting.genders.update', [1]) }}"
 				id="editGenderModal"
 				inputs="{!! json_encode($inputsAddGender) !!}"
 				method="PUT"
