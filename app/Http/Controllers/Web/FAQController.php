@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\FAQ;
+use Exception;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class FAQController extends Controller
 {
@@ -12,5 +14,27 @@ class FAQController extends Controller
         $FAQs = FAQ::paginate(10);
 
         return view('pages.admin.setting.faqs.index', compact('FAQs'));
+    }
+
+
+    public function store(Request $request) {
+        try{
+            $request->validate([
+                'question'  => 'required',
+                'answer'    => 'required',
+            ]);
+
+            FAQ::create([
+                'question'  => $request->question,
+                'answer'    => $request->answer
+            ]);
+
+            Alert::success('Success', 'Gender created successfully');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally{
+            return back();
+        }
     }
 }

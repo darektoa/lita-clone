@@ -1,13 +1,13 @@
 @php
   $inputsAddFAQ = [
     [
-      'id'    => 'question',
+      'id'    => 'FAQ-question',
       'label' => 'Question',
-      'name'  => 'FAQ-question'
+      'name'  => 'question'
 		], [
-      'id'    => 'answer',
+      'id'    => 'FAQ-answer',
       'label' => 'Answer',
-      'name'  => 'FAQ-answer'
+      'name'  => 'answer'
     ]
   ];
 @endphp
@@ -29,7 +29,7 @@
 		<div class="card-body table-responsive" style="min-height: 400px">
 
 			<x-modal-input 
-				action="{{ '' }}"
+				action="{{ route('setting.faqs.store') }}"
 				id="addFAQModal"
 				inputs="{!! json_encode($inputsAddFAQ) !!}"
 				method="POST"
@@ -67,7 +67,7 @@
 							<button class="btn btn-warning edit-FAQ" data-FAQ="{{ $FAQ }}" data-toggle="modal" data-target="#editFAQModal">
 								<i class="fas fa-edit" onclick=""></i>
 							</button>
-							<form action="{{ route('setting.FAQs.destroy', [$FAQ->id]) }}" method="POST" class="d-inline">
+							<form action="{{ '' }}" method="POST" class="d-inline">
                 @method('DELETE') @csrf
                 <button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
               </form>
