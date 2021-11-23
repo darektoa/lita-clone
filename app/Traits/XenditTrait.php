@@ -2,7 +2,9 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Str;
 use Xendit\Invoice as XenditInvoice;
+use Xendit\Platform as XenditPlatform;
 
 trait XenditTrait{
   static public function invoice($transaction) {
@@ -23,5 +25,17 @@ trait XenditTrait{
     ]);
 
     return $invoice;
+  }
+
+
+  static public function transfer($amount, $destination_user_id) {
+    $createTransfer = XenditPlatform::createTransfer([
+      'reference'           => Str::uuid(),
+      'amount'              => $amount,
+      'source_user_id'      => '54afeb170a2b18519b1b8768',
+      'destination_user_id' => $destination_user_id,
+    ]);
+
+    return $createTransfer;
   }
 }
