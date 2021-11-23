@@ -57,6 +57,10 @@ Route::middleware(['auth'])->group(function() {
         Route::delete('/{coinId}', [PredefineCoinController::class, 'destroy'])->name('destroy');
       });
 
+      Route::prefix('/faqs')->name('faqs.')->group(function() {
+        Route::get('/', [FAQController::class, 'index'])->name('index');
+      });
+
       Route::prefix('/genders')->name('genders.')->group(function() {
         Route::get('/', [GenderController::class, 'index'])->name('index');
         Route::post('/', [GenderController::class, 'store'])->name('store');
