@@ -29,11 +29,38 @@ class FAQController extends Controller
                 'answer'    => $request->answer
             ]);
 
-            Alert::success('Success', 'Gender created successfully');
+            Alert::success('Success', 'FAQ created successfully');
         }catch(Exception $err) {
             $errMessage = $err->getMessage();
             Alert::error('Failed', $errMessage);
         }finally{
+            return back();
+        }
+    }
+
+
+    public function update(Request $request, $faqId) {
+        try{
+            $request->validate([
+                'question'  => 'required',
+                'answer'    => 'required',
+            ]);
+
+            $faq = FAQ::find($faqId);
+
+            if(!$faq)
+                throw new Exception('FAQ not found', 404);
+
+            $faq->update([
+                'question'  => $request->question,
+                'answer'    => $request->answer
+            ]);
+
+            Alert::success('Success', 'FAQ updated successfully');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally {
             return back();
         }
     }

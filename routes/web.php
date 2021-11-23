@@ -60,6 +60,7 @@ Route::middleware(['auth'])->group(function() {
       Route::prefix('/faqs')->name('faqs.')->group(function() {
         Route::get('/', [FAQController::class, 'index'])->name('index');
         Route::post('/', [FAQController::class, 'store'])->name('store');
+        Route::put('/{faqId}', [FAQController::class, 'update'])->name('update');
       });
 
       Route::prefix('/genders')->name('genders.')->group(function() {

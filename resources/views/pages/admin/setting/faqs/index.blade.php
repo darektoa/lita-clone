@@ -37,7 +37,7 @@
 			/>
 
 			<x-modal-input 
-				action="{{ '' }}"
+				action="{{ route('setting.faqs.update', [1]) }}"
 				id="editFAQModal"
 				inputs="{!! json_encode($inputsAddFAQ) !!}"
 				method="PUT"
@@ -64,7 +64,7 @@
               {{ $FAQ->answer }}
 						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
-							<button class="btn btn-warning edit-FAQ" data-FAQ="{{ $FAQ }}" data-toggle="modal" data-target="#editFAQModal">
+							<button class="btn btn-warning edit-FAQ" data-faq="{{ $FAQ }}" data-toggle="modal" data-target="#editFAQModal">
 								<i class="fas fa-edit" onclick=""></i>
 							</button>
 							<form action="{{ '' }}" method="POST" class="d-inline">
@@ -92,8 +92,8 @@
       const editForm	  		= document.querySelector('#editFAQModal form');
       const questionField   = editForm.querySelector('#FAQ-question');
       const answerField   	= editForm.querySelector('#FAQ-answer');
-      const FAQData 				= JSON.parse(item.dataset.FAQ);
-      const endpoint	  		= `{{ '' }}/${FAQData.id}`;
+      const FAQData 				= JSON.parse(item.dataset.faq);
+      const endpoint	  		= `{{ route('setting.faqs.update', ['']) }}/${FAQData.id}`;
       editForm.action   		= endpoint;
       questionField.value   = FAQData.question;
       answerField.value   	= FAQData.answer;
