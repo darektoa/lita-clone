@@ -67,7 +67,7 @@
 							<button class="btn btn-warning edit-FAQ" data-faq="{{ $FAQ }}" data-toggle="modal" data-target="#editFAQModal">
 								<i class="fas fa-edit" onclick=""></i>
 							</button>
-							<form action="{{ '' }}" method="POST" class="d-inline">
+							<form action="{{ route('setting.faqs.update', [$FAQ->id]) }}" method="POST" class="d-inline">
                 @method('DELETE') @csrf
                 <button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
               </form>

@@ -64,4 +64,23 @@ class FAQController extends Controller
             return back();
         }
     }
+
+
+    public function destroy($faqId) {
+        try{
+            $faq = FAQ::find($faqId);
+
+            if(!$faq)
+                throw new Exception('FAQ not found', 404);
+
+            $faq->delete();
+
+            Alert::success('Success', 'FAQ deleted successfully');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Success', $errMessage);
+        }finally{
+            return back();
+        }
+    }
 }
