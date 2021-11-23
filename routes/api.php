@@ -14,10 +14,14 @@ Route::prefix('/banners')->group(function() {
     Route::get('/', [AppBannerController::class, 'index']);
 });
 
-
 // COIN
 Route::prefix('/coins')->group(function() {
     Route::get('/', [PredefineCoinController::class, 'index']);
+});
+
+// FAQ
+Route::prefix('/faqs')->group(function() {
+    Route::get('/', [FAQController::class, 'index']);
 });
 
 // GAME
