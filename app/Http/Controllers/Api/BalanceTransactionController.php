@@ -3,19 +3,35 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\{AppSetting, BalanceTransaction};
+use App\Models\{AppSetting, BalanceTransaction, User};
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BalanceTransactionController extends Controller
 {
     public function withdraw(Request $request) {
         try{
+            $validator  = Validator::make($request->all(), [
+                'amount'        => 'required|numeric',
+                'description'   => 'nullable|max:255'
+            ]);
+
+            if($validator->fails())
+                return response()->json([
+                    'status'    => 422,
+                    'message'   => 'Unprocessable, Invalid field',
+                    'errors'    => $validator->errors(),
+                ]);
+
             $amount      = $request->amount;
             $description = $request->description;
-            $user        = auth()->user();
-            $app         = AppSetting::first();
+            $user        = User::with(['player'])->find(auth()->user()->id);
 
+            if($amount > $user->player->balance)
+                throw new Exception('Unprocessable, Amount must be last than or equal to balance', 422);
+
+            $app         = AppSetting::first();
             $transaction = BalanceTransaction::create([
                 'receiver_id'   => $user->id,
                 'balance'       => $amount,
@@ -37,7 +53,7 @@ class BalanceTransactionController extends Controller
             return response()->json([
                 'status'    => $errCode,
                 'message'   => $errMessage,
-            ]);
+            ], $errCode);
         }
     }
 }
