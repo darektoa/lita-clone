@@ -10,6 +10,8 @@ class BalanceTransaction extends Model
 {
     use HasFactory;
 
+    protected $appends  = ['type_name'];
+
     protected $guarded  = ['id'];
 
 
@@ -32,7 +34,7 @@ class BalanceTransaction extends Model
     }
 
     
-    public function typeName() {
+    public function getTypeNameAttribute() {
         $typeName = null;
 
         switch($this->type){
