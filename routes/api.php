@@ -83,6 +83,10 @@ Route::middleware(['auth.api'])->group(function() {
 
     // ONLY PRO PLAYER
     Route::middleware(['pro.player.api'])->group(function() {
+        Route::prefix('/balances')->group(function() {
+            Route::post('/withdraw', []);
+        });
+
         Route::prefix('/pro')->group(function() {
             Route::get('/orders', [ProPlayerOrderController::class, 'proIndex']);
             Route::get('/orders/{proPlayerOrder:id}/approve', [ProPlayerOrderController::class, 'approve']);
