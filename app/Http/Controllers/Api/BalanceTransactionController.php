@@ -27,8 +27,9 @@ class BalanceTransactionController extends Controller
             $amount      = $request->amount;
             $description = $request->description;
             $user        = User::with(['player'])->find(auth()->user()->id);
+            $player      = $user->player;
 
-            if($amount > $user->player->balance)
+            if($amount > $player->balance)
                 throw new Exception('Unprocessable, Amount must be last than or equal to balance', 422);
 
             $app         = AppSetting::first();
@@ -40,6 +41,9 @@ class BalanceTransactionController extends Controller
                 'type'          => 4,
                 'status'        => 'pending',
             ]);
+
+            $player->balance -= $amount;
+            $player->update();
 
             return response()->json([
                 'status'    => 200,
