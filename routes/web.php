@@ -24,6 +24,10 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/topup/approve/{coinPurchase:id}', [CoinPurchaseController::class, 'approve'])->name('topup.approve');
     Route::get('/topup/reject/{coinPurchase:id}', [CoinPurchaseController::class, 'reject'])->name('topup.reject');
 
+    Route::prefix('withdraws')->name('withdraws.')->group(function() {
+      Route::get('/', [BalanceTransactionController::class, 'index']);
+    });
+
     Route::prefix('/pro-players')->name('pro-players.')->group(function() {
       Route::get('/', [ProPlayerSkillController::class, 'index'])->name('index');
       Route::get('/approve/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'approve'])->name('approve');
