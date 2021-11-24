@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function() {
     Route::prefix('withdraws')->name('withdraws.')->group(function() {
       Route::get('/', [BalanceTransactionController::class, 'index'])->name('index');
       Route::get('/approve/{balanceTransaction:id}', [BalanceTransactionController::class, 'approve'])->name('approve');
+      Route::get('/reject/{balanceTransaction:id}', [BalanceTransactionController::class, 'reject'])->name('reject');
     });
 
     Route::prefix('/pro-players')->name('pro-players.')->group(function() {

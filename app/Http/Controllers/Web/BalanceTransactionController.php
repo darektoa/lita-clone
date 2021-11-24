@@ -31,4 +31,23 @@ class BalanceTransactionController extends Controller
             return back();
         }
     }
+
+
+    public function reject(BalanceTransaction $transaction) {
+        try{
+            if($transaction->status != 'pending')
+                throw new Exception('Cannot edit response', 422);
+
+            $transaction->status = 'rejected';
+            $transaction->user->player->balance += $transaction->amount;
+            $transaction->user->player->update();
+            $transaction->update();
+            Alert::success('Success', 'Successfully Rejected');
+            return back();
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+            return back();
+        }
+    }
 }
