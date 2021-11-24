@@ -84,7 +84,7 @@ Route::middleware(['auth.api'])->group(function() {
     // ONLY PRO PLAYER
     Route::middleware(['pro.player.api'])->group(function() {
         Route::prefix('/balances')->group(function() {
-            Route::post('/withdraw', []);
+            Route::post('/withdraw', [BalanceTransactionController::class, 'withdraw']);
         });
 
         Route::prefix('/pro')->group(function() {
