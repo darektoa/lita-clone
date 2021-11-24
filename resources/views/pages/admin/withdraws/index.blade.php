@@ -52,8 +52,8 @@
 
 						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
-							<a href="{{ ''}}" class="btn btn-success {{ $transaction->status ? 'disabled' : '' }}" title="Approve"><i class="fas fa-check"></i></a>
-							<a href="{{ '' }}" class="btn btn-danger {{ $transaction->status ? 'disabled' : '' }}" title="Reject"><i class="fas fa-ban"></i></a>
+							<a href="{{ route('withdraws.approve', [$transaction->id]) }}" class="btn btn-success {{ $transaction->status !== 'pending' ? 'disabled' : '' }}" title="Approve"><i class="fas fa-check"></i></a>
+							<a href="{{ '' }}" class="btn btn-danger {{ $transaction->status !== 'pending' ? 'disabled' : '' }}" title="Reject"><i class="fas fa-ban"></i></a>
 						</td>
 					</tr>
 					@endforeach
