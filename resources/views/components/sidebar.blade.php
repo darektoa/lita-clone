@@ -55,7 +55,7 @@
     active="{{Request::is('withdrawal') }}"
     icon="fa-money-bill-wave"
     name="Withdrawal" 
-    route="/withdrawal" />
+    route="{{ route('withdraws.index') }}" />
 
   <x-sidebar.nav-collapse-item
     active="{{Request::is('setting') }}"

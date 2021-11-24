@@ -25,7 +25,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/topup/reject/{coinPurchase:id}', [CoinPurchaseController::class, 'reject'])->name('topup.reject');
 
     Route::prefix('withdraws')->name('withdraws.')->group(function() {
-      Route::get('/', [BalanceTransactionController::class, 'index']);
+      Route::get('/', [BalanceTransactionController::class, 'index'])->name('index');
     });
 
     Route::prefix('/pro-players')->name('pro-players.')->group(function() {
