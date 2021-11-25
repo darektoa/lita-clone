@@ -24,6 +24,11 @@ class ProPlayerOrder extends Model
     }
 
 
+    public function review() {
+        return $this->hasOne(ProPlayerOrderReview::class);
+    }
+
+
     public function getStatusAttribute($value) {
         $this->autoExpired($value);
         $this->autoEnded($value);
