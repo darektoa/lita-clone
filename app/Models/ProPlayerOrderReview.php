@@ -10,4 +10,9 @@ class ProPlayerOrderReview extends Model
     use HasFactory;
 
     protected $guarded  = ['id'];
+
+
+    public function proPlayerOrder() {
+        return $this->belongsTo(ProPlayerOrder::class);
+    }
 }
