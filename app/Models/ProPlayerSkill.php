@@ -38,6 +38,11 @@ class ProPlayerSkill extends Model
     }
 
 
+    public function proPlayerOrderReviews() {
+        return $this->hasManyThrough(ProPlayerOrderReview::class, ProPlayerOrder::class);
+    }
+
+
     public function getStatusNameAttribute() {
         $statusName = null;
 
