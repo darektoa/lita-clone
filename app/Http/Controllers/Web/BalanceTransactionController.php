@@ -17,12 +17,15 @@ class BalanceTransactionController extends Controller
     }
 
 
-    public function approve(BalanceTransaction $transaction) {
+    public function approve(BalanceTransaction $balanceTransaction) {
         try{
-            if($transaction->status != 'pending')
+            if($balanceTransaction->status != 'pending')
                 throw new Exception('Cannot edit response', 422);
 
-            $transaction->status = 'approved';
+            $balanceTransaction->update([
+                'status' => 'approved'
+            ]);
+
             Alert::success('Success', 'Successfully Approved');
             return back();
         }catch(Exception $err) {
@@ -33,15 +36,16 @@ class BalanceTransactionController extends Controller
     }
 
 
-    public function reject(BalanceTransaction $transaction) {
+    public function reject(BalanceTransaction $balanceTransaction) {
+        dd($balanceTransaction->amount);
         try{
-            if($transaction->status != 'pending')
+            if($balanceTransaction->status != 'pending')
                 throw new Exception('Cannot edit response', 422);
 
-            $transaction->status = 'rejected';
-            $transaction->user->player->balance += $transaction->amount;
-            $transaction->user->player->update();
-            $transaction->update();
+            $balanceTransaction->status = 'rejected';
+            $balanceTransaction->receiver->player->balance += $balanceTransaction->amount;
+            $balanceTransaction->receiver->player->update();
+            $balanceTransaction->update();
             Alert::success('Success', 'Successfully Rejected');
             return back();
         }catch(Exception $err) {
