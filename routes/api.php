@@ -121,6 +121,7 @@ Route::middleware(['optional.auth.api'])->group(function() {
         Route::prefix('/skill')->group(function() {
             Route::get('/', [ProPlayerSkillController::class, 'index']);
             Route::get('/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'show']);
+            Route::get('/{proPlayerSkill:id}/reviews', [ProPlayerSkillController::class, 'reviews']);
         });
     
         Route::get('/', [ProPlayerController::class, 'index']);
