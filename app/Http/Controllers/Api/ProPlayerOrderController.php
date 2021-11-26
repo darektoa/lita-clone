@@ -204,6 +204,9 @@ class ProPlayerOrderController extends Controller
             if($proPlayerOrder->player_id === auth()->user()->id)
                 throw new Exception('Not allowed, This is not your order', 403);
 
+            if($proPlayerOrder->status !== 4) // 4 = Ended Status
+                throw new Exception('Unprocessable, This is not a finished order', 422);
+
             if($proPlayerOrder->review)
                 throw new Exception('Unprocessable, You have reviewed the order', 422);
 
