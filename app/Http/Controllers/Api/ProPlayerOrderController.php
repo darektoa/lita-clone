@@ -189,6 +189,24 @@ class ProPlayerOrderController extends Controller
 
     public function review(Request $request, ProPlayerOrder $proPlayerOrder) {
         try{
+            $validator = Validator::make($request->all(), [
+                'star'   => 'required|numeric|min:1|max:5',
+                'review' => 'required'
+            ]);
+
+            if($validator->fails())
+                return response()->json([
+                    'status'    => 422,
+                    'message'   => 'Unprocessable, Invalid field',
+                    'errors'    => $validator->errors(),
+                ]);
+
+            if($proPlayerOrder->player_id === auth()->user()->id)
+                throw new Exception('Not allowed, This is not your order', 403);
+
+            if($proPlayerOrder->review)
+                throw new Exception('Unprocessable, You have reviewed the order', 422);
+
             $review = $proPlayerOrder->review()->create([
                 'star'      => $request->star,
                 'review'    => $request->review,
@@ -200,7 +218,6 @@ class ProPlayerOrderController extends Controller
                 'data'      => $review
             ]);
         }catch(Exception $err) {
-            dd($err);
             $errCode    = $err->getCode() ?? 400;
             $errMessage = $err->getMessage();
             return response()->json([
