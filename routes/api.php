@@ -72,6 +72,7 @@ Route::middleware(['auth.api'])->group(function() {
     // ORDER
     Route::prefix('/orders')->group(function() {
         Route::get('/', [ProPlayerOrderController::class, 'index']);
+        Route::post('/{proPlayerOrder:id}/review', [ProPlayerOrderController::class, 'review']);
     });
 
     // PROFILE
