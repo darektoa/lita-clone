@@ -185,4 +185,28 @@ class ProPlayerOrderController extends Controller
             ], $errCode);
         }
     }
+
+
+    public function review(Request $request, ProPlayerOrder $proPlayerOrder) {
+        try{
+            $review = $proPlayerOrder->review()->create([
+                'star'      => $request->star,
+                'review'    => $request->review,
+            ]);
+
+            return response()->json([
+                'status'    => 200,
+                'message'   => 'OK',
+                'data'      => $review
+            ]);
+        }catch(Exception $err) {
+            dd($err);
+            $errCode    = $err->getCode() ?? 400;
+            $errMessage = $err->getMessage();
+            return response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage,
+            ], $errCode);
+        }
+    }
 }
