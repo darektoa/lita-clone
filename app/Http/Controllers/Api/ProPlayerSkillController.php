@@ -388,4 +388,17 @@ class ProPlayerSkillController extends Controller
             ]);
         }
     }
+
+
+    public function reviews(ProPlayerSkill $proPlayerSkill) {
+        $reviews = $proPlayerSkill->proPlayerOrderReviews()->paginate(10);
+
+        return response()->json(
+            collect([
+                'status'    => 200,
+                'message'   => 'OK',
+            ])
+            ->merge($reviews)
+        );
+    }
 }
