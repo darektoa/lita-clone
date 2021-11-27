@@ -58,10 +58,10 @@
 					@foreach ($FAQs as $FAQ)
 					<tr>
 						<td class="align-middle">{{ $loop->iteration }}</td>
-						<td class="align-middle" style="white-space: nowrap">
+						<td class="align-middle">
               {{ $FAQ->question }}
 						</td>
-						<td class="align-middle" style="white-space: nowrap">
+						<td class="align-middle">
               {{ $FAQ->answer }}
 						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
