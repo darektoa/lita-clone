@@ -96,7 +96,7 @@ class ProPlayerSkillController extends Controller
         
         // INSERT A PLAYER SKILL SCREENSHOTS
         foreach($request->screenshots as $screenshot) {
-            $screenshotPath = StorageHelper::put('/images/pro-players/skills', $screenshot);
+            $screenshotPath = StorageHelper::put('images/pro-players/skills', $screenshot);
             ProPlayerSkillScreenshot::create([
                 'pro_player_skill_id'   => $proPlayerSkill->id,
                 'url'                   => $screenshotPath
