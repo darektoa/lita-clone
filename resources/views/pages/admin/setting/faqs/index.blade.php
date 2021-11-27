@@ -48,7 +48,8 @@
 				<thead>
 					<tr>
             <th class="col-1">#</th>
-						<th>FAQ</th>
+						<th>Question</th>
+						<th>Answer</th>
 						<th>Action</th>
 					</tr>
 				</thead>
