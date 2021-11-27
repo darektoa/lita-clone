@@ -1,13 +1,13 @@
 @php
   $inputsAddFAQ = [
     [
-      'id'    => 'FAQ-question',
-      'label' => 'Question',
-      'name'  => 'question'
+      'id'    	 => 'FAQ-question',
+      'label' 	 => 'Question',
+      'name'  	 => 'question',
 		], [
-      'id'    => 'FAQ-answer',
-      'label' => 'Answer',
-      'name'  => 'answer'
+      'id'    	 => 'FAQ-answer',
+      'label' 	 => 'Answer',
+      'name'  	 => 'answer',
     ]
   ];
 @endphp
