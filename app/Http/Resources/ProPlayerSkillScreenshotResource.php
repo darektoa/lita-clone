@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Helpers\StorageHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProPlayerSkillScreenshotResource extends JsonResource
@@ -16,7 +17,7 @@ class ProPlayerSkillScreenshotResource extends JsonResource
     {
         return [
             "id"  => $this->id,
-            "url" => $this->url
+            "url" => StorageHelper::url($this->url)
         ];
     }
 }
