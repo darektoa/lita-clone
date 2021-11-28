@@ -82,7 +82,20 @@ class ProPlayerSkillController extends Controller
             ], 422);
         }
 
-        if(!isset(auth()->user()->player))
+        $user          = auth()->user();
+        $validatorUser = Validator::make($user->toArray(), [
+            '*'          => 'required',
+            'deleted_at' => 'nullable'
+        ]);
+        
+        if($validatorUser->fails())
+            return response()->json([
+                'status'    => 422,
+                'message'   => 'Unprocessable, Please complete the user profile',
+                'errors'    => $validatorUser->errors(),
+            ]);
+
+        if(!isset($user->player))
             return response()->json(['message' => 'Only player can become a pro player']);
         
         $proPlayerSkill = ProPlayerSkill::create([
