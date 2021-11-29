@@ -1,13 +1,15 @@
 @php
   $inputsAddFAQ = [
     [
-      'id'    => 'FAQ-question',
-      'label' => 'Question',
-      'name'  => 'question'
+      'id'    	 => 'FAQ-question',
+      'label' 	 => 'Question',
+      'name'  	 => 'question',
+			'textarea' => true
 		], [
-      'id'    => 'FAQ-answer',
-      'label' => 'Answer',
-      'name'  => 'answer'
+      'id'    	 => 'FAQ-answer',
+      'label' 	 => 'Answer',
+      'name'  	 => 'answer',
+			'textarea' => true,
     ]
   ];
 @endphp
@@ -48,7 +50,8 @@
 				<thead>
 					<tr>
             <th class="col-1">#</th>
-						<th>FAQ</th>
+						<th>Question</th>
+						<th>Answer</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -57,10 +60,10 @@
 					@foreach ($FAQs as $FAQ)
 					<tr>
 						<td class="align-middle">{{ $loop->iteration }}</td>
-						<td class="align-middle" style="white-space: nowrap">
+						<td class="align-middle">
               {{ $FAQ->question }}
 						</td>
-						<td class="align-middle" style="white-space: nowrap">
+						<td class="align-middle">
               {{ $FAQ->answer }}
 						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
