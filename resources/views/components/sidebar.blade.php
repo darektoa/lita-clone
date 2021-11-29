@@ -42,20 +42,28 @@
     icon="fa-coins"
     name="Coins"
     routes="{!! json_encode($coinNav) !!}" />
-  
-  @isset(auth()->user()->admin)
-  <x-sidebar.nav-collapse-item
-    active="{{Request::is('pro-players') }}"
-    icon="fa-user-check"
-    name="Pro Players"
-    routes="{!! json_encode($proPlayerNav) !!}" />
-  @endisset
 
   <x-sidebar.nav-item
     active="{{Request::is('withdrawal') }}"
     icon="fa-money-bill-wave"
     name="Withdrawal" 
     route="{{ route('withdraws.index') }}" />
+
+
+  @isset(auth()->user()->admin)
+  <x-sidebar.nav-collapse-item
+    active="{{Request::is('pro-players') }}"
+    icon="fa-user-check"
+    name="Pro Players"
+    routes="{!! json_encode($proPlayerNav) !!}" />
+
+  <x-sidebar.nav-item
+    active="{{Request::is('users') }}"
+    icon="fa-users"
+    name="Users" 
+    route="{{ route('users.index') }}" />
+  @endisset
+
 
   <x-sidebar.nav-collapse-item
     active="{{Request::is('setting') }}"
