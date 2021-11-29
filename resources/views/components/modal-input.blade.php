@@ -15,7 +15,13 @@
                     @foreach($inputs as $input)
                     <div class="form-group">
                         <label for="{{ $input->id }}" class="col-form-label">{{ $input->label }}</label>
+
+                        @isset($input->textarea)
+                        <textarea class="form-control" id="{{ $input->id }}" name="{{ $input->name }}" rows="{{ $input->textarea->rows ?? 4 }}"></textarea>
+                        @else
                         <input type="{{ $input->type ?? 'text' }}" class="form-control" id="{{ $input->id }}" name={{ $input->name }}>
+                        @endif
+
                     </div>
                     @endforeach
 
