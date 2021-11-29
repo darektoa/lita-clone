@@ -45,7 +45,10 @@
 						<td class="align-middle">{{ $user->email }}</td>
 						<td class="align-middle {{ $roleClass }}">{{ $role }}</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
-							<a href="{{ '' }}" class="btn btn-danger {{ $user->deleted_at ? 'disabled' : '' }}" title="Reject"><i class="fas fa-trash"></i></a>
+							<form action="{{ route('users.destroy', [$user->id]) }}" method="POST" class="d-inline">
+                @method('DELETE') @csrf
+                <button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
+              </form>
 						</td>
 					</tr>
 					@endforeach

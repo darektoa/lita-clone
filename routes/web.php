@@ -94,6 +94,7 @@ Route::middleware(['auth'])->group(function() {
 
     Route::prefix('/users')->name('users.')->group(function() {
       Route::get('/', [UserController::class, 'index'])->name('index');
+      Route::delete('/{userId}', [UserController::class, 'destroy'])->name('destroy');
     });
   });
   
