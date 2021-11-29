@@ -46,7 +46,7 @@
   @isset(auth()->user()->admin)
   <x-sidebar.nav-collapse-item
     active="{{Request::is('pro-players') }}"
-    icon="fa-users"
+    icon="fa-user-check"
     name="Pro Players"
     routes="{!! json_encode($proPlayerNav) !!}" />
   @endisset
