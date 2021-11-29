@@ -12,6 +12,7 @@ class ProPlayerSkill extends Model
 
     protected $appends  = [
         'status_name',
+        'online_name',
         'price_permatch'
     ];
 
@@ -54,6 +55,20 @@ class ProPlayerSkill extends Model
         }
 
         return $statusName;
+    }
+
+
+    public function getOnlineNameAttribute() {
+        $onlineName = null;
+
+        switch($this->online) {
+            case 0: $onlineName = 'Offline'; break;
+            case 1: $onlineName = 'Online'; break;
+            case 2: $onlineName = 'In Order'; break;
+            default: $onlineName = 'Unknown';
+        }
+
+        return $onlineName;
     }
 
 
