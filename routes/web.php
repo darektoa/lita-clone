@@ -90,6 +90,11 @@ Route::middleware(['auth'])->group(function() {
         Route::delete('/{tierId}', [TierController::class, 'destroy'])->name('destroy');
       });
     });
+
+
+    Route::prefix('/users')->name('users.')->group(function() {
+      Route::get('/', [UserController::class, 'index'])->name('index');
+    });
   });
   
   Route::middleware(['player'])->group(function() {
