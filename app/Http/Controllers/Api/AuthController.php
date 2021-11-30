@@ -44,11 +44,11 @@ class AuthController extends Controller
 
     public function loginSSO(Request $request) {
         $user       = User::where('email', $request->email)->first();
-        $login      = $this->login($request)->getData();
-        $register   = $this->register($request)->getData();
+        $login      = $this->login($request);
+        $register   = $this->register($request);
 
-        if(isset($login->token)) return $login;
-        if(isset($register->token)) return $register;
+        if(isset($login->getData()->token)) return $login;
+        if(isset($register->getData()->token)) return $register;
 
         if($user) return $login;
         return $register;
