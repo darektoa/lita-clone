@@ -28,6 +28,8 @@ class ProPlayerSkillResource extends JsonResource
             'voice'                         => StorageHelper::url($this->voice),
             'status'                        => $this->status,
             'status_name'                   => $this->status_name,
+            'activity'                      => $this->activity,
+            'activity_name'                 => $this->activity_name,
             'price_permatch'                => $this->price_permatch,
             'game'                          => GameResource::make($this->whenLoaded('game')),
             'tier'                          => TierResource::make($this->whenLoaded('tier')),
