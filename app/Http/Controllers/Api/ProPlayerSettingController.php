@@ -33,7 +33,7 @@ class ProPlayerSettingController extends Controller
                 $skills = $skills->whereIn('game_id', explode(',', $games));
 
             $skills->update([
-                'online'    => $request->activity
+                'activity'    => $request->activity
             ]);
 
             return response()->json([
