@@ -93,6 +93,10 @@ Route::middleware(['auth.api'])->group(function() {
             Route::get('/orders/{proPlayerOrder:id}/approve', [ProPlayerOrderController::class, 'approve']);
             Route::get('/orders/{proPlayerOrder:id}/reject', [ProPlayerOrderController::class, 'reject']);
         });
+
+        Route::prefix('/settings')->group(function() {
+            Route::put('/online', [ProPlayerSettingController::class, 'online']);
+        });
     }); 
 
 
