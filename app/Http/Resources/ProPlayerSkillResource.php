@@ -21,7 +21,7 @@ class ProPlayerSkillResource extends JsonResource
             'id'                            => $this->id,
             'game_user_id'                  => $this->game_user_id,
             'game_tier'                     => $this->game_tier,
-            'game_roles'                    => $this->game_roles,
+            'game_roles'                    => explode(',', $this->game_roles),
             'game_level'                    => $this->game_level,
             'rate'                          => $this->rate,
             'bio'                           => $this->bio,
