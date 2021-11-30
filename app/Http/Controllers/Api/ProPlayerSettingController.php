@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ProPlayerSettingController extends Controller
 {
-    public function online(Request $request) {
+    public function activity(Request $request) {
         try{
             $user   = auth()->user();
             $games  = explode(',', $request->games);
@@ -19,7 +19,7 @@ class ProPlayerSettingController extends Controller
                 ->whereIn('game_id', $games);
 
             $skills->update([
-                'online'    => 1 // 1 = Online
+                'online'    => $request->activity
             ]);
 
             return response()->json([

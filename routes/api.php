@@ -95,7 +95,7 @@ Route::middleware(['auth.api'])->group(function() {
         });
 
         Route::prefix('/settings')->group(function() {
-            Route::put('/activity', [ProPlayerSettingController::class, 'online']);
+            Route::put('/activity', [ProPlayerSettingController::class, 'activity']);
         });
     }); 
 
