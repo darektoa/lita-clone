@@ -11,8 +11,8 @@ class ProPlayerSkill extends Model
     use HasFactory;
 
     protected $appends  = [
+        'activity_name',
         'status_name',
-        'online_name',
         'price_permatch'
     ];
 
@@ -58,17 +58,17 @@ class ProPlayerSkill extends Model
     }
 
 
-    public function getOnlineNameAttribute() {
-        $onlineName = null;
+    public function getActivityNameAttribute() {
+        $activityName = null;
 
-        switch($this->online) {
-            case 0: $onlineName = 'Offline'; break;
-            case 1: $onlineName = 'Online'; break;
-            case 2: $onlineName = 'In Order'; break;
-            default: $onlineName = 'Unknown';
+        switch($this->activity) {
+            case 0: $activityName = 'Offline'; break;
+            case 1: $activityName = 'Online'; break;
+            case 2: $activityName = 'In Order'; break;
+            default: $activityName = 'Unknown';
         }
 
-        return $onlineName;
+        return $activityName;
     }
 
 
