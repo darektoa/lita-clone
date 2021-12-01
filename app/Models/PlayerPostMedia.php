@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class PlayerPostMedia extends Model
 {
     use HasFactory;
+
+    protected $guarded  = ['id'];
 }
