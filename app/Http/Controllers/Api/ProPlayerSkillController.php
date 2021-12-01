@@ -65,69 +65,77 @@ class ProPlayerSkillController extends Controller
 
 
     public function store(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'game_id'       => 'bail|required|exists:games,id',
-            'game_user_id'  => 'required|alpha_num|min:2|max:20',
-            'game_tier'     => 'required|min:2|max:50',
-            'game_roles'    => 'required|min:2|max:255',
-            'game_level'    => 'required|digits_between:1,6',
-            'screenshots'   => 'required|array|max:5',
-            'screenshots.*' => 'image|max:10240'
-        ]);
-
-        if($validator->fails()) {
-            $errors = $validator->errors();
-            return response()->json([
-                'status'    => 422,
-                'message'   => 'Unprocessable, Invalid field',
-                'errors'    => $errors->all()
-            ], 422);
-        }
-
-        $user          = auth()->user();
-        $validatorUser = Validator::make($user->toArray(), [
-            '*'                 => 'required',
-            'email_verified_at' => 'nullable',
-            'remember_token'    => 'nullable',
-            'deleted_at'        => 'nullable'
-        ]);
-        
-        if($validatorUser->fails())
-            return response()->json([
-                'status'    => 422,
-                'message'   => 'Unprocessable, Please complete the user profile',
-                'errors'    => $validatorUser->errors(),
-            ], 422);
-
-        if(!isset($user->player))
-            return response()->json(['message' => 'Only player can become a pro player']);
-        
-        $proPlayerSkill = ProPlayerSkill::create([
-            'player_id'     => auth()->user()->player->id,
-            'game_id'       => $request->game_id,
-            'game_user_id'  => $request->game_user_id,
-            'game_tier'     => $request->game_tier,
-            'game_roles'    => $request->game_roles,
-            'game_level'    => $request->game_level
-        ]);
-        
-        // INSERT A PLAYER SKILL SCREENSHOTS
-        foreach($request->screenshots as $screenshot) {
-            $screenshotPath = StorageHelper::put('images/pro-players/skills', $screenshot);
-            ProPlayerSkillScreenshot::create([
-                'pro_player_skill_id'   => $proPlayerSkill->id,
-                'url'                   => $screenshotPath
+        try{
+            $validator = Validator::make($request->all(), [
+                'game_id'       => 'bail|required|exists:games,id',
+                'game_user_id'  => 'required|alpha_num|min:2|max:20',
+                'game_tier'     => 'required|min:2|max:50',
+                'game_roles'    => 'required|min:2|max:255',
+                'game_level'    => 'required|digits_between:1,6',
+                'screenshots'   => 'required|array|max:5',
+                'screenshots.*' => 'image|max:10240'
             ]);
-        };
+    
+            if($validator->fails())
+                return response()->json([
+                    'status'    => 422,
+                    'message'   => 'Unprocessable, Invalid field',
+                    'errors'    => $validator->errors()->all()
+                ], 422);
+    
+            $user          = User::with('player.proPlayerSkills')->find(auth()->user()->id);
+            $validatorUser = Validator::make($user->toArray(), [
+                '*'                 => 'required',
+                'email_verified_at' => 'nullable',
+                'remember_token'    => 'nullable',
+                'deleted_at'        => 'nullable'
+            ]);
+            
+            if($validatorUser->fails())
+                return response()->json([
+                    'status'    => 422,
+                    'message'   => 'Unprocessable, Please complete the user profile',
+                    'errors'    => $validatorUser->errors(),
+                ], 422);
+    
+            if(!isset($user->player))
+                throw new Exception('Only player can become a pro player', 403);
+            
+            $proPlayerSkill = ProPlayerSkill::create([
+                'player_id'     => auth()->user()->player->id,
+                'game_id'       => $request->game_id,
+                'game_user_id'  => $request->game_user_id,
+                'game_tier'     => $request->game_tier,
+                'game_roles'    => $request->game_roles,
+                'game_level'    => $request->game_level
+            ]);
+            
+            // INSERT A PLAYER SKILL SCREENSHOTS
+            foreach($request->screenshots as $screenshot) {
+                $screenshotPath = StorageHelper::put('images/pro-players/skills', $screenshot);
+                ProPlayerSkillScreenshot::create([
+                    'pro_player_skill_id'   => $proPlayerSkill->id,
+                    'url'                   => $screenshotPath
+                ]);
+            };
+    
+            $proPlayerSkill = ProPlayerSkill::with('proPlayerSkillScreenshots')
+                ->find($proPlayerSkill->id);
+    
+            return response()->json([
+                'status'  => 200,
+                'message' => 'OK',
+                'data'    => new ProPlayerSkillResource($proPlayerSkill)
+            ]);
+        }catch(Exception $err) {
+            $errCode    = $err->getCode() ?? 400;
+            $errMessage = $err->getMessage();
 
-        $proPlayerSkill = ProPlayerSkill::with('proPlayerSkillScreenshots')
-            ->find($proPlayerSkill->id);
-
-        return response()->json([
-            'status'  => 200,
-            'message' => 'OK',
-            'data'    => new ProPlayerSkillResource($proPlayerSkill)
-        ]);
+            return response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage
+            ], $errCode);
+        }
     }
 
 
