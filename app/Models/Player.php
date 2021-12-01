@@ -28,6 +28,11 @@ class Player extends Model
     }
 
 
+    public function playerPosts() {
+        return $this->hasMany(PlayerPost::class);
+    }
+
+
     public function proPlayerSkills() {
         return $this->hasMany(ProPlayerSkill::class);
     }
