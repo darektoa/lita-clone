@@ -100,6 +100,13 @@ class ProPlayerSkillController extends Controller
     
             if(!isset($user->player))
                 throw new Exception('Only player can become a pro player', 403);
+
+            $skills = $user->player->proPlayerSkills;
+            if($skills->where('game_id', $request->game_id)->where('status', 0)->first())
+                throw new Exception('You have submitted this game', 422);
+            if($skills->where('game_id', $request->game_id)->where('status', 2)->first())
+                throw new Exception('You are already a pro player in this game', 422);
+            
             
             $proPlayerSkill = ProPlayerSkill::create([
                 'player_id'     => auth()->user()->player->id,
