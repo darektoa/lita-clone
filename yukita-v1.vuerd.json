@@ -3811,7 +3811,7 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 1680.1665,
           "top": 1922.9043,
           "zIndex": 153,
@@ -3903,7 +3903,7 @@
               "autoIncrement": false,
               "primaryKey": false,
               "unique": false,
-              "notNull": true
+              "notNull": false
             },
             "ui": {
               "active": false,
@@ -3965,10 +3965,10 @@
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 2175.4449,
           "top": 1912.6668,
-          "zIndex": 146,
+          "zIndex": 155,
           "widthName": 111.84619140625,
           "widthComment": 60
         },
