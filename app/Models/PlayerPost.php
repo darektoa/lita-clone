@@ -15,4 +15,9 @@ class PlayerPost extends Model
     public function player() {
         return $this->belongsTo(Player::class);
     }
+
+
+    public function postMedia() {
+        return $this->hasMany(PlayerPostMedia::class);
+    }
 }
