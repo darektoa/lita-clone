@@ -16,7 +16,7 @@ class CreatePlayerPostsTable extends Migration
         Schema::create('player_posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('player_id')->constrained();
-            $table->text('text');
+            $table->text('text')->nullable();
             $table->timestamps();
         });
     }
