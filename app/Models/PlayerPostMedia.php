@@ -10,4 +10,9 @@ class PlayerPostMedia extends Model
     use HasFactory;
 
     protected $guarded  = ['id'];
+
+
+    public function playerPost() {
+        return $this->belongsTo(PlayerPost::class);
+    }
 }
