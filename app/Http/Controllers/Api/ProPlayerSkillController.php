@@ -222,6 +222,9 @@ class ProPlayerSkillController extends Controller
             if($proPlayerSkill->player->id === $player->id)
                 throw new Exception('Unprocessable, Unable to order your own skill', 422);
 
+            if($proPlayerSkill->activity === 0)
+                throw new Exception('Unprocessable, Unable to order offline pro player skill', 422);
+
             if( $orders
                 ->where('pro_player_skill_id', $proPlayerSkill->id)
                 ->where('status', 0)
