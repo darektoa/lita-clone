@@ -40,7 +40,7 @@ class ProPlayerSkillController extends Controller
             $proPlayers = $proPlayers
                 ->where('status', 2) // 2 = Approved
                 //->where('activity', 1) // 1 = Online
-                ->where('player_id', '!=', $playerId)
+                // ->where('player_id', '!=', $playerId)
                 ->inRandomOrder()
                 ->paginate(10);
 
