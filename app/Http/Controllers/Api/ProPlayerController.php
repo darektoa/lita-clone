@@ -38,7 +38,7 @@ class ProPlayerController extends Controller
         return response()->json([
             'status'    => 200,
             'message'   => 'OK',
-            'data'      => $player
+            'data'      => PlayerResource::make($player)
         ]);
     }
 
