@@ -213,11 +213,12 @@ class ProPlayerSkillController extends Controller
             if($proPlayerSkill->status !== 2)
                 throw new Exception('Unprocessable, Pro player skill not valid', 422);
 
-            $userId = auth()->user()->id;
-            $user   = User::with(['player', 'coinSendingTransactions'])->find($userId);
-            $player = $user->player;
-            $price  = $proPlayerSkill->price_permatch;
-            $orders = $player->proPlayerOrders;
+            $userId  = auth()->user()->id;
+            $user    = User::with(['player', 'coinSendingTransactions'])->find($userId);
+            $player  = $user->player;
+            $price   = $proPlayerSkill->price_permatch;
+            $revenue = $proPlayerSkill->pro_player_price;
+            $orders  = $player->proPlayerOrders;
 
             if($proPlayerSkill->player->id === $player->id)
                 throw new Exception('Unprocessable, Unable to order your own skill', 422);
@@ -237,8 +238,8 @@ class ProPlayerSkillController extends Controller
             $order = ProPlayerOrder::create([
                 'player_id'             => $player->id,
                 'pro_player_skill_id'   => $proPlayerSkill->id,
-                'coin'                  => $price['coin'],
-                'balance'               => $price['balance'],
+                'coin'                  => $revenue['coin'],
+                'balance'               => $revenue['balance'],
                 'quantity'              => $request->quantity,
                 'play_duration'         => 30 * $request->quantity,
                 'expiry_duration'       => intval($request->expiry_duration),
