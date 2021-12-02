@@ -89,4 +89,23 @@ class ProPlayerSkill extends Model
             return [];
         }
     }
+
+
+    public function getProPlayerPriceAttribute() {
+        try{
+            $skill              = ProPlayerSkill::find($this->id);
+            $companyRevenue     = AppSetting::first()->company_revenue;
+            $proPlayerRevenue   = (100 - $companyRevenue) / 100;
+            $pricePermatch      = $skill->price_permatch;
+            $coinPrice          = $pricePermatch['coin'] * $proPlayerRevenue;
+            $balancePrice       = $pricePermatch['balance'] * $proPlayerRevenue;
+
+            return [
+                'coin'      => $coinPrice,
+                'balance'   => $balancePrice
+            ];
+        }catch(Exception $err) {
+            return [];
+        }
+    }
 }
