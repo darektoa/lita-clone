@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\ProPlayerSkill;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PlayerResource extends JsonResource
@@ -25,7 +26,8 @@ class PlayerResource extends JsonResource
             'is_pro_player'             => $this->is_pro_player,
             'followers_count'           => $this->followers_count,
             'followings_count'          => $this->following_count,
-            'user'                      => UserResource::make($this->whenLoaded('user'))
+            'user'                      => UserResource::make($this->whenLoaded('user')),
+            'pro_player_skills'         => ProPlayerSkillResource::collection($this->whenLoaded('proPlayerSkills'))
         ];
     }
 }
