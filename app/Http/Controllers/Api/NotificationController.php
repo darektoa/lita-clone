@@ -7,6 +7,7 @@ use App\Models\{DeviceId, User};
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
 
 class NotificationController extends Controller
 {
@@ -61,11 +62,19 @@ class NotificationController extends Controller
 
     public function send(Request $request) {
         try{
-            $user   = User::find($request->user_id);
+            $validator  = Validator::make($request->all(), [
+                'user_id'   => 'required|numeric|exists:users,id',
+                'title'     => 'required|string'
+            ]);
 
-            if(!$user)
-                throw new Exception('Unprocessable, User not found', 422);
-
+            if($validator->fails())
+                return response()->json([
+                    'status'    => 422,
+                    'message'   => 'Unprocessable, Invalid field',
+                    'errors'    => $validator->errors()->all(),
+                ], 422);
+            
+            $user      = User::find($request->user_id);
             $recipient = Arr::flatten([
                 $user
                 ->deviceIds()
