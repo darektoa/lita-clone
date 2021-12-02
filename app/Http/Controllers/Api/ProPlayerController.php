@@ -23,6 +23,7 @@ class ProPlayerController extends Controller
                 'message'   => 'OK'
             ])
             ->merge($proPlayers)
+            ->merge(['data' => PlayerResource::collection($proPlayers)])
         );
     }
 
