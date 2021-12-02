@@ -53,6 +53,7 @@ Route::middleware(['auth.api'])->group(function() {
     // NOTIFICATION
     Route::prefix('/notifications')->group(function() {
         Route::get('/unsubscribe', [NotificationController::class, 'unsubscribe']);
+        Route::post('/send', [NotificationController::class, 'send']);
     });
 
     // PRO PLAYER
