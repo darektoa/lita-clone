@@ -17,7 +17,7 @@ class ProPlayerSkillScreenshotResource extends JsonResource
     {
         return [
             "id"  => $this->id,
-            "url" => StorageHelper::url($this->url)
+            "url" => StorageHelper::url($this->url),
         ];
     }
 }

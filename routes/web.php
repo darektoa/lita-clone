@@ -9,8 +9,8 @@ Route::get('/', fn() => redirect('/login'));
 Route::middleware(['guest'])->group(function() {
   Route::get('/login', [AuthController::class, 'loginView'])->name('login.loginView');
   Route::post('/login', [AuthController::class, 'login'])->name('login');
-  Route::get('/register', [AuthController::class, 'registerView'])->name('register.registerView');
-  Route::post('/register', [AuthController::class, 'register'])->name('register');
+  // Route::get('/register', [AuthController::class, 'registerView'])->name('register.registerView');
+  // Route::post('/register', [AuthController::class, 'register'])->name('register');
 });
 
 Route::middleware(['auth'])->group(function() {
@@ -89,6 +89,12 @@ Route::middleware(['auth'])->group(function() {
         Route::put('/{tierId}', [TierController::class, 'update'])->name('update');
         Route::delete('/{tierId}', [TierController::class, 'destroy'])->name('destroy');
       });
+    });
+
+
+    Route::prefix('/users')->name('users.')->group(function() {
+      Route::get('/', [UserController::class, 'index'])->name('index');
+      Route::delete('/{userId}', [UserController::class, 'destroy'])->name('destroy');
     });
   });
   

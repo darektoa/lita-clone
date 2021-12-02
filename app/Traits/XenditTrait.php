@@ -8,19 +8,24 @@ use Xendit\Platform as XenditPlatform;
 
 trait XenditTrait{
   static public function invoice($transaction) {
-    $mode     = env('XENDIT_MODE');
-    $ownerId  = $mode === 'production' ? env('XENDIT_OWNER_ID') : env('XENDIT_OWNER_ID_DEV');
+    $mode        = env('XENDIT_MODE');
+    $ownerId     = $mode === 'production' ? env('XENDIT_OWNER_ID') : env('XENDIT_OWNER_ID_DEV');
+    $description = $transaction->description ?? '';
     
     $invoice = XenditInvoice::create([
-      'for-user-id'   => $ownerId,
-      'external_id'   => $transaction->uuid,
-      'amount'        => $transaction->balance,
-      'description'   => $transaction->description ?? 'Nothing',
-      'payer_email'   => $transaction->receiver->email,
-      'fixed_va'      => true,
-      'customer'      => [
-        'given_names'   => $transaction->receiver->name,
-        'email'         => $transaction->receiver->email,
+      'for-user-id'     => $ownerId,
+      'external_id'     => $transaction->uuid,
+      'amount'          => $transaction->balance,
+      'description'     => "Pembayaran Yukita: $description",
+      'payer_email'     => $transaction->receiver->email,
+      'fixed_va'        => true,
+      'customer'        => [
+        'given_names'     => $transaction->receiver->name,
+        'email'           => $transaction->receiver->email,
+      ],
+      'payment_methods' => [
+        'CREDIT_CARD', 'BNI', 'BRI', 'MANDIRI', 'PERMATA',
+        'ALFAMART', 'OVO', 'LINKAJA',
       ]
     ]);
 

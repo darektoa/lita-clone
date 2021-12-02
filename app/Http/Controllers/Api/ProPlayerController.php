@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PlayerResource;
 use App\Models\{Player, PlayerFollower, User};
 use Exception;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ class ProPlayerController extends Controller
                 'message'   => 'OK'
             ])
             ->merge($proPlayers)
+            ->merge(['data' => PlayerResource::collection($proPlayers)])
         );
     }
 
@@ -36,7 +38,7 @@ class ProPlayerController extends Controller
         return response()->json([
             'status'    => 200,
             'message'   => 'OK',
-            'data'      => $player
+            'data'      => PlayerResource::make($player)
         ]);
     }
 
@@ -122,6 +124,7 @@ class ProPlayerController extends Controller
                 'message'   => 'OK',
             ])
             ->merge($proPlayers)
+            ->merge(['data' => PlayerResource::collection($proPlayers)])
         );
     }
 }
