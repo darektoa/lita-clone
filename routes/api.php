@@ -82,6 +82,11 @@ Route::middleware(['auth.api'])->group(function() {
         Route::put('/', [ProfileController::class, 'update']);
     });
 
+    // POST
+    Route::prefix('/posts')->group(function() {
+        Route::post('/', [PlayerPostController::class, 'store']);
+    });
+
     // ONLY PRO PLAYER
     Route::middleware(['pro.player.api'])->group(function() {
         Route::prefix('/balances')->group(function() {
