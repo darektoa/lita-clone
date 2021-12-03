@@ -82,7 +82,6 @@ Route::middleware(['auth.api'])->group(function() {
         Route::put('/', [ProfileController::class, 'update']);
     });
 
-
     // ONLY PRO PLAYER
     Route::middleware(['pro.player.api'])->group(function() {
         Route::prefix('/balances')->group(function() {
