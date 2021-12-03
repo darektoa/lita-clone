@@ -76,4 +76,13 @@ class Player extends Model
 
         return $activityName;
     }
+
+
+    public function updateRate() {
+        $avgRate = ProPlayerOrderReview::whereHas('proPlayerOrder', function($query) {
+            $query->whereRelation('proPlayerSkill', 'player_id', $this->id);
+        })->get()->avg('star');
+
+        return $this->update(['rate' => $avgRate]);
+    }
 }
