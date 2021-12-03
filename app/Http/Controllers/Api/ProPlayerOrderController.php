@@ -215,6 +215,9 @@ class ProPlayerOrderController extends Controller
                 'review'    => $request->review,
             ]);
 
+            // UPDATE PRO PLAYER RATE
+            $proPlayerOrder->proPlayerSkill->player->updateRate();
+
             return response()->json([
                 'status'    => 200,
                 'message'   => 'OK',
