@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\{ProPlayerSkillResource, ProPlayerOrderResource};
+use App\Http\Resources\{ProPlayerSkillResource, ProPlayerOrderResource, ProPlayerOrderReviewResource};
 use App\Models\{ProPlayerOrder, ProPlayerSkill, ProPlayerSkillScreenshot, User};
 use Exception;
 use Illuminate\Http\Request;
@@ -435,6 +435,7 @@ class ProPlayerSkillController extends Controller
                 'message'   => 'OK',
             ])
             ->merge($reviews)
+            ->merge(['data' => ProPlayerOrderReviewResource::collection($reviews)])
         );
     }
 }
