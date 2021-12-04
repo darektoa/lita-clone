@@ -427,7 +427,9 @@ class ProPlayerSkillController extends Controller
 
 
     public function reviews(ProPlayerSkill $proPlayerSkill) {
-        $reviews = $proPlayerSkill->proPlayerOrderReviews()->paginate(10);
+        $reviews = $proPlayerSkill
+            ->proPlayerOrderReviews()
+            ->paginate(10);
 
         return response()->json(
             collect([

@@ -14,12 +14,18 @@ class ProPlayerOrderReviewResource extends JsonResource
      */
     public function toArray($request)
     {
+        $orderLoaded    = $this->relationLoaded('proPlayerOrder');
+        $skillLoaded    = $orderLoaded ? $this->proPlayerOrder->relationLoaded('proPlayerSkill'): false;
+        $playerLoaded   = $skillLoaded ? $this->proPlayerOrder->proPlayerSkill->relationLoaded('player') : false;
+        $userLoaded     = $playerLoaded ? $this->proPlayerOrder->proPlayerSkill->player->relationLoaded('user') : false;
+
         return [
             'id'            => $this->id,
             'star'          => $this->star,
             'review'        => $this->review,
             'created_at'    => $this->created_at,
             'updated_at'    => $this->updated_at,
+            'user'          => $this->when($userLoaded, $this->proPlayerOrder->proPlayerSkill->player->user),
         ];
     }
 }
