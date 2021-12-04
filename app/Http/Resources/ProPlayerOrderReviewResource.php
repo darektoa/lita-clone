@@ -25,7 +25,7 @@ class ProPlayerOrderReviewResource extends JsonResource
             'review'        => $this->review,
             'created_at'    => $this->created_at,
             'updated_at'    => $this->updated_at,
-            'user'          => $this->when($userLoaded, $this->proPlayerOrder->proPlayerSkill->player->user),
+            'user'          => UserResource::make($this->when($userLoaded, $this->proPlayerOrder->proPlayerSkill->player->user)),
         ];
     }
 }
