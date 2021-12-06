@@ -19,7 +19,7 @@
                         @isset($input->textarea)
                         <textarea class="form-control" id="{{ $input->id }}" name="{{ $input->name }}" rows="{{ $input->textarea->rows ?? 4 }}"></textarea>
                         @else
-                        <input type="{{ $input->type ?? 'text' }}" class="form-control" id="{{ $input->id }}" name={{ $input->name }}>
+                        <input type="{{ $input->type ?? 'text' }}" class="form-control" id="{{ $input->id }}" name={{ $input->name }} value="{{ $input->value ?? '' }}">
                         @endif
 
                     </div>
