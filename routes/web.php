@@ -35,6 +35,10 @@ Route::middleware(['auth'])->group(function() {
       Route::get('/approve/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'approve'])->name('approve');
       Route::get('/reject/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'reject'])->name('reject');
     });
+
+    Route::prefix('/profiles')->name('profiles.')->group(function() {
+      Route::get('/', []);
+    });
     
     route::prefix('/setting')->name('setting.')->group(function() {
       Route::prefix('/games')->name('games.')->group(function() {
