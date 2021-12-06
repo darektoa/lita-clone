@@ -27,7 +27,7 @@
           </div>
           @endisset
 
-          <a class="dropdown-item" href="{{ '/profile' }}">
+          <a class="dropdown-item" href="{{ route('profile.index') }}">
               <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
               Profile
           </a>
