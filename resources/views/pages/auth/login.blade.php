@@ -9,6 +9,7 @@
     }
 
     .bg-login-image{
+        padding-top: 50%;
         background-image: url("{{ asset('assets/images/brand_icons/512x512.png') }}");
     }
 </style>
@@ -58,14 +59,6 @@
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             {{ __('Login') }}
-                                        </button>
-                                    </div>
-
-                                    <hr>
-
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-outline-danger btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> {{ __('Login with Google') }}
                                         </button>
                                     </div>
                                 </form>
