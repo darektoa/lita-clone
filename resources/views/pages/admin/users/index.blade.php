@@ -1,3 +1,18 @@
+@php
+  $inputsAddAdmin = [
+    [
+      'id'    => 'user-name',
+      'label' => 'Name',
+      'name'  => 'name'
+		], 
+    [
+      'id'    => 'user-password',
+      'label' => 'Password',
+      'name'  => 'password',
+			'value'	=> 'password'
+		], 
+  ];
+@endphp
 @extends('layouts.app')
 @section('title', 'Users')
 @section('content')
@@ -5,6 +20,7 @@
 	<div class="card shadow mb-4">
 		<div class="card-header py-3 d-flex align-items-center">
 			<h6 class="m-0 font-weight-bold text-primary">User List</h6>
+			<button type="button" class="btn btn-primary ml-4" data-toggle="modal" data-target="#addAdminModal">Add Admin</button>
 			<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" method="get"
 				action="">
 				<input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword"
@@ -13,6 +29,15 @@
 			</form>
 		</div>
 		<div class="card-body table-responsive" style="min-height: 400px">
+
+			<x-modal-input 
+				action="{{ route('users.storeAdmin') }}"
+				id="addAdminModal"
+				inputs="{!! json_encode($inputsAddAdmin) !!}"
+				method="POST"
+				title="Add Admin"
+			/>
+
 			<table class="table table-hover " id="dataTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>

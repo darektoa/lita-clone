@@ -99,6 +99,7 @@ Route::middleware(['auth'])->group(function() {
 
     Route::prefix('/users')->name('users.')->group(function() {
       Route::get('/', [UserController::class, 'index'])->name('index');
+      Route::post('/admin', [UserController::class, 'storeAdmin'])->name('storeAdmin');
       Route::delete('/{userId}', [UserController::class, 'destroy'])->name('destroy');
     });
   });
