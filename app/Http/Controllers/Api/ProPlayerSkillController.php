@@ -429,7 +429,7 @@ class ProPlayerSkillController extends Controller
     public function reviews(ProPlayerSkill $proPlayerSkill) {
         $reviews = $proPlayerSkill
             ->proPlayerOrderReviews()
-            ->with('proPlayerOrder.proPlayerSkill.player.user')
+            ->with('proPlayerOrder.player.user')
             ->paginate(10);
 
         return response()->json(
