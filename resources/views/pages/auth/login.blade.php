@@ -3,7 +3,7 @@
 @section('head')
 <style>
     body{
-        background-image: url("{{ asset('assets/images/backgrounds/bg-auth.webp') }}");
+        background-color: #1C419A;
         background-size: cover;
         background-position: center;
     }
