@@ -74,7 +74,7 @@ class GenderController extends Controller
             Alert::success('Success', 'Gender deleted successfully');
         }catch(Exception $err) {
             $errMessage = $err->getMessage();
-            Alert::error('Success', $errMessage);
+            Alert::error('Failed', $errMessage);
         }finally{
             return back();
         }
