@@ -3,7 +3,7 @@
     [
       'id'    => 'user-name',
       'label' => 'Name',
-      'name'  => 'name'
+      'name'  => 'name',
 		], 
     [
       'id'    => 'user-password',
