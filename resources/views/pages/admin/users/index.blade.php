@@ -4,10 +4,15 @@
       'id'    => 'user-name',
       'label' => 'Name',
       'name'  => 'name',
-		], 
+		],
+    [
+      'id'    => 'user-email',
+      'label' => 'Email',
+      'name'  => 'email',
+		],
     [
       'id'    		=> 'user-password',
-      'label' 		=> 'Password',
+      'label' 		=> 'Default Password',
       'name'  		=> 'password',
 			'value'			=> 'password',
 			'readonly'	=> true
