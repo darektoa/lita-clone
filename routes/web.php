@@ -16,9 +16,12 @@ Route::middleware(['guest'])->group(function() {
 Route::middleware(['auth'])->group(function() {
   Route::get('/dashboard', DashboardController::class)->name('dashboard');
   Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-  Route::get('/coins', [CoinController::class, 'index'])->name('coins.index');
   Route::get('/topup', [CoinPurchaseController::class, 'index'])->name('topup.index');
   Route::post('/topup', [CoinPurchaseController::class, 'store'])->name('topup.store');
+
+  Route::prefix('/coins')->name('coins.')->group(function() {
+    Route::get('/', [CoinTransactionController::class, 'index'])->name('index');
+  });
 
   Route::middleware(['admin'])->group(function() {
     Route::get('/topup/approve/{coinPurchase:id}', [CoinPurchaseController::class, 'approve'])->name('topup.approve');

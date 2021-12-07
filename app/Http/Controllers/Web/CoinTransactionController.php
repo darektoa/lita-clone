@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 class CoinTransactionController extends Controller
 {
     public function index() {
-        return 'Test';
+        $transactions = new CoinTransaction();
+        $transactions = $transactions->paginate(10);
+
+        return view('pages.general.coin.index', compact('transactions'));
     }
 }
