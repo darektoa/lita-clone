@@ -14,6 +14,12 @@ class ProPlayerSkillController extends Controller
     public function index(Request $request) {
         $proPlayers = new ProPlayerSkill;
         $statusId   = $request->status;
+        $total      = [
+            'all'       => $proPlayers->count(),
+            'pending'   => $proPlayers->where('status', 0)->count(),
+            'rejected'  => $proPlayers->where('status', 1)->count(),  
+            'approved'  => $proPlayers->where('status', 2)->count(),
+        ];
 
         if($statusId >= 0 && $statusId <= 2)
             $proPlayers = $proPlayers->where('status', $statusId);
@@ -23,7 +29,7 @@ class ProPlayerSkillController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        return view('pages.admin.pro-players.index', compact('proPlayers'));
+        return view('pages.admin.pro-players.index', compact('proPlayers', 'total'));
     }
 
 
