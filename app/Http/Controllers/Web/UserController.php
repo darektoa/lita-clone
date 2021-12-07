@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index() {
         $users = new User();
         $total  = [
-            'user'      => $users->count(),
+            'all'       => $users->count(),
             'admin'     => $users->whereRelation('admin', 'id', '!=', null)->count(),
             'player'    => $users->whereRelation('player', 'id', '!=', null)->count(),
             'proPlayer' => $users->whereRelation('player', 'is_pro_player', 1)->count(),
