@@ -15,6 +15,12 @@
                     @foreach($inputs as $input)
                     <div class="form-group">
                         <label for="{{ $input->id }}" class="col-form-label">{{ $input->label }}</label>
+                        
+                        @php
+                            $readonly = isset($input->readonly);
+                            $readonly = $readonly ? $input->readonly : false;
+                            $readonly = $readonly === true ? 'readonly' : '';
+                        @endphp
 
                         @isset($input->textarea)
                         <textarea 
@@ -23,6 +29,7 @@
                             name="{{ $input->name }}" 
                             rows="{{ $input->textarea->rows ?? 4 }}"
                             placeholder="{{ $input->placeholder ?? '' }}"
+                            {{ $readonly }}
                         ></textarea>
                         @else
                         <input 
@@ -31,7 +38,8 @@
                             name={{ $input->name }} 
                             type="{{ $input->type ?? 'text' }}" 
                             value="{{ $input->value ?? '' }}"
-                            placeholder="{{ $input->placeholder ?? '' }}" >
+                            placeholder="{{ $input->placeholder ?? '' }}"
+                            {{ $readonly }}>
                         @endif
 
                     </div>
