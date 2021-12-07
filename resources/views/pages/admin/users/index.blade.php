@@ -22,6 +22,13 @@
 @extends('layouts.app')
 @section('title', 'Users')
 @section('content')
+<div class="row">
+	<x-dashboard.info-box title="Users" value="{{ $total['user'] }}" color="info" icon="fa-users text-info"/>
+	<x-dashboard.info-box title="Admin" value="{{ $total['admin'] }}" color="success" icon="fa-user text-gray-300"/>
+	<x-dashboard.info-box title="Player" value="{{ $total['player'] }}" color="warning" icon="fa-user text-gray-300"/>
+	<x-dashboard.info-box title="Pro Player" value="{{ $total['proPlayer'] }}" color="primary" icon="fa-user text-gray-300"/>
+</div>
+
 <div class="col-lg-12 mb-4 p-0">
 	<div class="card shadow mb-4">
 		<div class="card-header py-3 d-flex align-items-center">

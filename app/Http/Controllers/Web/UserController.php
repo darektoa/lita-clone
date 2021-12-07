@@ -13,9 +13,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 class UserController extends Controller
 {
     public function index() {
-        $users = User::paginate(10);
+        $users = new User();
+        $total  = [
+            'user'      => $users->count(),
+            'admin'     => $users->whereRelation('admin', 'id', '!=', null)->count(),
+            'player'    => $users->whereRelation('player', 'id', '!=', null)->count(),
+            'proPlayer' => $users->whereRelation('player', 'is_pro_player', 1)->count(),
+        ];
+        $users = $users->paginate(10);
 
-        return view('pages.admin.users.index', compact('users'));
+        return view('pages.admin.users.index', compact('users', 'total'));
     }
 
 
