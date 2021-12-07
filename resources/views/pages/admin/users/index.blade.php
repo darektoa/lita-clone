@@ -6,10 +6,11 @@
       'name'  => 'name',
 		], 
     [
-      'id'    => 'user-password',
-      'label' => 'Password',
-      'name'  => 'password',
-			'value'	=> 'password'
+      'id'    		=> 'user-password',
+      'label' 		=> 'Password',
+      'name'  		=> 'password',
+			'value'			=> 'password',
+			'readonly'	=> true
 		], 
   ];
 @endphp
