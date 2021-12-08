@@ -11,6 +11,24 @@ use Illuminate\Support\Facades\Validator;
 
 class PlayerPostController extends Controller
 {
+    public function index() {
+        $posts  = User::with([
+            'player.playerPosts.postMedia'
+        ])
+        ->find(auth()->user()->id)
+        ->player
+        ->playerPosts()
+        ->latest()
+        ->paginate(10);
+
+        return response()->json([
+            'status'    => 200,
+            'message'   => 'OK',
+            'data'      => $posts
+        ]);
+    }
+    
+
     public function store(Request $request) {
         try{
             $validator  = Validator::make($request->all(), [

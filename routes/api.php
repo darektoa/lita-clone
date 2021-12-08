@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\PlayerPost;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -84,6 +85,7 @@ Route::middleware(['auth.api'])->group(function() {
 
     // POST
     Route::prefix('/posts')->group(function() {
+        Route::get('/', [PlayerPostController::class, 'index']);
         Route::post('/', [PlayerPostController::class, 'store']);
         Route::get('/{playerPost:id}', [PlayerPostController::class, 'show']);
         Route::delete('/{playerPost:id}', [PlayerPostController::class, 'destroy']);
