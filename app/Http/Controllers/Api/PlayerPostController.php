@@ -13,14 +13,12 @@ use Illuminate\Support\Facades\Validator;
 class PlayerPostController extends Controller
 {
     public function index() {
-        $posts  = User::with([
-            'player.playerPosts.postMedia'
-        ])
-        ->find(auth()->user()->id)
-        ->player
-        ->playerPosts()
-        ->latest()
-        ->paginate(10);
+        $user   = auth()->user();
+        $player = $user->player;
+        $posts  = PlayerPost::with(['postMedia'])
+            ->where('player_id', $player->id)
+            ->latest()
+            ->paginate(10);
 
         return response()->json(
             collect([

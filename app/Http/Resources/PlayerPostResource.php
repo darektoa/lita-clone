@@ -13,7 +13,7 @@ class PlayerPostResource extends JsonResource
             'text'          => $this->text,
             'created_at'    => $this->created_at,
             'updated_at'    => $this->updated_at,
-            'post_media'    => $this->whenLoaded('postMedia')
+            'post_media'    => PlayerPostMediaResource::collection($this->whenLoaded('postMedia')),
         ];
     }
 }
