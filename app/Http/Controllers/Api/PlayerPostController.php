@@ -87,4 +87,33 @@ class PlayerPostController extends Controller
             ]);
         }
     }
+
+
+    public function destroy(PlayerPost $playerPost) {
+        try{
+            $playerPost->load('postMedia');
+            $media  = $playerPost->postMedia;
+
+            if($media) foreach($media as $item) {
+                StorageHelper::delete($item->url);
+            }
+
+            $playerPost->postMedia()->delete();
+            $playerPost->delete();
+
+            return response()->json([
+                'status'    => 200,
+                'message'   => 'OK',
+                'data'      => $playerPost,
+            ]);
+        }catch(Exception $err) {
+            $errCode    = $err->getCode() ?? 400;
+            $errMessage = $err->getMessage();
+
+            return response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage,
+            ]);
+        }
+    }
 }

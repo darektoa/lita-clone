@@ -86,6 +86,7 @@ Route::middleware(['auth.api'])->group(function() {
     Route::prefix('/posts')->group(function() {
         Route::post('/', [PlayerPostController::class, 'store']);
         Route::get('/{playerPost:id}', [PlayerPostController::class, 'show']);
+        Route::delete('/{playerPost:id}', [PlayerPostController::class, 'destroy']);
     });
 
     // ONLY PRO PLAYER
