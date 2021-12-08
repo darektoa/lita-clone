@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Helpers\StorageHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PlayerPostMediaResource extends JsonResource
@@ -10,7 +11,7 @@ class PlayerPostMediaResource extends JsonResource
     {
         return [
             'id'    => $this->id,
-            'url'   => $this->url,
+            'url'   => StorageHelper::get($this->url),
             'alt'   => $this->alt,
         ];
     }
