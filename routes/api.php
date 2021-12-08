@@ -85,6 +85,7 @@ Route::middleware(['auth.api'])->group(function() {
     // POST
     Route::prefix('/posts')->group(function() {
         Route::post('/', [PlayerPostController::class, 'store']);
+        Route::get('/{playerPost:id}', [PlayerPostController::class, 'show']);
     });
 
     // ONLY PRO PLAYER

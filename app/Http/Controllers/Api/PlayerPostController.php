@@ -49,7 +49,7 @@ class PlayerPostController extends Controller
                 ]);
             }
 
-            $post   = $post->load('postMedia');
+            $post->load('postMedia');
 
             return response()->json([
                 'status'    => 200,
@@ -64,6 +64,27 @@ class PlayerPostController extends Controller
                 'status'    => $errCode,
                 'message'   => $errMessage,
             ], $errCode);
+        }
+    }
+
+
+    public function show(PlayerPost $playerPost) {
+        try{
+            $playerPost->load('postMedia');
+
+            return response()->json([
+                'status'    => 200,
+                'message'   => 'OK',
+                'data'      => $playerPost,
+            ]);
+        }catch(Exception $err) {
+            $errCode    = $err->getCode() ?? 400;
+            $errMessage = $err->getMessage();
+
+            return response()->json([
+                'status'    => $errCode,
+                'message'   => $errMessage,
+            ]);
         }
     }
 }
