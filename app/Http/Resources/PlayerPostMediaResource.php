@@ -11,7 +11,7 @@ class PlayerPostMediaResource extends JsonResource
     {
         return [
             'id'    => $this->id,
-            'url'   => StorageHelper::get($this->url),
+            'url'   => StorageHelper::url($this->url),
             'alt'   => $this->alt,
         ];
     }
