@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\{PlayerPostResource};
 use App\Models\{PlayerPost, PlayerPostMedia, User};
 use Exception;
 use Illuminate\Http\Request;
@@ -21,11 +22,14 @@ class PlayerPostController extends Controller
         ->latest()
         ->paginate(10);
 
-        return response()->json([
-            'status'    => 200,
-            'message'   => 'OK',
-            'data'      => $posts
-        ]);
+        return response()->json(
+            collect([
+                'status'    => 200,
+                'message'   => 'OK',
+            ])
+            ->merge($posts)
+            ->merge(['data' => PlayerPostResource::collection($posts)])
+        );
     }
     
 
@@ -72,7 +76,7 @@ class PlayerPostController extends Controller
             return response()->json([
                 'status'    => 200,
                 'message'   => 'OK',
-                'data'      => $post
+                'data'      => PlayerPostResource::make($post)
             ]);
         }catch(Exception $err) {
             $errCode    = $err->getCode() ?? 400;
@@ -93,7 +97,7 @@ class PlayerPostController extends Controller
             return response()->json([
                 'status'    => 200,
                 'message'   => 'OK',
-                'data'      => $playerPost,
+                'data'      => PlayerPostResource::make($playerPost),
             ]);
         }catch(Exception $err) {
             $errCode    = $err->getCode() ?? 400;
@@ -122,7 +126,7 @@ class PlayerPostController extends Controller
             return response()->json([
                 'status'    => 200,
                 'message'   => 'OK',
-                'data'      => $playerPost,
+                'data'      => PlayerPostResource::make($playerPost),
             ]);
         }catch(Exception $err) {
             $errCode    = $err->getCode() ?? 400;
