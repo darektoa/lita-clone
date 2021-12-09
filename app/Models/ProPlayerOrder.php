@@ -88,22 +88,25 @@ class ProPlayerOrder extends Model
 
     protected function autoEnded($status) {
         $updatedAt      = $this->updated_at;
-        $playDuration   = $this->play_duration;
+        $playDuration   = 1;
         $order          = ProPlayerOrder::with(['player.user', 'proPlayerSkill.player.user'])->find($this->id);
+        $player         = $order->player;
+        $proPlayerSkill = $order->proPlayerSkill;
+        $price          = $proPlayerSkill->pro_player_price;
 
         if($status === 2){
-            if(now()->diffInMinutes($updatedAt) >= $playDuration) {
-                $this->update([
-                    'status'    => 4,
-                    'ended_at'  => now(),
-                ]);
-            }
+            if(now()->diffInMinutes($updatedAt) < $playDuration) return;
+
+            $this->update([
+                'status'    => 4,
+                'ended_at'  => now(),
+            ]);
 
             BalanceTransaction::create([
-                'sender_id'     => $order->player->user->id,
-                'receiver_id'   => $order->proPlayerSkill->player->user->id,
-                'coin'          => $order->proPlayerSkill->price_permatch['coin'],
-                'balance'       => $order->proPlayerSkill->price_permatch['balance'],
+                'sender_id'     => $player->user->id,
+                'receiver_id'   => $proPlayerSkill->player->user->id,
+                'coin'          => $price['coin'],
+                'balance'       => $price['balance'],
                 'type'          => 2
             ]);
         }
