@@ -75,6 +75,10 @@ class ProPlayerOrder extends Model
                 'balance'       => $price['balance'],
                 'type'          => 2,
             ]);
+
+            $player->update([
+                'coin'  => $player->coin + $price['coin']
+            ]);
         }
         
         return;
