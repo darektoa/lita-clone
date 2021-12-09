@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title', 'Register | Lita')
+@section('title', 'Register | Yukita')
 @section('head')
 <style>
   body{
