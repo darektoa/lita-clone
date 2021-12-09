@@ -88,10 +88,11 @@ class ProPlayerOrder extends Model
 
     protected function autoEnded($status) {
         $updatedAt      = $this->updated_at;
-        $playDuration   = 1;
+        $playDuration   = $this->play_duration;
         $order          = ProPlayerOrder::with(['player.user', 'proPlayerSkill.player.user'])->find($this->id);
         $player         = $order->player;
         $proPlayerSkill = $order->proPlayerSkill;
+        $proPlayer      = $proPlayerSkill->player;
         $price          = $proPlayerSkill->pro_player_price;
 
         if($status === 2){
@@ -104,10 +105,14 @@ class ProPlayerOrder extends Model
 
             BalanceTransaction::create([
                 'sender_id'     => $player->user->id,
-                'receiver_id'   => $proPlayerSkill->player->user->id,
+                'receiver_id'   => $proPlayer->user->id,
                 'coin'          => $price['coin'],
                 'balance'       => $price['balance'],
                 'type'          => 2
+            ]);
+
+            $proPlayer->update([
+                'balance'   => $proPlayer->balance + $price['balance'],
             ]);
         }
 
