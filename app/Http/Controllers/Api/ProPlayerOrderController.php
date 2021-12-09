@@ -135,10 +135,13 @@ class ProPlayerOrderController extends Controller
                     'errors'    =>  $validator->errors()->all()
                 ], 422);
 
-            $user   = auth()->user();
-            $player = $user->player;
+            $user       = auth()->user();
+            $player     = $user->player;
+            $orderer    = $proPlayerOrder->player;
+            $skill      = $proPlayerOrder->proPlayerSkill;
+            $price      = $skill->price_permatch;
 
-            if($proPlayerOrder->proPlayerSkill->player_id !== $player->id)
+            if($skill->player_id !== $player->id)
                 throw new Exception('Not found', 404);
             if($proPlayerOrder->status !== 0)
                 throw new Exception('Unprocessable, Order is not pending', 422);
@@ -146,6 +149,11 @@ class ProPlayerOrderController extends Controller
             $proPlayerOrder->update([
                 'status'            => 1,
                 'rejected_reason'   => $request->reason,
+            ]);
+
+            // COIN REFUND TO PLAYER
+            $orderer->update([
+                'coin'  => $orderer->coin + $price['coin'] 
             ]);
             
             // SEND PUSH NOTIFICATION
