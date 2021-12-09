@@ -3,14 +3,15 @@
 @section('head')
 <style>
   body{
-      background-image: url("{{ asset('assets/images/backgrounds/bg-auth.webp') }}");
-      background-size: cover;
-      background-position: center;
-  }
+        background-color: #1C419A;
+        background-size: cover;
+        background-position: center;
+    }
 
-  .bg-login-image{
-      background-image: url("{{ asset('assets/images/brand_icons/512x512.png') }}");
-  }
+    .bg-login-image{
+        padding-top: 50%;
+        background-image: url("{{ asset('assets/images/brand_icons/512x512.png') }}");
+    }
 </style>
 @endsection
 @section('content')
