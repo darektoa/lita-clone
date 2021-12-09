@@ -27,7 +27,7 @@
 						$receiver    = $transaction->receiver;
 						$coin     	 = number_format($transaction->coin, 0, '.', ',');
 						$created     = $transaction->created_at;
-						$statusName  = $transaction->status;
+						$statusName  = ucfirst($transaction->status);
 						$statusClass = 'font-weight-bold';
 
 						switch($transaction->status) {
