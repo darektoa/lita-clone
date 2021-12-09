@@ -152,6 +152,16 @@ class ProPlayerOrderController extends Controller
             ]);
 
             // COIN REFUND TO PLAYER
+            $orderer
+                ->user
+                ->coinReceivingTransactions()
+                ->create([
+                    'coin'      => $price['coin'],
+                    'balance'   => $price['balance'],
+                    'type'      => 2,
+                    'status'    => 'success'
+                ]);
+
             $orderer->update([
                 'coin'  => $orderer->coin + $price['coin'] 
             ]);
