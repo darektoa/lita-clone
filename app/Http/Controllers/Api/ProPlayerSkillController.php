@@ -397,7 +397,7 @@ class ProPlayerSkillController extends Controller
 
             $proPlayer
                 ->update([
-                    'balance'   => $order->balance
+                    'balance'   => $proPlayer->balance + $order->balance
                 ]);
 
             $proPlayer
