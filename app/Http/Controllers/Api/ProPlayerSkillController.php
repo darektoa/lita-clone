@@ -305,6 +305,7 @@ class ProPlayerSkillController extends Controller
             $userId = auth()->user()->id;
             $user   = User::with(['player.proPlayerOrders.proPlayerSkill.game'])->find($userId);
             $player = $user->player;
+            $price  = $proPlayerSkill->price_permatch;
             $order  = $player->proPlayerOrders()
                 ->where('pro_player_skill_id', $proPlayerSkill->id)
                 ->where('status', 0)
@@ -323,14 +324,14 @@ class ProPlayerSkillController extends Controller
             ]);
 
             $player->update([
-                'coin'  => $player->coin + $order->coin
+                'coin'  => $player->coin + $price['coin']
             ]);
 
             $user
                 ->coinReceivingTransactions()
                 ->create([
-                    'coin'      => $order->coin,
-                    'balance'   => $order->balance,
+                    'coin'      => $price['coin'],
+                    'balance'   => $price['balance'],
                     'type'      => 2,
                     'status'    => 'success'
                 ]);
