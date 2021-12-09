@@ -58,19 +58,21 @@ class ProPlayerOrder extends Model
         $createdAt      = $this->created_at;
         $expiryDuration = $this->expiry_duration;
         $order          = ProPlayerOrder::with(['player.user', 'proPlayerSkill'])->find($this->id);
+        $player         = $order->player;
+        $price          = $order->proPlayerSkill->price_permatch;
 
         if($status === 0){
-            if(now()->diffInMinutes($createdAt) >= $expiryDuration) {
-                $this->update([
-                    'status'     => 5,
-                    'expired_at' => now(),
-                ]);
-            }
+            if(now()->diffInMinutes($createdAt) < $expiryDuration) return;
+
+            $this->update([
+                'status'     => 5,
+                'expired_at' => now(),
+            ]);
 
             CoinTransaction::create([
-                'receiver_id'   => $order->player->user->id,
-                'coin'          => $order->proPlayerSkill->price_permatch['coin'],
-                'balance'       => $order->proPlayerSkill->price_permatch['balance'],
+                'receiver_id'   => $player->user->id,
+                'coin'          => $price['coin'],
+                'balance'       => $price['balance'],
                 'type'          => 2,
             ]);
         }
