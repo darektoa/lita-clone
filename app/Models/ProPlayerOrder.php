@@ -108,7 +108,8 @@ class ProPlayerOrder extends Model
                 'receiver_id'   => $proPlayer->user->id,
                 'coin'          => $price['coin'],
                 'balance'       => $price['balance'],
-                'type'          => 2
+                'type'          => 2,
+                'status'        => 'success',
             ]);
 
             $proPlayer->update([

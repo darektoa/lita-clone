@@ -197,7 +197,7 @@ class ProPlayerSkillController extends Controller
     public function order(Request $request, ProPlayerSkill $proPlayerSkill) {
         try{
             $validator = Validator::make($request->all(), [
-                // 'expiry_duration'   => 'required|numeric|min:3|max:60',
+                'expiry_duration'   => 'required|numeric|min:3|max:60',
                 'quantity'          => 'required|numeric|min:1|max:10'
             ]);
 
