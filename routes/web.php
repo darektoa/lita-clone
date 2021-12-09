@@ -13,37 +13,39 @@ Route::middleware(['guest'])->group(function() {
   // Route::post('/register', [AuthController::class, 'register'])->name('register');
 });
 
+
+// WITH AUTHENTICATION
 Route::middleware(['auth'])->group(function() {
   Route::get('/dashboard', DashboardController::class)->name('dashboard');
   Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
   Route::get('/topup', [CoinPurchaseController::class, 'index'])->name('topup.index');
   Route::post('/topup', [CoinPurchaseController::class, 'store'])->name('topup.store');
 
+  // COIN
   Route::prefix('/coins')->name('coins.')->group(function() {
     Route::get('/', [CoinTransactionController::class, 'index'])->name('index');
   });
 
+
+  // ONLY ADMIN
   Route::middleware(['admin'])->group(function() {
     Route::get('/topup/approve/{coinPurchase:id}', [CoinPurchaseController::class, 'approve'])->name('topup.approve');
     Route::get('/topup/reject/{coinPurchase:id}', [CoinPurchaseController::class, 'reject'])->name('topup.reject');
 
-    Route::prefix('withdraws')->name('withdraws.')->group(function() {
-      Route::get('/', [BalanceTransactionController::class, 'index'])->name('index');
-      Route::get('/approve/{balanceTransaction:id}', [BalanceTransactionController::class, 'approve'])->name('approve');
-      Route::get('/reject/{balanceTransaction:id}', [BalanceTransactionController::class, 'reject'])->name('reject');
-    });
-
+    // PRO PLAYER
     Route::prefix('/pro-players')->name('pro-players.')->group(function() {
       Route::get('/', [ProPlayerSkillController::class, 'index'])->name('index');
       Route::get('/approve/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'approve'])->name('approve');
       Route::get('/reject/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'reject'])->name('reject');
     });
 
+    // PROFILE
     Route::prefix('/profile')->name('profile.')->group(function() {
       Route::get('/', [ProfileController::class, 'index'])->name('index');
       Route::put('/', [ProfileController::class, 'update'])->name('update');
     });
     
+    // SETTING
     route::prefix('/setting')->name('setting.')->group(function() {
       Route::prefix('/games')->name('games.')->group(function() {
         Route::get('/', [GameController::class, 'index'])->name('index');
@@ -57,6 +59,7 @@ Route::middleware(['auth'])->group(function() {
         Route::delete('/{gameId}/roles/{gameRoleId}', [GameRoleController::class, 'destroy'])->name('roles.destroy');
       });
 
+      // BANNER SETTING
       Route::prefix('/banners')->name('banners.')->group(function() {
         Route::get('/', [AppBannerController::class, 'index'])->name('index');
         Route::post('/', [AppBannerController::class, 'store'])->name('store');
@@ -64,6 +67,7 @@ Route::middleware(['auth'])->group(function() {
         Route::delete('/{bannerId}', [AppBannerController::class, 'destroy'])->name('destroy');
       });
 
+      // COIN SETTING
       Route::prefix('/coins')->name('coins.')->group(function() {
         Route::get('/', [PredefineCoinController::class, 'index'])->name('index');
         Route::post('/', [PredefineCoinController::class, 'store'])->name('store');
@@ -71,6 +75,7 @@ Route::middleware(['auth'])->group(function() {
         Route::delete('/{coinId}', [PredefineCoinController::class, 'destroy'])->name('destroy');
       });
 
+      // FAQ SETTING
       Route::prefix('/faqs')->name('faqs.')->group(function() {
         Route::get('/', [FAQController::class, 'index'])->name('index');
         Route::post('/', [FAQController::class, 'store'])->name('store');
@@ -78,6 +83,7 @@ Route::middleware(['auth'])->group(function() {
         Route::delete('/{faqId}', [FAQController::class, 'destroy'])->name('destroy');
       });
 
+      // GENDER SETTING
       Route::prefix('/genders')->name('genders.')->group(function() {
         Route::get('/', [GenderController::class, 'index'])->name('index');
         Route::post('/', [GenderController::class, 'store'])->name('store');
@@ -85,11 +91,13 @@ Route::middleware(['auth'])->group(function() {
         Route::delete('/{genderId}', [GenderController::class, 'destroy'])->name('destroy');
       });
 
+      // GENERAL SETTING
       Route::prefix('/general')->name('general.')->group(function() {
         Route::get('/', [AppSettingController::class, 'index'])->name('index');
         Route::put('/', [AppSettingController::class, 'update'])->name('update');
       });
 
+      // TIER SETTING
       Route::prefix('/tiers')->name('tiers.')->group(function() {
         Route::get('/', [TierController::class, 'index'])->name('index');
         Route::post('/', [TierController::class, 'store'])->name('store');
@@ -99,14 +107,23 @@ Route::middleware(['auth'])->group(function() {
       });
     });
 
-
+    // USER
     Route::prefix('/users')->name('users.')->group(function() {
       Route::get('/', [UserController::class, 'index'])->name('index');
       Route::post('/admin', [UserController::class, 'storeAdmin'])->name('storeAdmin');
       Route::delete('/{userId}', [UserController::class, 'destroy'])->name('destroy');
     });
+
+    // WITHDRAW
+    Route::prefix('withdraws')->name('withdraws.')->group(function() {
+      Route::get('/', [BalanceTransactionController::class, 'index'])->name('index');
+      Route::get('/approve/{balanceTransaction:id}', [BalanceTransactionController::class, 'approve'])->name('approve');
+      Route::get('/reject/{balanceTransaction:id}', [BalanceTransactionController::class, 'reject'])->name('reject');
+    });
   });
   
+
+  // ONLY PLAYER
   Route::middleware(['player'])->group(function() {
     Route::delete('/topup/{id}', [CoinPurchaseController::class, 'destroy'])->name('topup.destroy');
   });
