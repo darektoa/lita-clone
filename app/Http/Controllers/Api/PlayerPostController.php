@@ -111,6 +111,11 @@ class PlayerPostController extends Controller
 
     public function destroy(PlayerPost $playerPost) {
         try{
+            $user   = auth()->user();
+
+            if($user->player->id !== $playerPost->player->id)
+                throw new Exception('Not allowed, this is not your post', 403);
+
             $playerPost->load('postMedia');
             $media  = $playerPost->postMedia;
 
