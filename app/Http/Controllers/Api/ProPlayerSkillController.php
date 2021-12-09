@@ -248,15 +248,15 @@ class ProPlayerSkillController extends Controller
 
             $player
                 ->update([
-                    'coin'  => $player->coin - $order->coin,
+                    'coin'  => $player->coin - $price['coin'],
                 ]);
 
             $user
                 ->coinSendingTransactions()
                 ->create([
                     'receiver_id'   => $order->proPlayerSkill->player->user->id,
-                    'coin'          => -$order->coin,
-                    'balance'       => -$order->balance,
+                    'coin'          => -$price['coin'],
+                    'balance'       => -$price['balance'],
                     'type'          => 1,
                     'status'        => 'success'
                 ]);
