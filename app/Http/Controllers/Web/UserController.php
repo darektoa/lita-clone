@@ -12,17 +12,24 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
-    public function index() {
-        $users = new User();
+    public function index(Request $request) {
+        $search = $request->search;
+        $users  = new User();
         $total  = [
             'all'       => $users->count(),
             'admin'     => $users->whereRelation('admin', 'id', '!=', null)->count(),
             'player'    => $users->whereRelation('player', 'id', '!=', null)->count(),
             'proPlayer' => $users->whereRelation('player', 'is_pro_player', 1)->count(),
         ];
-        $users = $users->paginate(10);
 
-        return view('pages.admin.users.index', compact('users', 'total'));
+        if($search)
+            $users  = $users
+                ->where('username', 'LIKE', "%$search%");
+
+
+        $users  = $users->paginate(10);
+
+        return view('pages.admin.users.index', compact('users', 'total', 'search'));
     }
 
 
