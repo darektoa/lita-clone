@@ -12,6 +12,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class ProPlayerSkillController extends Controller
 {
     public function index(Request $request) {
+        $search     = $request->search;
         $proPlayers = new ProPlayerSkill;
         $statusId   = $request->status;
         $total      = [
@@ -29,7 +30,7 @@ class ProPlayerSkillController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        return view('pages.admin.pro-players.index', compact('proPlayers', 'total'));
+        return view('pages.admin.pro-players.index', compact('proPlayers', 'total', 'search'));
     }
 
 
