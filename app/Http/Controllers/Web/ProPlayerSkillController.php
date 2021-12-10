@@ -24,6 +24,11 @@ class ProPlayerSkillController extends Controller
 
         if($statusId !== null & $statusId >= 0 && $statusId <= 2)
             $proPlayers = $proPlayers->where('status', $statusId);
+        if($search)
+            $proPlayers  = $proPlayers
+            ->whereHas('player', function($query) use($search) {
+                $query->whereRelation('user', 'username', 'LIKE', "%$search%");
+            });
         
         $proPlayers = $proPlayers
             ->oldest()
