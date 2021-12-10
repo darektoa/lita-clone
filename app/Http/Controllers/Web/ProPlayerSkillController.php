@@ -27,7 +27,8 @@ class ProPlayerSkillController extends Controller
         if($search)
             $proPlayers  = $proPlayers
             ->whereHas('player', function($query) use($search) {
-                $query->whereRelation('user', 'username', 'LIKE', "%$search%");
+                $query->whereRelation('user', 'username', 'LIKE', "%$search%")
+                    ->orWhereRelation('user', 'email', 'LIKE', "%$search%");
             });
         
         $proPlayers = $proPlayers
