@@ -22,7 +22,7 @@ class ProPlayerSkillController extends Controller
             'approved'  => $proPlayers->where('status', 2)->count(),
         ];
 
-        if($statusId >= 0 && $statusId <= 2)
+        if($statusId !== null & $statusId >= 0 && $statusId <= 2)
             $proPlayers = $proPlayers->where('status', $statusId);
         
         $proPlayers = $proPlayers
