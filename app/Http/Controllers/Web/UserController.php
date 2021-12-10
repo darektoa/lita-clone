@@ -24,7 +24,8 @@ class UserController extends Controller
 
         if($search)
             $users  = $users
-                ->where('username', 'LIKE', "%$search%");
+                ->where('username', 'LIKE', "%$search%")
+                ->orWhere('email', 'LIKE', "%$search%");
 
 
         $users  = $users->paginate(10);
