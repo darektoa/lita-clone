@@ -131,8 +131,8 @@ class CoinTransactionController extends Controller
                 'invoice'   => $invoice
             ]);
 
-            $player->update([
-                'coin'      => $player->coin + $transaction->coin
+            if($status === 'paid') $player->update([
+                'coin'  => $player->coin + $transaction->coin
             ]);
 
             // SEND PUSH NOTIFICATION
