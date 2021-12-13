@@ -146,9 +146,14 @@ class CoinTransactionController extends Controller
                 ->toArray()
             );
 
-            $payloads = [
-                'title' => 'Pembayaran Berhasil',
-                'body'  => "Pembayaran {$request->external_id} Berhasil di selesaikan",
+            if($status === 'paid') $payloads = [
+                'title' => "Pembayaran Berhasil",
+                'body'  => "Pembayaran {$request->external_id} berhasil di selesaikan",
+            ];
+
+            if($status === 'expired') $payloads = [
+                'title' => "Pembayaran Kadaluwarsa",
+                'body'  => "Pembayaran {$request->external_id} kadaluwarsa",
             ];
 
             fcm()->to($recipients) // Must an array
