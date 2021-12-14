@@ -13,7 +13,8 @@ class ProPlayerSkill extends Model
     protected $appends  = [
         'activity_name',
         'status_name',
-        'price_permatch'
+        'price_permatch',
+        'stars'
     ];
 
     protected $guarded  = ['id'];
@@ -39,8 +40,24 @@ class ProPlayerSkill extends Model
     }
 
 
+    public function proPlayerOrders() {
+        return $this->hasMany(ProPlayerOrder::class);
+    }
+
+
     public function proPlayerOrderReviews() {
         return $this->hasManyThrough(ProPlayerOrderReview::class, ProPlayerOrder::class);
+    }
+
+
+    public function getStarsAttribute() {
+        $stars = ProPlayerSkill::with(['proPlayerOrderReviews'])
+            ->find($this->id)
+            ->proPlayerOrderReviews()
+            ->where('star', '!=', null)
+            ->get();
+        dd($stars);
+        return $stars;
     }
 
 
