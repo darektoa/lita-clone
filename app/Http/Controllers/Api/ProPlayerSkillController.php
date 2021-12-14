@@ -151,8 +151,8 @@ class ProPlayerSkillController extends Controller
             $proPlayerSkill->load([
                 'game',
                 'player.user',
-                'proPlayerSkillScreenshots'
-            ]);
+                'proPlayerSkillScreenshots',
+            ])->append('stars');
             $status = $proPlayerSkill->status;
             
             if($status !== 2) throw new Exception('Not found', 404);
