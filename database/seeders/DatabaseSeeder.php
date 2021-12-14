@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Player, ProPlayerOrder, ProPlayerSkill, User};
+use App\Models\{Player, ProPlayerOrder, ProPlayerOrderReview, ProPlayerSkill, User};
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
 
         ProPlayerOrder::factory()
             ->count(100)
+            ->hasReview(1)
             ->create([
                 'status' => 4 // Ended status
             ]);
