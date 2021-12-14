@@ -13,8 +13,7 @@ class ProPlayerSkill extends Model
     protected $appends  = [
         'activity_name',
         'status_name',
-        'price_permatch',
-        'stars'
+        'price_permatch'
     ];
 
     protected $guarded  = ['id'];
@@ -55,8 +54,14 @@ class ProPlayerSkill extends Model
             ->find($this->id)
             ->proPlayerOrderReviews()
             ->where('star', '!=', null)
+            ->selectRaw('star, COUNT(*) as total')
+            ->groupBy('star')
             ->get();
-        dd($stars);
+
+        $stars = $stars
+            ->pluck('total', 'star')
+            ->put('total', $stars->sum('total'));
+        
         return $stars;
     }
 
