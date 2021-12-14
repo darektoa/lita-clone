@@ -45,14 +45,15 @@ class ProPlayerOrderController extends Controller
     public function proIndex(Request $request) {
         $player     = auth()->user()->player;
         $status     = $request->status;
+        $statuses   = explode(',', $status);
         $orders     = ProPlayerOrder::with([
             'player.user',
             'proPlayerSkill.game'
         ]);
 
 
-        if($status !== null && $status >= 0 && $status <= 5)
-            $orders = $orders->where('status', $status);
+        if($status !== null)
+            $orders = $orders->whereIn('status', $statuses);
 
         $orders = $orders->whereRelation('proPlayerSkill', 'player_id', $player->id)
             ->latest()
