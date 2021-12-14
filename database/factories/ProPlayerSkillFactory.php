@@ -16,7 +16,7 @@ class ProPlayerSkillFactory extends Factory
         $player     = Player::inRandomOrder()->first();
         $game       = Game::inRandomOrder()->first();
         $gameTier   = $game->gameTiers()->inRandomOrder()->first();
-        $gameRole  = $game->gameRoles()->inRandomOrder()->first();
+        $gameRole   = $game->gameRoles()->inRandomOrder()->first();
 
         return [
             'player_id'     => $player->id,
