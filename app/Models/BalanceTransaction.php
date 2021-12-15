@@ -14,6 +14,10 @@ class BalanceTransaction extends Model
 
     protected $guarded  = ['id'];
 
+    protected $casts    = [
+        'invoice'   => 'json',
+    ];
+
 
     static protected function boot() {
         parent::boot();
