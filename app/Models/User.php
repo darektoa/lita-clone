@@ -12,25 +12,20 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    
+    protected $casts    = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    protected $guarded  = ['id'];
 
     protected $hidden   = [
         'password',
         'remember_token',
     ];
 
-    protected $guarded  = ['id'];
-
     protected $with     = [
         'gender'
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 
 
