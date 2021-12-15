@@ -10,9 +10,13 @@ class CoinTransaction extends Model
 {
     use HasFactory;
 
+    protected $appends  = ['type_name'];
+
     protected $guarded  = ['id'];
 
-    protected $appends  = ['type_name'];
+    protected $casts    = [
+        'invoice'   => 'json'
+    ];
 
 
     static protected function boot() {
