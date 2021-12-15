@@ -48,6 +48,7 @@ class ProPlayerOrderController extends Controller
         $status     = $request->status;
         $statuses   = explode(',', $status);
         $orders     = ProPlayerOrder::with([
+            'review',
             'player.user',
             'proPlayerSkill.game'
         ]);

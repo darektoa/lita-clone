@@ -41,7 +41,6 @@ class ProPlayerSkillController extends Controller
                 ->where('status', 2) // 2 = Approved
                 //->where('activity', 1) // 1 = Online
                 // ->where('player_id', '!=', $playerId)
-                ->inRandomOrder()
                 ->paginate(10);
 
             return response()->json(
