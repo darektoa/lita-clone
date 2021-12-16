@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Helpers\StorageHelper;
-use App\Models\ProPlayerSkill;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PlayerResource extends JsonResource
