@@ -12,6 +12,10 @@ class GameController extends Controller
     public function index() {
         $games = Game::orderBy('name', 'asc')->get();
 
-        return GameResource::collection($games);
+        return response()->json([
+            'status'    => 200,
+            'message'   => 'OK',
+            'data'      => GameResource::collection($games)
+        ]);
     }
 }
