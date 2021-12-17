@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class AppInfoController extends Controller
 {
+    public function coinConversion() {
+        return response()->json([
+            'status'    => 200,
+            'message'   => 'OK',
+            'data'      => AppSetting::first()->coin_conversion,
+        ]);
+    }
+
+
     public function terms() {
         return response()->json([
             'status'    => 200,
