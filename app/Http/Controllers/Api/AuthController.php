@@ -74,7 +74,8 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name'      => 'bail|required|min:2|max:30|regex:/[a-z ]*/i',
             'email'     => 'required|email|unique:users',
-            'password'  => $isSSO ? 'required|min:5' : 'required|min:5|max:16'
+            'password'  => $isSSO ? 'required|min:5' : 'required|min:5|max:16',
+            'type'      => $isSSO ? 'required' : 'nullable',
         ]);
 
         $errors = $validator->errors();
@@ -91,7 +92,8 @@ class AuthController extends Controller
             'name'      => $request->name,
             'username'  => UsernameHelper::make($emailName),
             'email'     => $request->email,
-            'password'  => Hash::make($request->password)
+            'password'  => Hash::make($request->password),
+            'sso_type'  => $request->type
         ]);
 
         //Create Player
