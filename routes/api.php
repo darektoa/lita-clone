@@ -38,6 +38,11 @@ Route::prefix('/genders')->group(function() {
     Route::get('/', [GenderController::class, 'index']);
 });
 
+// INFO
+Route::prefix('/info')->group(function() {
+    Route::get('/terms', [AppInfoController::class, 'terms']);
+});
+
 
 // WITH AUTHENTICATION
 Route::middleware(['auth.api'])->group(function() {
