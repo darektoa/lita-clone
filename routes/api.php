@@ -55,6 +55,11 @@ Route::middleware(['auth.api'])->group(function() {
         Route::post('/topup', [CoinTransactionController::class, 'store']);
     });
 
+    // INFO
+    Route::prefix('/info')->group(function() {
+        Route::get('/coin-conversion', [AppInfoController::class, 'coinConversion']);
+    });
+
     // NOTIFICATION
     Route::prefix('/notifications')->group(function() {
         Route::get('/unsubscribe', [NotificationController::class, 'unsubscribe']);
