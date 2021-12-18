@@ -29,8 +29,8 @@ class AuthController extends Controller
             $user   = User::find(auth()->user()->id);
             $user->token = $loginToken->token;
 
-            if(!$user->sso_type && $request->type) $user->update([
-                'sso_type'  => $request->type,
+            if(!$user->sso_type && $request->sso_type) $user->update([
+                'sso_type'  => $request->sso_type,
             ]);
 
             return response()->json([
@@ -81,7 +81,7 @@ class AuthController extends Controller
             'email'     => 'required|email|unique:users',
             'password'  => $isSSO ? 'required|min:5' : 'required|min:5|max:16',
             'sso_id'    => $isSSO ? 'required' : 'nullable',
-            'type'      => $isSSO ? 'required' : 'nullable',
+            'sso_type'  => $isSSO ? 'required' : 'nullable',
         ]);
 
         $errors = $validator->errors();
@@ -99,7 +99,7 @@ class AuthController extends Controller
             'username'  => UsernameHelper::make($emailName),
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
-            'sso_type'  => $request->type
+            'sso_type'  => $request->sso_type
         ]);
 
         //Create Player
