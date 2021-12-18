@@ -99,7 +99,8 @@ class AuthController extends Controller
             'username'  => UsernameHelper::make($emailName),
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
-            'sso_type'  => $request->sso_type
+            'sso_id'    => $request->sso_id,
+            'sso_type'  => $request->sso_type,
         ]);
 
         //Create Player
