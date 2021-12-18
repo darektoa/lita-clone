@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->text('cover_photo')->nullable();
             $table->date('birthday')->nullable();
             $table->string('bio')->nullable();
+            $table->string('sso_type')->nullable();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
