@@ -80,7 +80,7 @@ class AuthController extends Controller
             'name'      => 'bail|required|min:2|max:30|regex:/[a-z ]*/i',
             'email'     => 'required|email|unique:users',
             'password'  => $isSSO ? 'required|min:5' : 'required|min:5|max:16',
-            'sso_id'    => $isSSO ? 'required' : 'nullable|max:0',
+            'sso_id'    => $isSSO ? 'required|max:255' : 'nullable|max:0',
             'sso_type'  => $isSSO ? 'required' : 'nullable|max:0',
         ]);
 
