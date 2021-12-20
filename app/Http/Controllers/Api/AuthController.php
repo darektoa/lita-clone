@@ -79,9 +79,9 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name'      => 'bail|required|min:2|max:30|regex:/[a-z ]*/i',
             'email'     => 'required|email|unique:users',
-            'password'  => $isSSO ? 'required|min:5' : 'required|min:5|max:16',
+            'password'  => $isSSO ? 'required|min:5'   : 'required|min:5|max:16',
             'sso_id'    => $isSSO ? 'required|max:255' : 'nullable|max:0',
-            'sso_type'  => $isSSO ? 'required|max:50' : 'nullable|max:0',
+            'sso_type'  => $isSSO ? 'required|max:50'  : 'nullable|max:0',
         ]);
 
         $errors = $validator->errors();
