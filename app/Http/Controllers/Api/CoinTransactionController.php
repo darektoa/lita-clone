@@ -169,7 +169,7 @@ class CoinTransactionController extends Controller
         }catch(Exception $err) {
             $errCode    = $err->getCode() ?? 400;
             $errMessage = $err->getMessage();
-            response()->json([
+            return response()->json([
                 'status'    => $errCode,
                 'message'   => $errMessage,
             ], $errCode);
