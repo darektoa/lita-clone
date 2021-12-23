@@ -32,6 +32,10 @@ class AuthController extends Controller
                 'sso_type'  => $request->sso_type,
             ]);
             
+            if(!$user->sso_id && $request->sso_id) $user->update([
+                'sso_id'  => $request->sso_id,
+            ]);
+
             $user->token = $loginToken->token;
 
             return response()->json([
