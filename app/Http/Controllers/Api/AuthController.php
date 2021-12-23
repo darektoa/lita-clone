@@ -27,11 +27,12 @@ class AuthController extends Controller
             );
 
             $user   = User::find(auth()->user()->id);
-            $user->token = $loginToken->token;
-
+            
             if(!$user->sso_type && $request->sso_type) $user->update([
                 'sso_type'  => $request->sso_type,
             ]);
+            
+            $user->token = $loginToken->token;
 
             return response()->json([
                 'status'    => 200,
