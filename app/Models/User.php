@@ -72,4 +72,9 @@ class User extends Authenticatable
     public function deviceIds() {
         return $this->hasMany(DeviceId::class);
     }
+
+
+    public function withdrawAccounts() {
+        return $this->hasMany(WithdrawAccount::class);
+    }
 }
