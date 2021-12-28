@@ -16,7 +16,7 @@ class CreateWithdrawAccountsTable extends Migration
         Schema::create('withdraw_accounts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('transfer_id')->constrained('transfer_availables');
+            $table->foreignId('transfer_id')->constrained('available_transfers');
             $table->string('name', 100);
             $table->string('number', 20);
             $table->timestamps();

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransferAvailablesTable extends Migration
+class CreateAvailableTransfersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTransferAvailablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('transfer_availables', function (Blueprint $table) {
+        Schema::create('available_transfers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->smallInteger('type');
@@ -29,6 +29,6 @@ class CreateTransferAvailablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transfer_availables');
+        Schema::dropIfExists('available_transfers');
     }
 }
