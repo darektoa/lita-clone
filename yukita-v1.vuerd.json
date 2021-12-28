@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -1219,
-    "scrollLeft": -707,
+    "scrollTop": -1141,
+    "scrollLeft": -473,
     "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
@@ -2235,9 +2235,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 132.1124,
+          "left": 135.8624,
           "top": 607.6671,
-          "zIndex": 116,
+          "zIndex": 134,
           "widthName": 75.7216796875,
           "widthComment": 60
         },
@@ -4118,6 +4118,29 @@
             "id": "2246f5d0-4377-49b5-a6e4-cd6e11b2069b"
           },
           {
+            "name": "deleted_at",
+            "comment": "",
+            "dataType": "TIMESTAMP",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 62.7216796875,
+              "widthComment": 60,
+              "widthDataType": 76.87060546875,
+              "widthDefault": 60
+            },
+            "id": "6299237c-cd6c-4e96-8ff3-475a03275094"
+          },
+          {
             "name": "created_at",
             "comment": "",
             "dataType": "TIMESTAMP",
@@ -4166,9 +4189,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 628.7501,
-          "top": 1202.4166,
-          "zIndex": 130,
+          "left": 627.5001,
+          "top": 1188.6666,
+          "zIndex": 141,
           "widthName": 112.55712890625,
           "widthComment": 60
         },
@@ -4319,10 +4342,10 @@
           }
         ],
         "ui": {
-          "active": false,
-          "left": 136.4998,
-          "top": 1223.0275,
-          "zIndex": 132,
+          "active": true,
+          "left": 137.7498,
+          "top": 1219.2775,
+          "zIndex": 142,
           "widthName": 111.1162109375,
           "widthComment": 60
         },
@@ -4953,8 +4976,8 @@
           "columnIds": [
             "70f7c343-494c-4493-ae0d-ffb26a437d30"
           ],
-          "x": 1017.76230703125,
-          "y": 1318.9166,
+          "x": 1016.51230703125,
+          "y": 1315.4166,
           "direction": "right"
         },
         "constraintName": "fk_users_to_withdraw_accounts",
@@ -4970,8 +4993,8 @@
           "columnIds": [
             "fd413078-4d31-4fd6-87e2-7032db6d2e3f"
           ],
-          "x": 519.25321796875,
-          "y": 1319.0275,
+          "x": 520.50321796875,
+          "y": 1315.2775,
           "direction": "right"
         },
         "end": {
@@ -4979,8 +5002,8 @@
           "columnIds": [
             "1a4ca8cd-1e4d-4063-98a9-6ef2fa82fe2f"
           ],
-          "x": 628.7501,
-          "y": 1318.9166,
+          "x": 627.5001,
+          "y": 1315.4166,
           "direction": "left"
         },
         "constraintName": "fk_transfer_availables_to_withdraw_accounts",
