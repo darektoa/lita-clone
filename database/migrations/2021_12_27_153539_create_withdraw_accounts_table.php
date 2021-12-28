@@ -19,6 +19,7 @@ class CreateWithdrawAccountsTable extends Migration
             $table->foreignId('transfer_id')->constrained('available_transfers');
             $table->string('name', 100);
             $table->string('number', 20);
+            $table->smallInteger('default')->default(0);
             $table->timestamps();
         });
     }
