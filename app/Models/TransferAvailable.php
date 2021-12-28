@@ -10,5 +10,20 @@ class TransferAvailable extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $appends  = ['type_name'];
+
     protected $guarded  = ['id'];
+
+
+    public function getTypeNameAttribute() {
+        $type = null;
+
+        switch($this->type) {
+            case 0: $type   = 'BANK'; break;
+            case 1: $type   = 'E-WALLET'; break;
+            default: $type  = 'Unknown';
+        }
+
+        return $type;
+    }
 }
