@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -1414,
-    "scrollLeft": -685,
+    "scrollTop": -1070,
+    "scrollLeft": -381,
     "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
@@ -4153,7 +4153,7 @@
         "id": "bb514208-0ed2-4a59-9b55-05bee254c32e"
       },
       {
-        "name": "transfer_availables",
+        "name": "available_transfers",
         "comment": "",
         "columns": [
           {
@@ -4296,10 +4296,10 @@
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 140.2498,
           "top": 1221.7775,
-          "zIndex": 121,
+          "zIndex": 126,
           "widthName": 111.1162109375,
           "widthComment": 60
         },
