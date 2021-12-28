@@ -55,6 +55,11 @@ Route::middleware(['auth.api'])->group(function() {
         Route::post('/topup', [CoinTransactionController::class, 'store']);
     });
 
+    // AVAILABLE TRANSFER
+    Route::prefix('/available-transfers')->group(function() {
+        Route::get('/', [AvailableTransferController::class, 'index']);
+    });
+
     // INFO
     Route::prefix('/info')->group(function() {
         Route::get('/coin-conversion', [AppInfoController::class, 'coinConversion']);
@@ -112,8 +117,14 @@ Route::middleware(['auth.api'])->group(function() {
             Route::get('/orders/{proPlayerOrder:id}/reject', [ProPlayerOrderController::class, 'reject']);
         });
 
+        // SETTING
         Route::prefix('/settings')->group(function() {
             Route::put('/activity', [ProPlayerSettingController::class, 'activity']);
+        });
+
+        // WITHDRAW ACCOUNT
+        Route::prefix('/withdraw-accounts')->group(function() {
+            Route::get('/', [WithdrawAccountController::class, 'index']);
         });
     }); 
 
