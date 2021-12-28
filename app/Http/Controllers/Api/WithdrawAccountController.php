@@ -51,4 +51,24 @@ class WithdrawAccountController extends Controller
             );
         }
     }
+
+
+    public function destroy(WithdrawAccount $withdrawAccount) {
+        try{
+            $user = auth()->user();
+
+            if($withdrawAccount->user->id !== $user->id)
+                throw new ErrorException('Not allowed, this is not your account', 403);
+
+            $withdrawAccount->delete();
+
+            return ResponseHelper::make($withdrawAccount);
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
+        }
+    }
 }
