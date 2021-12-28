@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -1070,
-    "scrollLeft": -381,
+    "scrollTop": -1219,
+    "scrollLeft": -707,
     "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
@@ -4095,6 +4095,29 @@
             "id": "023b0bd1-9451-44c6-bea9-b87ffe90627c"
           },
           {
+            "name": "default",
+            "comment": "",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "2246f5d0-4377-49b5-a6e4-cd6e11b2069b"
+          },
+          {
             "name": "created_at",
             "comment": "",
             "dataType": "TIMESTAMP",
@@ -4144,8 +4167,8 @@
         "ui": {
           "active": false,
           "left": 628.7501,
-          "top": 1211.1666,
-          "zIndex": 112,
+          "top": 1202.4166,
+          "zIndex": 130,
           "widthName": 112.55712890625,
           "widthComment": 60
         },
@@ -4296,10 +4319,10 @@
           }
         ],
         "ui": {
-          "active": true,
-          "left": 140.2498,
-          "top": 1221.7775,
-          "zIndex": 126,
+          "active": false,
+          "left": 136.4998,
+          "top": 1223.0275,
+          "zIndex": 132,
           "widthName": 111.1162109375,
           "widthComment": 60
         },
@@ -4931,7 +4954,7 @@
             "70f7c343-494c-4493-ae0d-ffb26a437d30"
           ],
           "x": 1017.76230703125,
-          "y": 1317.4166,
+          "y": 1318.9166,
           "direction": "right"
         },
         "constraintName": "fk_users_to_withdraw_accounts",
@@ -4947,8 +4970,8 @@
           "columnIds": [
             "fd413078-4d31-4fd6-87e2-7032db6d2e3f"
           ],
-          "x": 523.00321796875,
-          "y": 1317.7775,
+          "x": 519.25321796875,
+          "y": 1319.0275,
           "direction": "right"
         },
         "end": {
@@ -4957,7 +4980,7 @@
             "1a4ca8cd-1e4d-4063-98a9-6ef2fa82fe2f"
           ],
           "x": 628.7501,
-          "y": 1317.4166,
+          "y": 1318.9166,
           "direction": "left"
         },
         "constraintName": "fk_transfer_availables_to_withdraw_accounts",
