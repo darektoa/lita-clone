@@ -16,6 +16,7 @@ class ProductionSeeder extends Seeder
             GenderSeeder::class,
             AppBannerSeeder::class, 
             AppSettingSeeder::class,
+            TransferAvailableSeeder::class,
         ]);
     }
 }
