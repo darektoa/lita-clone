@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -1001,
-    "scrollLeft": -732,
+    "scrollTop": -1414,
+    "scrollLeft": -685,
     "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
@@ -1088,9 +1088,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 660.8344,
-          "top": 1017.583,
-          "zIndex": 94,
+          "left": 662.3344,
+          "top": 996.583,
+          "zIndex": 124,
           "widthName": 79.32080078125,
           "widthComment": 60
         },
@@ -2235,9 +2235,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 171.0011,
-          "top": 604.3338,
-          "zIndex": 6,
+          "left": 132.1124,
+          "top": 607.6671,
+          "zIndex": 116,
           "widthName": 75.7216796875,
           "widthComment": 60
         },
@@ -3373,9 +3373,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 169.2504,
-          "top": 850.7781,
-          "zIndex": 11,
+          "left": 137.0283,
+          "top": 854.1114,
+          "zIndex": 115,
           "widthName": 77.89892578125,
           "widthComment": 60
         },
@@ -4026,6 +4026,29 @@
             "id": "70f7c343-494c-4493-ae0d-ffb26a437d30"
           },
           {
+            "name": "transfer_id",
+            "comment": "",
+            "dataType": "BIGINT(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 63.419921875,
+              "widthComment": 60,
+              "widthDataType": 68.45361328125,
+              "widthDefault": 60
+            },
+            "id": "1a4ca8cd-1e4d-4063-98a9-6ef2fa82fe2f"
+          },
+          {
             "name": "name",
             "comment": "",
             "dataType": "VARCHAR(100)",
@@ -4070,52 +4093,6 @@
               "widthDefault": 60
             },
             "id": "023b0bd1-9451-44c6-bea9-b87ffe90627c"
-          },
-          {
-            "name": "transfer_name",
-            "comment": "",
-            "dataType": "VARCHAR(20)",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 85.82080078125,
-              "widthComment": 60,
-              "widthDataType": 87.71875,
-              "widthDefault": 60
-            },
-            "id": "cd2ed639-a246-4c4d-a526-0092cbfeabcc"
-          },
-          {
-            "name": "transfer_type",
-            "comment": "",
-            "dataType": "VARCHAR(20)",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 77.87353515625,
-              "widthComment": 60,
-              "widthDataType": 87.71875,
-              "widthDefault": 60
-            },
-            "id": "f59f6d6a-2415-49c6-92fb-a2de996136a9"
           },
           {
             "name": "created_at",
@@ -4166,14 +4143,168 @@
         ],
         "ui": {
           "active": false,
-          "left": 609.7501,
-          "top": 1179.1666,
-          "zIndex": 73,
+          "left": 628.7501,
+          "top": 1211.1666,
+          "zIndex": 112,
           "widthName": 112.55712890625,
           "widthComment": 60
         },
         "visible": true,
         "id": "bb514208-0ed2-4a59-9b55-05bee254c32e"
+      },
+      {
+        "name": "transfer_availables",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "BIGINT(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 68.45361328125,
+              "widthDefault": 60
+            },
+            "id": "fd413078-4d31-4fd6-87e2-7032db6d2e3f"
+          },
+          {
+            "name": "name",
+            "comment": "",
+            "dataType": "VARCHAR(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 87.71875,
+              "widthDefault": 60
+            },
+            "id": "ab84f3dd-639b-459b-937d-b8b528e9b7a9"
+          },
+          {
+            "name": "type",
+            "comment": "",
+            "dataType": "SMALLINT(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 88.68994140625,
+              "widthDefault": 60
+            },
+            "id": "22c990ae-fc12-48f5-b1ea-90ceb850ef55"
+          },
+          {
+            "name": "deleted_at",
+            "comment": "",
+            "dataType": "TIMESTAMP",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 62.7216796875,
+              "widthComment": 60,
+              "widthDataType": 76.87060546875,
+              "widthDefault": 60
+            },
+            "id": "dc7ab56a-4252-4c8b-9725-c07973f8bf40"
+          },
+          {
+            "name": "created_at",
+            "comment": "",
+            "dataType": "TIMESTAMP",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 63.4326171875,
+              "widthComment": 60,
+              "widthDataType": 76.87060546875,
+              "widthDefault": 60
+            },
+            "id": "4c2aec9a-530c-41ee-a1be-397fe740b19c"
+          },
+          {
+            "name": "updated_at",
+            "comment": "",
+            "dataType": "TIMESTAMP",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 67.0634765625,
+              "widthComment": 60,
+              "widthDataType": 76.87060546875,
+              "widthDefault": 60
+            },
+            "id": "39e70826-75e7-4eaa-b8af-ceaffa1bbc3c"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 140.2498,
+          "top": 1221.7775,
+          "zIndex": 121,
+          "widthName": 111.1162109375,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "6624dee4-f2c9-44c6-bf53-2ad249c92a02"
       }
     ],
     "indexes": []
@@ -4305,8 +4436,8 @@
           "columnIds": [
             "ac29c91c-191b-4373-a02c-9a6b888c78d2"
           ],
-          "x": 1016.28801328125,
-          "y": 1082.833,
+          "x": 1017.78801328125,
+          "y": 1061.833,
           "direction": "right"
         },
         "constraintName": "fk_users_to_user_settings",
@@ -4799,13 +4930,39 @@
           "columnIds": [
             "70f7c343-494c-4493-ae0d-ffb26a437d30"
           ],
-          "x": 1017.51963125,
-          "y": 1295.6666,
+          "x": 1017.76230703125,
+          "y": 1317.4166,
           "direction": "right"
         },
         "constraintName": "fk_users_to_withdraw_accounts",
         "visible": true,
         "id": "e965f1cd-42d0-4d22-bb6d-a166e6ac0878"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "6624dee4-f2c9-44c6-bf53-2ad249c92a02",
+          "columnIds": [
+            "fd413078-4d31-4fd6-87e2-7032db6d2e3f"
+          ],
+          "x": 523.00321796875,
+          "y": 1317.7775,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "bb514208-0ed2-4a59-9b55-05bee254c32e",
+          "columnIds": [
+            "1a4ca8cd-1e4d-4063-98a9-6ef2fa82fe2f"
+          ],
+          "x": 628.7501,
+          "y": 1317.4166,
+          "direction": "left"
+        },
+        "constraintName": "fk_transfer_availables_to_withdraw_accounts",
+        "visible": true,
+        "id": "a93dded6-7ae7-406d-8b20-11384bdc6d4e"
       }
     ]
   }
