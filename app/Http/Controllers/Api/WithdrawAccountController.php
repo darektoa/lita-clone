@@ -59,7 +59,7 @@ class WithdrawAccountController extends Controller
             $validator  = Validator::make($request->all(), [
                 'name'          => 'nullable|max:100',
                 'number'        => 'nullable|max:20',
-                'default'       => 'nullable|boolean',
+                'default'       => 'nullable|in:1,true',
                 'transfer_id'   => 'nullable|exists:available_transfers,id'
             ]);
 
