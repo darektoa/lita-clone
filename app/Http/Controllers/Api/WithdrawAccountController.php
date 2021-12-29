@@ -43,7 +43,7 @@ class WithdrawAccountController extends Controller
                 'default'       => $user->withdrawAccounts->count() ? 0 : 1,
             ]);
 
-            return ResponseHelper::make($account);
+            return ResponseHelper::make(WithdrawAccountResource::make($account));
         }catch(ErrorException $err) {
             return ResponseHelper::error(
                 $err->getErrors(),
