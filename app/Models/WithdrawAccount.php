@@ -16,4 +16,9 @@ class WithdrawAccount extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    
+    public function transfer() {
+        return $this->belongsTo(AvailableTransfer::class);
+    }
 }
