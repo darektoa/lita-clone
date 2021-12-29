@@ -23,13 +23,19 @@ class ResponseHelper {
     }
 
 
-    static public function paginate($data=[], string $message='OK', $status=200, ?JsonResource $resource=null) {
+    static public function paginate($data=[], string $message='OK', $status=200) {
         $response = collect([
             'status'    => $status,
             'message'   => $message,
-        ])->merge($data);
+        ]);
 
-        if($resource) $response->merge(['data' => $resource($data)]);
+        if($data instanceof JsonResource)
+            $response = $response
+                ->merge($data->resource)
+                ->merge(['data' => $data]);
+        else
+            $response = $response
+                ->merge($data);
 
         return response()->json($response);
     }
