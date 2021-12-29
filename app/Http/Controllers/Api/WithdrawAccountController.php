@@ -98,13 +98,19 @@ class WithdrawAccountController extends Controller
 
     public function destroy(WithdrawAccount $withdrawAccount) {
         try{
-            $user = auth()->user();
+            $userId = auth()->user()->id;
+            $user   = User::with('withdrawAccounts')->find($userId);
 
-            if($withdrawAccount->user->id !== $user->id)
+            if($withdrawAccount->user->id !== $userId)
                 throw new ErrorException('Not allowed, this is not your account', 403);
-
+                
             $withdrawAccount->delete();
 
+            if($withdrawAccount->default && $user->withdrawAccounts()->count())
+                $user->withdrawAccounts()->first()->update([
+                    'default'   => 1,
+                ]);
+                
             return ResponseHelper::make(WithdrawAccountResource::make($withdrawAccount));
         }catch(ErrorException $err) {
             return ResponseHelper::error(
