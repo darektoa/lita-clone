@@ -81,8 +81,8 @@ class WithdrawAccountController extends Controller
             $withdrawAccount->update([
                 'name'          => $request->name ?? $withdrawAccount->name,
                 'number'        => $request->number ?? $withdrawAccount->number,
-                'default'       => $request->default,
-                'transfer_id'   => $request->transfer_id,
+                'default'       => $request->default ?? $withdrawAccount->default,
+                'transfer_id'   => $request->transfer_id ?? $withdrawAccount->transfer_id,
             ]);
 
             return ResponseHelper::make(WithdrawAccountResource::make($withdrawAccount));
