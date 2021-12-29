@@ -15,6 +15,11 @@ class AvailableTransfer extends Model
     protected $guarded  = ['id'];
 
 
+    public function withdrawAccounts() {
+        return $this->hasMany(WithdrawAccount::class, 'transfer_id');
+    }
+
+
     public function getTypeNameAttribute() {
         $type = null;
 
