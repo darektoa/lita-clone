@@ -6,6 +6,7 @@ use App\Exceptions\ErrorException;
 use App\Helpers\ResponseHelper;
 use App\Models\WithdrawAccount;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\WithdrawAccountResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,7 +17,7 @@ class WithdrawAccountController extends Controller
         $accounts   = WithdrawAccount::whereRelation('user', 'id', '=', $user->id)
             ->paginate(10);
 
-        return ResponseHelper::paginate($accounts);
+        return ResponseHelper::paginate(WithdrawAccountResource::collection($accounts),'OK', 200);
     }
 
 
