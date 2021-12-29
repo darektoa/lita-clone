@@ -19,7 +19,7 @@ class WithdrawAccountResource extends JsonResource
             'name'      => $this->name,
             'number'    => $this->number,
             'default'   => boolval($this->default),
-            'transfer'  => $this->whenLoaded('transfer', $this->transfer),
+            'transfer'  => AvailableTransferResource::make($this->whenLoaded('transfer', $this->transfer)),
         ];
     }
 }
