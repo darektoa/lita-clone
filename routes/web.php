@@ -105,6 +105,11 @@ Route::middleware(['auth'])->group(function() {
         Route::put('/{tierId}', [TierController::class, 'update'])->name('update');
         Route::delete('/{tierId}', [TierController::class, 'destroy'])->name('destroy');
       });
+
+      // AVAILABLE TRANSFER SETTING
+      Route::prefix('/available-transfers')->group(function() {
+        Route::get('/', []);
+      });
     });
 
     // USER

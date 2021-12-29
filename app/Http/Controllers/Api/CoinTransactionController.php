@@ -121,10 +121,10 @@ class CoinTransactionController extends Controller
             
             if(!$transaction) throw new Exception('Not found', 404);
 
-            $invoice    = collect(json_decode($transaction->invoice));
+            $invoice    = collect($transaction->invoice);
             $status     = Str::lower($request->status);
             $player     = $transaction->receiver->player;
-
+            
             $invoice->put($status, $request->all());
             $transaction->update([
                 'status'    => $status,
