@@ -63,7 +63,7 @@ class WithdrawAccountController extends Controller
 
             $withdrawAccount->delete();
 
-            return ResponseHelper::make($withdrawAccount);
+            return ResponseHelper::make(WithdrawAccountResource::make($withdrawAccount));
         }catch(ErrorException $err) {
             return ResponseHelper::error(
                 $err->getErrors(),
