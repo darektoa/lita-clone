@@ -126,6 +126,7 @@ Route::middleware(['auth.api'])->group(function() {
         Route::prefix('/withdraw-accounts')->group(function() {
             Route::get('/', [WithdrawAccountController::class, 'index']);
             Route::post('/', [WithdrawAccountController::class, 'store']);
+            Route::put('/{withdrawAccount:id}', [WithdrawAccountController::class, 'update']);
             Route::delete('/{withdrawAccount:id}', [WithdrawAccountController::class, 'destroy']);
         });
     }); 
