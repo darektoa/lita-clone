@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Exceptions\ErrorException;
 use App\Helpers\ResponseHelper;
-use App\Models\WithdrawAccount;
+use App\Models\{User, WithdrawAccount};
 use App\Http\Controllers\Controller;
 use App\Http\Resources\WithdrawAccountResource;
 use Illuminate\Http\Request;
@@ -44,6 +44,48 @@ class WithdrawAccountController extends Controller
             ]);
 
             return ResponseHelper::make(WithdrawAccountResource::make($account));
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
+        }
+    }
+
+
+    public function update(Request $request, WithdrawAccount $withdrawAccount) {
+        try{
+            $validator  = Validator::make($request->all(), [
+                'name'          => 'nullable|max:100',
+                'number'        => 'nullable|max:20',
+                'default'       => 'nullable|boolean',
+                'transfer_id'   => 'nullable|exists:available_transfers,id'
+            ]);
+
+            if($validator->fails()) {
+                $errors = $validator->errors()->all();
+                throw new ErrorException('Unprocessable, Invalid field', 422, $errors);
+            }
+
+            $userId = auth()->user()->id;
+            $user   = User::with('withdrawAccounts')->find($userId);
+
+            if($withdrawAccount->user->id !== $userId)
+                throw new ErrorException('Not allowed, this is not your account', 403);
+            if($request->default)
+                $user->withdrawAccounts()->update([
+                    'default'   => 0,
+                ]);
+
+            $withdrawAccount->update([
+                'name'          => $request->name ?? $withdrawAccount->name,
+                'number'        => $request->number ?? $withdrawAccount->number,
+                'default'       => $request->default,
+                'transfer_id'   => $request->transfer_id,
+            ]);
+
+            return ResponseHelper::make(WithdrawAccountResource::make($withdrawAccount));
         }catch(ErrorException $err) {
             return ResponseHelper::error(
                 $err->getErrors(),
