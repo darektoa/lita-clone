@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Helpers\UsernameHelper;
+use App\Helpers\{ResponseHelper, UsernameHelper};
 use App\Models\{ User, LoginToken };
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
@@ -38,16 +38,15 @@ class AuthController extends Controller
 
             $user->token = $loginToken->token;
 
-            return response()->json([
-                'status'    => 200,
-                'message'   => 'OK',
-                'data'      => new UserResource($user),
-            ]);
+            return ResponseHelper::make(
+                UserResource::make($user),
+            );
         } else {
-            return response()->json([
-                'status'    => 401,
-                'message'   => "Unauthorized, Account doesn't match"
-            ], 401);
+            return ResponseHelper::error(
+                ["Account doesn't match"],
+                "Unauthorized, Account doesn't match",
+                401
+            );
         }
     }
 
