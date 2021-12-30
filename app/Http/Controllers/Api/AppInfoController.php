@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\ResponseHelper;
 use App\Models\AppSetting;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,11 +10,9 @@ use Illuminate\Http\Request;
 class AppInfoController extends Controller
 {
     public function coinConversion() {
-        return response()->json([
-            'status'    => 200,
-            'message'   => 'OK',
-            'data'      => AppSetting::first()->coin_conversion,
-        ]);
+        return ResponseHelper::make(
+            AppSetting::first()->coin_conversion,
+        );
     }
 
 
