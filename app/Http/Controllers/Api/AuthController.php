@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\ErrorException;
 use App\Helpers\{ResponseHelper, UsernameHelper};
 use App\Models\{ User, LoginToken };
 use App\Http\Controllers\Controller;
@@ -65,13 +66,22 @@ class AuthController extends Controller
 
 
     public function logout(Request $request) {
-        $loginToken = LoginToken::where('token', $request->token)->first();
-
-        if(!$loginToken)
-            return ResponseHelper::error(['Unauthorized Token'], 'Unauthorized Token', 401);
-
-        $loginToken->delete();
-        return ResponseHelper::make([], 'OK, Logout Success');
+        try{
+            $token = LoginToken::where('token', $request->token)->first();
+    
+            if(!$token) throw new ErrorException('Unauthorized Token', 401, [
+                'Unauthorized Token'
+            ]);
+    
+            $token->delete();
+            return ResponseHelper::make([], 'OK, Logout Success');
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
+        }
     }
     
 
