@@ -17,10 +17,8 @@ class AppInfoController extends Controller
 
 
     public function terms() {
-        return response()->json([
-            'status'    => 200,
-            'message'   => 'OK',
-            'data'      => AppSetting::first()->terms_rules,
-        ]);
+        return ResponseHelper::make(
+            AppSetting::first()->terms_rules,
+        );
     }
 }
