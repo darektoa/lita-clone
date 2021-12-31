@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\ErrorException;
+use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Models\{AppSetting, BalanceTransaction, User};
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,20 +18,20 @@ class BalanceTransactionController extends Controller
                 'description'   => 'nullable|max:255'
             ]);
 
-            if($validator->fails())
-                return response()->json([
-                    'status'    => 422,
-                    'message'   => 'Unprocessable, Invalid field',
-                    'errors'    => $validator->errors(),
-                ]);
+            if($validator->fails()) {
+                $errors = $validator->errors()->all();
+                throw new ErrorException('Unprocessable, Invalid field', 422, $errors);
+            }
 
             $amount      = $request->amount;
             $description = $request->description;
             $user        = User::with(['player'])->find(auth()->user()->id);
             $player      = $user->player;
 
-            if($amount > $player->balance)
-                throw new Exception('Unprocessable, Amount must be last than or equal to balance', 422);
+            if($amount > $player->balance) throw new ErrorException(
+                'Unprocessable, Amount must be last than or equal to balance', 422,
+                ['Amount must be last than or equal to balance']
+            );
 
             $app         = AppSetting::first();
             $transaction = BalanceTransaction::create([
@@ -45,19 +46,13 @@ class BalanceTransactionController extends Controller
             $player->balance -= $amount;
             $player->update();
 
-            return response()->json([
-                'status'    => 200,
-                'message'   => 'OK',
-                'data'      => $transaction
-            ]);
-
-        }catch(Exception $err) {
-            $errCode    = $err->getCode() ?? 400;
-            $errMessage = $err->getMessage();
-            return response()->json([
-                'status'    => $errCode,
-                'message'   => $errMessage,
-            ], $errCode);
+            return ResponseHelper::make($transaction);
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
         }
     }
 }

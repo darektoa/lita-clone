@@ -13,6 +13,8 @@ class AvailableTransferController extends Controller
     public function index() {
         $availables = AvailableTransfer::all();
 
-        return ResponseHelper::make(AvailableTransferResource::collection($availables));
+        return ResponseHelper::make(
+            AvailableTransferResource::collection($availables)
+        );
     }
 }
