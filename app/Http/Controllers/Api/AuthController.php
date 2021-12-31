@@ -87,49 +87,53 @@ class AuthController extends Controller
 
 
     public function register(Request $request) {
-        $isSSO     = $request->is('api/login/sso');
-        $validator = Validator::make($request->all(), [
-            'name'      => 'bail|required|min:2|max:30|regex:/[a-z ]*/i',
-            'email'     => 'required|email|unique:users',
-            'password'  => $isSSO ? 'required|min:5'   : 'required|min:5|max:16',
-            'sso_id'    => $isSSO ? 'required|max:255' : 'nullable|max:0',
-            'sso_type'  => $isSSO ? 'required|max:50'  : 'nullable|max:0',
-        ]);
-
-        $errors = $validator->errors();
-        if($validator->fails()) {
-            return response()->json([
-                'message' => 'invalid field',
-                'errors' => $errors->all()
-            ], 422);
+        try{
+            $isSSO     = $request->is('api/login/sso');
+            $validator = Validator::make($request->all(), [
+                'name'      => 'bail|required|min:2|max:30|regex:/[a-z ]*/i',
+                'email'     => 'required|email|unique:users',
+                'password'  => $isSSO ? 'required|min:5'   : 'required|min:5|max:16',
+                'sso_id'    => $isSSO ? 'required|max:255' : 'nullable|max:0',
+                'sso_type'  => $isSSO ? 'required|max:50'  : 'nullable|max:0',
+            ]);
+    
+            if($validator->fails()) {
+                $errors = $validator->errors()->all();
+                throw new ErrorException('Unprocessable, Invalid field', 422, $errors);
+            }
+    
+            // Create Account
+            $emailName = explode('@', $request->email)[0];
+            $user = User::create([
+                'name'      => $request->name,
+                'username'  => UsernameHelper::make($emailName),
+                'email'     => $request->email,
+                'password'  => Hash::make($request->password),
+                'sso_id'    => $request->sso_id,
+                'sso_type'  => $request->sso_type,
+            ]);
+    
+            //Create Player
+            $user->player()->create();
+            
+            // Login User
+            $userId     = $user->id;
+            $user       = User::find($userId);
+            $loginToken = LoginToken::create([
+                'user_id' => $userId,
+                'token'   => Hash::make($userId),
+            ]);
+    
+            $user->token = $loginToken->token;
+            return ResponseHelper::make(
+                UserResource::make($user)
+            );
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
         }
-
-        // Create Account
-        $emailName = explode('@', $request->email)[0];
-        $user = User::create([
-            'name'      => $request->name,
-            'username'  => UsernameHelper::make($emailName),
-            'email'     => $request->email,
-            'password'  => Hash::make($request->password),
-            'sso_id'    => $request->sso_id,
-            'sso_type'  => $request->sso_type,
-        ]);
-
-        //Create Player
-        $user->player()->create();
-
-        
-        // Login User
-        $userId     = $user->id;
-        $user       = User::find($userId);
-        $loginToken = LoginToken::create([
-            'user_id' => $userId,
-            'token'   => Hash::make($userId),
-        ]);
-
-        $user->token = $loginToken->token;
-        return ResponseHelper::make(
-            UserResource::make($user)
-        );
     }
 }
