@@ -128,10 +128,8 @@ class AuthController extends Controller
         ]);
 
         $user->token = $loginToken->token;
-        return response()->json([
-            'status'    => 200,
-            'message'   => 'OK',
-            'data'      => new UserResource($user),
-        ]);
+        return ResponseHelper::make(
+            UserResource::make($user)
+        );
     }
 }
