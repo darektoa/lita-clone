@@ -23,11 +23,6 @@ class Player extends Model
     }
 
 
-    public function coinPurchases() {
-        return $this->hasMany(CoinPurchase::class);
-    }
-
-
     public function playerPosts() {
         return $this->hasMany(PlayerPost::class);
     }
