@@ -12,9 +12,4 @@ class Coin extends Model
     protected $guarded = [
         'id'
     ];
-
-
-    public function coinPurchases() {
-        return $this->belongsToMany(CoinPurchase::class);
-    }
 }
