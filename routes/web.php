@@ -18,8 +18,6 @@ Route::middleware(['guest'])->group(function() {
 Route::middleware(['auth'])->group(function() {
   Route::get('/dashboard', DashboardController::class)->name('dashboard');
   Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-  Route::get('/topup', [CoinPurchaseController::class, 'index'])->name('topup.index');
-  Route::post('/topup', [CoinPurchaseController::class, 'store'])->name('topup.store');
 
   // COIN
   Route::prefix('/coins')->name('coins.')->group(function() {
@@ -29,9 +27,6 @@ Route::middleware(['auth'])->group(function() {
 
   // ONLY ADMIN
   Route::middleware(['admin'])->group(function() {
-    Route::get('/topup/approve/{coinPurchase:id}', [CoinPurchaseController::class, 'approve'])->name('topup.approve');
-    Route::get('/topup/reject/{coinPurchase:id}', [CoinPurchaseController::class, 'reject'])->name('topup.reject');
-
     // PRO PLAYER
     Route::prefix('/pro-players')->name('pro-players.')->group(function() {
       Route::get('/', [ProPlayerSkillController::class, 'index'])->name('index');
@@ -130,6 +125,6 @@ Route::middleware(['auth'])->group(function() {
 
   // ONLY PLAYER
   Route::middleware(['player'])->group(function() {
-    Route::delete('/topup/{id}', [CoinPurchaseController::class, 'destroy'])->name('topup.destroy');
+    
   });
 });
