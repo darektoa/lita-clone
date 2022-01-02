@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\{
-    BalanceTransaction,CoinTransaction, Player, ProPlayerOrder, User};
+use App\Models\{BalanceTransaction,CoinTransaction, ProPlayerOrder, User};
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
