@@ -20,7 +20,9 @@ class AuthController extends Controller
             Auth::attempt(['username' => $username, 'password' => $password])
         ) return redirect('/dashboard');
 
-        return back()->withErrors(["Account doesn't match"]);
+        return back()
+            ->withErrors(["Account doesn't match"])
+            ->withInput();
     }
 
 
