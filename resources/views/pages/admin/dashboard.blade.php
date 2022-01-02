@@ -1,7 +1,6 @@
 <div class="row">
-  <x-dashboard.info-box title="Users" value="{{ \App\Models\User::count() }}" color="info" icon="fa-users text-info"/>
-  <x-dashboard.info-box title="Topup Approved" value="{{ $total['approved'] }}" color="success" icon="fa-check text-gray-300"/>
-  <x-dashboard.info-box title="Topup Pending" value="{{ $total['pending'] }}" color="warning" icon="fa-clock text-gray-300"/>
-  <x-dashboard.info-box title="Topup Rejected" value="{{ $total['rejected'] }}" color="danger" icon="fa-ban text-gray-300"/>
-
+  <x-dashboard.info-box title="Total Players" value="{{ $total->user->player }}" color="primary" icon="fa-users text-primary"/>
+  <x-dashboard.info-box title="Total Order" value="{{ $total->proPlayerOrder->all }}" color="info" icon="fa-shopping-cart text-gray-300"/>
+  <x-dashboard.info-box title="Total Topup" value="{{ $total->coinTransaction->paid }}" color="success" icon="fa-coins text-gray-300"/>
+  <x-dashboard.info-box title="Total Withdraw" value="{{ $total->balanceTransaction->withdraw }}" color="warning" icon="fa-money-bill-wave-alt text-gray-300"/>
 </div>
