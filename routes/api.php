@@ -137,11 +137,6 @@ Route::middleware(['auth.api'])->group(function() {
         Route::prefix('/user')->group(function() {
             Route::get('/', [UserController::class, 'index']);
         });
-
-        Route::prefix('/topup')->group(function() {
-           Route::get('/approve/{coinPurchase:id}', [CoinPurchaseController::class, 'approve']);
-           Route::get('/reject/{coinPurchase:id}', [CoinPurchaseController::class, 'reject']); 
-        });
     });
 });
 
