@@ -14,7 +14,7 @@ class DashboardController extends Controller
         $user = auth()->user();
 
         if($user->admin) return $this->admin($request);
-        // if($user->player) return $this->player($request);
+        if($user->player) return $this->player($request);
     }
 
 
@@ -43,6 +43,28 @@ class DashboardController extends Controller
             ]
         ]));
         
+        return view('pages.general.dashboard', compact('total'));
+    }
+
+
+    public function player(Request $request) {
+        $user = User::with([
+            'coinReceivingTransactions',
+            'player'
+        ])->find(auth()->user()->id);
+
+        $total  = json_decode(collect([
+            'coins' => [
+                'all'       => $user->player->coin,
+            ],
+            'coinReceivingTransaction' => [
+                'all'       => $user->coinReceivingTransactions->count(),
+                'paid'      => $user->coinReceivingTransactions->where('status', 'paid')->count(),
+                'pending'   => $user->coinReceivingTransactions->where('status', 'pending')->count(),
+                'expired'   => $user->coinReceivingTransactions->where('status', 'expired')->count(),
+            ],
+        ]));
+
         return view('pages.general.dashboard', compact('total'));
     }
 }
