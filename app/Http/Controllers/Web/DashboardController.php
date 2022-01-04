@@ -41,7 +41,7 @@ class DashboardController extends Controller
             'user' => [
                 'all'       => $user->count(),
                 'player'    => $user->has('player')->count(),
-            ]
+            ],
         ]));
 
         // CHART DATA
@@ -70,6 +70,7 @@ class DashboardController extends Controller
             'player'
         ])->find(auth()->user()->id);
 
+        // TOTAL DATA
         $total  = json_decode(collect([
             'coins' => [
                 'all'       => $user->player->coin,
