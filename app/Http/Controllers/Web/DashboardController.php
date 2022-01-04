@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Helpers\DateHelper;
 use App\Http\Controllers\Controller;
 use App\Models\{BalanceTransaction,CoinTransaction, ProPlayerOrder, User};
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ class DashboardController extends Controller
         $proPlayerOrder     = new ProPlayerOrder();
         $user               = new User();
 
+        // TOTAL DATA
         $total = json_decode(collect([
             'balanceTransaction' => [
                 'all'       => $balanceTransaction->count(),
@@ -41,8 +43,24 @@ class DashboardController extends Controller
                 'player'    => $user->has('player')->count(),
             ]
         ]));
+
+        // CHART DATA
+        $startDate  = now()->subDays(30);
+        $endDate    = now();
+        $chart      = json_decode(collect([
+            'userRegistration'  => [
+                'labels' => DateHelper::range($startDate, $endDate),
+                'data'   => User::selectRaw('SUBSTR(created_at, 1, 10) as date, COUNT(*) as total ')
+                    ->groupBy('date')
+                    ->whereBetween('created_at', [$startDate, $endDate])
+                    ->get()
+                    ->pluck('total')
+                    ->pad($startDate->diffInDays($endDate), 0)
+                    ->toArray(),
+            ],
+        ]));
         
-        return view('pages.general.dashboard', compact('total'));
+        return view('pages.general.dashboard', compact('total', 'chart'));
     }
 
 
