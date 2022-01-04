@@ -4,3 +4,25 @@
   <x-dashboard.info-box title="Total Topup" value="{{ $total->coinTransaction->paid }}" color="success" icon="fa-coins text-gray-300"/>
   <x-dashboard.info-box title="Total Withdraw" value="{{ $total->balanceTransaction->withdraw }}" color="warning" icon="fa-money-bill-wave-alt text-gray-300"/>
 </div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <x-chart title="User Registration" canvasId="user-registration-chart" />
+    </div>
+</div>
+
+
+@section('scripts')
+  <script type="module">
+    import LineChart from '{{ asset('js/scripts/utils/LineChartHelper.js') }}';
+
+    const userRegistration  = @json($chart->userRegistration);
+
+    LineChart.init({
+      label   : 'User Registration',
+      canvasId: 'user-registration-chart',
+      labels  : userRegistration.labels,
+      data    : userRegistration.data,
+    });  
+  </script>
+@endsection
