@@ -9,6 +9,9 @@
     <div class="col-lg-6">
         <x-chart title="User Registration" canvasId="user-registration-chart" />
     </div>
+    <div class="col-lg-6">
+        <x-chart title="Player Order" canvasId="player-order-chart" />
+    </div>
 </div>
 
 
@@ -17,12 +20,20 @@
     import LineChart from '{{ asset('js/scripts/utils/LineChartHelper.js') }}';
 
     const userRegistration  = @json($chart->userRegistration);
+    const playerOrder       = @json($chart->playerOrder);
 
     LineChart.init({
       label   : 'User Registration',
       canvasId: 'user-registration-chart',
       labels  : userRegistration.labels,
       data    : userRegistration.data,
+    });  
+    
+    LineChart.init({
+      label   : 'Player Order',
+      canvasId: 'player-order-chart',
+      labels  : playerOrder.labels,
+      data    : playerOrder.data,
     });  
   </script>
 @endsection
