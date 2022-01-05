@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\ChartTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ProPlayerOrder extends Model
 {
-    use HasFactory;
+    use ChartTrait, HasFactory;
 
     protected $guarded  = ['id'];
 
