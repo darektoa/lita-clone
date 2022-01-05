@@ -48,16 +48,7 @@ class DashboardController extends Controller
         $startDate  = now()->subDays(30);
         $endDate    = now();
         $chart      = json_decode(collect([
-            'userRegistration'  => [
-                'labels' => DateHelper::range($startDate, $endDate),
-                'data'   => User::selectRaw('SUBSTR(created_at, 1, 10) as date, COUNT(*) as total ')
-                    ->groupBy('date')
-                    ->whereBetween('created_at', [$startDate, $endDate])
-                    ->get()
-                    ->pluck('total')
-                    ->pad($startDate->diffInDays($endDate), 0)
-                    ->toArray(),
-            ],
+            'userRegistration'  => User::chartByCreatedAt($startDate, $endDate),
         ]));
         
         return view('pages.general.dashboard', compact('total', 'chart'));
