@@ -27,16 +27,7 @@ class AuthController extends Controller
                 ['token' => Hash::make(auth()->user()->id)]
             );
 
-            $user   = User::find(auth()->user()->id);
-            
-            if(!$user->sso_type && $request->sso_type) $user->update([
-                'sso_type'  => $request->sso_type,
-            ]);
-            
-            if(!$user->sso_id && $request->sso_id) $user->update([
-                'sso_id'  => $request->sso_id,
-            ]);
-
+            $user       = User::find(auth()->user()->id);
             $user->token = $loginToken->token;
 
             return ResponseHelper::make(
