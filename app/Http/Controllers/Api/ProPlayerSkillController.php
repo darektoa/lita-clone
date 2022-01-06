@@ -72,7 +72,7 @@ class ProPlayerSkillController extends Controller
                 'game_roles'    => 'required|min:2|max:255',
                 'game_level'    => 'required|digits_between:1,6',
                 'screenshots'   => 'required|array|max:5',
-                'screenshots.*' => 'image|max:10240'
+                'screenshots.*' => 'image|max:10240',
             ]);
     
             if($validator->fails())
@@ -87,7 +87,9 @@ class ProPlayerSkillController extends Controller
                 '*'                 => 'required',
                 'email_verified_at' => 'nullable',
                 'remember_token'    => 'nullable',
-                'deleted_at'        => 'nullable'
+                'deleted_at'        => 'nullable',
+                'sso_type'          => 'nullable',
+                'sso_id'            => 'nullable',
             ]);
             
             if($validatorUser->fails())
