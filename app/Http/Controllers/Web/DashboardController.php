@@ -45,7 +45,7 @@ class DashboardController extends Controller
         ]));
 
         // CHART DATA
-        $startDate  = now()->subDays(30);
+        $startDate  = now()->subDays(31);
         $endDate    = now();
         $chart      = json_decode(collect([
             'userRegistration'  => User::chartByCreatedAt($startDate, $endDate),
