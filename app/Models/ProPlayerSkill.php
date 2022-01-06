@@ -130,4 +130,13 @@ class ProPlayerSkill extends Model
             return [];
         }
     }
+
+
+    public function updateRate() {
+        $avgRate = ProPlayerOrderReview::whereHas('proPlayerOrder', function($query) {
+            $query->whereRelation('proPlayerSkill', 'id', $this->id);
+        })->get()->avg('star');
+
+        $this->update(['rate' => $avgRate]);
+    }
 }
