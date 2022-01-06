@@ -237,6 +237,7 @@ class ProPlayerOrderController extends Controller
             ]);
 
             // UPDATE PRO PLAYER RATE
+            $proPlayerOrder->proPlayerSkill->updateRate();
             $proPlayerOrder->proPlayerSkill->player->updateRate();
 
             return response()->json([
