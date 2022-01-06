@@ -3,18 +3,20 @@
 namespace App\Traits;
 
 use App\Helpers\DateHelper;
+use Carbon\Carbon;
 
 trait ChartTrait{
     static public function chartByCreatedAt($startDate, $endDate) {
+        $labels = DateHelper::range($startDate, $endDate);
+        $data   = collect($labels)->map(function($item) {
+            $date   = Carbon::createFromFormat('d M y', $item)->toDateString();
+            $total  = self::whereDate('created_at', $date)->count();
+            return $total;
+        });
+
         return [
-            'labels' => DateHelper::range($startDate, $endDate),
-            'data'   => self::selectRaw('SUBSTR(created_at, 1, 10) as date, COUNT(*) as total ')
-                ->groupBy('date')
-                ->whereBetween('created_at', [$startDate, $endDate])
-                ->get()
-                ->pluck('total')
-                ->pad($startDate->diffInDays($endDate), 0)
-                ->toArray(),
+            'labels' => $labels,
+            'data'   => $data,
         ];
     }
 }
