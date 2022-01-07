@@ -48,7 +48,7 @@ class ProPlayerController extends Controller
         $following  = $user->player;
 
         try{
-            if(!isset(auth()->user()->player)) 
+            if(!isset($follower)) 
                 throw new Exception('Unproccessable, Only player can follow other player', 422);
             if($follower->id === $following->id)
                 throw new Exception('Unproccessable, Cannot follow yourself', 422);
@@ -77,18 +77,19 @@ class ProPlayerController extends Controller
     }
     
     
-    public function unfollow(Player $player) {
-        $user = auth()->user();
+    public function unfollow(User $user) {
+        $follower   = auth()->user()->player;
+        $following  = $user->player;
 
         try{
-            if(!isset($user->player)) 
+            if(!isset($follower)) 
                 throw new Exception('Unproccessable, Only player can unfollow other player', 422);
-            if($user->player->id === $player->id)
+            if($follower->id === $following->id)
                 throw new Exception('Unproccessable, Cannot unfollow yourself', 422);
-            if(!$player->followers->where('follower_id', $user->player->id)->first())
+            if(!$following->followers->where('follower_id', $follower->id)->first())
                 throw new Exception("Unproccessable, You haven't followed this player", 422);
                 
-            PlayerFollower::where('follower_id', $user->player->id)
+            PlayerFollower::where('follower_id', $follower->id)
                 ->delete();
     
             return response()->json([
