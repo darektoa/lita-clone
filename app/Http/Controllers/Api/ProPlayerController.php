@@ -43,23 +43,23 @@ class ProPlayerController extends Controller
     }
 
 
-    public function follow(Player $player) {
-        $user        = auth()->user();
-        $isProPlayer = $player->is_pro_player;
+    public function follow(User $user) {
+        $follower   = auth()->user()->player;
+        $following  = $user->player;
 
         try{
-            if(!isset($user->player)) 
+            if(!isset(auth()->user()->player)) 
                 throw new Exception('Unproccessable, Only player can follow other player', 422);
-            if($user->player->id === $player->id)
+            if($follower->id === $following->id)
                 throw new Exception('Unproccessable, Cannot follow yourself', 422);
-            if(!$isProPlayer)
+            if(!$following->is_pro_player)
                 throw new Exception('Unproccessable, Player is not pro player', 422);
-            if($player->followers->where('follower_id', $user->player->id)->first())
+            if($following->followers->where('follower_id', $follower->id)->first())
                 throw new Exception('Unproccessable, Already to following this player', 422);
                 
             PlayerFollower::create([
-                'following_id'  => $player->id,
-                'follower_id'   => $user->player->id
+                'following_id'  => $following->id,
+                'follower_id'   => $follower->id
             ]);
     
             return response()->json([
