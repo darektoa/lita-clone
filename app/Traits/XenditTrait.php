@@ -25,7 +25,7 @@ trait XenditTrait{
       ],
       'payment_methods' => [
         'CREDIT_CARD', 'BNI', 'BRI', 'MANDIRI', 'PERMATA',
-        'ALFAMART', 'OVO', 'LINKAJA',
+        'ALFAMART', 'DANA', 'OVO', 'LINKAJA', 'SHOPEEPAY',
       ]
     ]);
 
