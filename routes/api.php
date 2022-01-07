@@ -81,8 +81,10 @@ Route::middleware(['auth.api'])->group(function() {
             Route::get('/{proPlayerSkill:id}/end-order', [ProPlayerSkillController::class, 'endOrder']);
         });
 
-        Route::get('/{player:id}/follow', [ProPlayerController::class, 'follow']);
-        Route::get('/{player:id}/unfollow', [ProPlayerController::class, 'unfollow']);
+        Route::prefix('/{player:id}')->group(function() {
+            Route::get('/follow', [ProPlayerController::class, 'follow']);
+            Route::get('/unfollow', [ProPlayerController::class, 'unfollow']);
+        });
     });
 
     // ORDER
