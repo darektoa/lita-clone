@@ -35,9 +35,9 @@ class PlayerPostController extends Controller
     public function indexPerPlayer(User $user) {
         try{
             $posts = PlayerPost::with(['postMedia'])
-            ->whereRelation('player', 'user_id', $user->id)
-            ->latest()
-            ->paginate(10);;
+                ->whereRelation('player', 'user_id', $user->id)
+                ->latest()
+                ->paginate(10);;
 
             return ResponseHelper::paginate(PlayerPostResource::collection($posts));
         }catch(ErrorException $err) {
@@ -124,6 +124,21 @@ class PlayerPostController extends Controller
                 'status'    => $errCode,
                 'message'   => $errMessage,
             ]);
+        }
+    }
+
+
+    public function showPerPlayer(User $user, PlayerPost $playerPost) {
+        try{
+            return ResponseHelper::make(
+                PlayerPostResource::make($playerPost->load('postMedia'))
+            );
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
         }
     }
 
