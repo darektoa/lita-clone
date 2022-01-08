@@ -40,6 +40,11 @@ class User extends Authenticatable
     }
 
 
+    public function playerPosts() {
+        return $this->hasManyThrough(PlayerPost::class, Player::class);
+    }
+
+
     public function gender() {
         return $this->belongsTo(Gender::class);
     }
