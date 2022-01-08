@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Helpers\StorageHelper;
+use App\Exceptions\ErrorException;
+use App\Helpers\{ResponseHelper ,StorageHelper};
 use App\Http\Controllers\Controller;
 use App\Http\Resources\{PlayerPostResource};
 use App\Models\{PlayerPost, PlayerPostMedia, User};
@@ -28,6 +29,24 @@ class PlayerPostController extends Controller
             ->merge($posts)
             ->merge(['data' => PlayerPostResource::collection($posts)])
         );
+    }
+
+
+    public function indexPerPlayer(User $user) {
+        try{
+            $posts = PlayerPost::with(['postMedia'])
+            ->whereRelation('player', 'user_id', $user->id)
+            ->latest()
+            ->paginate(10);;
+
+            return ResponseHelper::paginate(PlayerPostResource::collection($posts));
+        }catch(ErrorException $err) {
+            ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
+        }
     }
     
 
