@@ -139,6 +139,10 @@ Route::middleware(['auth.api'])->group(function() {
 
     // BY USERNAME
     Route::prefix('/{user:username}')->group(function() {
+        Route::prefix('/posts')->group(function() {
+            Route::get('/', [PlayerPostController::class, 'indexPerPlayer']);
+        });
+
         Route::get('/follow', [ProPlayerController::class, 'follow']);
         Route::get('/unfollow', [ProPlayerController::class, 'unfollow']);
     });
