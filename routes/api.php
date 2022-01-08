@@ -141,6 +141,7 @@ Route::middleware(['auth.api'])->group(function() {
     Route::prefix('/{user:username}')->group(function() {
         Route::prefix('/posts')->group(function() {
             Route::get('/', [PlayerPostController::class, 'indexPerPlayer']);
+            Route::get('/{playerPost}', [PlayerPostController::class, 'showPerPlayer']);
         });
 
         Route::get('/follow', [ProPlayerController::class, 'follow']);
