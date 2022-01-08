@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\PlayerPost;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -80,11 +81,6 @@ Route::middleware(['auth.api'])->group(function() {
             Route::post('/{proPlayerSkill:id}/unorder', [ProPlayerSkillController::class, 'unorder']);
             Route::get('/{proPlayerSkill:id}/end-order', [ProPlayerSkillController::class, 'endOrder']);
         });
-
-        Route::prefix('/{user:username}')->group(function() {
-            Route::get('/follow', [ProPlayerController::class, 'follow']);
-            Route::get('/unfollow', [ProPlayerController::class, 'unfollow']);
-        });
     });
 
     // ORDER
@@ -139,6 +135,12 @@ Route::middleware(['auth.api'])->group(function() {
         Route::prefix('/user')->group(function() {
             Route::get('/', [UserController::class, 'index']);
         });
+    });
+
+    // BY USERNAME
+    Route::prefix('/{user:username}')->group(function() {
+        Route::get('/follow', [ProPlayerController::class, 'follow']);
+        Route::get('/unfollow', [ProPlayerController::class, 'unfollow']);
     });
 });
 
