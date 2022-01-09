@@ -16,7 +16,7 @@ class PlayerPostController extends Controller
     public function index() {
         $user   = auth()->user();
         $player = $user->player;
-        $posts  = PlayerPost::with(['postMedia'])
+        $posts  = PlayerPost::with(['postMedia', 'player.user'])
             ->whereHas('player', function($query) use($player) {
                 $followingIds = $player->followings()
                     ->select('following_id')
