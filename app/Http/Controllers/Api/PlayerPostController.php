@@ -17,7 +17,14 @@ class PlayerPostController extends Controller
         $user   = auth()->user();
         $player = $user->player;
         $posts  = PlayerPost::with(['postMedia'])
-            ->where('player_id', $player->id)
+            ->whereHas('player', function($query) use($player) {
+                $followingIds = $player->followings()
+                    ->select('following_id')
+                    ->get()
+                    ->pluck('following_id');
+
+                $query->whereIn('id', $followingIds);
+            })
             ->latest()
             ->paginate(10);
 
