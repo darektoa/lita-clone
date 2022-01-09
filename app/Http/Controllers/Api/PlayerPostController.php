@@ -28,14 +28,7 @@ class PlayerPostController extends Controller
             ->latest()
             ->paginate(10);
 
-        return response()->json(
-            collect([
-                'status'    => 200,
-                'message'   => 'OK',
-            ])
-            ->merge($posts)
-            ->merge(['data' => PlayerPostResource::collection($posts)])
-        );
+        return ResponseHelper::paginate(PlayerPostResource::collection($posts));
     }
 
 
