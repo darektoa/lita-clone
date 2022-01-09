@@ -90,6 +90,7 @@ class ProPlayerController extends Controller
                 throw new Exception("Unproccessable, You haven't followed this player", 422);
                 
             PlayerFollower::where('follower_id', $follower->id)
+                ->where('following_id', $following->id)
                 ->delete();
     
             return response()->json([
