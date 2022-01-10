@@ -9,7 +9,7 @@ class UsernameHelper{
   static public function make($string) {
     $string   = Str::slug(Str::limit($string, 15, ''), '.');
 
-    $rules    = 'regex:/[0-9a-z\._]{5,15}/i|unique:users,username';
+    $rules    = 'regex:/^[0-9a-z\._]{5,15}$/i|unique:users,username';
     $validate = Validator::make([$string], [0 => $rules]);
     $unique   = false;
 
