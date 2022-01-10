@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             AppBannerSeeder::class, 
             AppSettingSeeder::class,
             AvailableTransferSeeder::class,
+            UsernameExceptionSeeder::class,
         ]);
 
         $proPlayerSkills = ProPlayerSkill::factory()
