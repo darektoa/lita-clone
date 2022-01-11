@@ -123,6 +123,19 @@ class ProPlayerController extends Controller
     }
 
 
+    public function followings(User $user) {
+        $user->load('player');
+        $followings = User::whereHas('player', function($query) use($user) {
+            $query->whereRelation('followers', 'follower_id', $user->player->id);
+        })
+        ->paginate(10);
+
+        return ResponseHelper::paginate(
+            UserResource::collection($followings)
+        );
+    }
+
+
     public function search(Request $request) {
         $search     = $request->search;
         $proPlayers = Player::with(['user'])
