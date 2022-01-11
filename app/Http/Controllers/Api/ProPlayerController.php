@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PlayerResource;
+use App\Http\Resources\UserResource;
 use App\Models\{Player, PlayerFollower, User};
 use Exception;
 use Illuminate\Http\Request;
@@ -105,6 +107,19 @@ class ProPlayerController extends Controller
                 'message'   => $errMessage
             ], $errCode);
         }
+    }
+
+
+    public function followers(User $user) {
+        $user->load('player');
+        $followers = User::whereHas('player', function($query) use($user) {
+                $query->whereRelation('followings', 'following_id', $user->player->id);
+            })
+            ->paginate(10);
+
+        return ResponseHelper::paginate(
+            UserResource::collection($followers)
+        );
     }
 
 
