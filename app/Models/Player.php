@@ -79,7 +79,7 @@ class Player extends Model
 
 
     public function getFollowedAttribute() {
-        $player     = auth()->user()->player;
+        $player     = auth()->user()->player ?? null;
         $followed   = false;
 
         if($player && $player->followings
