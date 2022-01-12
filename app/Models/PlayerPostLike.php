@@ -10,4 +10,9 @@ class PlayerPostLike extends Model
     use HasFactory;
 
     protected $guarded  = ['id'];
+
+
+    public function player() {
+        return $this->belongsTo(Player::class);
+    }
 }
