@@ -63,9 +63,9 @@ class ProfileController extends Controller
         $coverPhotoPath     = null;
         $voicePath          = null;
 
-        if($user->profile_photo) StorageHelper::delete($user->profile_photo);
-        if($user->cover_photo) StorageHelper::delete($user->cover_photo);
-        if($user->voice) StorageHelper::delete($user->cover_photo);
+        if($user->profile_photo && $profilePhoto) StorageHelper::delete($user->profile_photo);
+        if($user->cover_photo && $coverPhoto) StorageHelper::delete($user->cover_photo);
+        if($user->voice && $voice) StorageHelper::delete($user->cover_photo);
         if($profilePhoto) $profilePhotoPath = StorageHelper::put('images/users/profiles', $profilePhoto);
         if($coverPhoto) $coverPhotoPath = StorageHelper::put('images/users/covers', $coverPhoto);
         if($voice) $voicePath = StorageHelper::put('audios/users/voices', $voice);
