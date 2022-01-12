@@ -24,6 +24,7 @@ class PlayerResource extends JsonResource
             'activity'                  => $this->activity,
             'activity_name'             => $this->activity_name,
             'is_pro_player'             => $this->is_pro_player,
+            'followed'                  => $this->followed,
             'followers_count'           => $this->followers_count,
             'followings_count'          => $this->following_count,
             'user'                      => UserResource::make($this->whenLoaded('user')),
