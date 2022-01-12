@@ -78,6 +78,19 @@ class Player extends Model
     }
 
 
+    public function getFollowedAttribute() {
+        $player     = auth()->user()->player;
+        $followed   = false;
+
+        if($player->followings
+            ->where('following_id', $this->id)
+            ->first()
+        ) $followed = true;
+
+        return $followed;
+    }
+
+
     public function updateRate() {
         $avgRate = ProPlayerOrderReview::whereHas('proPlayerOrder', function($query) {
             $query->whereRelation('proPlayerSkill', 'player_id', $this->id);
