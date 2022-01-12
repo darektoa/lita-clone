@@ -82,7 +82,7 @@ class Player extends Model
         $player     = auth()->user()->player;
         $followed   = false;
 
-        if($player->followings
+        if($player && $player->followings
             ->where('following_id', $this->id)
             ->first()
         ) $followed = true;
