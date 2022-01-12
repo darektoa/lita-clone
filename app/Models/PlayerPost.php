@@ -20,4 +20,9 @@ class PlayerPost extends Model
     public function postMedia() {
         return $this->hasMany(PlayerPostMedia::class);
     }
+
+
+    public function playerPostLikes() {
+        return $this->hasMany(PlayerPostLike::class);
+    }
 }

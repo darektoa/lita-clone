@@ -15,4 +15,9 @@ class PlayerPostLike extends Model
     public function player() {
         return $this->belongsTo(Player::class);
     }
+
+
+    public function playerPost() {
+        return $this->belongsTo(PlayerPost::class);
+    }
 }
