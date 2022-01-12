@@ -144,6 +144,7 @@ Route::middleware(['auth.api'])->group(function() {
             Route::get('/{playerPost}', [PlayerPostController::class, 'showPerPlayer']);
         });
 
+        Route::get('/', [PlayerController::class, 'show']);
         Route::get('/follow', [ProPlayerController::class, 'follow']);
         Route::get('/unfollow', [ProPlayerController::class, 'unfollow']);
         Route::get('/followers', [ProPlayerController::class, 'followers']);
