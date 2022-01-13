@@ -14,6 +14,7 @@ class PlayerPostResource extends JsonResource
         return [
             'id'            => $this->id,
             'text'          => $this->text,
+            'likes_count'   => $this->player_post_likes_count,
             'created_at'    => $this->created_at,
             'updated_at'    => $this->updated_at,
             'post_media'    => PlayerPostMediaResource::collection($this->whenLoaded('postMedia')),
