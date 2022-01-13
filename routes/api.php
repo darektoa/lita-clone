@@ -144,6 +144,7 @@ Route::middleware(['auth.api'])->group(function() {
 
             Route::prefix('/{playerPost}')->group(function() {
                 Route::get('/', [PlayerPostController::class, 'showPerPlayer']);
+                Route::get('/like', [PlayerPostController::class, 'like']);
             });
         });
 
