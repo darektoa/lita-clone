@@ -9,7 +9,9 @@ class PlayerPost extends Model
 {
     use HasFactory;
 
-    protected $guarded  = ['id'];
+    protected $guarded      = ['id'];
+
+    protected $withCount    = ['playerPostLikes'];
 
 
     public function player() {
