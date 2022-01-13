@@ -6,7 +6,7 @@ use App\Exceptions\ErrorException;
 use App\Helpers\{ResponseHelper ,StorageHelper};
 use App\Http\Controllers\Controller;
 use App\Http\Resources\{PlayerPostResource};
-use App\Models\{PlayerPost, PlayerPostMedia, User};
+use App\Models\{PlayerPost, PlayerPostLike, PlayerPostMedia, User};
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -173,6 +173,26 @@ class PlayerPostController extends Controller
                 'status'    => $errCode,
                 'message'   => $errMessage,
             ]);
+        }
+    }
+
+
+    public function like(User $user, PlayerPost $playerPost) {
+        try{
+            $player   = auth()->user()->player;
+
+            $like = PlayerPostLike::firstOrCreate([
+                'player_id'      => $player->id,
+                'player_post_id' => $playerPost->id,
+            ]);
+
+            return ResponseHelper::make($like);
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
         }
     }
 }
