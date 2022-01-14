@@ -197,6 +197,15 @@ class PlayerPostController extends Controller
     }
 
 
+    public function likes(User $user, PlayerPost $playerPost) {
+        $users = User::whereHas('player', function($query) use($playerPost) {
+            $query->whereRelation('playerPostLikes', 'player_post_id', $playerPost->id);
+        })->paginate(10);
+
+        return ResponseHelper::paginate($users);
+    }
+
+
     public function unlike(User $user, PlayerPost $playerPost) {
         try{
             $playerId = auth()->user()->player->id ?? null;
