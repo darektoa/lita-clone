@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Exceptions\ErrorException;
 use App\Helpers\{ResponseHelper ,StorageHelper};
 use App\Http\Controllers\Controller;
-use App\Http\Resources\{PlayerPostResource};
+use App\Http\Resources\{PlayerPostResource, UserResource};
 use App\Models\{Player, PlayerPost, PlayerPostLike, PlayerPostMedia, User};
 use Exception;
 use Illuminate\Http\Request;
@@ -202,7 +202,7 @@ class PlayerPostController extends Controller
             $query->whereRelation('playerPostLikes', 'player_post_id', $playerPost->id);
         })->paginate(10);
 
-        return ResponseHelper::paginate($users);
+        return ResponseHelper::paginate(UserResource::collection($users));
     }
 
 
