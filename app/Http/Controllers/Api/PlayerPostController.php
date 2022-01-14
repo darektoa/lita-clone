@@ -6,7 +6,7 @@ use App\Exceptions\ErrorException;
 use App\Helpers\{ResponseHelper ,StorageHelper};
 use App\Http\Controllers\Controller;
 use App\Http\Resources\{PlayerPostResource};
-use App\Models\{PlayerPost, PlayerPostLike, PlayerPostMedia, User};
+use App\Models\{Player, PlayerPost, PlayerPostLike, PlayerPostMedia, User};
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -179,12 +179,38 @@ class PlayerPostController extends Controller
 
     public function like(User $user, PlayerPost $playerPost) {
         try{
-            $player   = auth()->user()->player;
+            $player = auth()->user()->player;
 
-            $like = PlayerPostLike::firstOrCreate([
+            $like   = PlayerPostLike::firstOrCreate([
                 'player_id'      => $player->id,
                 'player_post_id' => $playerPost->id,
             ]);
+
+            return ResponseHelper::make($like);
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
+        }
+    }
+
+
+    public function unlike(User $user, PlayerPost $playerPost) {
+        try{
+            $playerId = auth()->user()->player->id ?? null;
+            $player   = Player::with('playerPostLikes')->find($playerId);
+
+            $like = $player->playerPostLikes()
+                ->where('player_post_id', $playerPost->id)
+                ->first();
+
+            if(!$like) throw new ErrorException('Unprocessable', 422, [
+                "You don't like this post yet"
+            ]);
+            
+            $like->delete();
 
             return ResponseHelper::make($like);
         }catch(ErrorException $err) {
