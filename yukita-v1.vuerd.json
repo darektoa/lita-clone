@@ -2433,6 +2433,29 @@
             "id": "fcff3338-c09b-4c26-9d42-4cb21a7ce47c"
           },
           {
+            "name": "detail",
+            "comment": "",
+            "dataType": "JSON",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "975d11b7-e81e-45f4-bccf-f56b9e7d679a"
+          },
+          {
             "name": "status",
             "comment": "",
             "dataType": "VARCHAR(20)",
@@ -2503,10 +2526,10 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 1615.1691,
           "top": 836.7121,
-          "zIndex": 38,
+          "zIndex": 39,
           "widthName": 103.1689453125,
           "widthComment": 60
         },
