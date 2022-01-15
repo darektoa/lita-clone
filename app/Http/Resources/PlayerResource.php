@@ -26,7 +26,7 @@ class PlayerResource extends JsonResource
             'is_pro_player'             => $this->is_pro_player,
             'followed'                  => $this->followed,
             'followers_count'           => $this->followers_count,
-            'followings_count'          => $this->following_count,
+            'followings_count'          => $this->followings_count,
             'user'                      => UserResource::make($this->whenLoaded('user')),
             'pro_player_skills'         => ProPlayerSkillResource::collection($this->whenLoaded('proPlayerSkills'))
         ];
