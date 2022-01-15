@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Illuminate\Pagination\{LengthAwarePaginator, Paginator};
+use Illuminate\Support\Collection;
 
 class CollectionHelper{
     static public function paginate(
@@ -16,6 +17,9 @@ class CollectionHelper{
             'path'      => Paginator::resolveCurrentPath(),
             'pageName'  => $pageName,
         ];
+        
+        if(!($items instanceof Collection))
+            $items = Collection::make($items);
         
         return new LengthAwarePaginator(
             $items,
