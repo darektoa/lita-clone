@@ -99,6 +99,7 @@ Route::middleware(['auth.api'])->group(function() {
     Route::prefix('/posts')->group(function() {
         Route::get('/', [PlayerPostController::class, 'index']);
         Route::post('/', [PlayerPostController::class, 'store']);
+        Route::get('/explore', [PlayerPostController::class, 'explore']);
         Route::get('/{playerPost:id}', [PlayerPostController::class, 'show']);
         Route::delete('/{playerPost:id}', [PlayerPostController::class, 'destroy']);
     });
