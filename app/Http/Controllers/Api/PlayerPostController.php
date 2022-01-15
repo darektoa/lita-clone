@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Exceptions\ErrorException;
-use App\Helpers\{ResponseHelper ,StorageHelper};
+use App\Helpers\{CollectionHelper, ResponseHelper ,StorageHelper};
 use App\Http\Controllers\Controller;
 use App\Http\Resources\{PlayerPostResource, UserResource};
 use App\Models\{Player, PlayerPost, PlayerPostLike, PlayerPostMedia, User};
@@ -47,6 +47,20 @@ class PlayerPostController extends Controller
                 $err->getCode(),
             );
         }
+    }
+
+
+    public function explore() {
+        $posts = PlayerPost::with(['postMedia', 'player.user'])
+            ->latest()
+            ->get()
+            ->sortByDesc('player_post_likes_count');
+
+        $posts = CollectionHelper::paginate($posts, 10);
+
+        return ResponseHelper::paginate(
+            PlayerPostResource::collection($posts)
+        );
     }
     
 
