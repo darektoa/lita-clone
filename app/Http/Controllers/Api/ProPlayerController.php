@@ -112,7 +112,8 @@ class ProPlayerController extends Controller
 
     public function followers(User $user) {
         $user->load('player');
-        $followers = User::whereHas('player', function($query) use($user) {
+        $followers = User::with(['player'])
+            ->whereHas('player', function($query) use($user) {
                 $query->whereRelation('followings', 'following_id', $user->player->id);
             })
             ->paginate(10);
