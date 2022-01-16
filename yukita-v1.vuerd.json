@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -962,
-    "scrollLeft": -1436,
+    "scrollTop": -1036,
+    "scrollLeft": -1449,
     "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
@@ -2433,29 +2433,6 @@
             "id": "fcff3338-c09b-4c26-9d42-4cb21a7ce47c"
           },
           {
-            "name": "detail",
-            "comment": "",
-            "dataType": "JSON",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": false
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "975d11b7-e81e-45f4-bccf-f56b9e7d679a"
-          },
-          {
             "name": "status",
             "comment": "",
             "dataType": "VARCHAR(20)",
@@ -2477,6 +2454,29 @@
               "widthDefault": 60
             },
             "id": "9941a7c3-181b-467b-affa-9907cf2814bd"
+          },
+          {
+            "name": "detail",
+            "comment": "",
+            "dataType": "JSON",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "975d11b7-e81e-45f4-bccf-f56b9e7d679a"
           },
           {
             "name": "created_at",
@@ -2529,7 +2529,7 @@
           "active": false,
           "left": 1615.1691,
           "top": 836.7121,
-          "zIndex": 39,
+          "zIndex": 40,
           "widthName": 103.1689453125,
           "widthComment": 60
         },
@@ -2725,29 +2725,6 @@
             "id": "4dc04038-feb7-484a-9317-4039f3536d16"
           },
           {
-            "name": "detail",
-            "comment": "",
-            "dataType": "JSON",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": false
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "b86d0a59-5487-42b7-a1c6-077be2905250"
-          },
-          {
             "name": "status",
             "comment": "",
             "dataType": "VARCHAR(20)",
@@ -2769,6 +2746,29 @@
               "widthDefault": 60
             },
             "id": "d5f0c506-ef6a-42b1-9b7f-b1ebcf39ded8"
+          },
+          {
+            "name": "detail",
+            "comment": "",
+            "dataType": "JSON",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "b86d0a59-5487-42b7-a1c6-077be2905250"
           },
           {
             "name": "created_at",
@@ -2821,7 +2821,7 @@
           "active": false,
           "left": 1615.1116,
           "top": 1223.6834,
-          "zIndex": 33,
+          "zIndex": 41,
           "widthName": 124.85888671875,
           "widthComment": 60
         },
@@ -4976,7 +4976,7 @@
             "8ffc4ba7-c512-4277-b95c-312a8601b9bb"
           ],
           "x": 1615.1691,
-          "y": 910.3371,
+          "y": 915.4621,
           "direction": "left"
         },
         "constraintName": "fk_users_to_coin_transactions",
@@ -5002,7 +5002,7 @@
             "0d32801b-8fc2-4007-804e-cd6054453948"
           ],
           "x": 1615.1691,
-          "y": 1057.5871,
+          "y": 1072.9621,
           "direction": "left"
         },
         "constraintName": "fk_users_to_coin_transactions",
