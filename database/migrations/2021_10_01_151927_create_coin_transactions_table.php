@@ -25,6 +25,7 @@ class CreateCoinTransactionsTable extends Migration
             $table->string('description')->nullable();
             $table->string('status', 20)->nullable();
             $table->json('invoice')->nullable();
+            $table->json('detail')->nullable();
             $table->timestamps();
         });
     }
