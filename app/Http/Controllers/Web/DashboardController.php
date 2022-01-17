@@ -19,10 +19,11 @@ class DashboardController extends Controller
 
 
     public function admin(Request $request) {
-        $balanceTransaction = new BalanceTransaction();
-        $coinTransaction    = new CoinTransaction();
-        $proPlayerOrder     = new ProPlayerOrder();
-        $user               = new User();
+        $today              = (boolean) $request->today;
+        $balanceTransaction = $today ? BalanceTransaction::today() : new BalanceTransaction();
+        $coinTransaction    = $today ? CoinTransaction::today() : new CoinTransaction();
+        $proPlayerOrder     = $today ? ProPlayerOrder::today() : new ProPlayerOrder();
+        $user               = $today ? User::today() : new User();
 
         // TOTAL DATA
         $total = json_decode(collect([
