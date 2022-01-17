@@ -92,6 +92,7 @@
 							<div class="d-flex flex-column justify-content-center">
 								<h6 class="m-0 font-weight-bold">{{ $user->name }}</h6>
 								<small class="d-block">{{ $user->username }}</small>
+								<small class="d-block">{{ $user->email }}</small>
 							</div>
 						</td>
 						<td class="align-middle h6">{{ $proPlayer->game->name }}</td>
