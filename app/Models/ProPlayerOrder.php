@@ -120,4 +120,9 @@ class ProPlayerOrder extends Model
 
         return;
     }
+
+
+    public function scopeToday($query) {
+        return $query->whereDate('created_at', now());
+    }
 }
