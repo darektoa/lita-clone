@@ -39,7 +39,6 @@ class BalanceTransactionController extends Controller
 
 
     public function reject(BalanceTransaction $balanceTransaction) {
-        dd($balanceTransaction->amount);
         try{
             if($balanceTransaction->status != 'pending')
                 throw new Exception('Cannot edit response', 422);
