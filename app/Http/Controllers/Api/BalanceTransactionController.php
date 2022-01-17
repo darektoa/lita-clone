@@ -15,6 +15,7 @@ class BalanceTransactionController extends Controller
         try{
             $validator  = Validator::make($request->all(), [
                 'amount'        => 'required|numeric',
+                'account_id'    => 'nullable|numeric',
                 'description'   => 'nullable|max:255'
             ]);
 
@@ -23,10 +24,25 @@ class BalanceTransactionController extends Controller
                 throw new ErrorException('Unprocessable, Invalid field', 422, $errors);
             }
 
-            $amount      = $request->amount;
-            $description = $request->description;
-            $user        = User::with(['player'])->find(auth()->user()->id);
-            $player      = $user->player;
+            $amount          = $request->amount;
+            $description     = $request->description;
+            $accountId       = $request->account_id;
+            $user            = User::with(['player', 'withdrawAccounts'])->find(auth()->user()->id);
+            $player          = $user->player;
+            $withdrawAccount = $user->withdrawAccounts()->where('default', 1)->first();
+
+            if($accountId) {
+                $withdrawAccount = $user->withdrawAccounts()->find($accountId);
+                if(!$withdrawAccount) throw new ErrorException(
+                    'Not Found', 404, 
+                    ['Withdraw account not found']
+                );
+            }
+
+            if(!$withdrawAccount) throw new ErrorException(
+                'Unprocessable', 422,
+                ['Please add a withdrawal account first']
+            );
 
             if($amount > $player->balance) throw new ErrorException(
                 'Unprocessable, Amount must be last than or equal to balance', 422,
@@ -41,6 +57,7 @@ class BalanceTransactionController extends Controller
                 'description'   => $description,
                 'type'          => 4,
                 'status'        => 'pending',
+                'detail'        => collect(['withdrawAccount' => $withdrawAccount])
             ]);
 
             $player->balance -= $amount;
