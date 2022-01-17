@@ -83,4 +83,9 @@ class User extends Authenticatable
     public function withdrawAccounts() {
         return $this->hasMany(WithdrawAccount::class);
     }
+
+
+    public function scopeToday($query) {
+        return $query->whereDate('created_at', now());
+    }
 }
