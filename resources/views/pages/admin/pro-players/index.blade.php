@@ -75,8 +75,8 @@
 					
 					@foreach ($proPlayers as $proPlayer)
 					@php 
-						$user 				= $proPlayer->player->user;
-						$created 			= $proPlayer->created_at;
+						$user 			= $proPlayer->player->user;
+						$created 		= $proPlayer->created_at;
 						$statusName 	= $proPlayer->status_name;
 						$statusClass 	= 'font-weight-bold';
 
@@ -87,9 +87,12 @@
 						}
 					@endphp
 					<tr>
-						<td class="align-middle h6">
-							{{ $user->name }}
-							<small class="d-block">{{ $user->username }}</small>
+						<td class="align-middle d-flex align-center">
+							<img src="{{ StorageHelper::url($user->profile_photo)}}" alt="" width="70" class="mr-3 rounded">
+							<div class="d-flex flex-column justify-content-center">
+								<h6 class="m-0 font-weight-bold">{{ $user->name }}</h6>
+								<small class="d-block">{{ $user->username }}</small>
+							</div>
 						</td>
 						<td class="align-middle h6">{{ $proPlayer->game->name }}</td>
 						<td class="align-middle h6">{{ $proPlayer->game_level }}</td>
