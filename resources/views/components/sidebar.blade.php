@@ -1,4 +1,9 @@
 @php
+  $dashboardNav = [
+      'Total' => route('dashboard'),
+      'Today' => route('dashboard') . '?today=true',
+  ];
+
   $coinNav = [
       'Topup'   => route('coins.index') . '?type=0', 
       'Order'   => route('coins.index') . '?type=1',
@@ -30,20 +35,20 @@
 
   <x-divider mt mb/>
 
-  <x-sidebar.nav-item
-    active="{{Request::is('dashboard') }}"
+  <x-sidebar.nav-collapse-item
+    active="{{ Request::is('dashboard') }}"
     icon="fa-tachometer-alt"
     name="Dashboard" 
-    route="/dashboard" />
+    routes="{!! json_encode($dashboardNav) !!}" />
 
   <x-sidebar.nav-collapse-item
-    active="{{Request::is('coins') }}"
+    active="{{ Request::is('coins') }}"
     icon="fa-coins"
     name="Coins"
     routes="{!! json_encode($coinNav) !!}" />
 
   <x-sidebar.nav-item
-    active="{{Request::is('withdraws') }}"
+    active="{{ Request::is('withdraws') }}"
     icon="fa-money-bill-wave"
     name="Withdrawal" 
     route="{{ route('withdraws.index') }}" />
@@ -51,13 +56,13 @@
 
   @isset(auth()->user()->admin)
   <x-sidebar.nav-collapse-item
-    active="{{Request::is('pro-players') }}"
+    active="{{ Request::is('pro-players') }}"
     icon="fa-user-check"
     name="Pro Players"
     routes="{!! json_encode($proPlayerNav) !!}" />
 
   <x-sidebar.nav-item
-    active="{{Request::is('users') }}"
+    active="{{ Request::is('users') }}"
     icon="fa-users"
     name="Users" 
     route="{{ route('users.index') }}" />
@@ -65,7 +70,7 @@
 
 
   <x-sidebar.nav-collapse-item
-    active="{{Request::is('setting') }}"
+    active="{{ Request::is('setting') }}"
     icon="fa-cogs"
     name="Settings"
     routes="{!! json_encode($settingNav) !!}" />
