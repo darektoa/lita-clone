@@ -51,4 +51,9 @@ class CoinTransaction extends Model
 
         return $typeName;
     }
+
+
+    public function scopeToday($query) {
+        return $query->whereDate('created_at', now());
+    }
 }
