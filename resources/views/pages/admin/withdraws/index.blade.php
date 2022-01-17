@@ -37,7 +37,12 @@
 						}
 					@endphp
 					<tr>
-						<td class="align-middle">{{ $receiver->name }}</td>
+						<td class="d-flex align-center">
+							<img src="{{ StorageHelper::url($receiver->profile_photo)}}" alt="" width="70" class="mr-3 rounded">
+							<div class="d-flex flex-column justify-content-center">
+								<h6 class="m-0 font-weight-bold">{{ $receiver->name }}</h6>
+							</div>
+						</td>
 						<td class="align-middle">{{ $balance }}</td>
 						<td class="align-middle" style="white-space: nowrap">
 							<small class="d-block">{{ $created->format('d/m/Y') }}</small>
