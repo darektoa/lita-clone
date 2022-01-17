@@ -38,7 +38,7 @@
 					@endphp
 					<tr>
 						<td class="d-flex align-center">
-							<img src="{{ StorageHelper::url($receiver->profile_photo)}}" alt="" width="70" class="mr-3 rounded">
+							<img src="{{ StorageHelper::url($receiver->profile_photo) ?? asset('assets/images/icons/empty_profile.png')}}" alt="" width="70" class="mr-3 rounded">
 							<div class="d-flex flex-column justify-content-center">
 								<h6 class="m-0 font-weight-bold">{{ $receiver->name }}</h6>
 								<small class="d-block">{{ $receiver->username }}</small>
