@@ -14,7 +14,7 @@
 				<thead>
 					<tr>
 						<th>Nama</th>
-						<th>Balance</th>
+						<th>Withdraw</th>
 						<th>Requested</th>
 						<th>Status</th>
 						<th>Action</th>
