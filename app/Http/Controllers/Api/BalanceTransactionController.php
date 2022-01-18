@@ -57,7 +57,7 @@ class BalanceTransactionController extends Controller
                 'description'   => $description,
                 'type'          => 4,
                 'status'        => 'pending',
-                'detail'        => collect(['withdrawAccount' => $withdrawAccount])
+                'detail'        => collect(['withdraw_account' => $withdrawAccount])
             ]);
 
             $player->balance -= $amount;
