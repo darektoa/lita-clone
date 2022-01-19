@@ -81,11 +81,12 @@ class AuthController extends Controller
         try{
             $isSSO     = $request->is('api/login/sso');
             $validator = Validator::make($request->all(), [
-                'name'      => 'bail|required|min:2|max:30|regex:/[a-z ]*/i',
-                'email'     => 'required|email|unique:users',
-                'password'  => $isSSO ? 'required|min:5'   : 'required|min:5|max:16',
-                'sso_id'    => $isSSO ? 'required|max:255' : 'nullable|max:0',
-                'sso_type'  => $isSSO ? 'required|max:50'  : 'nullable|max:0',
+                'name'          => 'bail|required|min:2|max:30|regex:/[a-z ]*/i',
+                'email'         => 'required|email|unique:users',
+                'password'      => $isSSO ? 'required|min:5'   : 'required|min:5|max:16',
+                'sso_id'        => $isSSO ? 'required|max:255' : 'nullable|max:0',
+                'sso_type'      => $isSSO ? 'required|max:50'  : 'nullable|max:0',
+                'referral_code' => 'nullable|exists:players,referral_code',
             ]);
     
             if($validator->fails()) {
@@ -105,7 +106,9 @@ class AuthController extends Controller
             ]);
     
             //Create Player
-            $user->player()->create();
+            $user->player()->create([
+                'referral_code_join' => $request->referral_code,
+            ]);
             
             // Login User
             $userId     = $user->id;
