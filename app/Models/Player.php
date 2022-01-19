@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\RandomCodeHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +17,16 @@ class Player extends Model
     protected $withCount = ['followers', 'followings'];
 
     public $timestamps   = false;
+
+
+    static protected function boot() {
+        parent::boot();
+
+        parent::creating(function($model) {
+            if(!$model->referral_code)
+                $model->referral_code = RandomCodeHelper::make();
+        });
+    }
 
 
     public function user() {
