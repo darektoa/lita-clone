@@ -14,6 +14,7 @@
 				<thead>
 					<tr>
 						<th>Nama</th>
+						<th>Transfer</th>
 						<th>Withdraw</th>
 						<th>Requested</th>
 						<th>Status</th>
@@ -24,8 +25,10 @@
 					
 					@foreach ($transactions as $transaction)
 					@php 
+						$account 	 = $transaction->detail->withdraw_account ?? null;
+						$transfer	 = $account ? \App\Models\AvailableTransfer::find($account->transfer_id) : null;
 						$receiver    = $transaction->receiver;
-						$balance     = number_format($transaction->balance, 0, '.', ',');
+						$withdraw    = number_format($transaction->balance, 0, '.', ',');
 						$created     = $transaction->created_at;
 						$statusName  = $transaction->status;
 						$statusClass = 'font-weight-bold';
@@ -37,15 +40,24 @@
 						}
 					@endphp
 					<tr>
-						<td class="d-flex align-center">
-							<img src="{{ StorageHelper::url($receiver->profile_photo) ?? asset('assets/images/icons/empty_profile.png')}}" alt="" width="70" class="mr-3 rounded">
-							<div class="d-flex flex-column justify-content-center">
-								<h6 class="m-0 font-weight-bold">{{ $receiver->name }}</h6>
-								<small class="d-block">{{ $receiver->username }}</small>
-								<small class="d-block">{{ $receiver->email }}</small>
+						<td class="align-middle">
+							<div class="d-flex align-center">
+								<img src="{{ StorageHelper::url($receiver->profile_photo) ?? asset('assets/images/icons/empty_profile.png')}}" alt="" width="70" class="mr-3 rounded">
+								<div class="d-flex flex-column justify-content-center">
+									<h6 class="m-0 font-weight-bold">{{ $receiver->name }}</h6>
+									<small class="d-block">{{ $receiver->username }}</small>
+									<small class="d-block">{{ $receiver->email }}</small>
+								</div>
 							</div>
 						</td>
-						<td class="align-middle">{{ $balance }}</td>
+						<td class="align-middle">
+							<div class="d-flex flex-column justify-content-center">
+								<h6 class="m-0 font-weight-bold">{{ $account->number ?? '' }}</h6>
+								<small class="d-block">{{ $account->name ?? '' }}</small>
+								<small class="d-block">{{ $transfer->name ?? '' }}</small>
+							</div>
+						</td>
+						<td class="align-middle">{{ $withdraw }}</td>
 						<td class="align-middle" style="white-space: nowrap">
 							<small class="d-block">{{ $created->format('d/m/Y') }}</small>
 							<small class="d-block">{{ $created->format('H:i:s') }}</small>
