@@ -15,7 +15,8 @@ class CoinTransaction extends Model
     protected $guarded  = ['id'];
 
     protected $casts    = [
-        'invoice'   => 'json'
+        'invoice'   => 'json',
+        'detail'    => 'object',
     ];
 
 
