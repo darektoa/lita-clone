@@ -1,7 +1,7 @@
 <footer class="sticky-footer bg-white">
   <div class="container my-auto">
       <div class="copyright text-center my-auto">
-          <span>Copyright &copy; Lita Clone 2021</span>
+          <span>Copyright &copy; Yukita 2021</span>
       </div>
   </div>
 </footer>
