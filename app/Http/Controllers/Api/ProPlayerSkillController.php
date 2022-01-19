@@ -408,7 +408,7 @@ class ProPlayerSkillController extends Controller
                     'sender_id' => $userId,
                     'coin'      => $order->coin,
                     'balance'   => $order->balance,
-                    'type'      => 2,
+                    'type'      => 1,
                     'status'    => 'success'
                 ]);
 
