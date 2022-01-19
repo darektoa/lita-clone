@@ -44,7 +44,7 @@
     routes="{!! json_encode($coinNav) !!}" />
 
   <x-sidebar.nav-item
-    active="{{Request::is('withdrawal') }}"
+    active="{{Request::is('withdraws') }}"
     icon="fa-money-bill-wave"
     name="Withdrawal" 
     route="{{ route('withdraws.index') }}" />
