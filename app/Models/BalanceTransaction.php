@@ -46,7 +46,7 @@ class BalanceTransaction extends Model
             case 0: $typeName = 'Topup'; break;
             case 1: $typeName = 'Order'; break;
             case 2: $typeName = 'Refund'; break;
-            case 4: $typeName = 'Withdraw'; break;
+            case 3: $typeName = 'Withdraw'; break;
             default: $typeName = 'Unknown';
         }
 

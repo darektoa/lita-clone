@@ -55,7 +55,7 @@ class BalanceTransactionController extends Controller
                 'balance'       => $amount,
                 'coin'          => round($amount/$app->coin_conversion),
                 'description'   => $description,
-                'type'          => 4,
+                'type'          => 3,
                 'status'        => 'pending',
                 'detail'        => collect(['withdraw_account' => $withdrawAccount])
             ]);
