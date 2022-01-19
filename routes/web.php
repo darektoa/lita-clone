@@ -116,7 +116,7 @@ Route::middleware(['auth'])->group(function() {
 
     // WITHDRAW
     Route::prefix('withdraws')->name('withdraws.')->group(function() {
-      Route::get('/', [BalanceTransactionController::class, 'index'])->name('index');
+      Route::get('/', [BalanceTransactionController::class, 'indexWithdraw'])->name('index');
       Route::get('/approve/{balanceTransaction:id}', [BalanceTransactionController::class, 'approve'])->name('approve');
       Route::get('/reject/{balanceTransaction:id}', [BalanceTransactionController::class, 'reject'])->name('reject');
     });

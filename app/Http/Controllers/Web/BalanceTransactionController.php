@@ -10,7 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class BalanceTransactionController extends Controller
 {
-    public function index() {
+    public function indexWithdraw() {
         $transactions = BalanceTransaction::latest()->paginate(10);
 
         return view('pages.general.withdraws.index', compact('transactions'));
