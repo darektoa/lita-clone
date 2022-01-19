@@ -21,6 +21,8 @@ class CreatePlayersTable extends Migration
             $table->float('rate', 3, 2)->default(0);
             $table->text('voice')->nullable();
             $table->smallInteger('is_pro_player')->default(0);
+            $table->string('referral_code', 10);
+            $table->string('referral_code', 10)->nullable();
             $table->timestamps();
         });
     }
