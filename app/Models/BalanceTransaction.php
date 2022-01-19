@@ -16,6 +16,7 @@ class BalanceTransaction extends Model
 
     protected $casts    = [
         'invoice'   => 'json',
+        'detail'    => 'object',
     ];
 
 
