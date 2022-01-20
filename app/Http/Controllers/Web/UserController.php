@@ -19,7 +19,11 @@ class UserController extends Controller
             'all'       => $users->count(),
             'admin'     => $users->whereRelation('admin', 'id', '!=', null)->count(),
             'player'    => $users->whereRelation('player', 'id', '!=', null)->count(),
-            'proPlayer' => $users->whereRelation('player', 'is_pro_player', 1)->count(),
+            'proPlayer' => $users->selectRaw('COUNT(*) as total')
+                ->whereRelation('player', 'is_pro_player', 1)
+                ->groupBy('users.gender_id')
+                ->get()
+                ->pluck('total'),
         ];
 
         if($search)
@@ -27,7 +31,6 @@ class UserController extends Controller
                 ->where('username', 'LIKE', "%$search%")
                 ->orWhere('email', 'LIKE', "%$search%")
                 ->orWhere('name', 'LIKE', "%$search%");
-
 
         $users  = $users->paginate(10);
 
