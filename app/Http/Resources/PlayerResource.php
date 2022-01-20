@@ -25,6 +25,7 @@ class PlayerResource extends JsonResource
             'activity_name'             => $this->activity_name,
             'is_pro_player'             => $this->is_pro_player,
             'referral_code'             => $this->referral_code,
+            'referral_code_join'        => $this->referral_code_join,
             'followed'                  => $this->followed,
             'followers_count'           => $this->followers_count,
             'followings_count'          => $this->followings_count,
