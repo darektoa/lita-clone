@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Helpers\StorageHelper;
+use App\Exceptions\ErrorException;
+use App\Helpers\{ResponseHelper, StorageHelper};
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Traits\FCMTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\{Hash, Validator};
 
 class ProfileController extends Controller
@@ -93,5 +93,47 @@ class ProfileController extends Controller
             'message'   => 'OK',
             'data'      => new UserResource($user)
         ];
+    }
+
+
+    public function changePassword(Request $request) {
+        try{
+            $user      = User::find(auth()->id());
+            $isSSO     = (boolean) $user->sso_type;
+            
+            if($isSSO) throw new ErrorException('Forbidden', 403, [
+                "Register with SSO account can't change password"
+            ]);
+    
+            $validator = Validator::make($request->all(), [
+                'old_password'  => 'required',
+                'new_password'  => 'required|min:5|max:16'
+            ]);
+
+            if($validator->fails()) {
+                $errors = $validator->errors()->all();
+                throw new ErrorException('invalid field',422, $errors);
+            }
+
+            $Password    = $user->password;
+            $oldPassword = $request->old_password;
+            $newPassword = $request->new_password;
+            
+            if(!Hash::check($oldPassword, $Password)) throw new ErrorException('Unprocessable', 422, [
+                "Old password doesn't match"
+            ]);
+
+            $user->update([
+                'password'  => Hash::make($newPassword)
+            ]);
+
+            return ResponseHelper::make();
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
+        }
     }
 }
