@@ -1,9 +1,8 @@
 @php
   $coinNav = [
-      'Pending'   => route('coins.index') . '?status=0', 
-      'Failed'    => route('coins.index') . '?status=1',
-      'Success'   => route('coins.index') . '?status=2',
-      'Canceled'  => route('coins.index') . '?status=3'
+      'Topup'   => route('coins.index') . '?type=0', 
+      'Order'   => route('coins.index') . '?type=1',
+      'Refund'  => route('coins.index') . '?type=2',
   ];
   
   $proPlayerNav = [
