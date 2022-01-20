@@ -1,4 +1,10 @@
 @php
+  $proPlayer = [
+	'total'	  => collect($total['proPlayer'])->sum(),
+	'male'	  => $total['proPlayer'][1] ?? 0,
+	'female'  => $total['proPlayer'][2] ?? 0,
+  ];
+
   $inputsAddAdmin = [
     [
       'id'    => 'user-name',
@@ -26,7 +32,7 @@
 	<x-dashboard.info-box title="Users" value="{{ $total['all'] }}" color="info" icon="fa-users text-info"/>
 	<x-dashboard.info-box title="Admin" value="{{ $total['admin'] }}" color="success" icon="fa-user text-gray-300"/>
 	<x-dashboard.info-box title="Player" value="{{ $total['player'] }}" color="warning" icon="fa-user text-gray-300"/>
-	<x-dashboard.info-box title="Pro Player" value="{{ $total['proPlayer'] }}" color="primary" icon="fa-user text-gray-300"/>
+	<x-dashboard.info-box title="Pro Player [M, F]" value="{{ $proPlayer['total'] }} [{{ $proPlayer['male'] }}, {{ $proPlayer['female'] }}]" color="primary" icon="fa-user text-gray-300"/>
 </div>
 
 <div class="col-lg-12 mb-4 p-0">
