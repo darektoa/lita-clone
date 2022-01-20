@@ -33,7 +33,8 @@
 						switch($transaction->status) {
 								case 'pending' 	: $statusClass .= ' text-warning'; break;
 								case 'rejected'	: $statusClass .= ' text-danger'; break;
-								case 'success'	: $statusClass .= ' text-success'; break;
+								case 'success' ||
+									 'paid'		: $statusClass .= ' text-success'; break;
 						}
 					@endphp
 					<tr>
