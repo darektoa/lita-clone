@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class AppBannerController extends Controller
 {
     public function index() {
-        $banners    = AppBanner::all();
+        $banners    = AppBanner::latest()->get();
 
         return ResponseHelper::make(
             AppBannerResource::collection($banners)
