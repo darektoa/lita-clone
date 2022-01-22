@@ -38,7 +38,12 @@
 						}
 					@endphp
 					<tr>
-						<td class="align-middle">{{ $receiver->name }}</td>
+						<td class="align-middle d-flex align-center">
+							<img src="{{ StorageHelper::url($receiver->profile_photo) ?? asset('assets/images/icons/empty_profile.png')}}" alt="" width="70" class="mr-3 rounded">
+							<div class="d-flex flex-column justify-content-center">
+								<h6 class="m-0 font-weight-bold">{{ $receiver->name }}</h6>
+							</div>
+						</td>
 						<td class="align-middle">{{ $coin }}</td>
 						<td class="align-middle">{{ $transaction->type_name }}</td>
 						<td class="align-middle" style="white-space: nowrap">
