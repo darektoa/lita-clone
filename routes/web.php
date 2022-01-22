@@ -27,6 +27,11 @@ Route::middleware(['auth'])->group(function() {
 
   // ONLY ADMIN
   Route::middleware(['admin'])->group(function() {
+    // ORDER
+    Route::prefix('/orders')->name('orders.')->group(function() {
+      Route::get('/', [ProPlayerOrderController::class, 'index'])->name('index');
+    });
+
     // PRO PLAYER
     Route::prefix('/pro-players')->name('pro-players.')->group(function() {
       Route::get('/', [ProPlayerSkillController::class, 'index'])->name('index');
