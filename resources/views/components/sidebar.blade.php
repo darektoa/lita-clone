@@ -52,6 +52,12 @@
     icon="fa-money-bill-wave"
     name="Withdrawal" 
     route="{{ route('withdraws.index') }}" />
+  
+    <x-sidebar.nav-item
+    active="{{ Request::is('orders') }}"
+    icon="fa-shopping-cart"
+    name="Orders" 
+    route="{{ route('orders.index') }}" />
 
 
   @isset(auth()->user()->admin)
