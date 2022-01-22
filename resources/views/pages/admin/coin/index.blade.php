@@ -7,7 +7,7 @@
 				<input class="form-control mr-sm-2" type="search" placeholder="Search" name="search"
 					value="{{request()->search ?? ''}}" aria-label="Search">
 				<input type="hidden" name="type" value={{ request()->type ?? '' }}>
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
 			</form>
 		</div>
 		<div class="card-body table-responsive" style="min-height: 400px">
