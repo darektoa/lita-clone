@@ -63,6 +63,15 @@
 								<small class="d-block">{{ $skill->game_roles }}</small>
 							</div>
 						</td>
+                        <td class="align-middle">
+							<div class="d-flex flex-column justify-content-center">
+								<textarea 
+									class="form-control"
+									rows="3"
+									style="resize: none;"
+									readonly>{{ $order->review->review ?? '' }}</textarea>
+							</div>
+						</td>
 						<td class="align-middle {{ $statusClass }}" title="{{ $order->updated_at->format('d/m/Y H:i:s') }}">
 							{{ $statusName }}
  
