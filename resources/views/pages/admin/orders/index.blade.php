@@ -75,6 +75,10 @@
 						<td class="align-middle {{ $statusClass }}" title="{{ $order->updated_at->format('d/m/Y H:i:s') }}">
 							{{ $statusName }}
  
+							@if($statusName == 'Ended')
+							<small class="text-warning">[{{ $order->review->star ?? 0 }}/5]</small>
+							@endif
+							
 							@if($statusName != 'Pending')
 							<small class="d-block">{{ $order->updated_at->format('d/m/Y') }}</small>
 							@endif
