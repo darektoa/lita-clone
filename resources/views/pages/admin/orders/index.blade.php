@@ -16,7 +16,7 @@
 				<thead>
 					<tr>
 						<th>Player</th>
-						<th style="white-space: nowrap">Play With</th>
+						<th style="white-space: nowrap">Pro Player</th>
 						<th>Game</th>
 						<th>Review</th>
 						<th>Status</th>
