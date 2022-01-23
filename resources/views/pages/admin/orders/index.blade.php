@@ -18,6 +18,7 @@
 						<th>Player</th>
 						<th style="white-space: nowrap">Play With</th>
 						<th>Game</th>
+						<th>Review</th>
 						<th>Status</th>
 					</tr>
 				</thead>
@@ -41,7 +42,7 @@
 					@endphp
 					<tr>
 						<td class="align-middle d-flex align-center">
-							<img src="{{ StorageHelper::url($user->profile_photo) }}" alt="" width="70" class="mr-3 rounded">
+							<img src="{{ StorageHelper::url($user->profile_photo) ?? asset('assets/images/icons/empty_profile.png')}}" alt="" width="70" class="mr-3 rounded">
 							<div class="d-flex flex-column justify-content-center">
 								<h6 class="m-0 font-weight-bold">{{ $user->name }}</h6>
 								<small class="d-block">{{ $user->username }}</small>
