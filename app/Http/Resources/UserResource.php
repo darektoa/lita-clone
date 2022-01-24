@@ -25,6 +25,7 @@ class UserResource extends JsonResource
             'cover_photo'   => StorageHelper::url($this->cover_photo),
             'birthday'      => $this->birthday,
             'bio'           => $this->bio,
+            'phone'         => $this->phone,
             'gender'        => GenderResource::make($this->whenLoaded('gender')),
             'player'        => PlayerResource::make($this->whenLoaded('player')),
             'admin'         => AdminResource::make($this->whenLoaded('admin'))
