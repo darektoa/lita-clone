@@ -41,8 +41,9 @@ class ProfileController extends Controller
             'birthday'      => 'nullable|date',
             'bio'           => 'nullable|max:255',
             'phone'         => 'required|numeric|min:10',
-            'voice'         => 'nullable|mimes:mp3,m4a,aac,ogg',
+            'voice'         => 'nullable|file|mimes:mp4,mpeg,wave',
         ]);
+
 
         // VALIDATOR ERROR VALIDATION
         $errors = $validator->errors();
