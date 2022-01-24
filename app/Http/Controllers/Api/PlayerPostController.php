@@ -107,6 +107,7 @@ class PlayerPostController extends Controller
                 'data'      => PlayerPostResource::make($post)
             ]);
         }catch(Exception $err) {
+            dd($err);
             $errCode    = $err->getCode() ?? 400;
             $errMessage = $err->getMessage();
 
