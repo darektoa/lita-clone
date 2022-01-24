@@ -39,7 +39,8 @@ class ProfileController extends Controller
             'profile_photo' => 'nullable|image|max:10240',
             'cover_photo'   => 'nullable|image:max:10240',
             'birthday'      => 'nullable|date',
-            'bio'           => 'max:255',
+            'bio'           => 'nullable|max:255',
+            'phone'         => 'nullable|numeric|min:10',
             'voice'         => 'nullable|mimes:mp3,m4a,aac,ogg',
         ]);
 
@@ -78,6 +79,7 @@ class ProfileController extends Controller
             'gender_id' => $request->gender_id,
             'birthday'  => $request->birthday,
             'bio'       => $request->bio,
+            'phone'     => $request->phone,
         ];
 
         if($profilePhoto) $updateData['profile_photo'] = $profilePhotoPath;
