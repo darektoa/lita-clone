@@ -56,28 +56,25 @@
 								<small class="d-block">{{ $proPlayer->email }}</small>
 							</div>
 						</td>
-                        <td class="align-middle">
+                        <td class="align-middle" style="white-space: nowrap">
 							<div class="d-flex flex-column justify-content-center">
 								<h6 class="m-0 font-weight-bold">{{ $skill->game->name }}</h6>
 								<small class="d-block">{{ $skill->game_tier }} (Lv. {{ $skill->game_level }})</small>
 								<small class="d-block">{{ $skill->game_roles }}</small>
 							</div>
 						</td>
-                        <td class="align-middle">
+                        <td class="align-middle" style="white-space: nowrap">
 							<div class="d-flex flex-column justify-content-center">
+								<h6 class="m-1 font-weight-bold text-warning">⭐Rating {{ $order->review->star ?? 0 }}/5</h6>
 								<textarea 
 									class="form-control"
-									rows="3"
+									rows="2"
 									style="resize: none;"
 									readonly>{{ $order->review->review ?? '' }}</textarea>
 							</div>
 						</td>
-						<td class="align-middle {{ $statusClass }}" title="{{ $order->updated_at->format('d/m/Y H:i:s') }}">
+						<td class="align-middle {{ $statusClass }}" style="white-space: nowrap" title="{{ $order->updated_at->format('d/m/Y H:i:s') }}">
 							{{ $statusName }}
- 
-							@if($statusName == 'Ended')
-							<small class="text-warning">[{{ $order->review->star ?? 0 }}/5]</small>
-							@endif
 							
 							@if($statusName != 'Pending')
 							<small class="d-block">{{ $order->updated_at->format('d/m/Y') }}</small>
