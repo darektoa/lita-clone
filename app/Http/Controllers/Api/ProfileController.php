@@ -40,7 +40,7 @@ class ProfileController extends Controller
             'cover_photo'   => 'nullable|image:max:10240',
             'birthday'      => 'nullable|date',
             'bio'           => 'nullable|max:255',
-            'phone'         => 'required|numeric|digits_between:10,16',
+            'phone'         => 'required|min:10|max:18',
             'voice'         => 'nullable|file|mimes:mp4,mpeg,wave',
         ]);
 
