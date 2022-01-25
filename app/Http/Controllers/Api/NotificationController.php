@@ -6,10 +6,11 @@ use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\NotificationResource;
 use App\Models\{DeviceId, User};
+use App\Notifications\PushNotification;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{Notification, Validator};
 
 class NotificationController extends Controller
 {
@@ -80,33 +81,19 @@ class NotificationController extends Controller
                 'title'     => 'required|string'
             ]);
 
-            if($validator->fails())
-                return response()->json([
-                    'status'    => 422,
-                    'message'   => 'Unprocessable, Invalid field',
-                    'errors'    => $validator->errors()->all(),
-                ], 422);
+            if($validator->fails()) return response()->json([
+                'status'    => 422,
+                'message'   => 'Unprocessable, Invalid field',
+                'errors'    => $validator->errors()->all(),
+            ], 422);
             
-            $user      = User::find($request->user_id);
-            $recipient = Arr::flatten([
-                $user
-                ->deviceIds()
-                ->select('device_id')
-                ->get()
-                ->makeHidden('status_name')
-                ->toArray()
-            ]);
-
+            $user     = User::find($request->user_id);
             $payloads = [
                 'title' => $request->title,
                 'body'  => $request->body,
             ];
 
-            fcm()->to($recipient)
-            ->timeToLive(86400) // 1 day
-            ->data($payloads)
-            ->notification($payloads)
-            ->send();
+            Notification::send($user, new PushNotification($payloads));
 
             return response()->json([
                 'status'    => 200,
