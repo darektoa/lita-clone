@@ -7,10 +7,11 @@ use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\{ProPlayerSkillResource, ProPlayerOrderResource, ProPlayerOrderReviewResource};
 use App\Models\{ProPlayerOrder, ProPlayerSkill, ProPlayerSkillScreenshot, User};
+use App\Notifications\PushNotification;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{Notification, Validator};
 
 class ProPlayerSkillController extends Controller
 {
@@ -271,27 +272,17 @@ class ProPlayerSkillController extends Controller
                 ]);
 
             // SEND PUSH NOTIFICATION
-            $recipients = Arr::flatten(
-                $proPlayerSkill
+            $recipients = $proPlayerSkill
                 ->player
-                ->user
-                ->deviceIds()
-                ->select('device_id')
-                ->get()
-                ->makeHidden('status_name')
-                ->toArray()
-            );
+                ->user;
 
             $payloads = [
-                'title' => 'Ada Orderan Nih !',
-                'body'  => "Orderan game [{$proPlayerSkill->game->name}] dari pemain ({$user->username})"
+                'title'      => 'Ada Orderan Nih !',
+                'body'       => "Orderan game [{$proPlayerSkill->game->name}] dari pemain ({$user->username})",
+                'timeToLive' => $order->expiry_duration * 60,
             ];
 
-            fcm()->to($recipients) // Must an array
-            ->timeToLive($order->expiry_duration * 60) // In seconds
-            ->data($payloads)
-            ->notification($payloads)
-            ->send();
+            Notification::send($recipients, new PushNotification($payloads));
 
             return response()->json([
                 'satus'     => 200,
