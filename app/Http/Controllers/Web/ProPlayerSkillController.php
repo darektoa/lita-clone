@@ -4,9 +4,11 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\{ProPlayerSkill, Tier};
+use App\Notifications\PushNotification;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Notification;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProPlayerSkillController extends Controller
@@ -54,27 +56,17 @@ class ProPlayerSkillController extends Controller
             $proPlayerSkill->update();
 
             // SEND PUSH NOTIFICATION
-            $recipients = Arr::flatten([
-                $proPlayerSkill
+            $recipients = $proPlayerSkill
                 ->player
-                ->user
-                ->deviceIds()
-                ->select('device_id')
-                ->get()
-                ->makeHidden('status_name')
-                ->toArray()
-            ]);
+                ->user;
 
             $payloads = [
-                'title' => 'Pengajuan Pro Player Disetujui !',
-                'body'  => "Pengajuan menjadi pro player game [{$proPlayerSkill->game->name}] disetujui"
+                'title'      => 'Pengajuan Pro Player Disetujui !',
+                'body'       => "Pengajuan menjadi pro player game [{$proPlayerSkill->game->name}] disetujui",
+                'timeToLive' => 2419200,
             ];
 
-            fcm()->to($recipients) // Must an array
-            ->timeToLive(2419200) // 28 days
-            ->data($payloads)
-            ->notification($payloads)
-            ->send();
+            Notification::send($recipients, new PushNotification($payloads));
 
             Alert::success('Success', 'Successfully made a pro player');
         }catch(Exception $err) {
