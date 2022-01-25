@@ -89,27 +89,17 @@ class ProPlayerSkillController extends Controller
                 $player->is_pro_player = 0;
 
             // SEND PUSH NOTIFICATION
-            $recipients = Arr::flatten([
-                $proPlayerSkill
+            $recipients = $proPlayerSkill
                 ->player
-                ->user
-                ->deviceIds()
-                ->select('device_id')
-                ->get()
-                ->makeHidden('status_name')
-                ->toArray()
-            ]);
+                ->user;
 
             $payloads = [
-                'title' => 'Pengajuan Pro Player Ditolak',
-                'body'  => "Mohon maaf, kamu bisa ajukan kembali menjadi pro player di game [{$proPlayerSkill->game->name}]"
+                'title'      => 'Pengajuan Pro Player Ditolak',
+                'body'       => "Mohon maaf, kamu bisa ajukan kembali menjadi pro player di game [{$proPlayerSkill->game->name}]",
+                'timeToLive' => 2419200,
             ];
 
-            fcm()->to($recipients) // Must an array
-            ->timeToLive(2419200) // 28 days
-            ->data($payloads)
-            ->notification($payloads)
-            ->send();
+            Notification::send($recipients, new PushNotification($payloads));
 
             Alert::success('Success', 'Successfully rejected to become a pro player');
         }catch(Exception $err) {
