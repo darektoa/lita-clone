@@ -107,7 +107,6 @@ class PlayerPostController extends Controller
                 'data'      => PlayerPostResource::make($post)
             ]);
         }catch(Exception $err) {
-            dd($err);
             $errCode    = $err->getCode() ?? 400;
             $errMessage = $err->getMessage();
 
@@ -169,6 +168,7 @@ class PlayerPostController extends Controller
                 StorageHelper::delete($item->url);
             }
 
+            $playerPost->playerPostLikes()->delete();
             $playerPost->postMedia()->delete();
             $playerPost->delete();
 
