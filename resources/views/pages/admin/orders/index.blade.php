@@ -55,7 +55,9 @@
                         <td class="align-middle">
 							<div class="d-flex flex-column justify-content-center">
 								<h6 class="m-0 font-weight-bold">{{ $proPlayer->name }}</h6>
-								<small class="d-block">{{ $proPlayer->username }}</small>
+								<small class="d-block">{{ $proPlayer->username }}
+									<span class="text-success">(+{{ number_format($order->balance) }})</span>
+								</small>
 								<small class="d-block">{{ $proPlayer->email }}</small>
 							</div>
 						</td>
