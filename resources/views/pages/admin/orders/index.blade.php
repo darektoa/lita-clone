@@ -65,11 +65,11 @@
 						</td>
                         <td class="align-middle" style="white-space: nowrap">
 							<div class="d-flex flex-column justify-content-center">
-								<h6 class="m-1 font-weight-bold text-warning">⭐Rating {{ $order->review->star ?? 0 }}/5</h6>
+								<h6 class="mb-1 font-weight-bold text-warning">⭐ Rating {{ $order->review->star ?? 0 }}/5</h6>
 								<textarea 
 									class="form-control"
 									rows="2"
-									style="resize: none;"
+									style="resize: none; min-width: 200px"
 									readonly>{{ $order->review->review ?? '' }}</textarea>
 							</div>
 						</td>
