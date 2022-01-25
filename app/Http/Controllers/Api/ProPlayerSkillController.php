@@ -337,25 +337,13 @@ class ProPlayerSkillController extends Controller
                 ]);
 
             // SEND PUSH NOTIFICATION
-            $recipients = Arr::flatten([
-                $user
-                ->deviceIds()
-                ->select('device_id')
-                ->get()
-                ->makeHidden('status_name')
-                ->toArray()
-            ]);
-
             $payloads = [
-                'title' => 'Order berhasil dibatalkan',
-                'body'  => "Orderan {$proPlayerSkill->player->user->username} game [{$proPlayerSkill->game->name}] berhasil anda batalkan"
+                'title'      => 'Order berhasil dibatalkan',
+                'body'       => "Orderan {$proPlayerSkill->player->user->username} game [{$proPlayerSkill->game->name}] berhasil anda batalkan",
+                'timeToLive' => 120,
             ];
 
-            fcm()->to($recipients) // Must an array
-            ->timeToLive(120) // In seconds
-            ->data($payloads)
-            ->notification($payloads)
-            ->send();
+            Notification::send($user, new PushNotification($payloads));
             
             return response()->json([
                 'status'    => 200,
