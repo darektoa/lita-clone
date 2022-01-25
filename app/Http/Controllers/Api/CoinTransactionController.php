@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\{AppSetting, CoinTransaction, PredefineCoin};
+use App\Notifications\PushNotification;
 use App\Traits\XenditTrait;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{Notification, Validator};
 use Illuminate\Support\Str;
 
 class CoinTransactionController extends Controller
@@ -136,16 +137,6 @@ class CoinTransactionController extends Controller
             ]);
 
             // SEND PUSH NOTIFICATION
-            $recipients = Arr::flatten(
-                $player
-                ->user
-                ->deviceIds()
-                ->select('device_id')
-                ->get()
-                ->makeHidden('status_name')
-                ->toArray()
-            );
-
             if($status === 'paid') $payloads = [
                 'title' => "Pembayaran Berhasil",
                 'body'  => "Pembayaran {$request->external_id} berhasil di selesaikan",
@@ -156,11 +147,8 @@ class CoinTransactionController extends Controller
                 'body'  => "Pembayaran {$request->external_id} kadaluwarsa",
             ];
 
-            fcm()->to($recipients) // Must an array
-            ->timeToLive(2419200) // 28 days
-            ->data($payloads)
-            ->notification($payloads)
-            ->send();
+            $payloads['timeToLive'] = 2419200; // 28 days
+            Notification::send($player->user, new PushNotification($payloads));
 
             return response()->json([
                 'status'    => 200,
