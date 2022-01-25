@@ -161,27 +161,17 @@ class ProPlayerOrderController extends Controller
             ]);
             
             // SEND PUSH NOTIFICATION
-            $recipients = Arr::flatten([
-                $proPlayerOrder
+            $recipients = $proPlayerOrder
                 ->player
-                ->user
-                ->deviceIds()
-                ->select('device_id')
-                ->get()
-                ->makeHidden('status_name')
-                ->toArray()
-            ]);
+                ->user;
 
             $payloads = [
-                'title' => 'Maaf, order kamu di tolak',
-                'body'  => "{$user->username}[{$proPlayerOrder->proPlayerSkill->game->name}]: \"{$proPlayerOrder->rejected_reason}\"",
+                'title'      => 'Maaf, order kamu di tolak',
+                'body'       => "{$user->username}[{$proPlayerOrder->proPlayerSkill->game->name}]: \"{$proPlayerOrder->rejected_reason}\"",
+                'timeToLive' => 2419200,
             ];
 
-            fcm()->to($recipients) // Must an array
-            ->timeToLive(2419200) // 28 days
-            ->data($payloads)
-            ->notification($payloads)
-            ->send();
+            Notification::send($recipients, new PushNotification($payloads));
 
             return response()->json([
                 'status'    => 200,
