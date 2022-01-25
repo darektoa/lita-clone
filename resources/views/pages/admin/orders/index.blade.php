@@ -45,7 +45,10 @@
 							<img src="{{ StorageHelper::url($user->profile_photo) ?? asset('assets/images/icons/empty_profile.png')}}" alt="" width="70" class="mr-3 rounded">
 							<div class="d-flex flex-column justify-content-center">
 								<h6 class="m-0 font-weight-bold">{{ $user->name }}</h6>
-								<small class="d-block">{{ $user->username }}</small>
+								<small class="d-block">
+									{{ $user->username }}
+									<span class="text-warning">(-{{ $order->coin }} Coin)</span>
+								</small>
 								<small class="d-block">{{ $user->email }}</small>
 							</div>
 						</td>
