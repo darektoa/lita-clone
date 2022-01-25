@@ -83,7 +83,12 @@
 							
 							@if($statusName != 'Pending')
 							<small class="d-block">{{ $order->updated_at->format('d/m/Y') }}</small>
+							<small class="d-block">
+								{{ $order->created_at->format('H:i')}} - 
+								{{ $order->updated_at->format('H:i') }}
+							</small>
 							@endif
+
 						</td>
 					</tr>
 					@endforeach
