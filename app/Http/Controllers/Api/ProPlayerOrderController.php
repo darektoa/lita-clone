@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProPlayerOrderResource;
 use App\Models\ProPlayerOrder;
+use App\Notifications\PushNotification;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{Notification, Validator};
 
 class ProPlayerOrderController extends Controller
 {
@@ -87,27 +88,17 @@ class ProPlayerOrderController extends Controller
             ]);
 
             // SEND PUSH NOTIFICATION
-            $recipients = Arr::flatten(
-                $proPlayerOrder
+            $recipients = $proPlayerOrder
                 ->player
-                ->user
-                ->deviceIds()
-                ->select('device_id')
-                ->get()
-                ->makeHidden('status_name')
-                ->toArray()
-            );
+                ->user;
 
             $payloads = [
-                'title' => 'Ayo main, order di terima !',
-                'body'  => "{$player->user->username} menerima orderan game [{$proPlayerSkill->game->name}] anda"
+                'title'      => 'Ayo main, order di terima !',
+                'body'       => "{$player->user->username} menerima orderan game [{$proPlayerSkill->game->name}] anda",
+                'timeToLive' => $proPlayerOrder->play_duration *60,
             ];
- 
-            fcm()->to($recipients) // Must an array
-            ->timeToLive($proPlayerOrder->play_duration *60) // In seconds
-            ->data($payloads)
-            ->notification($payloads)
-            ->send();
+
+            Notification::send($recipients, new PushNotification($payloads));
 
             return response()->json([
                 'status'    => 200,
