@@ -60,10 +60,9 @@
 				<thead>
 					<tr>
 						<th>Name</th>
-						<th>Email</th>
-						<th>Role</th>
 						<th>Coin</th>
 						<th>Balance</th>
+						<th>Role</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -86,11 +85,11 @@
 						<td class="align-middle" style="white-space: nowrap">
 							{{ $user->name }}
 							<small class="d-block">{{ $user->username }}</small>
+							<small class="d-block">{{ $user->email }}</small>
 						</td>
-						<td class="align-middle">{{ $user->email }}</td>
-						<td class="align-middle {{ $roleClass }}">{{ $role }}</td>
 						<td class="align-middle">{{ number_format($player->coin ?? 0) }}</td>
 						<td class="align-middle">{{ number_format($player->balance ?? 0) }}</td>
+						<td class="align-middle {{ $roleClass }}">{{ $role }}</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
 							<form action="{{ route('users.destroy', [$user->id]) }}" method="POST" class="d-inline">
 								@method('DELETE') @csrf
