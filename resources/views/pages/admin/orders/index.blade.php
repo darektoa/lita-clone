@@ -50,6 +50,9 @@
 									{{ $user->username }}
 									<span class="text-warning">(-{{ $order->coin }} Coin)</span>
 								</small>
+								<small class="d-block">
+									<a href="//wa.me/send?phone={{ $user->phone }}" target="_blank"><u>{{ $user->phone }}</u></a>
+								</small>
 								<small class="d-block">{{ $user->email }}</small>
 							</div>
 						</td>
@@ -58,6 +61,9 @@
 								<h6 class="m-0 font-weight-bold">{{ $proPlayer->name }}</h6>
 								<small class="d-block">{{ $proPlayer->username }}
 									<span class="text-success">(+{{ number_format($order->balance) }})</span>
+								</small>
+								<small class="d-block">
+									<a href="//wa.me/send?phone={{ $proPlayer->phone }}" target="_blank"><u>{{ $proPlayer->phone }}</u></a>
 								</small>
 								<small class="d-block">{{ $proPlayer->email }}</small>
 							</div>
