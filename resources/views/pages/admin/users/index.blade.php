@@ -1,29 +1,29 @@
 @php
-  $proPlayer = [
-	'total'	  => collect($total['proPlayer'])->sum(),
-	'male'	  => $total['proPlayer'][1] ?? 0,
-	'female'  => $total['proPlayer'][2] ?? 0,
-  ];
+	$proPlayer = [
+		'total'	  => collect($total['proPlayer'])->sum(),
+		'male'	  => $total['proPlayer'][1] ?? 0,
+		'female'  => $total['proPlayer'][2] ?? 0,
+	];
 
-  $inputsAddAdmin = [
-    [
-      'id'    => 'user-name',
-      'label' => 'Name',
-      'name'  => 'name',
+	$inputsAddAdmin = [
+		[
+			'id'    => 'user-name',
+			'label' => 'Name',
+			'name'  => 'name',
 		],
-    [
-      'id'    => 'user-email',
-      'label' => 'Email',
-      'name'  => 'email',
+		[
+			'id'    => 'user-email',
+			'label' => 'Email',
+			'name'  => 'email',
 		],
-    [
-      'id'    		=> 'user-password',
-      'label' 		=> 'Default Password',
-      'name'  		=> 'password',
-			'value'			=> 'password',
+		[
+			'id'    	=> 'user-password',
+			'label' 	=> 'Default Password',
+			'name'  	=> 'password',
+			'value'		=> 'password',
 			'readonly'	=> true
 		], 
-  ];
+	];
 @endphp
 @extends('layouts.app')
 @section('title', 'Users')
@@ -62,24 +62,25 @@
 						<th>Name</th>
 						<th>Email</th>
 						<th>Role</th>
+						<th>Coin</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					
 					@foreach ($users as $user)
-          @php
-            $player     = $user->player;
-            $admin      = $user->admin;
-            $role       = $player ? ($player->is_pro_player ? 'Pro Player' : 'Player') : 'Admin';
-            $roleClass  = 'font-weight-bold';
+					@php
+						$player     = $user->player;
+						$admin      = $user->admin;
+						$role       = $player ? ($player->is_pro_player ? 'Pro Player' : 'Player') : 'Admin';
+						$roleClass  = 'font-weight-bold';
 
 						switch($role) {
 								case 'Admin'      : $roleClass .= ' text-success'; break;
 								case 'Player'     : $roleClass .= ' text-warning'; break;
 								case 'Pro Player' : $roleClass .= ' text-primary'; break;
 						}
-          @endphp
+					@endphp
 					<tr>
 						<td class="align-middle" style="white-space: nowrap">
 							{{ $user->name }}
@@ -87,11 +88,12 @@
 						</td>
 						<td class="align-middle">{{ $user->email }}</td>
 						<td class="align-middle {{ $roleClass }}">{{ $role }}</td>
+						<td class="align-middle">{{ number_format($player->coin ?? 0) }}</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
 							<form action="{{ route('users.destroy', [$user->id]) }}" method="POST" class="d-inline">
-                @method('DELETE') @csrf
-                <button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
-              </form>
+								@method('DELETE') @csrf
+								<button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
+							</form>
 						</td>
 					</tr>
 					@endforeach
