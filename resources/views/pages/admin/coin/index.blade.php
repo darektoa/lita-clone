@@ -44,6 +44,9 @@
 							<div class="d-flex flex-column justify-content-center">
 								<h6 class="m-0 font-weight-bold">{{ $receiver->name }}</h6>
 								<small class="d-block">{{ $receiver->username }}</small>
+								<small class="d-block">
+									<a href="//wa.me/send?phone={{ $receiver->phone }}" target="_blank"><u>{{ $receiver->phone }}</u></a>
+								</small>
 								<small class="d-block">{{ $receiver->email }}</small>
 							</div>
 						</td>
