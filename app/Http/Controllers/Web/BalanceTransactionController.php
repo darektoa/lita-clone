@@ -44,7 +44,7 @@ class BalanceTransactionController extends Controller
                 throw new Exception('Cannot edit response', 422);
 
             $balanceTransaction->status = 'rejected';
-            $balanceTransaction->receiver->player->balance += $balanceTransaction->amount;
+            $balanceTransaction->receiver->player->balance += $balanceTransaction->balance;
             $balanceTransaction->receiver->player->update();
             $balanceTransaction->update();
             Alert::success('Success', 'Successfully Rejected');
