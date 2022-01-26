@@ -86,6 +86,7 @@
 							<small class="d-block">
 								{{ $order->created_at->format('H:i')}} - 
 								{{ $order->updated_at->format('H:i') }}
+								({{ $order->created_at->diffInMinutes($order->updated_at) }}m)
 							</small>
 							@else
 							<small class="d-block">{{ $order->created_at->format('d/m/Y') }}</small>
