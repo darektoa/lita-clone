@@ -32,7 +32,8 @@ class UserController extends Controller
                 ->orWhere('email', 'LIKE', "%$search%")
                 ->orWhere('name', 'LIKE', "%$search%");
 
-        $users  = $users->paginate(10);
+        $users  = $users->latest()
+            ->paginate(10);
 
         return view('pages.admin.users.index', compact('users', 'total', 'search'));
     }
