@@ -87,13 +87,26 @@ class NotificationController extends Controller
                 'errors'    => $validator->errors()->all(),
             ], 422);
             
-            $user     = User::find($request->user_id);
+            $user      = User::find($request->user_id);
+            $recipient = Arr::flatten([
+                $user
+                ->deviceIds()
+                ->select('device_id')
+                ->get()
+                ->makeHidden('status_name')
+                ->toArray()
+            ]);
+
             $payloads = [
                 'title' => $request->title,
                 'body'  => $request->body,
             ];
 
-            Notification::send($user, new PushNotification($payloads));
+            fcm()->to($recipient)
+            ->timeToLive(86400) // 1 day
+            ->data($payloads)
+            ->notification($payloads)
+            ->send();
 
             return response()->json([
                 'status'    => 200,
