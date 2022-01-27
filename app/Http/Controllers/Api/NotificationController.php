@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\ErrorException;
 use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\NotificationResource;
-use App\Models\{DeviceId, User};
-use App\Notifications\PushNotification;
+use App\Models\{DeviceId, Notification, User};
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\{Notification, Validator};
+use Illuminate\Support\Facades\Validator;
 
 class NotificationController extends Controller
 {
@@ -22,6 +22,28 @@ class NotificationController extends Controller
         return ResponseHelper::paginate(
             NotificationResource::collection($notifications)
         );
+    }
+
+
+    public function show(Notification $notification) {
+        try{
+            $authId = auth()->id();
+            $userId = $notification->notifiable->id;
+
+            if($authId !== $userId) throw new ErrorException('Not found', 404, [
+                'Notification not found'
+            ]);
+
+            return ResponseHelper::make(
+                NotificationResource::make($notification)
+            );
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
+        }
     }
 
 
