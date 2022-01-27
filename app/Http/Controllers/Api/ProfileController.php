@@ -35,7 +35,7 @@ class ProfileController extends Controller
             'name'          => 'bail|required|min:2|max:30|regex:/[a-z ]*/i',
             'username'      => 'required|regex:/^[0-9a-z\._]{5,15}$/i|unique:username_exceptions,username|unique:users,username,'.$user->id,
             'email'         => 'required|email|unique:users,email,'.$user->id,
-            'gender_id'     => 'nullable|exists:genders,id',
+            'gender_id'     => 'required|exists:genders,id',
             'profile_photo' => 'nullable|image|max:10240',
             'cover_photo'   => 'nullable|image:max:10240',
             'birthday'      => 'nullable|date',
