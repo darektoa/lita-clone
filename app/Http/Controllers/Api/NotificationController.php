@@ -34,6 +34,8 @@ class NotificationController extends Controller
                 'Notification not found'
             ]);
 
+            $notification->markAsRead();
+
             return ResponseHelper::make(
                 NotificationResource::make($notification)
             );
