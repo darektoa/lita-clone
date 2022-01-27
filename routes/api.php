@@ -70,6 +70,7 @@ Route::middleware(['auth.api'])->group(function() {
         Route::get('/', [NotificationController::class, 'index']);
         Route::get('/unsubscribe', [NotificationController::class, 'unsubscribe']);
         Route::post('/send', [NotificationController::class, 'send']);
+        Route::get('/{notification:id}', [NotificationController::class, 'show']);
     });
 
     // PRO PLAYER
