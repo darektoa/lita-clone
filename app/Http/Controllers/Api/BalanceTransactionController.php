@@ -14,7 +14,7 @@ class BalanceTransactionController extends Controller
     public function withdraw(Request $request) {
         try{
             $validator  = Validator::make($request->all(), [
-                'amount'        => 'required|numeric',
+                'amount'        => 'required|numeric|min:10000',
                 'account_id'    => 'nullable|numeric',
                 'description'   => 'nullable|max:255'
             ]);
