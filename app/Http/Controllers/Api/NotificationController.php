@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Exceptions\ErrorException;
+use App\Helpers\CollectionHelper;
 use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\NotificationResource;
 use App\Models\{DeviceId, Notification, User};
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
+use Illuminate\Support\{Arr, Str};
 use Illuminate\Support\Facades\Validator;
 
 class NotificationController extends Controller
@@ -17,7 +18,18 @@ class NotificationController extends Controller
     public function index() {
         $id             = auth()->id();
         $user           = User::with(['notifications'])->find($id);
-        $notifications  = $user->notifications()->paginate(10);
+        $notifications  = $user->notifications()->get();
+
+        $notifications  = $notifications->map(function($item) {
+            $result = (object) $item->toArray();
+            $body   = $result->data['body'];
+            $length = Str::length($body) / 2;
+            $body   = Str::limit($body, min($length, 32));
+            $result->data['body'] = $body;
+            return $result;
+        });
+
+        $notifications = CollectionHelper::paginate($notifications);
 
         return ResponseHelper::paginate(
             NotificationResource::collection($notifications)
