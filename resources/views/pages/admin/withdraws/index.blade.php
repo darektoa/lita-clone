@@ -30,7 +30,7 @@
 						$receiver    = $transaction->receiver;
 						$withdraw    = number_format($transaction->balance, 0, '.', ',');
 						$created     = $transaction->created_at;
-						$statusName  = $transaction->status;
+						$statusName  = ucfirst($transaction->status);
 						$statusClass = 'font-weight-bold';
 
 						switch($transaction->status) {
