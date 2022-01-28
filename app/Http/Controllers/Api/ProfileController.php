@@ -32,7 +32,7 @@ class ProfileController extends Controller
     public function update(Request $request) {
         $user      = auth()->user();
         $validator = Validator::make($request->all(), [
-            'name'          => 'bail|required|min:2|max:30|regex:/[a-z ]*/i',
+            'name'          => 'nullable|min:2|max:30|regex:/[a-z ]*/i',
             'username'      => 'required|regex:/^[0-9a-z\._]{5,15}$/i|unique:username_exceptions,username|unique:users,username,'.$user->id,
             'email'         => 'required|email|unique:users,email,'.$user->id,
             'gender_id'     => 'required|exists:genders,id',
@@ -73,7 +73,7 @@ class ProfileController extends Controller
         // UPDATE USER DATA
         $user       = User::find($user->id);
         $updateData = [
-            'name'      => $request->name,
+            'name'      => $request->name ?? $user->name,
             'username'  => $request->username,
             'email'     => $request->email,
             'gender_id' => $request->gender_id,
