@@ -83,10 +83,11 @@ class AuthController extends Controller
             $validator = Validator::make($request->all(), [
                 'name'          => 'bail|required|min:2|max:30|regex:/[a-z ]*/i',
                 'email'         => 'required|email|unique:users',
+                'phone'         => 'nullable|numeric|min:10',
+                'referral_code' => 'nullable|exists:players,referral_code',
                 'password'      => $isSSO ? 'required|min:5'   : 'required|min:5|max:16',
                 'sso_id'        => $isSSO ? 'required|max:255' : 'nullable|max:0',
                 'sso_type'      => $isSSO ? 'required|max:50'  : 'nullable|max:0',
-                'referral_code' => 'nullable|exists:players,referral_code',
             ]);
     
             if($validator->fails()) {
@@ -100,6 +101,7 @@ class AuthController extends Controller
                 'name'      => $request->name,
                 'username'  => UsernameHelper::make($emailName),
                 'email'     => $request->email,
+                'phone'     => $request->phone,
                 'password'  => Hash::make($request->password),
                 'sso_id'    => $request->sso_id,
                 'sso_type'  => $request->sso_type,
