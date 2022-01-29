@@ -10,6 +10,15 @@
       'Refund'  => route('coins.index') . '?type=2',
   ];
   
+  $orderNav = [
+      'Pending'   => route('orders.index') . '?status=0',
+      'Rejected'  => route('orders.index') . '?status=1',
+      'Approved'  => route('orders.index') . '?status=2',
+      'Canceled'  => route('orders.index') . '?status=3',
+      'Ended'     => route('orders.index') . '?status=4',
+      'Expired'   => route('orders.index') . '?status=5',
+  ];
+  
   $proPlayerNav = [
       'Pending'   => route('pro-players.index') . '?status=0', 
       'Rejected'  => route('pro-players.index') . '?status=1',
@@ -53,11 +62,11 @@
     name="Withdrawal" 
     route="{{ route('withdraws.index') }}" />
   
-    <x-sidebar.nav-item
+    <x-sidebar.nav-collapse-item
     active="{{ Request::is('orders') }}"
     icon="fa-shopping-cart"
     name="Orders" 
-    route="{{ route('orders.index') }}" />
+    routes="{!! json_encode($orderNav) !!}" />
 
 
   @isset(auth()->user()->admin)
