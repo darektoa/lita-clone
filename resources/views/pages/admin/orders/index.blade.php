@@ -7,7 +7,8 @@
 			<h6 class="m-0 font-weight-bold text-primary">Orders</h6>
 			<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" method="get" action="">
 				<input class="form-control mr-sm-2" type="search" placeholder="Search" name="search"
-					value="{{request()->search ?? ''}}" aria-label="Search">
+					value="{{ request()->search ?? '' }}" aria-label="Search">
+				<input type="hidden" name="status" value="{{ request()->status }}">
 				<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
 			</form>
 		</div>
