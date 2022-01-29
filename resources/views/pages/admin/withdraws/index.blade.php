@@ -34,9 +34,9 @@
 						$statusClass = 'font-weight-bold';
 
 						switch($transaction->status) {
-								case 'pending' : $statusClass .= ' text-warning'; break;
-								case 'rejected': $statusClass .= ' text-danger'; break;
-								case 'approved': $statusClass .= ' text-success'; break;
+							case 'pending' : $statusClass .= ' text-warning'; break;
+							case 'rejected': $statusClass .= ' text-danger'; break;
+							case 'approved': $statusClass .= ' text-success'; break;
 						}
 					@endphp
 					<tr>
@@ -62,11 +62,11 @@
 							<small class="d-block">{{ $created->format('d/m/Y') }}</small>
 							<small class="d-block">{{ $created->format('H:i:s') }}</small>
 						</td>
-						<td class="align-middle {{ $statusClass }}" title="{{ $transaction->updated_at->format('d/m/Y H:i:s') }}">
+						<td class="align-middle {{ $statusClass }}" style="white-space: nowrap;" title="{{ $transaction->updated_at->format('d/m/Y H:i:s') }}">
 							{{ $statusName }}
 
 							@if($statusName != 'Pending')
-							<small class="d-block">{{ $transaction->updated_at->format('d/m/Y') }}</small>
+							<small class="d-block">{{ $transaction->updated_at->format('d/m/y H:i') }}</small>
 							@endif
 
 						</td>
