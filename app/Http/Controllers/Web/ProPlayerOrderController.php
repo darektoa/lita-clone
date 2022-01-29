@@ -10,8 +10,11 @@ class ProPlayerOrderController extends Controller
 {
     public function index(Request $request) {
         $search     = $request->search;
-        $statusId   = $request->satatus;
+        $statusId   = $request->status;
         $orders     = new ProPlayerOrder;
+
+        if($statusId !== null & $statusId >= 0 && $statusId <= 5)
+            $orders = $orders->where('status', $statusId);
         
         $orders = $orders
             ->latest()
