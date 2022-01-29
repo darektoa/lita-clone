@@ -15,6 +15,13 @@ class ProPlayerOrderController extends Controller
 
         if($statusId !== null & $statusId >= 0 && $statusId <= 5)
             $orders = $orders->where('status', $statusId);
+        if($search)
+            $orders  = $orders
+            ->whereHas('player', function($query) use($search) {
+                $query->whereRelation('user', 'username', 'LIKE', "%$search%")
+                    ->orWhereRelation('user', 'email', 'LIKE', "%$search%")
+                    ->orWhereRelation('user', 'name', 'LIKE', "%$search%");
+            });
         
         $orders = $orders
             ->latest()
