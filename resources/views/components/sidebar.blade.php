@@ -11,6 +11,7 @@
   ];
   
   $orderNav = [
+      'All'       => route('orders.index'),
       'Pending'   => route('orders.index') . '?status=0',
       'Rejected'  => route('orders.index') . '?status=1',
       'Approved'  => route('orders.index') . '?status=2',
