@@ -16,7 +16,7 @@ class PushNotification extends Notification
 
     public function __construct($data)
     {
-        $this->data = $data;
+        $this->data = (object) $data;
     }
 
 
@@ -45,8 +45,8 @@ class PushNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->data['title'],
-            'body'  => $this->data['body'],
+            'title' => $this->data->title,
+            'body'  => $this->data->body,
         ];
     }
 
@@ -63,12 +63,12 @@ class PushNotification extends Notification
         $data       = $this->data;
         $recipients = $this->getDeviceIds($notifiable);
         $payloads   = [
-            'title' => $data['title'],
-            'body'  => $data['body'],
+            'title' => $data->title,
+            'body'  => $data->body,
         ];
 
         fcm()->to($recipients)
-            ->timeToLive($data['timeToLive'] ?? 86400) // 1 day
+            ->timeToLive($data->timeToLive ?? 86400) // 1 day
             ->data($payloads)
             ->notification($payloads)
             ->send();
