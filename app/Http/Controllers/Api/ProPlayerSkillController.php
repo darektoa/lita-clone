@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\CollectionHelper;
 use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\{ProPlayerSkillResource, ProPlayerOrderResource, ProPlayerOrderReviewResource};
@@ -14,19 +15,21 @@ use Illuminate\Support\Facades\Validator;
 class ProPlayerSkillController extends Controller
 {
     public function index(Request $request) {
-        $playerId   = auth()->user()->player->id ?? null;
-        $sortBy     = $request->sort;
-        $sortValue  = $request->sort_value;
-        $search     = $request->search;
-        $proPlayers = ProPlayerSkill::with([
-            'game',
-            'player.user',
-            'tier',
-            'proPlayerSkillScreenshots'
-        ]);
-
         try {
-            if($proPlayers->first() && !$proPlayers->first()->$sortBy && $sortBy) 
+            $playerId   = auth()->user()->player->id ?? null;
+            $sortBy     = $request->sort;
+            $sortValue  = $request->sort_value;
+            $search     = $request->search;
+            $genderId   = $request->gender_id ?? 2;
+            $proPlayers = ProPlayerSkill::with([
+                'game',
+                'player.user',
+                'tier',
+                'proPlayerSkillScreenshots'
+            ]);
+
+            $proPlayer = $proPlayers->get()[0];
+            if($proPlayer && !$proPlayer->$sortBy && $sortBy) 
                 throw new Exception('Field to sort not found', 404);
             if($sortBy)
                 $proPlayers = $proPlayers->orderBy($sortBy, 'desc');
@@ -41,7 +44,12 @@ class ProPlayerSkillController extends Controller
                 ->where('status', 2) // 2 = Approved
                 //->where('activity', 1) // 1 = Online
                 // ->where('player_id', '!=', $playerId)
-                ->paginate(10);
+                ->get()
+                ->sortBy(fn($query) => (
+                    $query->player->user->gender_id != $genderId
+                ));
+
+            $proPlayers = CollectionHelper::paginate($proPlayers, 10);
 
             return response()->json(
                 collect([
