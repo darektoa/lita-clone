@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Models\{DeviceId, User};
 use Exception;
@@ -11,6 +12,15 @@ use Illuminate\Support\Facades\Validator;
 
 class NotificationController extends Controller
 {
+    public function index() {
+        $id             = auth()->id();
+        $user           = User::with(['notifications'])->find($id);
+        $notifications  = $user->notifications()->paginate(10);
+
+        return ResponseHelper::paginate($notifications);
+    }
+
+
     public function store(Request $request) {
         $user   = auth()->user();
 
