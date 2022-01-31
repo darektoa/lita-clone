@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\NotificationResource;
 use App\Models\{DeviceId, User};
 use Exception;
 use Illuminate\Http\Request;
@@ -17,7 +18,9 @@ class NotificationController extends Controller
         $user           = User::with(['notifications'])->find($id);
         $notifications  = $user->notifications()->paginate(10);
 
-        return ResponseHelper::paginate($notifications);
+        return ResponseHelper::paginate(
+            NotificationResource::collection($notifications)
+        );
     }
 
 
