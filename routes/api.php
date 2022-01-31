@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\PlayerPost;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -68,6 +67,7 @@ Route::middleware(['auth.api'])->group(function() {
 
     // NOTIFICATION
     Route::prefix('/notifications')->group(function() {
+        Route::get('/', [NotificationController::class, 'index']);
         Route::get('/unsubscribe', [NotificationController::class, 'unsubscribe']);
         Route::post('/send', [NotificationController::class, 'send']);
     });
