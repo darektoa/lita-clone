@@ -29,7 +29,8 @@
 						$transfer	 = $account ? \App\Models\AvailableTransfer::find($account->transfer_id) : null;
 						$receiver    = $transaction->receiver;
 						$withdraw    = number_format($transaction->balance, 0, '.', ',');
-						$created     = $transaction->created_at;
+						$createdAt   = $transaction->created_at->addHours(7);
+						$updatedAt   = $transaction->updated_at->addHours(7);
 						$statusName  = ucfirst($transaction->status);
 						$statusClass = 'font-weight-bold';
 
@@ -62,14 +63,14 @@
 						</td>
 						<td class="align-middle">{{ $withdraw }}</td>
 						<td class="align-middle" style="white-space: nowrap">
-							<small class="d-block">{{ $created->format('d/m/Y') }}</small>
-							<small class="d-block">{{ $created->format('H:i:s') }}</small>
+							<small class="d-block">{{ $createdAt->format('d/m/Y') }}</small>
+							<small class="d-block">{{ $createdAt->format('H:i:s') }}</small>
 						</td>
-						<td class="align-middle {{ $statusClass }}" style="white-space: nowrap;" title="{{ $transaction->updated_at->format('d/m/Y H:i:s') }}">
+						<td class="align-middle {{ $statusClass }}" style="white-space: nowrap;" title="{{ $updatedAt->format('d/m/Y H:i:s') }}">
 							{{ $statusName }}
 
 							@if($statusName != 'Pending')
-							<small class="d-block">{{ $transaction->updated_at->format('d/m/y H:i') }}</small>
+							<small class="d-block">{{ $updatedAt->format('d/m/y H:i') }}</small>
 							@endif
 
 						</td>
