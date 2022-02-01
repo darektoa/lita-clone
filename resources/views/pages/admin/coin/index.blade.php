@@ -27,7 +27,8 @@
 					@php 
 						$receiver    = $transaction->receiver;
 						$coin     	 = number_format($transaction->coin, 0, '.', ',');
-						$created     = $transaction->created_at;
+						$createdAt   = $transaction->created_at->addHours(7);
+						$updatedAt	 = $transaction->updated_at->addHours(7);
 						$statusName  = ucfirst($transaction->status);
 						$statusClass = 'font-weight-bold';
 
@@ -53,14 +54,14 @@
 						<td class="align-middle">{{ $coin }}</td>
 						<td class="align-middle">{{ $transaction->type_name }}</td>
 						<td class="align-middle" style="white-space: nowrap">
-							<small class="d-block">{{ $created->format('d/m/Y') }}</small>
-							<small class="d-block">{{ $created->format('H:i:s') }}</small>
+							<small class="d-block">{{ $createdAt->format('d/m/Y') }}</small>
+							<small class="d-block">{{ $createdAt->format('H:i:s') }}</small>
 						</td>
-						<td class="align-middle {{ $statusClass }}" title="{{ $transaction->updated_at->format('d/m/Y H:i:s') }}">
+						<td class="align-middle {{ $statusClass }}" title="{{ $updatedAt->format('d/m/Y H:i:s') }}">
 							{{ $statusName }}
 
 							@if($statusName != 'Pending')
-							<small class="d-block">{{ $transaction->updated_at->format('d/m/Y') }}</small>
+							<small class="d-block">{{ $updatedAt->format('d/m/Y') }}</small>
 							@endif
 
 						</td>
