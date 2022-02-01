@@ -64,9 +64,6 @@
 					<tr>
 						<th>Name</th>
 						<th>Game</th>
-						<th>Level</th>
-						<th style="white-space: nowrap">Game Tier</th>
-						<th style="white-space: nowrap">Game Roles</th>
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
@@ -99,10 +96,13 @@
 								<small class="d-block">{{ $user->email }}</small>
 							</div>
 						</td>
-						<td class="align-middle h6">{{ $proPlayer->game->name }}</td>
-						<td class="align-middle h6">{{ $proPlayer->game_level }}</td>
-						<td class="align-middle h6">{{ $proPlayer->game_tier }}</td>
-						<td class="align-middle h6">{{ $proPlayer->game_roles }}</td>
+						<td class="align-middle" style="white-space: nowrap">
+							<div class="d-flex flex-column justify-content-center">
+								<h6 class="m-0 font-weight-bold">{{ $proPlayer->game->name }}</h6>
+								<small class="d-block">{{ $proPlayer->game_tier }} (Lv. {{ $proPlayer->game_level }})</small>
+								<small class="d-block">{{ $proPlayer->game_roles }}</small>
+							</div>
+						</td>
 						<td class="align-middle {{ $statusClass }}" title="{{ $updatedAt->format('d/m/Y H:i:s') }}">
 							{{ $statusName }}
  
