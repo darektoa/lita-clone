@@ -76,7 +76,8 @@
 					@foreach ($proPlayers as $proPlayer)
 					@php 
 						$user 			= $proPlayer->player->user;
-						$created 		= $proPlayer->created_at;
+						$createdAt 		= $proPlayer->created_at->addHours(7);
+						$updatedAt 		= $proPlayer->updated_at->addHours(7);
 						$statusName 	= $proPlayer->status_name;
 						$statusClass 	= 'font-weight-bold';
 
@@ -102,11 +103,11 @@
 						<td class="align-middle h6">{{ $proPlayer->game_level }}</td>
 						<td class="align-middle h6">{{ $proPlayer->game_tier }}</td>
 						<td class="align-middle h6">{{ $proPlayer->game_roles }}</td>
-						<td class="align-middle {{ $statusClass }}" title="{{ $proPlayer->updated_at->format('d/m/Y H:i:s') }}">
+						<td class="align-middle {{ $statusClass }}" title="{{ $updatedAt->format('d/m/Y H:i:s') }}">
 							{{ $statusName }}
  
 							@if($statusName != 'Pending')
-							<small class="d-block">{{ $proPlayer->updated_at->format('d/m/Y') }}</small>
+							<small class="d-block">{{ $updatedAt->format('d/m/Y') }}</small>
 							@endif
 
 						</td>
