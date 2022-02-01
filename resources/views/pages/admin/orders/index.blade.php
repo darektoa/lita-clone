@@ -30,7 +30,8 @@
 						$user 			= $order->player->user;
                         $skill          = $order->proPlayerSkill;
                         $proPlayer      = $skill->player->user;
-						$created 		= $order->created_at;
+						$createdAt 		= $order->created_at->addHours(7);
+						$updatedAt 		= $order->updated_at->addHours(7);
 						$statusName 	= $order->status_name;
 						$statusClass 	= 'font-weight-bold';
 
@@ -85,19 +86,19 @@
 									readonly>{{ $order->review->review ?? '' }}</textarea>
 							</div>
 						</td>
-						<td class="align-middle {{ $statusClass }}" style="white-space: nowrap" title="{{ $order->updated_at->format('d/m/Y H:i:s') }}">
+						<td class="align-middle {{ $statusClass }}" style="white-space: nowrap" title="{{ $updatedAt->format('d/m/Y H:i:s') }}">
 							{{ $statusName }}
 							
 							@if($statusName != 'Pending')
-							<small class="d-block">{{ $order->updated_at->format('d/m/Y') }}</small>
+							<small class="d-block">{{ $updatedAt->format('d/m/Y') }}</small>
 							<small class="d-block">
-								{{ $order->created_at->format('H:i')}} - 
-								{{ $order->updated_at->format('H:i') }}
-								({{ $order->created_at->diffInMinutes($order->updated_at) }}m)
+								{{ $createdAt->format('H:i')}} - 
+								{{ $updatedAt->format('H:i') }}
+								({{ $createdAt->diffInMinutes($updatedAt) }}m)
 							</small>
 							@else
-							<small class="d-block">{{ $order->created_at->format('d/m/Y') }}</small>
-							<small class="d-block">{{ $order->created_at->format('H:i:s') }}</small>
+							<small class="d-block">{{ $createdAt->format('d/m/Y') }}</small>
+							<small class="d-block">{{ $createdAt->format('H:i:s') }}</small>
 							@endif
 
 						</td>
