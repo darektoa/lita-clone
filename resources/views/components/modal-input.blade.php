@@ -17,6 +17,8 @@
                         <label for="{{ $input->id }}" class="col-form-label">{{ $input->label }}</label>
                         
                         @php
+                            $type     = $input->type ?? 'text';
+
                             $readonly = isset($input->readonly);
                             $readonly = $readonly ? $input->readonly : false;
                             $readonly = $readonly === true ? 'readonly' : '';
@@ -31,16 +33,30 @@
                             placeholder="{{ $input->placeholder ?? '' }}"
                             {{ $readonly }}
                         ></textarea>
+                        @elseif($type === 'select')
+                            <select
+                                id="{{ $input->id }}" 
+                                class="form-control"
+                                name="{{ $input->name }}"
+                                >
+
+                                @foreach($input->options as $key => $option)
+                                <option value="{{ $key }}">{{ $option }}</option>
+                                @endforeach
+
+                            </select>
                         @else
                         <input 
                             id="{{ $input->id }}" 
                             class="form-control" 
                             name={{ $input->name }} 
-                            type="{{ $input->type ?? 'text' }}" 
+                            type="{{ $type }}" 
                             value="{{ $input->value ?? '' }}"
                             placeholder="{{ $input->placeholder ?? '' }}"
                             {{ $readonly }}>
                         @endif
+                        
+                        
 
                     </div>
                     @endforeach
