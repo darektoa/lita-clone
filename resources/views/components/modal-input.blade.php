@@ -22,6 +22,10 @@
                             $readonly = isset($input->readonly);
                             $readonly = $readonly ? $input->readonly : false;
                             $readonly = $readonly === true ? 'readonly' : '';
+
+                            $multiple = isset($input->multiple);
+                            $multiple = $multiple ? $input->multiple : false;
+                            $multiple = $multiple === true ? 'multiple' : '';
                         @endphp
 
                         @isset($input->textarea)
@@ -38,6 +42,7 @@
                                 id="{{ $input->id }}" 
                                 class="form-control"
                                 name="{{ $input->name }}"
+                                {{ $multiple }}
                                 >
 
                                 @foreach($input->options as $key => $option)
