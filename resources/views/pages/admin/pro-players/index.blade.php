@@ -85,7 +85,7 @@
 						}
 					@endphp
 					<tr>
-						<td class="align-middle d-flex align-center">
+						<td class="align-middle d-flex align-center" style="white-space: nowrap">
 							<img src="{{ StorageHelper::url($user->profile_photo) ?? asset('assets/images/icons/empty_profile.png')}}" alt="" width="70" class="mr-3 rounded">
 							<div class="d-flex flex-column justify-content-center">
 								<h6 class="m-0 font-weight-bold">{{ $user->name }}</h6>
