@@ -27,6 +27,11 @@ Route::middleware(['auth'])->group(function() {
 
   // ONLY ADMIN
   Route::middleware(['admin'])->group(function() {
+    // NOTIFICATION
+    Route::prefix('/notifications')->name('notifications.')->group(function() {
+      Route::get('/', [NotificationController::class, 'index'])->name('index');
+    });
+
     // ORDER
     Route::prefix('/orders')->name('orders.')->group(function() {
       Route::get('/', [ProPlayerOrderController::class, 'index'])->name('index');
