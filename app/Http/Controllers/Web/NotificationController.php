@@ -25,6 +25,12 @@ class NotificationController extends Controller
 
     public function massive(Request $request) {
         try{
+            $this->validate($request, [
+                'title'     => 'required',
+                'body'      => 'nullable',
+                'recipient' => 'required|in:1,2,3',
+            ]);
+
             $recipient  = (int) $request->recipient;
             $users      = new User();
 
