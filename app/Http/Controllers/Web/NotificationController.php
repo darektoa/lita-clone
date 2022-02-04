@@ -17,7 +17,9 @@ class NotificationController extends Controller
         $notifications  = Notification::whereHas('notifiable', function($query) use($userId) {
             $query->whereHas('admin')
                 ->where('id', $userId);
-        })->paginate(10);
+        })
+        ->latest()
+        ->paginate(10);
 
         return view('pages.admin.notifications.index', compact('notifications'));
     }
