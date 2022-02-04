@@ -1,15 +1,15 @@
 @php
   $inputsAddFAQ = [
     [
-      'id'    	 => 'FAQ-question',
-      'label' 	 => 'Question',
-      'name'  	 => 'question',
-			'textarea' => true
-		], [
-      'id'    	 => 'FAQ-answer',
-      'label' 	 => 'Answer',
-      'name'  	 => 'answer',
-			'textarea' => true,
+      	'id'    	 => 'FAQ-question',
+      	'label' 	 => 'Question',
+      	'name'  	 => 'question',
+		'textarea' => true
+	], [
+      	'id'    	 => 'FAQ-answer',
+      	'label' 	 => 'Answer',
+      	'name'  	 => 'answer',
+		'textarea' => true,
     ]
   ];
 @endphp
