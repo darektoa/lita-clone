@@ -17,9 +17,9 @@
 			'name'      => 'recipient',
 			'type'      => 'select',
 			'options'   => [
-                'All',
-                'Player',
-                'Pro Player'
+                1 => 'All',
+                2 => 'Player',
+                3 => 'Pro Player'
             ],
 		], 
 	];
@@ -41,7 +41,7 @@
 		<div class="card-body table-responsive" style="min-height: 400px">
 
 			<x-modal-input 
-				action="{{ url('users.storeNotif') }}"
+				action="{{ route('notifications.massive') }}"
 				id="addNotifModal"
 				inputs="{!! json_encode($inputsAddNotif) !!}"
 				method="POST"
@@ -60,7 +60,7 @@
 					
 					@foreach ($notifications as $notification)
 					@php
-                        $createdAt      = $notification->created_at->addHours(7);
+                        $createdAt = $notification->created_at->addHours(7);
 					@endphp
 					<tr>
 						<td class="align-middle" style="white-space: nowrap">
