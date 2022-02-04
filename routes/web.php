@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function() {
     // NOTIFICATION
     Route::prefix('/notifications')->name('notifications.')->group(function() {
       Route::get('/', [NotificationController::class, 'index'])->name('index');
+      Route::post('/massive', [NotificationController::class, 'massive'])->name('massive');
     });
 
     // ORDER
