@@ -82,6 +82,12 @@
     icon="fa-users"
     name="Users" 
     route="{{ route('users.index') }}" />
+
+  <x-sidebar.nav-item
+    active="{{ Request::is('notifications') }}"
+    icon="fa-bell"
+    name="Notifications" 
+    route="{{ route('notifications.index') }}" />
   @endisset
 
 
