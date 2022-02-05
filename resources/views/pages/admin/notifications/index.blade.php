@@ -52,6 +52,7 @@
 				<thead>
 					<tr>
 						<th>Notification</th>
+						<th>Sent By</th>
 						<th>Sent At</th>
 						<th>Recipient</th>
 					</tr>
@@ -60,7 +61,9 @@
 					
 					@foreach ($notifications as $notification)
 					@php
-                        $createdAt	= $notification->created_at->addHours(7);
+						$adminId 	= $notification->data->admin_id ?? 0;
+						$sentBy		= $adminId ? App\Models\User::find($adminId)->name : 'Unknown';
+                    	$createdAt	= $notification->created_at->addHours(7);
 						$recipients = $notification->data->recipient ?? [];
 					@endphp
 					<tr>
@@ -70,7 +73,10 @@
 								<small class="d-block">{{ $notification->data->body }}</small>
 							</div>
 						</td>
-                        <td class="align-middle h6">
+						<td class="align-middle">
+							<h6>{{ $sentBy }}</h6>
+						</td>
+                        <td class="align-middle">
                             <div class="d-flex flex-column justify-content-center">
 								<h6 class="m-0 font-weight-bold">{{ $createdAt->format('d/m/Y') }}</h6>
 								<small class="d-block"> {{ $createdAt->format('H:i:s') }}</small>
