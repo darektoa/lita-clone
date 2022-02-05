@@ -79,7 +79,15 @@
                         <td class="align-middle">
 
 							@foreach($recipients as $recipient)
-							<span class="d-block">{{ $recipient }}</span>
+							@php
+								$recipientClass = 'd-block font-weight-bold';
+
+								switch($recipient) {
+									case 'Player'	  : $recipientClass .= ' text-warning'; break;
+									case 'Pro Player' : $recipientClass .= ' text-primary'; break;
+								}
+							@endphp
+							<span class="{{ $recipientClass }}">{{ $recipient }}</span>
 							@endforeach
 
 						</td>
