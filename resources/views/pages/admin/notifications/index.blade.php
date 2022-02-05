@@ -60,7 +60,8 @@
 					
 					@foreach ($notifications as $notification)
 					@php
-                        $createdAt = $notification->created_at->addHours(7);
+                        $createdAt	= $notification->created_at->addHours(7);
+						$recipients = $notification->data->recipient ?? [];
 					@endphp
 					<tr>
 						<td class="align-middle" style="white-space: nowrap">
@@ -75,7 +76,13 @@
 								<small class="d-block"> {{ $createdAt->format('H:i:s') }}</small>
 							</div>
                         </td>
-                        <td class="align-middle">{{ $notificaion->data->recipients ?? '' }}</td>
+                        <td class="align-middle">
+
+							@foreach($recipients as $recipient)
+							<span class="d-block">{{ $recipient }}</span>
+							@endforeach
+
+						</td>
 					</tr>
 					@endforeach
 
