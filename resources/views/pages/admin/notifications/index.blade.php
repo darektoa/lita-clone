@@ -52,7 +52,7 @@
 				<thead>
 					<tr>
 						<th>Notification</th>
-						<th>Sent By</th>
+						<th style="white-space: nowrap">Sent By</th>
 						<th>Sent At</th>
 						<th>Recipient</th>
 					</tr>
@@ -73,7 +73,7 @@
 								<small class="d-block">{{ $notification->data->body }}</small>
 							</div>
 						</td>
-						<td class="align-middle">
+						<td class="align-middle" style="white-space: nowrap">
 							<h6>{{ $sentBy }}</h6>
 						</td>
                         <td class="align-middle">
