@@ -37,7 +37,6 @@ class GameController extends Controller
             
             Alert::success('Success', 'Game created successfully');
         } catch(Exception $err) {
-            dd($err);
             $errMessage = $err->getMessage();
             Alert::error('Failed', $errMessage);
         }finally{
