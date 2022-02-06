@@ -53,7 +53,7 @@
 					<tr>
 						<th>Notification</th>
 						<th style="white-space: nowrap">Sent By</th>
-						<th>Sent At</th>
+						<th style="white-space: nowrap">Sent At</th>
 						<th>Recipient</th>
 					</tr>
 				</thead>
@@ -82,7 +82,7 @@
 								<small class="d-block"> {{ $createdAt->format('H:i:s') }}</small>
 							</div>
                         </td>
-                        <td class="align-middle">
+                        <td class="align-middle" style="white-space: nowrap">
 
 							@foreach($recipients as $recipient)
 							@php
