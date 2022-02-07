@@ -31,4 +31,9 @@ class CoinTransactionController extends Controller
 
         return view('pages.general.coin.index', compact('transactions'));
     }
+
+
+    public function send() {
+        return view('pages.admin.coin.send');
+    }
 }
