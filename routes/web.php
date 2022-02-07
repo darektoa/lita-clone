@@ -27,6 +27,11 @@ Route::middleware(['auth'])->group(function() {
 
   // ONLY ADMIN
   Route::middleware(['admin'])->group(function() {
+    // COIN
+    Route::prefix('/coins')->name('coins.')->group(function() {
+      Route::get('/send', [CoinTransactionController::class, 'send'])->name('send');
+    });
+
     // NOTIFICATION
     Route::prefix('/notifications')->name('notifications.')->group(function() {
       Route::get('/', [NotificationController::class, 'index'])->name('index');
