@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\CoinTransaction;
+use App\Models\{AppSetting, CoinTransaction, Player, PredefineCoin};
+use Exception;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CoinTransactionController extends Controller
 {
@@ -35,5 +37,35 @@ class CoinTransactionController extends Controller
 
     public function send() {
         return view('pages.admin.coin.send');
+    }
+
+
+    public function sendStore(Request $request) {
+        try{
+            $player         = Player::find($request->player_id);
+            $predefineCoin  = PredefineCoin::where('coin', $request->coin)->first();
+            $coinToBalance  = AppSetting::first()->coin_conversion * $request->coin;
+
+            CoinTransaction::create([
+                'sender_id'     => auth()->id(),
+                'receiver_id'   => $player->user->id,
+                'coin'          => $request->coin,
+                'balance'       => $predefineCoin->balance ?? $coinToBalance,
+                'type'          => 0,
+                'status'        => 'success',
+                'description'   => $request->description
+            ]);
+
+            $player->update([
+                'coin'  => $player->coin + $request->coin,
+            ]);
+
+            Alert::success('Success', 'Send coins successfully');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally{
+            return back()->withInput();
+        }
     }
 }
