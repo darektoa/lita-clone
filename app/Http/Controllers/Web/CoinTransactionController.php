@@ -42,6 +42,11 @@ class CoinTransactionController extends Controller
 
     public function sendStore(Request $request) {
         try{
+            $this->validate($request, [
+                'player_id'     => 'required|numeric|exists:players,id',
+                'coin'          => 'required|numeric|digits_between:0,18',
+            ]);
+
             $player         = Player::find($request->player_id);
             $predefineCoin  = PredefineCoin::where('coin', $request->coin)->first();
             $coinToBalance  = AppSetting::first()->coin_conversion * $request->coin;
