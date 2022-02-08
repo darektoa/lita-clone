@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function() {
     // COIN
     Route::prefix('/coins')->name('coins.')->group(function() {
       Route::get('/send', [CoinTransactionController::class, 'send'])->name('send');
+      Route::post('/send', [CoinTransactionController::class, 'sendStore'])->name('send.sendStore');
     });
 
     // NOTIFICATION
