@@ -10,7 +10,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    <form action="" method="post" class="col-lg-6" enctype="multipart/form-data">
+                    <form action="{{ route('coins.send.sendStore') }}" method="post" class="col-lg-6" enctype="multipart/form-data">
                         @csrf
     
                         <div class="form-group">
