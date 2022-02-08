@@ -14,17 +14,17 @@
                         @csrf
     
                         <div class="form-group">
-                            <label for="Jumlah Cuti">Player ID <span class="text-danger">*</span></label>
+                            <label for="player_id">Player ID <span class="text-danger">*</span></label>
                             <input id="player_id" name="player_id" class="form-control" type="text" required>
                         </div>
     
                         <div class="form-group">
-                            <label for="Jumlah Cuti">Coin <span class="text-danger">*</span></label>
+                            <label for="coin">Coin <span class="text-danger">*</span></label>
                             <input id="coin" name="coin" class="form-control" type="number" min="1" required>
                         </div>
     
                         <div class="form-group">
-                            <label for="Jumlah Cuti">Description</label>
+                            <label for="description">Description</label>
                             <input id="description" name="description" class="form-control" type="text">
                         </div>
     
