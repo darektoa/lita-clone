@@ -45,6 +45,7 @@ class CoinTransactionController extends Controller
             $this->validate($request, [
                 'player_id'     => 'required|numeric|exists:players,id',
                 'coin'          => 'required|numeric|digits_between:0,18',
+                'description'   => 'nullable|max:255'
             ]);
 
             $player         = Player::find($request->player_id);
