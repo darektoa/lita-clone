@@ -23,6 +23,11 @@
                             <input id="coin" name="coin" class="form-control" type="number" min="1" required>
                         </div>
     
+                        <div class="form-group">
+                            <label for="Jumlah Cuti">Description</label>
+                            <input id="description" name="description" class="form-control" type="text">
+                        </div>
+    
                         <button type="submit" class="btn btn-primary">Send</button>
                     </form>
                 </div>
