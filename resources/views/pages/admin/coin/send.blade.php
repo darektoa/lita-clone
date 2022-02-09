@@ -41,3 +41,11 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+    <script>
+        const coins          = @json($coins);
+        const coinConversion = @json($coinConversion);
+    </script>
+    <script src="{{ asset('js/scripts/pages/admin/coin/send.js') }}" type="module"></script>
+@endsection
