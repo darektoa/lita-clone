@@ -36,7 +36,10 @@ class CoinTransactionController extends Controller
 
 
     public function send() {
-        return view('pages.admin.coin.send');
+        $coins          = PredefineCoin::all();
+        $coinConversion = AppSetting::first()->coin_conversion;
+
+        return view('pages.admin.coin.send', compact('coins', 'coinConversion'));
     }
 
 
