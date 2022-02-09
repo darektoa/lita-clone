@@ -70,7 +70,7 @@ const PlayerID = {
     data.forEach((item) =>{
       const option     = document.createElement('option');
       option.value     = item.player.id;
-      option.innerText = `${item.player.id} | ${item.username}`;
+      option.innerText = `${item.player.id} | ${item.username} | ${item.name}`;
       this.element.appendChild(option);
     });
   },
