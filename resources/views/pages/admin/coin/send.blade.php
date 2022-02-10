@@ -33,7 +33,7 @@
                         
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <input id="description" name="description" class="form-control" type="text">
+                            <input id="description" name="description" class="form-control" type="text" value="{{ old('description') }}">
                         </div>
                         
                         <div class="form-group">
