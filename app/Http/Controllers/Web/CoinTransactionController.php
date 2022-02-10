@@ -48,6 +48,7 @@ class CoinTransactionController extends Controller
             $this->validate($request, [
                 'player_id'     => 'required|numeric|exists:players,id',
                 'coin'          => 'required|numeric|digits_between:0,18',
+                'type'          => 'required|numeric|in:0,3',
                 'description'   => 'nullable|max:255'
             ]);
 
@@ -60,7 +61,7 @@ class CoinTransactionController extends Controller
                 'receiver_id'   => $player->user->id,
                 'coin'          => $request->coin,
                 'balance'       => $predefineCoin->balance ?? $coinToBalance,
-                'type'          => 0,
+                'type'          => $request->type,
                 'status'        => 'success',
                 'description'   => $request->description
             ]);
