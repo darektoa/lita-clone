@@ -20,7 +20,7 @@
     
                         <div class="form-group">
                             <label for="coin">Coin <span class="text-danger">*</span></label>
-                            <input id="coin" name="coin" class="form-control" type="number" min="1" required>
+                            <input id="coin" name="coin" class="form-control" type="number" min="1" value="{{ old('coin') }}" required>
                         </div>
                         
                         <div class="form-group">
