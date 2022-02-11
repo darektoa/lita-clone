@@ -15,7 +15,7 @@ class CoinTransactionController extends Controller
         $typeId         = $request->type;
         $transactions   = new CoinTransaction;
 
-        if($typeId !== null & $typeId >= 0 && $typeId <= 2)
+        if($typeId !== null & $typeId >= 0 && $typeId <= 3)
             $transactions = $transactions->where('type', $typeId);
         if($search)
             $transactions  = $transactions
