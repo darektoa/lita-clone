@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\{AppSetting, CoinTransaction, Player, PredefineCoin};
+use App\Notifications\PushNotification;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CoinTransactionController extends Controller
@@ -69,6 +71,13 @@ class CoinTransactionController extends Controller
             $player->update([
                 'coin'  => $player->coin + $request->coin,
             ]);
+
+            $payloads = [
+                'title' => "$request->coin koin berhasil ditambahkan ke saldo koin kamu",
+                'body'  => $request->description,
+            ];
+
+            Notification::send($player->user, new PushNotification($payloads));
 
             Alert::success('Success', 'Send coins successfully');
         }catch(Exception $err) {
