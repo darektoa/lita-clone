@@ -52,9 +52,9 @@ class CoinTransactionController extends Controller
                 'coin'          => 'required|numeric|digits_between:0,18',
                 'type'          => 'required|numeric|in:0,3',
                 'description'   => 'nullable|max:255'
-            ]);
+            ]); 
 
-            $player         = Player::find($request->player_id);
+            $player         = Player::with('user')->find($request->player_id);
             $predefineCoin  = PredefineCoin::where('coin', $request->coin)->first();
             $coinToBalance  = AppSetting::first()->coin_conversion * $request->coin;
 
