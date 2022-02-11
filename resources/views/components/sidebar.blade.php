@@ -8,6 +8,7 @@
       'Topup'   => route('coins.index') . '?type=0', 
       'Order'   => route('coins.index') . '?type=1',
       'Refund'  => route('coins.index') . '?type=2',
+      'Gift'    => route('coins.index') . '?type=3',
   ];
   
   $orderNav = [
