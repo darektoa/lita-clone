@@ -6,9 +6,9 @@ use App\Helpers\DateHelper;
 use Carbon\Carbon;
 
 trait ChartTrait{
-    static public function chartByCreatedAt($startDate, $endDate) {
+    public function scopeChartByCreatedAt($query, $startDate, $endDate) {
         $labels = DateHelper::range($startDate, $endDate);
-        $model  = self::whereBetween('created_at', [$startDate, $endDate])
+        $model  = $query->whereBetween('created_at', [$startDate, $endDate])
             ->selectRaw('DATE(created_at) as date, COUNT(*) as total')
             ->groupByRaw('date')
             ->get();
