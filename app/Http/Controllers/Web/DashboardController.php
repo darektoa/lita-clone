@@ -51,7 +51,7 @@ class DashboardController extends Controller
         $endDate    = now();
         $chart      = json_decode(collect([
             'userRegistration'  => User::chartByCreatedAt($startDate, $endDate),
-            'playerOrder'       => ProPlayerOrder::chartByCreatedAt($startDate, $endDate),
+            'playerOrder'       => ProPlayerOrder::status(4)->chartByCreatedAt($startDate, $endDate),
         ]));
         
         return view('pages.general.dashboard', compact('total', 'chart'));
