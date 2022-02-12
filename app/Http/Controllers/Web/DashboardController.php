@@ -38,6 +38,7 @@ class DashboardController extends Controller
             ],
             'proPlayerOrder' => [
                 'all'       => $proPlayerOrder->count(),
+                'ended'     => $proPlayerOrder->status(4)->count(),
             ],
             'user' => [
                 'all'       => $user->count(),
