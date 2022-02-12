@@ -122,6 +122,11 @@ class ProPlayerOrder extends Model
     }
 
 
+    public function scopeStatus($query, $status) {
+        return $query->where('status', $status);
+    }
+
+
     public function scopeToday($query) {
         return $query->whereDate('created_at', now());
     }
