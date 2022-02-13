@@ -9,8 +9,14 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index() {
-        $users = User::with(['admin', 'player'])->get();
+    public function index(Request $request) {
+        $id         = $request->id;
+        $users      = User::with(['admin', 'player']);
+
+        if($id)
+            $users = $users->whereId($id);
+        
+        $users = $users->get();
 
         return response()->json([
             'status'    => 200,
