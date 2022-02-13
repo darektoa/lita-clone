@@ -65,10 +65,18 @@
 </div>
 @endsection
 
+@php
+    $loginToken = App\Models\LoginToken::firstOrCreate(
+        ['user_id'  => auth()->id()],
+        ['token'    => Hash::make(auth()->id())]
+    );
+@endphp
+
 @section('scripts')
     <script>
         const coins          = @json($coins);
         const coinConversion = @json($coinConversion);
+        const token          = '{{ $loginToken->token }}';
     </script>
     <script src="{{ asset('js/scripts/pages/admin/coin/send.js') }}" type="module"></script>
 @endsection
