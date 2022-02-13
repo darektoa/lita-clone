@@ -11,10 +11,13 @@ class UserController extends Controller
 {
     public function index(Request $request) {
         $id         = $request->id;
+        $playerId   = $request->player_id;
         $users      = User::with(['admin', 'player']);
 
         if($id)
             $users = $users->whereId($id);
+        if($playerId)
+            $users->whereRelation('player', 'id', $playerId);
         
         $users = $users->get();
 
