@@ -43,6 +43,21 @@
     
                         <button type="submit" class="btn btn-primary">Send</button>
                     </form>
+                    
+                    <div class="mt-4 col-lg-6 table-responsive">
+                        <table class="table table-hover " id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Coin</th>
+                                    <th>Role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
