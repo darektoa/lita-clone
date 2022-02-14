@@ -135,7 +135,7 @@ Route::middleware(['auth.api'])->group(function() {
 
     // ONLY ADMIN
     Route::middleware(['admin.api'])->group(function() {
-        Route::prefix('/user')->group(function() {
+        Route::prefix('/users')->group(function() {
             Route::get('/', [UserController::class, 'index']);
         });
     });

@@ -35,7 +35,7 @@ const PlayerID = {
   async _searchByPlayerID() {
     try{
       const playerID  = this.element.value;
-      const endpoint  = `/api/user?player_id=${playerID}`;
+      const endpoint  = `/api/users?player_id=${playerID}`;
       const options   = {headers: {'X-Auth-Token': token}};
       const request   = new Request(endpoint, options);
       const response  = await fetch(request);
