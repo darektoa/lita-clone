@@ -54,7 +54,7 @@ const PlayerID = {
     if(!data)
       return tbody.innerHTML = '';
 
-    const profile   = data.profile_photo;
+    const profile   = data.profile_photo || '/assets/images/icons/empty_profile.png';
     const role      = data.player.is_pro_player ? 'Pro Player' : 'Player';
     tbody.innerHTML = `
       <tr>
