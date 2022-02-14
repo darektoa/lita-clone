@@ -15,7 +15,7 @@
     
                         <div class="form-group">
                             <label for="player_id">Player ID <span class="text-danger">*</span></label>
-                            <input id="player_id" name="player_id" class="form-control" type="text" required>
+                            <input id="playerId" name="player_id" class="form-control" type="text" required>
                         </div>
     
                         <div class="form-group">
