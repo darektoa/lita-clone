@@ -87,7 +87,7 @@
 							<div class="d-flex flex-column justify-content-center">
 							<div class="d-flex flex-column justify-content-center">
 								<h6 class="m-0 font-weight-bold">{{ $user->name }}</h6>
-								<small class="d-block">{{ $user->username }}</small>
+								<small class="d-block">{{ $user->username }} ({{ $user->gender->name ?? '??' }})</small>
 								<small class="d-block">
 									<a href="//api.whatsapp.com/send?phone={{ $user->phone }}" target="_blank"><u>{{ $user->phone }}</u></a>
 								</small>
