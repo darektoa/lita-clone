@@ -63,7 +63,7 @@ const PlayerID = {
             <img src="${profile}" alt="" width="70" class="mr-3 rounded" />
             <div class="d-flex flex-column justify-content-center">
               <h6 class="m-0 font-weight-bold">${data.name}</h6>
-              <small class="d-block">${data.username}</small>
+              <small class="d-block">${data.username} (${data.gender?.name || '??'})</small>
               <small class="d-block">
                 <a href="//api.whatsapp.com/send?phone=${data.phone}" target="_blank"><u>${data.phone || ''}</u></a>
               </small>
