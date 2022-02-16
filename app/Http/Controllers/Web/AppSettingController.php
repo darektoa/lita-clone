@@ -22,7 +22,8 @@ class AppSettingController extends Controller
             AppSetting::first()->update([
                 'coin_conversion'   => $request->coin_conversion,
                 'company_revenue'   => $request->company_revenue,
-                'terms_rules'       => $request->terms_rules
+                'min_withdraw'      => $request->min_withdraw,
+                'terms_rules'       => $request->terms_rules,
             ]);
 
             Alert::success('Success', 'General settings updated successfully');
