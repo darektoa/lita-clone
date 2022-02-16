@@ -22,6 +22,11 @@
             <label for="companyRevenue"><b>Company Revenue (%)</b></label>
             <input min="0" max="100" type="number" name="company_revenue" class="form-control" placeholder="Company Revenue (%)" value="{{ $settings->company_revenue }}" required>
           </div>
+          
+          <div class="form-group">
+            <label for="minWithdraw"><b>Min. Withdraw (Rp)</b></label>
+            <input min="0" name="min_withdraw" id="minWithdraw" class="form-control" placeholder="Rp 10.000" value="{{ $settings->min_withdraw }}" />
+          </div>
 
           <div class="form-group">
             <label for="termsRules"><b>Terms & Rules</b></label>
