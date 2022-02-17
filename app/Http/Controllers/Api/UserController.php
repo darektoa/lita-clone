@@ -12,8 +12,11 @@ class UserController extends Controller
     public function index(Request $request) {
         $id         = $request->id;
         $playerId   = $request->player_id;
+        $players    = $request->players;
         $users      = User::with(['admin', 'player']);
 
+        if($players)
+            $users = $users->whereHas('player');
         if($id)
             $users = $users->whereId($id);
         if($playerId)
