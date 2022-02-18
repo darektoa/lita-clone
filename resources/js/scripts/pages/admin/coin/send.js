@@ -47,6 +47,15 @@ const PlayerID = {
     }
   },
 
+  _renderOptions(data) {
+    data.forEach((item) =>{
+      const option     = document.createElement('option');
+      option.value     = item.player.id;
+      option.innerText = `${item.player.id} | ${item.username}`;
+      this.element.appendChild(option);
+    });
+  },
+
   _renderPlayerElmnt(data) {
     const tbody = $.first('tbody');
 
