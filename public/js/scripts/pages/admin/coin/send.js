@@ -21,7 +21,7 @@ const coinInputHandler = () => {
 
 
 const PlayerID = {
-  element: null,
+  element: inputs.playerId,
   timeoutID: null,
 
   inputHandler(event) {
@@ -46,7 +46,6 @@ const PlayerID = {
       console.log(err);
     }
   },
-
 
   _renderPlayerElmnt(data) {
     const tbody = $.first('tbody');
