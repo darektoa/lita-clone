@@ -38,11 +38,11 @@
         </div>
     </div>
     
-    <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}" defer></script>
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}" defer></script>
-    <script src="{{ asset('assets/vendor/jquery-easing/jquery.easing.min.js') }}" defer></script>
-    <script src="{{ asset('assets/js/sb-admin-2.min.js') }}" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+    <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('assets/js/sb-admin-2.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     @yield('scripts')
   </body>
 </html>
