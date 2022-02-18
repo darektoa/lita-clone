@@ -32,6 +32,10 @@ const PlayerID = {
     , 500);
   },
 
+  loadHandler(event) {
+    this._getPlayers();
+  },
+
   async _getPlayers() {
     try{
       const endpoint  = '/api/users?players=true';
@@ -104,5 +108,6 @@ const PlayerID = {
 
 // INITIATE EVENT LISTENER
 document.addEventListener('DOMContentLoaded', coinInputHandler);
+document.addEventListener('DOMContentLoaded', PlayerID.loadHandler.bind(PlayerID));
 inputs.coin.addEventListener('input', coinInputHandler);
 inputs.playerId.addEventListener('input', PlayerID.inputHandler.bind(PlayerID));
