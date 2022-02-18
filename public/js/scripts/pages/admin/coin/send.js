@@ -32,6 +32,21 @@ const PlayerID = {
     , 500);
   },
 
+  async _getPlayers() {
+    try{
+      const endpoint  = '/api/users?players=true';
+      const options   = {headers: {'X-Auth-Token': token}};
+      const request   = new Request(endpoint, options);
+      const response  = await fetch(request);
+      const resJson   = await response.json();
+      const data      = resJson.data;
+
+      this._renderOptions(data);
+    }catch(err) {
+      console.log(err);
+    }
+  },
+
   async _searchByPlayerID() {
     try{
       const playerID  = this.element.value;
