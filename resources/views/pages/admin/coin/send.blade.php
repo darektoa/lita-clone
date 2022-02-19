@@ -79,6 +79,9 @@
         const token             = '{{ $loginToken->token }}';
         
         $("#playerId").select2();
+        $($('#playerId').data('select2').$container).addClass('d-flex align-items-center form-control p-0 w-100');
+        $($('#playerId').data('select2').$container).children('.selection').addClass('w-100');
+        $($('#playerId').data('select2').$selection).addClass('position-relative border-0');
     </script>
     <script src="{{ asset('js/scripts/pages/admin/coin/send.js') }}" type="module"></script>
 @endsection
