@@ -77,6 +77,11 @@
         const coins             = @json($coins);
         const coinConversion    = @json($coinConversion);
         const token             = '{{ $loginToken->token }}';
+        const playerIdOnSelect  = (handler) => {
+            $('#playerId').on("select2:selecting", (e) => {
+                setTimeout(() => handler(e), 100);
+            });
+        };
         
         $("#playerId").select2();
         $($('#playerId').data('select2').$container).addClass('d-flex align-items-center form-control p-0 w-100');
