@@ -111,3 +111,4 @@ document.addEventListener('DOMContentLoaded', coinInputHandler);
 document.addEventListener('DOMContentLoaded', PlayerID.loadHandler.bind(PlayerID));
 inputs.coin.addEventListener('input', coinInputHandler);
 inputs.playerId.addEventListener('input', PlayerID.inputHandler.bind(PlayerID));
+playerIdOnSelect(PlayerID.inputHandler.bind(PlayerID));
