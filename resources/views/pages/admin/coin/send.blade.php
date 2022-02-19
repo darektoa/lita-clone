@@ -14,8 +14,8 @@
                         @csrf
     
                         <div class="form-group">
-                            <label for="player_id">Player ID <span class="text-danger">*</span></label>
-                            <input id="playerId" name="player_id" class="form-control" type="text" required>
+                            <label for="playerId">Player ID <span class="text-danger">*</span></label>
+                            <select id="playerId" name="player_id" class="form-control" autocomplete="off"></select>
                         </div>
     
                         <div class="form-group">
@@ -25,7 +25,7 @@
                         
                         <div class="form-group">
                             <label for="type">Type <span class="text-danger">*</span></label>
-                            <select id="type" name="type" class="form-control">
+                            <select id="type" name="type" class="form-control w-100">
                                 <option value="3">Gift</option>
                                 <option value="0">Topup</option>
                             </select>
@@ -74,9 +74,11 @@
 
 @section('scripts')
     <script>
-        const coins          = @json($coins);
-        const coinConversion = @json($coinConversion);
-        const token          = '{{ $loginToken->token }}';
+        const coins             = @json($coins);
+        const coinConversion    = @json($coinConversion);
+        const token             = '{{ $loginToken->token }}';
+        
+        $("#playerId").select2();
     </script>
     <script src="{{ asset('js/scripts/pages/admin/coin/send.js') }}" type="module"></script>
 @endsection
