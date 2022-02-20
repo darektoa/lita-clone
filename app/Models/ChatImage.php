@@ -10,4 +10,9 @@ class ChatImage extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+
+    public function sender() {
+        $this->belongsTo(User::class, 'sender_id');
+    }
 }

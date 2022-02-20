@@ -70,6 +70,11 @@ class User extends Authenticatable
     }
 
 
+    public function chatSendingImages() {
+        return $this->hasMany(ChatImage::class, 'sender_id');
+    }
+
+
     public function loginTokens() {
         return $this->hasMany(LoginToken::class);
     }
