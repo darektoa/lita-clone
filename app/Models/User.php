@@ -68,11 +68,6 @@ class User extends Authenticatable
     public function balanceReceivingTransactions() {
         return $this->hasMany(BalanceTransaction::class, 'receiver_id');
     }
-    
-    
-    public function chatReceivingImages() {
-        return $this->hasMany(ChatImage::class, 'receiver_id');
-    }
 
 
     public function loginTokens() {
