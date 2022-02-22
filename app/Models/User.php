@@ -69,6 +69,11 @@ class User extends Authenticatable
         return $this->hasMany(BalanceTransaction::class, 'receiver_id');
     }
 
+    
+    public function chatSendingMedia() {
+        return $this->hasMany(ChatMedia::class, 'sender_id');
+    }
+
 
     public function loginTokens() {
         return $this->hasMany(LoginToken::class);
