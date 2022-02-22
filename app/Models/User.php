@@ -74,6 +74,11 @@ class User extends Authenticatable
         return $this->hasMany(ChatMedia::class, 'sender_id');
     }
 
+    
+    public function chatReceivingMedia() {
+        return $this->hasMany(ChatMedia::class, 'receiver_id');
+    }
+
 
     public function loginTokens() {
         return $this->hasMany(LoginToken::class);
