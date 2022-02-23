@@ -46,6 +46,12 @@ Route::prefix('/info')->group(function() {
 
 // WITH AUTHENTICATION
 Route::middleware(['auth.api'])->group(function() {
+    // CHAT
+    Route::prefix('/chats')->group(function() {
+        Route::post('/media', [ChatMediaController::class, 'store']);
+    });
+
+    // COIN
     Route::prefix('/coins')->group(function() {
         Route::prefix('histories')->group(function() {
             Route::get('/', [CoinTransactionController::class, 'index']);
