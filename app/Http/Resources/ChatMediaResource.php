@@ -16,6 +16,7 @@ class ChatMediaResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'            => $this->id,
             'sender'        => UserResource::make($this->whenLoaded('sender')),
             'receiver'      => UserResource::make($this->whenLoaded('receiver')),
             'url'           => StorageHelper::url($this->url),
