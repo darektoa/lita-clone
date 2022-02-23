@@ -63,8 +63,9 @@ class NotificationController extends Controller
             if($history)
                 Notif::send($users, new PushNotification($payloads));
             else {
-                $admins     = User::whereHas('admin')->get();
-                $recipients = Arr::flatten(Arr::pluck($users->toArray(), 'device_ids.*.device_id'));
+                $admins             = User::whereHas('admin')->get();
+                $recipients         = Arr::flatten(Arr::pluck($users->toArray(), 'device_ids.*.device_id'));
+                $payloads['body']   = strip_tags($request->body);
                 
                 fcm()->to($recipients)
                     ->timeToLive(86400) // 1 day
