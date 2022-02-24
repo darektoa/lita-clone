@@ -44,4 +44,27 @@ class ChatMediaController extends Controller
             );
         }
     }
+
+
+    public function show(ChatMedia $chatMedia) {
+        try{
+            $userId     = auth()->id();
+            $senderId   = $chatMedia->sender->id;
+            $receiverId = $chatMedia->receiver->id;
+
+            if($senderId !== $userId || $receiverId !== $userId) throw new ErrorException(
+                'Not found', 404, ['Not Found']
+            );
+
+            return ResponseHelper::make(
+                ChatMediaResource::make($chatMedia)
+            );
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
+        }
+    }
 }
