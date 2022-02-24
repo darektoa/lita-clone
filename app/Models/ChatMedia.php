@@ -15,6 +15,15 @@ class ChatMedia extends Model
     public $incrementing = false;
 
 
+    static public function boot() {
+        parent::boot();
+
+        static::creating(function($data) {
+            $data->id = Str::uuid();
+        });
+    }
+
+
     public function sender() {
         $this->belongsTo(User::class, 'sender_id');
     }
