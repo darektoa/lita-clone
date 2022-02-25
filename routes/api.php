@@ -51,6 +51,7 @@ Route::middleware(['auth.api'])->group(function() {
         Route::prefix('/media')->group(function() {
             Route::post('/', [ChatMediaController::class, 'store']);
             Route::get('/{chatMedia:id}', [ChatMediaController::class, 'show']);
+            Route::delete('/{chatMedia:id}', [ChatMediaController::class, 'destroy']);
         });
     });
 
