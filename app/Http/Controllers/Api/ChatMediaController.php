@@ -52,7 +52,7 @@ class ChatMediaController extends Controller
             $senderId   = $chatMedia->sender->id;
             $receiverId = $chatMedia->receiver->id;
 
-            if($senderId !== $userId || $receiverId !== $userId) throw new ErrorException(
+            if($senderId !== $userId && $receiverId !== $userId) throw new ErrorException(
                 'Not found', 404, ['Not Found']
             );
 
