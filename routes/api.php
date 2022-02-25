@@ -49,6 +49,7 @@ Route::middleware(['auth.api'])->group(function() {
     // CHAT
     Route::prefix('/chats')->group(function() {
         Route::post('/media', [ChatMediaController::class, 'store']);
+        Route::get('/media/{chatMedia:id}', [ChatMediaController::class, 'show']);
     });
 
     // COIN
