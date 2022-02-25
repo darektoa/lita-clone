@@ -48,8 +48,10 @@ Route::prefix('/info')->group(function() {
 Route::middleware(['auth.api'])->group(function() {
     // CHAT
     Route::prefix('/chats')->group(function() {
-        Route::post('/media', [ChatMediaController::class, 'store']);
-        Route::get('/media/{chatMedia:id}', [ChatMediaController::class, 'show']);
+        Route::prefix('/media')->group(function() {
+            Route::post('/', [ChatMediaController::class, 'store']);
+            Route::get('/{chatMedia:id}', [ChatMediaController::class, 'show']);
+        });
     });
 
     // COIN
