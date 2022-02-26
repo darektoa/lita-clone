@@ -111,6 +111,13 @@ class ProPlayerOrder extends Model
                 'ended_at'  => now(),
             ]);
 
+            $player->user
+                ->coinSendingTransactions()
+                ->where('type', 1)->where('status', 'pending')
+                ->oldest()->first()->update([
+                    'status'    => 'success'
+                ]);
+
             BalanceTransaction::create([
                 'sender_id'     => $player->user->id,
                 'receiver_id'   => $proPlayer->user->id,
