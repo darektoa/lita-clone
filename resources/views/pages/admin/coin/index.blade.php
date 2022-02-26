@@ -26,12 +26,13 @@
 					
 					@foreach ($transactions as $transaction)
 					@php 
-						$receiver    = $transaction->receiver;
+						$type    	 = $transaction->type;
 						$coin     	 = number_format($transaction->coin, 0, '.', ',');
 						$createdAt   = $transaction->created_at->addHours(7);
 						$updatedAt	 = $transaction->updated_at->addHours(7);
 						$statusName  = ucfirst($transaction->status);
 						$statusClass = 'font-weight-bold';
+						$user 		 = $type === 1 ? $transaction->sender : $transaction->receiver;
 
 						switch($transaction->status) {
 								case 'pending' 	: $statusClass .= ' text-warning'; break;
@@ -42,14 +43,14 @@
 					@endphp
 					<tr>
 						<td class="align-middle d-flex align-center">
-							<img src="{{ StorageHelper::url($receiver->profile_photo) ?? asset('assets/images/icons/empty_profile.png')}}" alt="" width="70" class="mr-3 rounded">
+							<img src="{{ StorageHelper::url($user->profile_photo) ?? asset('assets/images/icons/empty_profile.png')}}" alt="" width="70" class="mr-3 rounded">
 							<div class="d-flex flex-column justify-content-center">
-								<h6 class="m-0 font-weight-bold">{{ $receiver->name }}</h6>
-								<small class="d-block">{{ $receiver->username }}</small>
+								<h6 class="m-0 font-weight-bold">{{ $user->name }}</h6>
+								<small class="d-block">{{ $user->username }}</small>
 								<small class="d-block">
-									<a href="//api.whatsapp.com/send?phone={{ $receiver->phone }}" target="_blank"><u>{{ $receiver->phone }}</u></a>
+									<a href="//api.whatsapp.com/send?phone={{ $user->phone }}" target="_blank"><u>{{ $user->phone }}</u></a>
 								</small>
-								<small class="d-block">{{ $receiver->email }}</small>
+								<small class="d-block">{{ $user->email }}</small>
 							</div>
 						</td>
 						<td class="align-middle">{{ $coin }}</td>
