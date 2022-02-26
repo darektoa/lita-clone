@@ -268,7 +268,7 @@ class ProPlayerSkillController extends Controller
                     'coin'          => -$price['coin'],
                     'balance'       => -$price['balance'],
                     'type'          => 1,
-                    'status'        => 'success'
+                    'status'        => 'pending'
                 ]);
 
             // SEND PUSH NOTIFICATION
