@@ -7,7 +7,6 @@ use App\Helpers\{ResponseHelper, StorageHelper};
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ChatMediaResource;
 use App\Models\ChatMedia;
-use Illuminate\Foundation\Console\StorageLinkCommand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -56,6 +55,8 @@ class ChatMediaController extends Controller
             if($senderId !== $userId && $receiverId !== $userId) throw new ErrorException(
                 'Not found', 404, ['Not Found']
             );
+
+            $chatMedia->unsetRelations();
 
             return ResponseHelper::make(
                 ChatMediaResource::make($chatMedia)
