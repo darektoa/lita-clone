@@ -70,6 +70,13 @@ class ProPlayerOrder extends Model
                 'expired_at' => now(),
             ]);
 
+            $player->user
+                ->coinSendingTransactions()
+                ->where('type', 1)->latest()
+                ->first()->update([
+                    'status'    => 'expired'
+                ]);
+
             CoinTransaction::create([
                 'receiver_id'   => $player->user->id,
                 'coin'          => $price['coin'],
