@@ -387,6 +387,13 @@ class ProPlayerSkillController extends Controller
                 'ended_at'  => now(),
             ]);
 
+            $user
+                ->coinSendingTransactions()
+                ->where('type', 1)->where('status', 'pending')
+                ->oldest()->first()->update([
+                    'status'    => 'success'
+                ]);
+
             // ADDING PRO PLAYER BALANCE
             $proPlayer = $order->proPlayerSkill->player;
 
