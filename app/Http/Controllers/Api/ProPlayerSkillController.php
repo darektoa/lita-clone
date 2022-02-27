@@ -328,6 +328,13 @@ class ProPlayerSkillController extends Controller
             ]);
 
             $user
+                ->coinSendingTransactions()
+                ->where('type', 1)->where('status', 'pending')
+                ->oldest()->first()->update([
+                    'status'    => 'canceled'
+                ]);
+
+            $user
                 ->coinReceivingTransactions()
                 ->create([
                     'coin'      => $price['coin'],
