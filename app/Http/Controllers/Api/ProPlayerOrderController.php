@@ -145,6 +145,13 @@ class ProPlayerOrderController extends Controller
                 'rejected_reason'   => $request->reason,
             ]);
 
+            $orderer->user
+                ->coinSendingTransactions()
+                ->where('type', 1)->where('status', 'pending')
+                ->oldest()->first()->update([
+                    'status'    => 'rejected'
+                ]);
+
             // COIN REFUND TO PLAYER
             $orderer
                 ->user
