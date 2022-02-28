@@ -47,6 +47,7 @@ class CoinTransaction extends Model
             case 1: $typeName = 'Order'; break;
             case 2: $typeName = 'Refund'; break;
             case 3: $typeName = 'Gift'; break;
+            case 4: $typeName = 'Daily'; break;
             default: $typeName = 'Unknown';
         }
 
