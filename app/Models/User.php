@@ -95,6 +95,11 @@ class User extends Authenticatable
     }
 
 
+    public function dailyCoin() {
+        return $this->hasOne(DailyCoin::class);
+    }
+
+
     public function scopeToday($query) {
         return $query->whereDate('created_at', now());
     }
