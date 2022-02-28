@@ -9,7 +9,11 @@ class DailyCoin extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $casts    = [
+        'data'  => 'object',
+    ];
+
+    protected $guarded  = ['id'];
 
 
     public function user() {
