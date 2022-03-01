@@ -42,6 +42,8 @@ class DailyCoin extends Model
 
 
     public function scopeClaim($query, $user) {
+        if($user->admin) return null;
+
         $dailyCoin = $query->firstOrCreate(
             ['user_id' => $user->id],
             ['data'    => $this->generateData()],
