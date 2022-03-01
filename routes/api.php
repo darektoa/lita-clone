@@ -57,6 +57,10 @@ Route::middleware(['auth.api'])->group(function() {
 
     // COIN
     Route::prefix('/coins')->group(function() {
+        Route::prefix('/daily')->group(function() {
+            Route::get('/claim', [DailyCoinController::class, 'store']);
+        });
+
         Route::prefix('histories')->group(function() {
             Route::get('/', [CoinTransactionController::class, 'index']);
             Route::get('/{transactionId}', [CoinTransactionController::class, 'show']);
