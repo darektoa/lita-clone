@@ -39,4 +39,39 @@ class DailyCoin extends Model
 
         return $data;
     }
+
+
+    public function scopeClaim($query, $user) {
+        $dailyCoin = $query->firstOrCreate(
+            ['user_id' => $user->id],
+            ['data'    => $this->generateData()],
+        );
+
+        $tz     = +7;
+        $date   = now()->addHours($tz)->toDateString();
+        $data   = collect($dailyCoin->data);
+        $claimed = $data
+            ->where('created_at', $date)
+            ->whereNull('claimed_at')
+            ->first();
+
+        if(!$claimed) return null;
+
+        $data   = $data->map(function($item) use($claimed) {
+            if($item->id === $claimed->id)
+                $item->claimed_at = now()->toDateTimeString();
+
+            return $item;
+        });
+
+        $dailyCoin->update([
+            'data'  => $data,
+        ]);
+
+        $user->player->update([
+            'coin'  => $user->player->coin + $claimed->coin,
+        ]);
+
+        return $claimed;
+    }
 }
