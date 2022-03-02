@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 
 class DailyCoinController extends Controller
 {
+    public function index() {
+        $user   = auth()->user();
+
+        return ResponseHelper::make(
+            $user->dailyCoin
+        );
+    }
+
+
     public function store() {
         try{
             $user       = auth()->user();
