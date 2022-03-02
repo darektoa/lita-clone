@@ -58,6 +58,7 @@ Route::middleware(['auth.api'])->group(function() {
     // COIN
     Route::prefix('/coins')->group(function() {
         Route::prefix('/daily')->group(function() {
+            Route::get('/', [DailyCoinController::class, 'index']);
             Route::get('/claim', [DailyCoinController::class, 'store']);
         });
 
