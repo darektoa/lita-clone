@@ -74,6 +74,14 @@ class DailyCoin extends Model
             'coin'  => $user->player->coin + $claimed->coin,
         ]);
 
+        $user->coinReceivingTransactions()
+            ->create([
+                'coin'      => $claimed->coin,
+                'balance'   => $claimed->balance,
+                'type'      => 4,
+                'status'    => 'success'
+            ]);
+
         return $claimed;
     }
 }
