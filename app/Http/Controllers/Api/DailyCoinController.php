@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Exceptions\ErrorException;
 use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DailyCoinDataResource;
 use App\Models\DailyCoin;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,10 @@ class DailyCoinController extends Controller
 {
     public function index() {
         $user   = auth()->user();
+        $data   = $user->dailyCoin->data;
 
         return ResponseHelper::make(
-            $user->dailyCoin
+            DailyCoinDataResource::collection($data)
         );
     }
 
