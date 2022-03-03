@@ -15,7 +15,7 @@ class UsernameExceptionSeeder extends Seeder
             'games', 'genders', 'info',
             'notifications', 'orders', 'profile',
             'posts', 'balances', 'pro',
-            'settings', 'users', 'xendit',
+            'settings', 'users', 'xendit', 'chats'
         ];
 
         foreach($exceptions as $item) {
