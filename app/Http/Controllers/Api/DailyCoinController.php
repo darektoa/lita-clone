@@ -13,7 +13,7 @@ class DailyCoinController extends Controller
 {
     public function index() {
         $user   = auth()->user();
-        $data   = $user->dailyCoin->data;
+        $data   = $user->dailyCoin->data ?? [];
 
         return ResponseHelper::make(
             DailyCoinDataResource::collection($data)
