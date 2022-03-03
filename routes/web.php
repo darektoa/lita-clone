@@ -58,7 +58,7 @@ Route::middleware(['auth'])->group(function() {
     });
     
     // SETTING
-    route::prefix('/setting')->name('setting.')->group(function() {
+    Route::prefix('/setting')->name('setting.')->group(function() {
       Route::prefix('/games')->name('games.')->group(function() {
         Route::get('/', [GameController::class, 'index'])->name('index');
         Route::post('/', [GameController::class, 'store'])->name('store');
