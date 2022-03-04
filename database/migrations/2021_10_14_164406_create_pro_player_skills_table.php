@@ -27,6 +27,7 @@ class CreateProPlayerSkillsTable extends Migration
             $table->text('voice')->nullable();
             $table->smallInteger('status')->default(0);
             $table->smallInteger('activity')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
