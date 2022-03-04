@@ -109,4 +109,37 @@ class ProPlayerSkillController extends Controller
             return back();
         }
     }
+    
+    
+    public function ban(ProPlayerSkill $proPlayerSkill) {
+        try{
+            $player = $proPlayerSkill->player;
+            $proPlayerSkill->status = 3;
+            $proPlayerSkill->update();
+            $proPlayerSkill->delete();
+            
+            if($player->proPlayerSkills->where('status', '!=', 0)->count() === 0)
+                $player->is_pro_player = 0;
+
+            // SEND PUSH NOTIFICATION
+            $recipients = $proPlayerSkill
+                ->player
+                ->user;
+
+            $payloads = [
+                'title'      => 'Skill anda telah diban',
+                'body'       => "Mohon maaf, skill game [{$proPlayerSkill->game->name}] kamu telah diban",
+                'timeToLive' => 2419200,
+            ];
+
+            Notification::send($recipients, new PushNotification($payloads));
+
+            Alert::success('Success', 'Successfully banned a pro player skill');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally{
+            return back();
+        }
+    }
 }
