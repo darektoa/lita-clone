@@ -2,10 +2,10 @@
 @section('title', 'Pro Player Requests')
 @section('content')
 <div class="row">
-	<x-dashboard.info-box title="Total Request" value="{{ $total['all'] }}" color="info" icon="fa-clipboard-list text-info"/>
-  <x-dashboard.info-box title="Skill Approved" value="{{ $total['approved'] }}" color="success" icon="fa-check text-gray-300"/>
-  <x-dashboard.info-box title="Skill Pending" value="{{ $total['pending'] }}" color="warning" icon="fa-clock text-gray-300"/>
-  <x-dashboard.info-box title="Skill Rejected" value="{{ $total['rejected'] }}" color="danger" icon="fa-ban text-gray-300"/>
+	<x-dashboard.info-box title="Skill Approved" value="{{ $total['approved'] }}" color="success" icon="fa-check text-gray-300"/>
+	<x-dashboard.info-box title="Skill Pending" value="{{ $total['pending'] }}" color="warning" icon="fa-clock text-gray-300"/>
+	<x-dashboard.info-box title="Skill Rejected" value="{{ $total['rejected'] }}" color="danger" icon="fa-ban text-gray-300"/>
+	<x-dashboard.info-box title="Skill Banned" value="{{ $total['banned'] }}" color="secondary" icon="fa-clipboard-list text-secondary"/>
 </div>
 <div class="col-lg-12 mb-4 p-0">
 	<div class="card shadow mb-4">
