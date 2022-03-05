@@ -25,7 +25,8 @@
   $proPlayerNav = [
       'Pending'   => route('pro-players.index') . '?status=0', 
       'Rejected'  => route('pro-players.index') . '?status=1',
-      'Approved'  => route('pro-players.index') . '?status=2'
+      'Approved'  => route('pro-players.index') . '?status=2',
+      'Banned'    => route('pro-players.index') . '?status=3',
   ];
 
   $settingNav = [
