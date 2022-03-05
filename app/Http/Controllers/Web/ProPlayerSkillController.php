@@ -24,7 +24,7 @@ class ProPlayerSkillController extends Controller
             'approved'  => $proPlayers->where('status', 2)->count(),
         ];
 
-        if($statusId !== null & $statusId >= 0 && $statusId <= 2)
+        if($statusId !== null & $statusId >= 0 && $statusId <= 3)
             $proPlayers = $proPlayers->where('status', $statusId);
         if($search)
             $proPlayers  = $proPlayers
@@ -35,6 +35,7 @@ class ProPlayerSkillController extends Controller
             });
         
         $proPlayers = $proPlayers
+            ->withTrashed()
             ->oldest()
             ->paginate(10)
             ->withQueryString();
