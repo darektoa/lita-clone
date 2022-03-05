@@ -75,6 +75,7 @@
 						$user 			= $proPlayer->player->user;
 						$createdAt 		= $proPlayer->created_at->addHours(7);
 						$updatedAt 		= $proPlayer->updated_at->addHours(7);
+						$status			= $proPlayer->status;
 						$statusName 	= $proPlayer->status_name;
 						$statusClass 	= 'font-weight-bold';
 
@@ -112,8 +113,14 @@
 
 						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
-							<a href="{{ route('pro-players.approve', [$proPlayer->id]) }}" class="btn btn-success {{ $proPlayer->status ? 'disabled' : '' }}" title="Approve"><i class="fas fa-check"></i></a>
-							<a href="{{ route('pro-players.reject', [$proPlayer->id]) }}" class="btn btn-danger {{ $proPlayer->status ? 'disabled' : '' }}" title="Reject"><i class="fas fa-ban"></i></a>
+							
+							@if($status === 2)
+								<a href="{{ route('pro-players.ban', [$proPlayer->id]) }}" class="btn btn-danger" title="Ban"><i class="fas fa-ban"></i></a>
+							@else
+								<a href="{{ route('pro-players.approve', [$proPlayer->id]) }}" class="btn btn-success {{ $status ? 'disabled' : '' }}" title="Approve"><i class="fas fa-check"></i></a>
+								<a href="{{ route('pro-players.reject', [$proPlayer->id]) }}" class="btn btn-danger {{ $status ? 'disabled' : '' }}" title="Reject"><i class="fas fa-ban"></i></a>
+							@endif
+
 						</td>
 					</tr>
 					@endforeach
