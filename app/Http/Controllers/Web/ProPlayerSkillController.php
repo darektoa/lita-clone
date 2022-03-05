@@ -22,6 +22,7 @@ class ProPlayerSkillController extends Controller
             'pending'   => $proPlayers->where('status', 0)->count(),
             'rejected'  => $proPlayers->where('status', 1)->count(),  
             'approved'  => $proPlayers->where('status', 2)->count(),
+            'banned'    => $proPlayers->withTrashed()->where('status', 3)->count(),
         ];
 
         if($statusId !== null & $statusId >= 0 && $statusId <= 3)
