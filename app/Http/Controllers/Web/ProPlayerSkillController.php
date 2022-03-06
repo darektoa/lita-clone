@@ -85,10 +85,11 @@ class ProPlayerSkillController extends Controller
             $player = $proPlayerSkill->player;
             $proPlayerSkill->status = 1;
             $proPlayerSkill->update();
-            $player->update();
             
             if($player->proPlayerSkills->where('status', '!=', 0)->count() === 0)
-                $player->is_pro_player = 0;
+                $player->update([
+                   'is_pro_player' => 0,
+                ]);
 
             // SEND PUSH NOTIFICATION
             $recipients = $proPlayerSkill
