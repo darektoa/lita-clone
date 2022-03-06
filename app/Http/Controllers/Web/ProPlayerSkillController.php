@@ -147,4 +147,36 @@ class ProPlayerSkillController extends Controller
             return back();
         }
     }
+    
+    
+    public function unban($id) {
+        try{
+            $proPlayerSkill = ProPlayerSkill::withTrashed()->findOrFail($id);
+            $proPlayerSkill->status = 2;
+            $proPlayerSkill->player->is_pro_player = 1;
+            $proPlayerSkill->player->update();
+            $proPlayerSkill->update();
+            $proPlayerSkill->restore();
+
+            // SEND PUSH NOTIFICATION
+            $recipients = $proPlayerSkill
+                ->player
+                ->user;
+
+            $payloads = [
+                'title'      => 'Skill anda telah dikembalikan',
+                'body'       => "Yeay, skill game [{$proPlayerSkill->game->name}] kamu telah dikembalikan",
+                'timeToLive' => 2419200,
+            ];
+
+            Notification::send($recipients, new PushNotification($payloads));
+
+            Alert::success('Success', 'Successfully unban a pro player skill');
+        }catch(Exception $err) {
+            $errMessage = $err->getMessage();
+            Alert::error('Failed', $errMessage);
+        }finally{
+            return back();
+        }
+    }
 }
