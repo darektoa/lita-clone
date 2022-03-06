@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function() {
       Route::get('/approve/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'approve'])->name('approve');
       Route::get('/reject/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'reject'])->name('reject');
       Route::get('/ban/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'ban'])->name('ban');
+      Route::get('/unban/{id}', [ProPlayerSkillController::class, 'unban'])->name('unban');
     });
 
     // PROFILE
