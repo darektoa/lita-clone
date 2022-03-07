@@ -58,7 +58,11 @@ class ProPlayerOrder extends Model
     protected function autoExpired($status) {
         $createdAt      = $this->created_at;
         $expiryDuration = $this->expiry_duration;
-        $order          = ProPlayerOrder::with(['player.user', 'proPlayerSkill'])->find($this->id);
+        $order          = ProPlayerOrder::with([
+            'player.user',
+            'proPlayerSkill' => fn($query) => $query->withTrashed(),
+        ])->find($this->id);
+
         $player         = $order->player;
         $price          = $order->proPlayerSkill->price_permatch;
 
@@ -97,7 +101,11 @@ class ProPlayerOrder extends Model
     protected function autoEnded($status) {
         $updatedAt      = $this->updated_at;
         $playDuration   = $this->play_duration;
-        $order          = ProPlayerOrder::with(['player.user', 'proPlayerSkill.player.user'])->find($this->id);
+        $order          = ProPlayerOrder::with([
+            'player.user',
+            'proPlayerSkill.player.user',
+            'proPlayerSkill' => fn($query) => $query->withTrashed(),
+        ])->find($this->id);
         $player         = $order->player;
         $proPlayerSkill = $order->proPlayerSkill;
         $proPlayer      = $proPlayerSkill->player;

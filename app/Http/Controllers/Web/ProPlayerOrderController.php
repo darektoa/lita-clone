@@ -11,7 +11,9 @@ class ProPlayerOrderController extends Controller
     public function index(Request $request) {
         $search     = $request->search;
         $statusId   = $request->status;
-        $orders     = new ProPlayerOrder;
+        $orders     = ProPlayerOrder::with([
+            'proPlayerSkill' => fn($query) => $query->withTrashed(),
+        ]);
 
         if($statusId !== null & $statusId >= 0 && $statusId <= 5)
             $orders = $orders->where('status', $statusId);
