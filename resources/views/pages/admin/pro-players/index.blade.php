@@ -116,6 +116,8 @@
 							
 							@if($status === 2)
 								<a href="{{ route('pro-players.ban', [$proPlayer->id]) }}" class="btn btn-danger" title="Ban"><i class="fas fa-ban"></i></a>
+							@elseif($status === 3)
+								<a href="{{ route('pro-players.unban', [$proPlayer->id]) }}" class="btn btn-success" title="Unban"><i class="fas fa-check"></i></a>
 							@else
 								<a href="{{ route('pro-players.approve', [$proPlayer->id]) }}" class="btn btn-success {{ $status ? 'disabled' : '' }}" title="Approve"><i class="fas fa-check"></i></a>
 								<a href="{{ route('pro-players.reject', [$proPlayer->id]) }}" class="btn btn-danger {{ $status ? 'disabled' : '' }}" title="Reject"><i class="fas fa-ban"></i></a>
