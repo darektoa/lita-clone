@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -2458.833333333333,
-    "scrollLeft": -980,
-    "zoomLevel": 0.6,
+    "scrollTop": -2306.833333333333,
+    "scrollLeft": -449,
+    "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -5249,6 +5249,29 @@
             "id": "497258d0-994e-41b5-bccb-5fe3a3d62cd0"
           },
           {
+            "name": "player_revenue",
+            "comment": "",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 91.6162109375,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "a091741c-d5cf-450b-b18e-099329a62190"
+          },
+          {
             "name": "deleted_at",
             "comment": "",
             "dataType": "TIMESTAMP",
@@ -5320,9 +5343,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 262.7488,
-          "top": 2542.8335,
-          "zIndex": 318,
+          "left": 240.4988,
+          "top": 2532.5835,
+          "zIndex": 421,
           "widthName": 60,
           "widthComment": 60
         },
@@ -5673,7 +5696,7 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 1466.9164,
           "top": 3304.7503,
           "zIndex": 409,
@@ -6480,7 +6503,7 @@
           "columnIds": [
             "0b1fb187-4eb5-4ea2-b76e-0cbacb347f5b"
           ],
-          "x": 635.1428429687501,
+          "x": 637.44557734375,
           "y": 2649.0835,
           "direction": "right"
         },
