@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Player, ProPlayerOrder, ProPlayerOrderReview, ProPlayerSkill, User};
+use App\Models\{Player, ProPlayerOrder, ProPlayerSkill, User};
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             TierSeeder::class,
             GameSeeder::class,
             GenderSeeder::class,
+            ServiceSeeder::class,
             ProPlayerSeeder::class,
             AppBannerSeeder::class, 
             AppSettingSeeder::class,
