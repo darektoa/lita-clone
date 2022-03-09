@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -2306.833333333333,
-    "scrollLeft": -449,
+    "scrollTop": -2342.833333333333,
+    "scrollLeft": -333,
     "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
@@ -5252,7 +5252,7 @@
             "name": "player_revenue",
             "comment": "",
             "dataType": "SMALLINT",
-            "default": "",
+            "default": "70",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -5342,10 +5342,10 @@
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 240.4988,
           "top": 2532.5835,
-          "zIndex": 421,
+          "zIndex": 423,
           "widthName": 60,
           "widthComment": 60
         },
