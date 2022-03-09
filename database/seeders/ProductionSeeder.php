@@ -14,6 +14,7 @@ class ProductionSeeder extends Seeder
             TierSeeder::class,
             GameSeeder::class,
             GenderSeeder::class,
+            ServiceSeeder::class,
             AppBannerSeeder::class, 
             AppSettingSeeder::class,
             AvailableTransferSeeder::class,
