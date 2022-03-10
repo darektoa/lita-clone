@@ -64,6 +64,11 @@ class Player extends Model
     }
 
 
+    public function proPlayerServices() {
+        return $this->hasMany(ProPlayerService::class);
+    }
+
+
     public function getActivityAttribute() {
         $skills     = ProPlayerSkill::where('player_id', $this->id);
         $online     = $skills->where('activity', 1)->count();

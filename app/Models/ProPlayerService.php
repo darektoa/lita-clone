@@ -12,6 +12,11 @@ class ProPlayerService extends Model
     protected $guarded = ['id'];
 
 
+    public function player() {
+        return $this->belongsTo(Player::class);
+    }
+
+
     public function service() {
         return $this->belongsTo(Service::class);
     }
