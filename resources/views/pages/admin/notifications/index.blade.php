@@ -12,6 +12,16 @@
             'textarea'  => true,
 		], 
 		[
+			'id'        => 'notif-history',
+			'label'     => 'History',
+			'name'      => 'history',
+			'type'      => 'select',
+			'options'   => [
+                1 => 'true',
+                0 => 'false',
+            ],
+		], 
+		[
 			'id'        => 'notif-recipient',
 			'label'     => 'Recipient',
 			'name'      => 'recipient',
