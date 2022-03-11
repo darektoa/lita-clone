@@ -7,6 +7,7 @@ use App\Models\{Notification, User};
 use App\Notifications\PushNotification;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\{Notification as Notif};
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -33,8 +34,9 @@ class NotificationController extends Controller
                 'recipient' => 'required|in:1,2,3',
             ]);
 
+            $history    = (bool) $request->history;
             $recipient  = (int) $request->recipient;
-            $users      = new User();
+            $users      = User::with(['deviceIds']);
 
             switch($recipient) {
                 case 1:
@@ -53,10 +55,25 @@ class NotificationController extends Controller
                 'title'     => $request->title,
                 'body'      => $request->body,
                 'recipient' => $recipient,
+                'history'   => $history,
                 'admin_id'  => auth()->id(),
             ];
+            
+            if($history)
+                Notif::send($users, new PushNotification($payloads));
+            else {
+                $admins     = User::whereHas('admin')->get();
+                $recipients = Arr::flatten(Arr::pluck($users->toArray(), 'device_ids.*.device_id'));
+                
+                fcm()->to($recipients)
+                    ->timeToLive(86400) // 1 day
+                    ->data($payloads)
+                    ->notification($payloads)
+                    ->send();
+                
+                Notif::send($admins, new PushNotification($payloads));
+            }
 
-            Notif::send($users, new PushNotification($payloads));
             Alert::success('Success', 'Sent notifications successfully');
         }catch(Exception $err) {
             $errMessage = $err->getMessage();
