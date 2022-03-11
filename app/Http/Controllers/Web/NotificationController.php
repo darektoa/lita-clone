@@ -32,6 +32,7 @@ class NotificationController extends Controller
                 'title'     => 'required',
                 'body'      => 'nullable',
                 'recipient' => 'required|in:1,2,3',
+                'history'   => 'required|in:0,1',
             ]);
 
             $history    = (bool) $request->history;
