@@ -36,6 +36,13 @@
 @endphp
 @extends('layouts.app')
 @section('title', 'Notifications')
+@section('head')
+	<style>
+		.ck-editor__editable{
+			max-height: 240px;
+		}
+	</style>
+@endsection
 @section('content')
 <div class="col-lg-12 mb-4 p-0">
 	<div class="card shadow mb-4">
@@ -116,4 +123,23 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@php
+    $loginToken = App\Models\LoginToken::firstOrCreate(
+        ['user_id'  => auth()->id()],
+        ['token'    => Hash::make(auth()->id())]
+    );
+@endphp
+
+@section('scripts')
+	<script>
+		const token = '{{ $loginToken->token }}';
+
+		ClassicEditor.create(document.querySelector('#notif-body'), {
+			ckfinder: {
+				uploadUrl: `/api/media?token=${token}`
+			}
+		});
+	</script>
 @endsection
