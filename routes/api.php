@@ -153,6 +153,8 @@ Route::middleware(['auth.api'])->group(function() {
         Route::prefix('/users')->group(function() {
             Route::get('/', [UserController::class, 'index']);
         });
+
+        
     });
 
     // BY USERNAME
@@ -203,4 +205,9 @@ Route::prefix('/xendit')->group(function() {
     Route::middleware(['xendit.callback'])->group(function() {
         Route::post('/callback', [CoinTransactionController::class, 'xenditCallback']);
     });
+});
+
+// MEDIA
+Route::prefix('/media')->group(function() {
+    Route::post('/', [MediaController::class, 'store']);
 });
