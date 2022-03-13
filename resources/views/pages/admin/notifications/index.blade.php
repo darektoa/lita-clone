@@ -36,7 +36,7 @@
 						<td class="align-middle">
 							<div class="d-flex flex-column justify-content-center">
 								<h6 class="m-0 font-weight-bold">{{ $notification->data->title }}</h6>
-								<small class="d-block">{{ $notification->data->body }}</small>
+								<small class="d-block">{{ strip_tags($notification->data->body) }}</small>
 							</div>
 						</td>
 						<td class="align-middle" style="white-space: nowrap">
