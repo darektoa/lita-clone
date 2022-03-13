@@ -61,7 +61,7 @@ class PushNotification extends Notification
         $recipients = $this->getDeviceIds($notifiable);
         $payloads   = [
             'title' => $data->title,
-            'body'  => $data->body,
+            'body'  => strip_tags($data->body),
         ];
 
         fcm()->to($recipients)
