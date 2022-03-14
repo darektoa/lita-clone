@@ -10,6 +10,7 @@ class ProPlayerService extends Model
     use HasFactory;
 
     protected $appends = [
+        'activity_name',
         'status_name',
     ];
 
