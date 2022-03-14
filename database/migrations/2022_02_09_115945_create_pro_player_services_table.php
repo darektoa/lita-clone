@@ -19,8 +19,8 @@ class CreateProPlayerServicesTable extends Migration
             $table->foreignId('service_id')->constrained();
             $table->string('bio')->nullable();
             $table->float('rate', 3, 2)->default(0);
-            $table->smallInteger('status');
-            $table->smallInteger('activity');
+            $table->smallInteger('status')->default(0);
+            $table->smallInteger('activity')->default(0);
             $table->timestamps();
         });
     }
