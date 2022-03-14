@@ -39,4 +39,18 @@ class ProPlayerService extends Model
 
         return $statusName;
     }
+
+
+    public function getActivityNameAttribute() {
+        $activityName = null;
+
+        switch($this->activity) {
+            case 0: $activityName = 'Offline'; break;
+            case 1: $activityName = 'Online'; break;
+            case 2: $activityName = 'In Order'; break;
+            default: $activityName = 'Unknown';
+        }
+
+        return $activityName;
+    }
 }
