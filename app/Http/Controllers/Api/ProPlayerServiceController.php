@@ -14,6 +14,8 @@ class ProPlayerServiceController extends Controller
         $services = ProPlayerService::with(['player.user'])
             ->paginate(10);
 
-        return ResponseHelper::make($services);
+        return ResponseHelper::make(
+            ProPlayerServiceResource::collection($services)
+        );
     }
 }
