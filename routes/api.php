@@ -192,6 +192,10 @@ Route::middleware(['optional.auth.api'])->group(function() {
             Route::get('/{proPlayerSkill:id}', [ProPlayerSkillController::class, 'show']);
             Route::get('/{proPlayerSkill:id}/reviews', [ProPlayerSkillController::class, 'reviews']);
         });
+
+        Route::prefix('/services')->group(function() {
+            Route::get('/', [ProPlayerServiceController::class, 'index']);
+        });
     
         Route::get('/', [ProPlayerController::class, 'index']);
         Route::get('/search', [ProPlayerController::class, 'search']);
