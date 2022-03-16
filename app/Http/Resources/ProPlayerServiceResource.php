@@ -25,6 +25,7 @@ class ProPlayerServiceResource extends JsonResource
             'status_name'                   => $this->status_name,
             'activity'                      => $this->activity,
             'activity_name'                 => $this->activity_name,
+            'service'                       => ServiceResource::make($this->whenLoaded('service')),
             'user'                          => UserResource::make($this->when($userLoaded, $this->player->user->load('player'))),
         ];
     }
