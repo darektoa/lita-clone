@@ -43,6 +43,11 @@ Route::prefix('/info')->group(function() {
     Route::get('/terms', [AppInfoController::class, 'terms']);
 });
 
+// SERVICE
+Route::prefix('/services')->group(function() {
+    Route::get('/', [ServiceController::class, 'index']);
+});
+
 
 // WITH AUTHENTICATION
 Route::middleware(['auth.api'])->group(function() {
