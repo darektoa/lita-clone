@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ProPlayerServiceController extends Controller
 {
     public function index() {
-        $services = ProPlayerService::with(['player.user'])
+        $services = ProPlayerService::with(['player.user', 'service'])
             ->paginate(10);
 
         return ResponseHelper::make(
