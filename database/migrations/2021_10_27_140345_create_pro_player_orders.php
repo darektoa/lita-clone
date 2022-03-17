@@ -17,6 +17,7 @@ class CreateProPlayerOrders extends Migration
             $table->id();
             $table->foreignId('player_id')->constrained();
             $table->foreignId('pro_player_skill_id')->constrained();
+            $table->foreignId('pro_player_service_id')->nullable()->constrained();
             $table->bigInteger('coin');
             $table->bigInteger('balance');
             $table->smallInteger('status');
