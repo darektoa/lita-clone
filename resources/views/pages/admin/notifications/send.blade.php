@@ -42,6 +42,7 @@
                         <option value="3">Pro Player</option>
                     </select>
                 </div>
+                <button class="btn btn-primary" type="submit">Send</button>
             </form>
 
         </div>
