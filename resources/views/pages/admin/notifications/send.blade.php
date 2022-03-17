@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label for="notif-body" class="col-form-label">Body</label>
-                    <input id="notif-body" class="form-control" name="body" type="text">
+                    <textarea id="notif-body" class="form-control" name="body" type="text"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="notif-history" class="col-form-label">History</label>
