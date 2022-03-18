@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -53,5 +54,23 @@ class ProPlayerService extends Model
         }
 
         return $activityName;
+    }
+
+
+    public function getPricePermatchAttribute() {
+        try{
+            $service        = ProPlayerService::find($this->id);
+            $coinConversion = AppSetting::first()->coin_conversion;
+            $basePrice      = $service->service->price;
+            $coinPrice      = $basePrice;
+            $balancePrice   = $coinPrice * $coinConversion;
+    
+            return [
+                'coin'      => $coinPrice,
+                'balance'   => $balancePrice,
+            ];
+        }catch(Exception $err) {
+            return [];
+        }
     }
 }
