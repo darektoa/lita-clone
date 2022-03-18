@@ -13,6 +13,7 @@ class ProPlayerService extends Model
     protected $appends = [
         'activity_name',
         'status_name',
+        'price_permatch',
     ];
 
     protected $guarded = ['id'];
