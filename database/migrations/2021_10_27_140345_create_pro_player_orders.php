@@ -16,7 +16,7 @@ class CreateProPlayerOrders extends Migration
         Schema::create('pro_player_orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('player_id')->constrained();
-            $table->foreignId('pro_player_skill_id')->constrained();
+            $table->foreignId('pro_player_skill_id')->nullable()->constrained();
             $table->foreignId('pro_player_service_id')->nullable()->constrained();
             $table->bigInteger('coin');
             $table->bigInteger('balance');
