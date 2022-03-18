@@ -74,4 +74,22 @@ class ProPlayerService extends Model
             return [];
         }
     }
+
+
+    public function getProPlayerPriceAttribute() {
+        try{
+            $service            = ProPlayerService::find($this->id);
+            $playerRevenue      = $service->service->player_revenue / 100;
+            $pricePermatch      = $service->price_permatch;
+            $coinPrice          = $pricePermatch['coin'] * $playerRevenue;
+            $balancePrice       = $pricePermatch['balance'] * $playerRevenue;
+
+            return [
+                'coin'      => $coinPrice,
+                'balance'   => $balancePrice
+            ];
+        }catch(Exception $err) {
+            return [];
+        }
+    }
 }
