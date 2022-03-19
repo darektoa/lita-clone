@@ -21,6 +21,7 @@ class CreateProPlayerServicesTable extends Migration
             $table->float('rate', 3, 2)->default(0);
             $table->smallInteger('status')->default(0);
             $table->smallInteger('activity')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
