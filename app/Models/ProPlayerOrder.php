@@ -23,6 +23,11 @@ class ProPlayerOrder extends Model
     public function proPlayerSkill() {
         return $this->belongsTo(ProPlayerSkill::class);
     }
+    
+    
+    public function proPlayerService() {
+        return $this->belongsTo(ProPlayerService::class);
+    }
 
 
     public function review() {
