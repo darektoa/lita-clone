@@ -92,4 +92,13 @@ class ProPlayerService extends Model
             return [];
         }
     }
+
+
+    public function updateRate() {
+        $avgRate = ProPlayerOrderReview::whereHas('proPlayerOrder', function($query) {
+            $query->whereRelation('proPlayerService', 'id', $this->id);
+        })->get()->avg('star');
+
+        $this->update(['rate' => $avgRate]);
+    }
 }
