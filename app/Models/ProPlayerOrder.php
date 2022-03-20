@@ -66,10 +66,11 @@ class ProPlayerOrder extends Model
         $order          = ProPlayerOrder::with([
             'player.user',
             'proPlayerSkill' => fn($query) => $query->withTrashed(),
+            'proPlayerService' => fn($query) => $query->withTrashed(),
         ])->find($this->id);
 
         $player         = $order->player;
-        $price          = $order->proPlayerSkill->price_permatch;
+        $price          = $order->proPlayerSkill->price_permatch ?? $order->proPlayerService->price_permatch;
 
         if($status === 0){
             if(now()->diffInMinutes($createdAt) < $expiryDuration) return;
@@ -110,9 +111,11 @@ class ProPlayerOrder extends Model
             'player.user',
             'proPlayerSkill.player.user',
             'proPlayerSkill' => fn($query) => $query->withTrashed(),
+            'proPlayerService' => fn($query) => $query->withTrashed(),
         ])->find($this->id);
+
         $player         = $order->player;
-        $proPlayerSkill = $order->proPlayerSkill;
+        $proPlayerSkill = $order->proPlayerSkill ?? $order->proPlayerService;
         $proPlayer      = $proPlayerSkill->player;
         $price          = $proPlayerSkill->pro_player_price;
 
