@@ -46,7 +46,7 @@ class TierController extends Controller
             Alert::success('Success', 'Tier created successfully');
         }catch(Exception $err) {
             $errMessage = $err->getMessage();
-            Alert::success('Failed', $errMessage);
+            Alert::error('Failed', $errMessage);
         }finally {
             return back();
         }
