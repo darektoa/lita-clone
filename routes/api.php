@@ -95,6 +95,10 @@ Route::middleware(['auth.api'])->group(function() {
 
     // PRO PLAYER
     Route::prefix('/pro-players')->group(function() {
+        Route::prefix('/service')->group(function() {
+            Route::post('/{proPlayerService:id}/order', [ProPlayerServiceController::class, 'order']);
+        });
+        
         Route::prefix('/skill')->group(function() {
             Route::get('/applied', [ProPlayerSkillController::class, 'applied']);
             Route::post('/register', [ProPlayerSkillController::class, 'store']);
