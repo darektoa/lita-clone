@@ -27,6 +27,12 @@
             <label for="minWithdraw"><b>Min. Withdraw (Rp)</b></label>
             <input min="0" name="min_withdraw" id="minWithdraw" class="form-control" placeholder="Rp 10.000" value="{{ $settings->min_withdraw }}" />
           </div>
+          
+          <div class="form-group">
+            <label for="minWithdraw"><b>Daily Coins</b></label>
+            <small>(0 for disable)</small>
+            <input min="0" name="daily_coins" id="dailyCoins" class="form-control" placeholder="Insert coin" value="{{ $settings->daily_coins  }}" />
+          </div>
 
           <div class="form-group">
             <label for="termsRules"><b>Terms & Rules</b></label>
