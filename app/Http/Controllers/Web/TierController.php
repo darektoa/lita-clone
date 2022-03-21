@@ -33,7 +33,7 @@ class TierController extends Controller
         try{
             $request->validate([
                 'name'           => 'required|max:50',
-                'price_increase' => 'required|numeric|digits_between:1,6',
+                'price_increase' => 'required|numeric',
                 'min_order'      => 'required|numeric|digits_between:1,18'
             ]);
 
