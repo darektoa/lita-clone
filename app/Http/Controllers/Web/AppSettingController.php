@@ -23,6 +23,7 @@ class AppSettingController extends Controller
                 'coin_conversion'   => $request->coin_conversion,
                 'company_revenue'   => $request->company_revenue,
                 'min_withdraw'      => $request->min_withdraw,
+                'daily_coins'       => $request->daily_coins,
                 'terms_rules'       => $request->terms_rules,
             ]);
 
