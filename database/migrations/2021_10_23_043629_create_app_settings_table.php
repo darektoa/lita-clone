@@ -18,6 +18,7 @@ class CreateAppSettingsTable extends Migration
             $table->smallInteger('company_revenue');
             $table->bigInteger('coin_conversion')->unsigned();
             $table->bigInteger('min_withdraw')->unsigned()->default(10000);
+            $table->bigInteger('daily_coins')->nullable();
             $table->text('terms_rules')->nullable();
             $table->timestamps();
         });
