@@ -14,33 +14,31 @@ use Illuminate\Support\Facades\{Notification, Validator};
 class ProPlayerOrderController extends Controller
 {
     public function index(Request $request) {
-        try{
-            $player   = auth()->user()->player;
-            $status   = $request->status;
-            $statuses = explode(',', $status);
-            $orders   = ProPlayerOrder::with([
-                'review',
-                'proPlayerSkill.game',
-                'proPlayerSkill.tier',
-                'proPlayerSkill.player.user',
-            ]);
-                
-            if($status !== null)
-                $orders = $orders->whereIn('status', $statuses);
-    
-            $orders = $orders->where('player_id', $player->id)
-                ->latest()
-                ->paginate(10);
-    
-            return response()->json(
-                collect([
-                    'status'    => 200,
-                    'message'   => 'OK'
-                ])
-                ->merge($orders)
-                ->merge(['data' => ProPlayerOrderResource::collection($orders)])
-            );
-        }catch(Exception $err) {dd($err);}
+        $player   = auth()->user()->player;
+        $status   = $request->status;
+        $statuses = explode(',', $status);
+        $orders   = ProPlayerOrder::with([
+            'review',
+            'proPlayerSkill.game',
+            'proPlayerSkill.tier',
+            'proPlayerSkill.player.user',
+        ]);
+            
+        if($status !== null)
+            $orders = $orders->whereIn('status', $statuses);
+
+        $orders = $orders->where('player_id', $player->id)
+            ->latest()
+            ->paginate(10);
+
+        return response()->json(
+            collect([
+                'status'    => 200,
+                'message'   => 'OK'
+            ])
+            ->merge($orders)
+            ->merge(['data' => ProPlayerOrderResource::collection($orders)])
+        );
     }
 
 
