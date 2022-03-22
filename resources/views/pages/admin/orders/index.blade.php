@@ -18,14 +18,13 @@
 					<tr>
 						<th>Player</th>
 						<th style="white-space: nowrap">Pro Player</th>
-						<th>Game</th>
+						<th style="white-space: nowrap">Game / Service</th>
 						<th>Review</th>
 						<th>Status</th>
 					</tr>
 				</thead>
 				<tbody>
 					
-					{{-- @dd($orders) --}}
 					@foreach ($orders as $order)
 					@php 
 						$user 			= $order->player->user;
