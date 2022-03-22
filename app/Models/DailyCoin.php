@@ -22,7 +22,7 @@ class DailyCoin extends Model
 
 
     protected function generateData($quantity=10) {
-        $coin           = 10;
+        $coin           = AppSetting::first()->daily_coins;
         $data           = collect([]);
         $tz             = +7;
         $coinConversion = AppSetting::first()->coin_conversion;
@@ -42,16 +42,18 @@ class DailyCoin extends Model
 
 
     public function scopeClaim($query, $user) {
-        if($user->admin) return null;
+        $coin = AppSetting::first()->daily_coins;
+
+        if(!$coin || $user->admin) return null;
 
         $dailyCoin = $query->firstOrCreate(
             ['user_id' => $user->id],
             ['data'    => $this->generateData()],
         );
 
-        $tz     = +7;
-        $date   = now()->addHours($tz)->toDateString();
-        $data   = collect($dailyCoin->data);
+        $tz      = +7;
+        $date    = now()->addHours($tz)->toDateString();
+        $data    = collect($dailyCoin->data);
         $claimed = $data
             ->where('created_at', $date)
             ->whereNull('claimed_at')
