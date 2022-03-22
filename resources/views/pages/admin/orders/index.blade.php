@@ -25,10 +25,11 @@
 				</thead>
 				<tbody>
 					
+					{{-- @dd($orders) --}}
 					@foreach ($orders as $order)
 					@php 
 						$user 			= $order->player->user;
-						$skill          = $order->proPlayerSkill;
+						$skill          = $order->proPlayerSkill ?? $order->proPlayerService;
 						$proPlayer      = $skill->player->user;
 						$createdAt 		= $order->created_at->addHours(7);
 						$updatedAt 		= $order->updated_at->addHours(7);
@@ -72,11 +73,13 @@
                         <td class="align-middle" style="white-space: nowrap">
 							<div class="d-flex flex-column justify-content-center">
 								<h6 class="m-0 font-weight-bold">
-									{{ $skill->game->name }}
+									{{ $skill->game->name ?? $skill->service->name }}
 									@if($skill->status === 3) <i class="fas fa-ban text-danger"></i> @endif
 								</h6>
+								@isset($skill->game)
 								<small class="d-block">{{ $skill->game_tier }} (Lv. {{ $skill->game_level }})</small>
 								<small class="d-block">{{ $skill->game_roles }}</small>
+								@endif
 							</div>
 						</td>
                         <td class="align-middle" style="white-space: nowrap">
