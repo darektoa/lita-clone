@@ -50,7 +50,8 @@ class ProPlayerOrderController extends Controller
         $orders     = ProPlayerOrder::with([
             'review',
             'player.user',
-            'proPlayerSkill.game'
+            'proPlayerSkill.game',
+            'proPlayerService.service',
         ]);
 
 
