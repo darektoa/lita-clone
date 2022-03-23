@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Exceptions\ErrorException;
 use App\Helpers\{CollectionHelper, ResponseHelper};
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProPlayerOrderResource;
 use App\Http\Resources\ProPlayerServiceResource;
 use App\Models\{ProPlayerOrder, ProPlayerService, User};
 use App\Notifications\PushNotification;
@@ -177,6 +178,64 @@ class ProPlayerServiceController extends Controller
             
             return ResponseHelper::make(
                 $order
+            );
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
+        }
+    }
+
+
+    public function endOrder(ProPlayerService $proPlayerService) {
+        try{
+            $userId = auth()->user()->id;
+            $user   = User::with(['player.proPlayerOrders.proPlayerService'])->find($userId);
+            $player = $user->player;
+            $order  = $player->proPlayerOrders()
+                ->where('pro_player_service_id', $proPlayerService->id)
+                ->where('status', 2)
+                ->latest()
+                ->first();
+
+            if(!$order)
+                throw new ErrorException('Unprocessable, this order is not an approved order', 422);
+
+            $order->update([
+                'status'    => 4,
+                'ended_at'  => now(),
+            ]);
+
+            $user
+                ->coinSendingTransactions()
+                ->where('type', 1)->where('status', 'pending')
+                ->oldest()->first()->update([
+                    'status'    => 'success'
+                ]);
+
+            // ADDING PRO PLAYER BALANCE
+            $proPlayer = $order->proPlayerService->player;
+
+            $proPlayer
+                ->update([
+                    'balance'   => $proPlayer->balance + $order->balance
+                ]);
+
+            $proPlayer
+                ->user
+                ->balanceReceivingTransactions()
+                ->create([
+                    'sender_id' => $userId,
+                    'coin'      => $order->coin,
+                    'balance'   => $order->balance,
+                    'type'      => 1,
+                    'status'    => 'success'
+                ]);
+
+            return ResponseHelper::make(
+                ProPlayerOrderResource::make($order)
             );
         }catch(ErrorException $err) {
             return ResponseHelper::error(
