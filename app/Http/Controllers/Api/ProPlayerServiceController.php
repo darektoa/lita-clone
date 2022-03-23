@@ -121,4 +121,69 @@ class ProPlayerServiceController extends Controller
             );
         }
     }
+
+
+    public function unorder(ProPlayerService $proPlayerService) {
+        try{
+            $userId = auth()->user()->id;
+            $user   = User::with(['player.proPlayerOrders.proPlayerService.service'])->find($userId);
+            $player = $user->player;
+            $price  = $proPlayerService->price_permatch;
+            $order  = $player->proPlayerOrders()
+                ->where('pro_player_service_id', $proPlayerService->id)
+                ->where('status', 0)
+                ->first();
+
+            if(!$order)
+                throw new ErrorException('Unprocessable, No pending services', 422);
+
+            $proPlayerService->load([
+                'service',
+                'player.user',
+            ]);
+
+            $order->update([
+                'status' => 3,
+            ]);
+
+            $player->update([
+                'coin'  => $player->coin + $price['coin']
+            ]);
+
+            $user
+                ->coinSendingTransactions()
+                ->where('type', 1)->where('status', 'pending')
+                ->oldest()->first()->update([
+                    'status'    => 'canceled'
+                ]);
+
+            $user
+                ->coinReceivingTransactions()
+                ->create([
+                    'coin'      => $price['coin'],
+                    'balance'   => $price['balance'],
+                    'type'      => 2,
+                    'status'    => 'success'
+                ]);
+
+            // SEND PUSH NOTIFICATION
+            $payloads = [
+                'title'      => 'Order berhasil dibatalkan',
+                'body'       => "Orderan {$proPlayerService->player->user->username} service [{$proPlayerService->service->name}] berhasil anda batalkan",
+                'timeToLive' => 120,
+            ];
+
+            Notification::send($user, new PushNotification($payloads));
+            
+            return ResponseHelper::make(
+                $order
+            );
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
+        }
+    }
 }
