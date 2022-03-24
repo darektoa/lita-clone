@@ -98,6 +98,7 @@ Route::middleware(['auth.api'])->group(function() {
         Route::prefix('/service')->group(function() {
             Route::post('/{proPlayerService:id}/order', [ProPlayerServiceController::class, 'order']);
             Route::post('/{proPlayerService:id}/unorder', [ProPlayerServiceController::class, 'unorder']);
+            Route::get('/{proPlayerService:id}/end-order', [ProPlayerServiceController::class, 'endOrder']);
         });
         
         Route::prefix('/skill')->group(function() {
