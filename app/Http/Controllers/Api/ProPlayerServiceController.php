@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Exceptions\ErrorException;
 use App\Helpers\{CollectionHelper, ResponseHelper};
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProPlayerOrderResource;
-use App\Http\Resources\ProPlayerServiceResource;
+use App\Http\Resources\{ProPlayerOrderResource, ProPlayerOrderReviewResource, ProPlayerServiceResource};
 use App\Models\{ProPlayerOrder, ProPlayerService, User};
 use App\Notifications\PushNotification;
 use Illuminate\Http\Request;
@@ -244,5 +243,22 @@ class ProPlayerServiceController extends Controller
                 $err->getCode(),
             );
         }
+    }
+
+
+    public function reviews(ProPlayerService $proPlayerService) {
+        $reviews = $proPlayerService
+            ->proPlayerOrderReviews()
+            ->with('proPlayerOrder.player.user')
+            ->paginate(10);
+
+        return response()->json(
+            collect([
+                'status'    => 200,
+                'message'   => 'OK',
+            ])
+            ->merge($reviews)
+            ->merge(['data' => ProPlayerOrderReviewResource::collection($reviews)])
+        );
     }
 }
