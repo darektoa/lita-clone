@@ -75,10 +75,10 @@ class ProPlayerOrderController extends Controller
 
     public function approve(ProPlayerOrder $proPlayerOrder) {
         try{
-            $player         = auth()->user()->player;
-            $proPlayerSkill = $proPlayerOrder->proPlayerSkill; 
+            $player     = auth()->user()->player;
+            $orderable  = $proPlayerOrder->proPlayerSkill ?? $proPlayerOrder->proPlayerService;
 
-            if($proPlayerSkill->player_id !== $player->id)
+            if($orderable->player_id !== $player->id)
                 throw new Exception('Not found', 404);
             if($proPlayerOrder->status !== 0)
                 throw new Exception('Unprocessable, Order is not pending', 422);
@@ -92,9 +92,10 @@ class ProPlayerOrderController extends Controller
                 ->player
                 ->user;
 
+            $service  = $orderable->game ?? $orderable->service;
             $payloads = [
                 'title'      => 'Ayo main, order di terima !',
-                'body'       => "{$player->user->username} menerima orderan game [{$proPlayerSkill->game->name}] anda",
+                'body'       => "{$player->user->username} menerima orderan [{$service->name}] anda",
                 'timeToLive' => $proPlayerOrder->play_duration *60,
             ];
 
