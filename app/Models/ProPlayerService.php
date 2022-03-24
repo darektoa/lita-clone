@@ -29,6 +29,11 @@ class ProPlayerService extends Model
         return $this->belongsTo(Service::class);
     }
 
+    
+    public function proPlayerOrderReviews() {
+        return $this->hasManyThrough(ProPlayerOrderReview::class, ProPlayerOrder::class);
+    }
+
 
     public function getStatusNameAttribute() {
         $statusName = null;
