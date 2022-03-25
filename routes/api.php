@@ -206,6 +206,7 @@ Route::middleware(['optional.auth.api'])->group(function() {
 
         Route::prefix('/services')->group(function() {
             Route::get('/', [ProPlayerServiceController::class, 'index']);
+            Route::get('/{proPlayerService:id}', [ProPlayerServiceController::class, 'show']);
             Route::get('/{proPlayerService:id}/reviews', [ProPlayerServiceController::class, 'reviews']);
         });
     
