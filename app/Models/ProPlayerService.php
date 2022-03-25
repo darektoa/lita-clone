@@ -35,6 +35,23 @@ class ProPlayerService extends Model
     }
 
 
+    public function getStarsAttribute() {
+        $stars = ProPlayerService::with(['proPlayerOrderReviews'])
+            ->find($this->id)
+            ->proPlayerOrderReviews()
+            ->where('star', '!=', null)
+            ->selectRaw('star, COUNT(*) as total')
+            ->groupBy('star')
+            ->get();
+
+        $stars = $stars
+            ->pluck('total', 'star')
+            ->put('total', $stars->sum('total'));
+        
+        return $stars;
+    }
+
+
     public function getStatusNameAttribute() {
         $statusName = null;
 
