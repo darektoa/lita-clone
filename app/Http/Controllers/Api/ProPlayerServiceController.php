@@ -34,6 +34,30 @@ class ProPlayerServiceController extends Controller
     }
 
 
+    public function show(ProPlayerService $proPlayerService) {
+        try{
+            $proPlayerService->load([
+                'service',
+                'player.user',
+            ])->append('stars');
+            $status = $proPlayerService->status;
+            
+            if($status !== 2)
+                throw new ErrorException('Not found', 404);
+    
+            return ResponseHelper::make(
+                ProPlayerServiceResource::make($proPlayerService)
+            );
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
+        }
+    }
+
+
     public function order(Request $request, ProPlayerService $proPlayerService) {
         try{
             $validator = Validator::make($request->all(), [
