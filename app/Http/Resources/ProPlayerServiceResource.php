@@ -28,6 +28,7 @@ class ProPlayerServiceResource extends JsonResource
             'price_permatch'    => $this->price_permatch,
             'service'           => ServiceResource::make($this->whenLoaded('service')),
             'user'              => UserResource::make($this->when($userLoaded, $this->player->user->load('player'))),
+            'stars'             => $this->whenAppended('stars'),
         ];
     }
 }
