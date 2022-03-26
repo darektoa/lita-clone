@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
     public function login(Request $request) {
-        $email = $request->email;
+        $email    = $request->email;
         $password = $request->password;
 
         if(
@@ -27,7 +27,7 @@ class AuthController extends Controller
                 ['token' => Hash::make(auth()->user()->id)]
             );
 
-            $user       = User::find(auth()->user()->id);
+            $user        = User::with(['player'])->find(auth()->user()->id);
             $user->token = $loginToken->token;
 
             return ResponseHelper::make(
