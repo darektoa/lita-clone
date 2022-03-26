@@ -20,35 +20,19 @@
 		</div>
 		<div class="card-body table-responsive" style="min-height: 400px">
 
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
-
-			<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div id="detailModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="detailModal" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 
 						<!-- CAROUSEL IMAGE -->
-						<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-							<ol class="carousel-indicators">
-								<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-								<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-								<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-							</ol>
-							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<img class="d-block w-100" src="..." alt="First slide">
-								</div>
-								<div class="carousel-item">
-									<img class="d-block w-100" src="..." alt="Second slide">
-								</div>
-								<div class="carousel-item">
-									<img class="d-block w-100" src="..." alt="Third slide">
-								</div>
-							</div>
-							<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+						<div id="carouselDetail" class="carousel slide" data-ride="carousel">
+							<ol class="carousel-indicators"></ol>
+							<div class="carousel-inner"></div>
+							<a class="carousel-control-prev" href="#carouselDetail" role="button" data-slide="prev">
 								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 								<span class="sr-only">Previous</span>
 							</a>
-							<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+							<a class="carousel-control-next" href="#carouselDetail" role="button" data-slide="next">
 								<span class="carousel-control-next-icon" aria-hidden="true"></span>
 								<span class="sr-only">Next</span>
 							</a>
@@ -113,6 +97,9 @@
 
 						</td>
 						<td class="align-middle" style="white-space: nowrap; width: 82px">
+							<button type="button" class="btn btn-primary detail-player" data-player="{{ $proPlayer }}" data-toggle="modal" data-target="#detailModal">
+								<i class="fas fa-eye"></i>
+							</button>				
 							
 							@if($status === 2)
 								<a href="{{ route('pro-players.ban', [$proPlayer->id]) }}" class="btn btn-danger" title="Ban"><i class="fas fa-ban"></i></a>
@@ -133,4 +120,42 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+	const detailButtons = document.querySelectorAll('button.detail-player');
+
+	detailButtons.forEach((item) => {
+		item.addEventListener('click', () => {
+			const BASE_URL 			= '{{ StorageHelper::url("/") }}'.slice(0, -1);
+			const detailModal 		= document.querySelector('#detailModal');
+			const imagesElmnt		= detailModal.querySelector('.carousel-inner');
+			const indicatorsElmnt 	= detailModal.querySelector('.carousel-indicators');
+			const playerData 		= JSON.parse(item.dataset.player);
+			
+			imagesElmnt.innerHTML 	= '';
+			indicatorsElmnt.innerHTML = '';
+			playerData.pro_player_skill_screenshots.map((item, index) => {
+				const imgElmnt 			= document.createElement('div');
+				const indicatorElmnt 	= document.createElement('li');
+
+				indicatorElmnt.dataset.target 	= '#carouselDetail';
+				indicatorElmnt.dataset.slideTo 	= index;
+
+				imgElmnt.classList.add('carousel-item');
+				imgElmnt.innerHTML = `<img class="d-block w-100 mh-100" src="${item.url}" alt="" style="min-height: 25rem">`;
+
+				if(index === 0){
+					indicatorElmnt.classList.add('active');
+					imgElmnt.classList.add('active');
+				}
+
+				indicatorsElmnt.appendChild(indicatorElmnt);
+				imagesElmnt.appendChild(imgElmnt);
+
+			});
+		});
+	});
+</script>
 @endsection
