@@ -36,6 +36,7 @@ class ProPlayerSkillController extends Controller
             });
         
         $proPlayers = $proPlayers
+            ->with(['proPlayerSkillScreenshots'])
             ->withTrashed()
             ->oldest()
             ->paginate(10)
