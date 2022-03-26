@@ -133,10 +133,10 @@ class ProPlayerOrderController extends Controller
             $user       = auth()->user();
             $player     = $user->player;
             $orderer    = $proPlayerOrder->player;
-            $skill      = $proPlayerOrder->proPlayerSkill;
-            $price      = $skill->price_permatch;
+            $orderable  = $proPlayerOrder->proPlayerSkill ?? $proPlayerOrder->proPlayerService;
+            $price      = $orderable->price_permatch;
 
-            if($skill->player_id !== $player->id)
+            if($orderable->player_id !== $player->id)
                 throw new Exception('Not found', 404);
             if($proPlayerOrder->status !== 0)
                 throw new Exception('Unprocessable, Order is not pending', 422);
@@ -173,9 +173,10 @@ class ProPlayerOrderController extends Controller
                 ->player
                 ->user;
 
+            $service  = $orderable->game ?? $orderable->service;
             $payloads = [
                 'title'      => 'Maaf, order kamu di tolak',
-                'body'       => "{$user->username}[{$proPlayerOrder->proPlayerSkill->game->name}]: \"{$proPlayerOrder->rejected_reason}\"",
+                'body'       => "{$user->username}[{$service->name}]: \"{$proPlayerOrder->rejected_reason}\"",
                 'timeToLive' => 2419200,
             ];
 
