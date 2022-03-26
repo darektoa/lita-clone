@@ -144,7 +144,7 @@
 				indicatorElmnt.dataset.slideTo 	= index;
 
 				imgElmnt.classList.add('carousel-item');
-				imgElmnt.innerHTML = `<img class="d-block w-100 mh-100" src="${item.url}" alt="" style="min-height: 25rem">`;
+				imgElmnt.innerHTML = `<img class="d-block w-100 mh-100" src="${BASE_URL}${item.url}" alt="" style="min-height: 25rem">`;
 
 				if(index === 0){
 					indicatorElmnt.classList.add('active');
