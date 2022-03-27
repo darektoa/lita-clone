@@ -53,6 +53,7 @@ class ProfileController extends Controller
             'profile_photo' => 'required',
             'cover'         => 'required',
             'phone'         => 'required',
+            'voice'         => 'required',
         ]);
 
         if($proPlayer && !$validator->fails() && $proPlayerValidator->fails()) {
