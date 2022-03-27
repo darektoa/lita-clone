@@ -30,8 +30,11 @@ class ProfileController extends Controller
 
 
     public function update(Request $request) {
-        $user      = auth()->user();
-        $validator = Validator::make($request->all(), [
+        $userId     = auth()->id();
+        $user       = User::with(['player'])->find($userId);
+        $player     = $user->player;
+        $proPlayer  = $player->is_pro_player;
+        $validator  = Validator::make($request->all(), [
             'name'          => 'nullable|min:2|max:30|regex:/[a-z ]*/i',
             'username'      => 'nullable|regex:/^[0-9a-z\._]{5,15}$/i|unique:username_exceptions,username|unique:users,username,'.$user->id,
             'email'         => 'nullable|email|unique:users,email,'.$user->id,
@@ -43,6 +46,26 @@ class ProfileController extends Controller
             'phone'         => 'required|min:10|max:18',
             'voice'         => 'nullable|file|mimes:mp4,mpeg,wave',
         ]);
+
+
+        // PRO PLAYER VALIDATION
+        $proPlayerValidator = Validator::make($user->toArray(), [
+            'profile_photo' => 'required',
+            'cover'         => 'required',
+            'phone'         => 'required',
+        ]);
+
+        if(!$validator->fails() && $proPlayerValidator->fails()) {
+            $keys       = collect($proPlayerValidator->errors()->keys());
+            $rules      = $keys->mapWithKeys(fn($item) => [$item => 'required']);
+            $validator  = Validator::make($request->all(), $rules->toArray());
+
+            $errors = $validator->errors();
+            return response()->json([
+                'message' => 'invalid field',
+                'errors' => $errors->all()
+            ], 422);
+        }
 
 
         // VALIDATOR ERROR VALIDATION
@@ -72,7 +95,6 @@ class ProfileController extends Controller
 
 
         // UPDATE USER DATA
-        $user       = User::find($user->id);
         $updateData = [
             'name'      => $request->name ?? $user->name,
             'username'  => $request->username ?? $user->username,
