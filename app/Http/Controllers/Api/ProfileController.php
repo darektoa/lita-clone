@@ -31,9 +31,7 @@ class ProfileController extends Controller
 
     public function update(Request $request) {
         $userId     = auth()->id();
-        $user       = User::with(['player'])->find($userId);
-        $player     = $user->player;
-        $proPlayer  = $player->is_pro_player;
+        $user       = User::find($userId);
         $validator  = Validator::make($request->all(), [
             'name'          => 'nullable|min:2|max:30|regex:/[a-z ]*/i',
             'username'      => 'nullable|regex:/^[0-9a-z\._]{5,15}$/i|unique:username_exceptions,username|unique:users,username,'.$user->id,
