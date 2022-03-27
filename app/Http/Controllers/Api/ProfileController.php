@@ -32,6 +32,8 @@ class ProfileController extends Controller
     public function update(Request $request) {
         $userId     = auth()->id();
         $user       = User::find($userId);
+        $player     = $user->player;
+        $proPlayer  = $player->is_pro_player;
         $validator  = Validator::make($request->all(), [
             'name'          => 'nullable|min:2|max:30|regex:/[a-z ]*/i',
             'username'      => 'nullable|regex:/^[0-9a-z\._]{5,15}$/i|unique:username_exceptions,username|unique:users,username,'.$user->id,
@@ -53,7 +55,7 @@ class ProfileController extends Controller
             'phone'         => 'required',
         ]);
 
-        if(!$validator->fails() && $proPlayerValidator->fails()) {
+        if($proPlayer && !$validator->fails() && $proPlayerValidator->fails()) {
             $keys       = collect($proPlayerValidator->errors()->keys());
             $rules      = $keys->mapWithKeys(fn($item) => [$item => 'required']);
             $validator  = Validator::make($request->all(), $rules->toArray());
