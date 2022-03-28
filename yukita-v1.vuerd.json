@@ -5849,6 +5849,29 @@
             "id": "97bfb19f-a510-4c28-83f2-d90c8fc897a0"
           },
           {
+            "name": "status",
+            "comment": "",
+            "dataType": "SMALLINT(6)",
+            "default": "0",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 81.4599609375,
+              "widthDefault": 60
+            },
+            "id": "5d1f9bc6-6bcb-457c-90e9-e493cc818b55"
+          },
+          {
             "name": "created_at",
             "comment": "",
             "dataType": "TIMESTAMP",
@@ -5896,10 +5919,10 @@
           }
         ],
         "ui": {
-          "active": false,
-          "left": 637.6111,
+          "active": true,
+          "left": 637.611,
           "top": 1931.8333,
-          "zIndex": 102,
+          "zIndex": 113,
           "widthName": 60,
           "widthComment": 60
         },
@@ -6816,8 +6839,8 @@
           "columnIds": [
             "11674471-df82-49de-b113-720aa9754b4d"
           ],
-          "x": 1033.82154921875,
-          "y": 2027.8333,
+          "x": 1038.4108046874999,
+          "y": 2038.0833,
           "direction": "right"
         },
         "constraintName": "fk_users_to_user_reports",
