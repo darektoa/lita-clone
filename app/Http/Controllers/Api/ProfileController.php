@@ -51,7 +51,7 @@ class ProfileController extends Controller
         // PRO PLAYER VALIDATION
         $proPlayerValidator = Validator::make($user->toArray(), [
             'profile_photo' => 'required',
-            'cover'         => 'required',
+            'cover_photo'   => 'required',
             'phone'         => 'required',
             'voice'         => 'required',
         ]);
@@ -61,11 +61,13 @@ class ProfileController extends Controller
             $rules      = $keys->mapWithKeys(fn($item) => [$item => 'required']);
             $validator  = Validator::make($request->all(), $rules->toArray());
 
-            $errors = $validator->errors();
-            return response()->json([
-                'message' => 'invalid field',
-                'errors' => $errors->all()
-            ], 422);
+            if($validator->fails()) {
+                $errors = $validator->errors();
+                return response()->json([
+                    'message' => 'invalid field',
+                    'errors' => $errors->all()
+                ], 422);
+            }
         }
 
 
