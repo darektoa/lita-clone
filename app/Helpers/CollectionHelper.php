@@ -22,7 +22,7 @@ class CollectionHelper{
             $items = Collection::make($items);
         
         return new LengthAwarePaginator(
-            $items,
+            $items->skip(($page-1) * $perPage)->take($perPage),
             $items->count(),
             $perPage,
             $page,
