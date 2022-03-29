@@ -10,4 +10,9 @@ class Report extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+
+    public function reportable() {
+        return $this->morphTo();
+    }
 }
