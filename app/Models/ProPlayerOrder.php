@@ -35,6 +35,11 @@ class ProPlayerOrder extends Model
     }
 
 
+    public function report() {
+        return $this->morphOne(Report::class, 'reportable');
+    }
+
+
     public function getStatusAttribute($value) {
         $this->autoExpired($value);
         $this->autoEnded($value);
