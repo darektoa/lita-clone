@@ -12,6 +12,11 @@ class Report extends Model
     protected $guarded = ['id'];
 
 
+    public function reporter() {
+        return $this->belongsTo(User::class);
+    }
+
+
     public function reportable() {
         return $this->morphTo();
     }
