@@ -114,6 +114,7 @@ Route::middleware(['auth.api'])->group(function() {
     Route::prefix('/orders')->group(function() {
         Route::get('/', [ProPlayerOrderController::class, 'index']);
         Route::post('/{proPlayerOrder:id}/review', [ProPlayerOrderController::class, 'review']);
+        Route::post('/{proPlayerOrder:id}/report', [ProPlayerOrderController::class, 'report']);
     });
 
     // PROFILE
