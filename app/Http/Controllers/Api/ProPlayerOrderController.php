@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\ErrorException;
+use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProPlayerOrderResource;
+use App\Http\Resources\ReportResource;
 use App\Models\ProPlayerOrder;
 use App\Notifications\PushNotification;
 use Exception;
@@ -243,6 +246,44 @@ class ProPlayerOrderController extends Controller
                 'status'    => $errCode,
                 'message'   => $errMessage,
             ], $errCode);
+        }
+    }
+    
+    
+    public function report(Request $request, ProPlayerOrder $proPlayerOrder) {
+        try{
+            $validator = Validator::make($request->all(), [
+                'report' => 'required'
+            ]);
+
+            if($validator->fails()) {
+                $errors = $validator->errors()->all();
+                throw new ErrorException('Unprocessable', 422, $errors);
+            }
+
+            if($proPlayerOrder->player_id === auth()->user()->id)
+                throw new ErrorException('Not allowed, This is not your order', 403);
+
+            if($proPlayerOrder->status !== 4) // 4 = Ended Status
+                throw new ErrorException('Unprocessable, This is not a finished order', 422);
+
+            if($proPlayerOrder->report)
+                throw new ErrorException('Unprocessable, You have reported the order', 422);
+
+            $report = $proPlayerOrder->report()->create([
+                'reporter_id'   => auth()->id(),
+                'report'        => $request->report,
+            ]);
+
+            return ResponseHelper::make(
+                ReportResource::make($report)
+            );
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
         }
     }
 }
