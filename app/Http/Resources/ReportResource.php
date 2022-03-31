@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Helpers\StorageHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ReportResource extends JsonResource
@@ -19,6 +20,7 @@ class ReportResource extends JsonResource
             'reporter'      => UserResource::make($this->whenLoaded('reporter')),
             'reportable'    => $this->reportable,
             'report'        => $this->report,
+            'proof'         => StorageHelper::url($this->proof),
             'status'        => $this->status,
             'created_at'    => $this->created_at,
         ];
