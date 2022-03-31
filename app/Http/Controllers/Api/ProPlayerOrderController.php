@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Exceptions\ErrorException;
 use App\Helpers\ResponseHelper;
+use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProPlayerOrderResource;
 use App\Http\Resources\ReportResource;
 use App\Models\ProPlayerOrder;
+use App\Models\Report;
 use App\Notifications\PushNotification;
 use Exception;
 use Illuminate\Http\Request;
@@ -253,8 +255,15 @@ class ProPlayerOrderController extends Controller
     public function report(Request $request, ProPlayerOrder $proPlayerOrder) {
         try{
             $validator = Validator::make($request->all(), [
-                'report' => 'required'
+                'report' => 'required',
+                'proof'  => 'nullable|file'
             ]);
+
+            $reportData = [
+                'reporter_id'   => auth()->id(),
+                'report'        => $request->report,
+                'status'        => 0,
+            ];
 
             if($validator->fails()) {
                 $errors = $validator->errors()->all();
@@ -270,10 +279,12 @@ class ProPlayerOrderController extends Controller
             if($proPlayerOrder->report)
                 throw new ErrorException('Unprocessable, You have reported the order', 422);
 
-            $report = $proPlayerOrder->report()->create([
-                'reporter_id'   => auth()->id(),
-                'report'        => $request->report,
-            ]);
+            if($request->proof) {
+                $proofPath = StorageHelper::put('media/reports', $request->proof);
+                $reportData['proof'] = $proofPath;
+            }
+
+            $report = $proPlayerOrder->report()->create($reportData);
 
             return ResponseHelper::make(
                 ReportResource::make($report)
