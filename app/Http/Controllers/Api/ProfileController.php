@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Traits\FCMTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Hash, Validator};
+use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
@@ -31,7 +32,7 @@ class ProfileController extends Controller
 
     public function update(Request $request) {
         $userId     = auth()->id();
-        $user       = User::find($userId);
+        $user       = User::with('player')->find($userId);
         $player     = $user->player;
         $proPlayer  = $player->is_pro_player;
         $validator  = Validator::make($request->all(), [
@@ -53,12 +54,12 @@ class ProfileController extends Controller
             'profile_photo' => 'required',
             'cover_photo'   => 'required',
             'phone'         => 'required',
-            'voice'         => 'required',
+            'player.voice'  => 'required',
         ]);
-
+        
         if($proPlayer && !$validator->fails() && $proPlayerValidator->fails()) {
             $keys       = collect($proPlayerValidator->errors()->keys());
-            $rules      = $keys->mapWithKeys(fn($item) => [$item => 'required']);
+            $rules      = $keys->mapWithKeys(fn($item) => [Str::replaceFirst('player.', '', $item) => 'required']);
             $validator  = Validator::make($request->all(), $rules->toArray());
 
             if($validator->fails()) {
