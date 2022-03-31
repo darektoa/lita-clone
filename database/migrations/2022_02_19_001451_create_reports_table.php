@@ -18,6 +18,7 @@ class CreateReportsTable extends Migration
             $table->foreignId('reporter_id')->constrained('users');
             $table->morphs('reportable');
             $table->text('report');
+            $table->text('proof')->nullable();
             $table->smallInteger('status')->default(0);
             $table->timestamps();
         });
