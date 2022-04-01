@@ -98,6 +98,7 @@ class ProPlayerSkill extends Model
 
     public function getPricePermatchAttribute() {
         try{
+            $this->updateTier();
             $skill          = ProPlayerSkill::find($this->id);
             $coinConversion = AppSetting::first()->coin_conversion;
             $basePrice      = $skill->game->base_price;
@@ -117,6 +118,7 @@ class ProPlayerSkill extends Model
 
     public function getProPlayerPriceAttribute() {
         try{
+            $this->updateTier();
             $skill              = ProPlayerSkill::find($this->id);
             $companyRevenue     = AppSetting::first()->company_revenue;
             $proPlayerRevenue   = (100 - $companyRevenue) / 100;
@@ -140,5 +142,17 @@ class ProPlayerSkill extends Model
         })->get()->avg('star');
 
         $this->update(['rate' => $avgRate]);
+    }
+
+
+    public function updateTier() {
+        $order  = ProPlayerOrder::where('pro_player_skill_id', $this->id)
+            ->whereIn('status', [2, 4])
+            ->count();
+        $tier   = Tier::orderBy('min_order', 'desc')
+            ->where('min_order', '<=', $order)
+            ->first();
+
+        $this->update(['tier_id' => $tier->id]);
     }
 }
