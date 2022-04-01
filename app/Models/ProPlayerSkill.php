@@ -103,7 +103,7 @@ class ProPlayerSkill extends Model
             $coinConversion = AppSetting::first()->coin_conversion;
             $basePrice      = $skill->game->base_price;
             $priceIncrease  = $basePrice * ($skill->tier->price_increase/100);
-            $coinPrice      = $basePrice + $priceIncrease;
+            $coinPrice      = round($basePrice + $priceIncrease);
             $balancePrice   = $coinPrice * $coinConversion;
     
             return [
