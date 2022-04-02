@@ -28,7 +28,7 @@
 					<tr>
 						<td class="align-middle">{{ $loop->iteration }}</td>
 						<td class="align-middle text-nowrap">
-							<img src="{{ StorageHelper::url($service->icon) }}" alt="" width="70" class="mr-3 rounded">
+							<img src="{{ StorageHelper::url($service->icon) ?? asset('assets/images/icons/empty_profile.png') }}" alt="" width="70" class="mr-3 rounded">
 							{{ $service->name }}
 						</td>
 						<td class="align-middle text-nowrap">{{ $service->price }} Coin</td>
