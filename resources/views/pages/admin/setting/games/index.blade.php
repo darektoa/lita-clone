@@ -55,7 +55,7 @@
 			<table class="table table-hover " id="dataTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>
-            <th class="col-1">#</th>
+            			<th class="col-1">#</th>
 						<th class="text-nowrap">Game</th>
 						<th class="text-nowrap">Base Price</th>
 						<th class="text-nowrap">Action</th>
@@ -78,9 +78,9 @@
 								<i class="fas fa-edit" onclick=""></i>
 							</button>
 							<form action="{{ route('setting.games.destroy', [$game->id]) }}" method="POST" class="d-inline">
-                @method('DELETE') @csrf
-                <button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
-              </form>
+								@method('DELETE') @csrf
+								<button class="btn btn-danger swal-delete" title="Delete"><i class="fas fa-trash"></i></button>
+							</form>
 						</td>
 					</tr>
 					@endforeach
