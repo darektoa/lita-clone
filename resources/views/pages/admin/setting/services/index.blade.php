@@ -1,3 +1,30 @@
+@php
+	$inputsAddService = [
+		[
+			'id' 	=> 'service-name',
+			'label' => 'Service Name:',
+			'name'	=> 'name'
+		],
+		[
+			'id' 	=> 'service-icon',
+			'label' => 'Service Icon:',
+			'name'	=> 'icon',
+			'type' 	=> 'file'
+		],
+		[
+			'id' 	=> 'service-price',
+			'label' => 'Price:',
+			'name'	=> 'price',
+			'type' 	=> 'number'
+		],
+		[
+			'id' 	=> 'service-player-revenue',
+			'label' => 'Player Revenue (%):',
+			'name'	=> 'player_revenue',
+			'type' 	=> 'number'
+		],
+	];
+@endphp
 @extends('layouts.app')
 @section('title', 'Services - Setting')
 @section('content')
@@ -13,6 +40,15 @@
 			</form>
 		</div>
 		<div class="card-body table-responsive" style="min-height: 400px">
+
+			<x-modal-input 
+				action="{{ route('setting.services.update', [1]) }}"
+				id="editServiceModal"
+				inputs="{!! json_encode($inputsAddService) !!}"
+				method="PUT"
+				title="Edit Service"
+			/>
+
 			<table class="table table-hover " id="dataTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>
@@ -20,6 +56,7 @@
 						<th class="text-nowrap">Service</th>
 						<th class="text-nowrap">Price</th>
 						<th class="text-nowrap">Player Revenue</th>
+						<th class="text-nowrap">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -32,7 +69,12 @@
 							{{ $service->name }}
 						</td>
 						<td class="align-middle text-nowrap">{{ $service->price }} Coin</td>
-						<td class="align-middle text-nowrap">{{ $service->player_revenue }}</td>
+						<td class="align-middle text-nowrap">{{ $service->player_revenue }}%</td>
+						<td class="align-middle text-nowrap" style="width: 82px">
+							<button class="btn btn-warning edit-service" data-service="{{ $service }}" data-toggle="modal" data-target="#editServiceModal">
+								<i class="fas fa-edit"></i>
+							</button>
+						</td>
 					</tr>
 					@endforeach
 
@@ -42,4 +84,25 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+	const editServiceButtons = document.querySelectorAll('button.edit-service');
+
+	editServiceButtons.forEach((item) => {
+		item.addEventListener('click', () => {
+			const editForm		= document.querySelector('#editServiceModal form');
+			const nameField 	= editForm.querySelector('#service-name');
+			const priceField 	= editForm.querySelector('#service-price');
+			const revenueField 	= editForm.querySelector('#service-player-revenue');
+			const serviceData 	= JSON.parse(item.dataset.service);
+			const endpoint		= `{{ route('setting.services.update', ['']) }}/${serviceData.id}`;
+			editForm.action 	= endpoint;
+			nameField.value 	= serviceData.name;
+			priceField.value 	= serviceData.price;
+			revenueField.value 	= serviceData.player_revenue;
+		});
+	});
+</script>
 @endsection
