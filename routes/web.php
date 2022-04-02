@@ -112,6 +112,11 @@ Route::middleware(['auth'])->group(function() {
         Route::put('/', [AppSettingController::class, 'update'])->name('update');
       });
 
+      // SERVICE SETTING
+      Route::prefix('/services')->name('services.')->group(function() {
+        Route::get('/', [ServiceController::class, 'index'])->name('index');
+      });
+
       // TIER SETTING
       Route::prefix('/tiers')->name('tiers.')->group(function() {
         Route::get('/', [TierController::class, 'index'])->name('index');
