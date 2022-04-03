@@ -24,6 +24,7 @@ class CreateCoinTransactionsTable extends Migration
             $table->bigInteger('balance');
             $table->string('description')->nullable();
             $table->string('status', 20)->nullable();
+            $table->string('referral_code', 10)->nullable();
             $table->json('invoice')->nullable();
             $table->json('detail')->nullable();
             $table->timestamps();
