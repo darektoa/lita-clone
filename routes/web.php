@@ -115,6 +115,7 @@ Route::middleware(['auth'])->group(function() {
       // SERVICE SETTING
       Route::prefix('/services')->name('services.')->group(function() {
         Route::get('/', [ServiceController::class, 'index'])->name('index');
+        Route::put('/{serviceId}', [ServiceController::class, 'update'])->name('update');
       });
 
       // TIER SETTING
