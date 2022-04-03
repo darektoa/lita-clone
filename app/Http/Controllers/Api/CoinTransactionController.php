@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\{AppSetting, CoinTransaction, PredefineCoin};
+use App\Models\{AppSetting, CoinTransaction, PredefineCoin, User};
 use App\Notifications\PushNotification;
 use App\Traits\XenditTrait;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\{Notification, Validator};
 use Illuminate\Support\Str;
 
@@ -67,9 +66,11 @@ class CoinTransactionController extends Controller
 
     public function store(Request $request) {
         try{
+            $loggedIn  = auth()->id();
             $validator = Validator::make($request->all(), [
+                'player_id'     => $loggedIn ? 'nullable' : 'required|exists:players,id',
                 'coin'          => 'required|numeric|digits_between:0,18',
-                'description'   => 'max:255'
+                'description'   => 'nullable|max:255',
             ]);
 
             if($validator->fails()) {
@@ -80,6 +81,12 @@ class CoinTransactionController extends Controller
                 ], 422);
             }
 
+            if($request->player_id) {
+                $user = User::whereRelation('player', 'id', $request->player_id)->first();
+                auth()->login($user);
+            }
+
+            $referralCode  = $request->referral_code;
             $predefineCoin = PredefineCoin::where('coin', $request->coin)->first();
             $coinToBalance = AppSetting::first()->coin_conversion * $request->coin;
             
