@@ -74,7 +74,7 @@ class CoinTransactionController extends Controller
             ]);
 
             $referralValidator = Validator::make($request->all(), [
-                'referral_code' => 'required|exists:users',
+                'referral_code' => 'required|exists:players',
             ]);
 
             if($validator->fails()) {
