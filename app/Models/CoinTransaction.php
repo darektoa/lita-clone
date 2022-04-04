@@ -48,6 +48,7 @@ class CoinTransaction extends Model
             case 2: $typeName = 'Refund'; break;
             case 3: $typeName = 'Gift'; break;
             case 4: $typeName = 'Daily'; break;
+            case 5: $typeName = 'Topup Referral'; break;
             default: $typeName = 'Unknown';
         }
 
