@@ -17,6 +17,7 @@ Route::prefix('/banners')->group(function() {
 // COIN
 Route::prefix('/coins')->group(function() {
     Route::get('/', [PredefineCoinController::class, 'index']);
+    Route::post('/topup', [CoinTransactionController::class, 'store']);
 });
 
 // FAQ
@@ -217,6 +218,11 @@ Route::middleware(['optional.auth.api'])->group(function() {
     });
 });
 
+
+// COIN
+Route::prefix('/coins')->group(function() {
+    Route::post('/topup', [CoinTransactionController::class, 'store']);
+});
 
 // XENDIT
 Route::prefix('/xendit')->group(function() {
