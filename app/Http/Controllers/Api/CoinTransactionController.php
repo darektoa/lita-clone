@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\{AppSetting, CoinTransaction, PredefineCoin, User};
+use App\Models\{AppSetting, CoinTransaction, Player, PredefineCoin, User};
 use App\Notifications\PushNotification;
 use App\Traits\XenditTrait;
 use Exception;
@@ -93,7 +93,7 @@ class CoinTransactionController extends Controller
             $referralCode  = $request->referral_code;
             $predefineCoin = PredefineCoin::where('coin', $request->coin)->first();
             $coinToBalance = AppSetting::first()->coin_conversion * $request->coin;
-            
+
             $transaction = CoinTransaction::create([
                 'receiver_id'   => auth()->user()->id,
                 'coin'          => $request->coin,
@@ -137,6 +137,7 @@ class CoinTransactionController extends Controller
             $invoice    = collect($transaction->invoice);
             $status     = Str::lower($request->status);
             $player     = $transaction->receiver->player;
+            $referral   = $transaction->referral_code;
             
             $invoice->put($status, $request->all());
             $transaction->update([
@@ -147,6 +148,23 @@ class CoinTransactionController extends Controller
             if($status === 'paid') $player->update([
                 'coin'  => $player->coin + $transaction->coin
             ]);
+
+            // SEND COIN TO REFERRER
+            if($referral) {
+                $coin     = $transaction->coin * (20/100);
+                $balance  = AppSetting::first()->coin_conversion * $coin;
+                $referrer = Player::with(['user'])->where('referral_code', $referral)->first();
+                $referrer->user->coinReceivingTransactions()->create([
+                    'coin'      => $coin,
+                    'balance'   => $balance,
+                    'type'      => 5,
+                    'status'    => 'success',
+                ]);
+
+                $referrer->update([
+                    'coin'  => $referrer->coin + $coin,
+                ]);
+            }
 
             // SEND PUSH NOTIFICATION
             if($status === 'paid') $payloads = [
