@@ -73,6 +73,10 @@ class CoinTransactionController extends Controller
                 'description'   => 'nullable|max:255',
             ]);
 
+            $referralValidator = Validator::make($request->all(), [
+                'referral_code' => 'required|exists:users',
+            ]);
+
             if($validator->fails()) {
                 return response()->json([
                     'status'    => 422,
@@ -95,7 +99,8 @@ class CoinTransactionController extends Controller
                 'coin'          => $request->coin,
                 'balance'       => $predefineCoin->balance ?? $coinToBalance,
                 'type'          => 0,
-                'description'   => $request->description
+                'description'   => $request->description,
+                'referral_code' => $referralValidator->fails() ? null : $referralCode,
             ]);
             
             $transaction = CoinTransaction::with(['receiver'])->find($transaction->id);
