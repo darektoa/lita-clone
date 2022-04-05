@@ -270,7 +270,7 @@ class ProPlayerOrderController extends Controller
                 throw new ErrorException('Unprocessable', 422, $errors);
             }
 
-            if($proPlayerOrder->player_id === auth()->user()->id)
+            if($proPlayerOrder->player_id !== auth()->user()->player->id)
                 throw new ErrorException('Not allowed, This is not your order', 403);
 
             if($proPlayerOrder->status !== 4) // 4 = Ended Status
