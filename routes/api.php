@@ -188,6 +188,7 @@ Route::middleware(['auth.api'])->group(function() {
         Route::get('/unfollow', [ProPlayerController::class, 'unfollow']);
         Route::get('/followers', [ProPlayerController::class, 'followers']);
         Route::get('/followings', [ProPlayerController::class, 'followings']);
+        Route::post('/report', [PlayerController::class, 'report']);
     });
 });
 
