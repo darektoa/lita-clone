@@ -217,7 +217,7 @@ class ProPlayerOrderController extends Controller
                     'errors'    => $validator->errors(),
                 ]);
 
-            if($proPlayerOrder->player_id === auth()->user()->id)
+            if($proPlayerOrder->player_id !== auth()->user()->player->id)
                 throw new Exception('Not allowed, This is not your order', 403);
 
             if($proPlayerOrder->status !== 4) // 4 = Ended Status
