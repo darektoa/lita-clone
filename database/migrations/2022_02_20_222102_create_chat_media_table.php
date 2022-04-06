@@ -15,8 +15,6 @@ class CreateChatMediaTable extends Migration
     {
         Schema::create('chat_media', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignId('sender_id')->constrained('users');
-            $table->foreignId('receiver_id')->nullable()->constrained('users');
             $table->text('url');
             $table->text('alt')->nullable();
             $table->timestamps();
