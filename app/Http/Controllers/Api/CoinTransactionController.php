@@ -72,11 +72,7 @@ class CoinTransactionController extends Controller
                 'coin'          => 'required|numeric|digits_between:0,18',
                 'description'   => 'nullable|max:255',
             ]);
-
-            $referralValidator = Validator::make($request->all(), [
-                'referral_code' => 'required|exists:players',
-            ]);
-
+            
             if($validator->fails()) {
                 return response()->json([
                     'status'    => 422,
@@ -84,15 +80,20 @@ class CoinTransactionController extends Controller
                     'errors'    => $validator->errors()->all()
                 ], 422);
             }
-
+            
             if($request->player_id) {
                 $user = User::whereRelation('player', 'id', $request->player_id)->first();
                 auth()->login($user);
             }
 
+            $player = auth()->user()->player;
             $referralCode  = $request->referral_code;
             $predefineCoin = PredefineCoin::where('coin', $request->coin)->first();
             $coinToBalance = AppSetting::first()->coin_conversion * $request->coin;
+            
+            $referralValidator = Validator::make($request->all(), [
+                'referral_code' => 'required|exists:players|not_in:'.$player->referral_code,
+            ]);
 
             $transaction = CoinTransaction::create([
                 'receiver_id'   => auth()->user()->id,
