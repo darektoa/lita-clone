@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -1624.833333333333,
-    "scrollLeft": -1379,
+    "scrollTop": -1590.833333333333,
+    "scrollLeft": -1480,
     "zoomLevel": 0.2,
     "show": {
       "tableComment": true,
@@ -6026,7 +6026,7 @@
             "id": "70a10420-5a00-473a-978c-6f1b61702722"
           },
           {
-            "name": "chat",
+            "name": "message",
             "comment": "",
             "dataType": "TEXT",
             "default": "",
@@ -6099,7 +6099,7 @@
           "active": false,
           "left": 1616.6939,
           "top": 1095.0599,
-          "zIndex": 93,
+          "zIndex": 101,
           "widthName": 60,
           "widthComment": 60
         },
