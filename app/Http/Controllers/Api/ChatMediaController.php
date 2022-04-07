@@ -16,7 +16,6 @@ class ChatMediaController extends Controller
         try{
             $validator = Validator::make($request->all(), [
                 'media'     => 'required|file|max:30720', // MAX:30MB'
-                'user_id'   => 'required|exists:users,id',
                 'alt'       => 'nullable|max:1000',
             ]);
 
@@ -27,8 +26,6 @@ class ChatMediaController extends Controller
 
             $mediaPath  = StorageHelper::put('media/chats', $request->media);
             $media      = ChatMedia::create([
-                'sender_id'     => auth()->id(),
-                'receiver_id'   => $request->user_id,
                 'url'           => $mediaPath,
                 'alt'           => $request->alt,
             ]);
