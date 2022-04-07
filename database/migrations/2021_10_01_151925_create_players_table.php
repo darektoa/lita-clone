@@ -22,7 +22,7 @@ class CreatePlayersTable extends Migration
             $table->text('voice')->nullable();
             $table->smallInteger('is_pro_player')->default(0);
             $table->string('referral_code', 10)->unique();
-            $table->string('referral_code', 10)->nullable();
+            $table->string('referral_code_join', 10)->nullable();
             $table->timestamps();
         });
     }
