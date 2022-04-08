@@ -17,8 +17,6 @@ class ChatMediaResource extends JsonResource
     {
         return [
             'id'            => $this->id,
-            'sender'        => UserResource::make($this->whenLoaded('sender')),
-            'receiver'      => UserResource::make($this->whenLoaded('receiver')),
             'url'           => StorageHelper::url($this->url),
             'alt'           => $this->alt,
             'created_at'    => $this->created_at,
