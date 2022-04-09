@@ -22,4 +22,9 @@ class ChatMedia extends Model
             $data->id = Str::uuid();
         });
     }
+
+
+    public function chat() {
+        return $this->belongsTo(Chat::class);
+    }
 }
