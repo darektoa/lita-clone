@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Chat extends Model
 {
@@ -12,6 +13,15 @@ class Chat extends Model
     protected $guarded   = [];
 
     public $incrementing = false;
+
+
+    static protected function boot() {
+        parent::boot();
+
+        parent::creating(function($data) {
+            if(!$data->id) $data->id = Str::uuid();
+        });
+    }
 
 
     public function sender() {
