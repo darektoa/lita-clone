@@ -9,7 +9,7 @@ class Chat extends Model
 {
     use HasFactory;
 
-    protected $guarded   = ['id'];
+    protected $guarded   = [];
 
     public $incrementing = false;
 
