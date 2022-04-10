@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Exceptions\ErrorException;
 use App\Helpers\{ResponseHelper, StorageHelper};
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ChatResource;
 use App\Models\{Chat, ChatMedia};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -49,9 +50,9 @@ class ChatController extends Controller
                 ]);
             }
 
-            $chat->media;
-            
-            return ResponseHelper::make($chat);
+            return ResponseHelper::make(
+                ChatResource::make($chat)
+            );
         }catch(ErrorException $err) {
             return ResponseHelper::error(
                 $err->getErrors(),
