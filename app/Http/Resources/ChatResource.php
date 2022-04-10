@@ -14,6 +14,11 @@ class ChatResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [];
+        return [
+            'id'            => $this->id,
+            'message'       => $this->message,
+            'media'         => ChatMediaResource::make($this->media),
+            'created_at'    => $this->created_at,
+        ];
     }
 }
