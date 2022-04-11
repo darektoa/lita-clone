@@ -59,6 +59,8 @@ Route::middleware(['auth.api'])->group(function() {
             Route::get('/{chatMedia:id}', [ChatMediaController::class, 'show']);
             Route::delete('/{chatMedia:id}', [ChatMediaController::class, 'destroy']);
         });
+
+        Route::post('/', [ChatController::class, 'store']);
     });
 
     // COIN
