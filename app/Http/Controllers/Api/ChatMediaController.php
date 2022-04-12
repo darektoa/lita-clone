@@ -78,7 +78,6 @@ class ChatMediaController extends Controller
                 'Not found', 404, ['Not Found']
             );
 
-            StorageHelper::delete($chatMedia->url);
             $chatMedia->delete();
             $chatMedia->unsetRelations();
             
