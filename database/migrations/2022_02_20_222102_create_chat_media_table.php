@@ -18,6 +18,7 @@ class CreateChatMediaTable extends Migration
             $table->foreignUuid('chat_id')->nullable()->constrained();
             $table->text('url');
             $table->text('alt')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
