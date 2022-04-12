@@ -84,4 +84,30 @@ class ChatController extends Controller
             );
         }
     }
+
+
+    public function destroy(Chat $chat) {
+        try{
+            $userId     = auth()->id();
+            $senderId   = $chat->sender->id;
+            $receiverId = $chat->receiver->id;
+
+            if($senderId !== $userId && $receiverId !== $userId) throw new ErrorException(
+                'Not found', 404, ['Not Found']
+            );
+
+            $chat->delete();
+            if($chat->media) $chat->media->delete();
+            
+            return ResponseHelper::make(
+                ChatResource::make($chat)
+            );
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode(),
+            );
+        }
+    }
 }
