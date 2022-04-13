@@ -110,4 +110,39 @@ class ChatController extends Controller
             );
         }
     }
+
+
+    public function report(Request $request, Chat $chat) {
+        try{
+            $validator = Validator::make($request->all(), [
+                'report' => 'required',
+            ]);
+
+            if($validator->fails()) {
+                $errors = $validator->errors()->all();
+                throw new ErrorException('Unprocessable', 422, $errors);
+            }
+            
+            if($chat->report()->first())
+                throw new ErrorException('Unprocessable', 422, ['Message has been reported']);
+            if($chat->sender->id === auth()->id())
+                throw new ErrorException('Not allowed', 403, ["Can't report own message"]);
+            if($chat->receiver->id !== auth()->id())
+                throw new ErrorException('Not Found', 404);
+
+            $report = $chat->report()->create([
+                'reporter_id'   => auth()->id(),
+                'report'        => $request->report,
+                'status'        => 0,
+            ]);
+
+            return ResponseHelper::make($report);
+        }catch(ErrorException $err) {
+            return ResponseHelper::error(
+                $err->getErrors(),
+                $err->getMessage(),
+                $err->getCode()
+            );
+        }
+    }
 }
