@@ -37,4 +37,8 @@ class Chat extends Model
     public function media() {
         return $this->hasOne(ChatMedia::class);
     }
+
+    public function report() {
+        return $this->morphOne(Report::class, 'reportable');
+    }
 }
