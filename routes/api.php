@@ -17,7 +17,6 @@ Route::prefix('/banners')->group(function() {
 // COIN
 Route::prefix('/coins')->group(function() {
     Route::get('/', [PredefineCoinController::class, 'index']);
-    Route::post('/topup', [CoinTransactionController::class, 'store']);
 });
 
 // FAQ
@@ -76,8 +75,6 @@ Route::middleware(['auth.api'])->group(function() {
             Route::get('/', [CoinTransactionController::class, 'index']);
             Route::get('/{transactionId}', [CoinTransactionController::class, 'show']);
         });
-
-        Route::post('/topup', [CoinTransactionController::class, 'store']);
     });
 
     // AVAILABLE TRANSFER
@@ -198,6 +195,11 @@ Route::middleware(['auth.api'])->group(function() {
 
 
 Route::middleware(['optional.auth.api'])->group(function() {
+    // COIN
+    Route::prefix('/coins')->group(function() {
+        Route::post('/topup', [CoinTransactionController::class, 'store']);
+    });
+
     // NOTIFICATION
     Route::prefix('/notifications')->group(function() {
         Route::post('/subscribe', [NotificationController::class, 'store']);
@@ -223,11 +225,6 @@ Route::middleware(['optional.auth.api'])->group(function() {
     });
 });
 
-
-// COIN
-Route::prefix('/coins')->group(function() {
-    Route::post('/topup', [CoinTransactionController::class, 'store']);
-});
 
 // XENDIT
 Route::prefix('/xendit')->group(function() {
