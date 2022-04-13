@@ -62,6 +62,7 @@ Route::middleware(['auth.api'])->group(function() {
         Route::post('/', [ChatController::class, 'store']);
         Route::get('/{chat:id}', [ChatController::class, 'show']);
         Route::delete('/{chat:id}', [ChatController::class, 'destroy']);
+        Route::post('/{chat:id}/report', [ChatController::class, 'report']);
     });
 
     // COIN
