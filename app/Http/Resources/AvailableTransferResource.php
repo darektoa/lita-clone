@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Helpers\StorageHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AvailableTransferResource extends JsonResource
@@ -16,6 +17,7 @@ class AvailableTransferResource extends JsonResource
     {
         return [
             'id'    => $this->id,
+            'icon'  => StorageHelper::url($this->icon),
             'name'  => $this->name,
             'type'  => $this->type_name
         ];
