@@ -23,6 +23,8 @@ class WithdrawAccountController extends Controller
 
     public function store(Request $request) {
         try{
+            $user       = auth()->user();
+            $accounts   = $user->withdrawAccounts;
             $validator  = Validator::make($request->all(), [
                 'name'          => 'required|max:100',
                 'number'        => 'required|max:20',
@@ -34,13 +36,16 @@ class WithdrawAccountController extends Controller
                 throw new ErrorException('Unprocessable, Invalid field', 422, $errors);
             }
 
-            $user     = auth()->user();
+            if($accounts->count() === 3) throw new ErrorException('Unprocessable', 422, [
+                'Account has reached the maximum limit'
+            ]);
+
             $account  = WithdrawAccount::create([
                 'user_id'       => $user->id,
                 'name'          => $request->name,
                 'number'        => $request->number,
                 'transfer_id'   => $request->transfer_id,
-                'default'       => $user->withdrawAccounts->count() ? 0 : 1,
+                'default'       => $accounts->count() ? 0 : 1,
             ]);
 
             return ResponseHelper::make(WithdrawAccountResource::make($account));
