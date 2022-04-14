@@ -37,7 +37,7 @@ class PlayerController extends Controller
             }
 
             if($user->id === auth()->id())
-                throw new ErrorException("Not allowed, Can't report yourself", 403);
+                throw new ErrorException("Not allowed", 403, ["Can't report yourself"]);
 
             if($request->proof) {
                 $proofPath = StorageHelper::put('media/reports', $request->proof);
