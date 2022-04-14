@@ -15,6 +15,7 @@ class CreateAvailableTransfersTable extends Migration
     {
         Schema::create('available_transfers', function (Blueprint $table) {
             $table->id();
+            $table->text('icon')->nullable();
             $table->string('name');
             $table->smallInteger('type');
             $table->softDeletes();
