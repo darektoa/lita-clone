@@ -33,7 +33,7 @@ class WithdrawAccountController extends Controller
 
             if($validator->fails()) {
                 $errors = $validator->errors()->all();
-                throw new ErrorException('Unprocessable, Invalid field', 422, $errors);
+                throw new ErrorException('Unprocessable', 422, $errors);
             }
 
             if($accounts->count() === 3) throw new ErrorException('Unprocessable', 422, [
