@@ -17,6 +17,7 @@ class CreatePredefineCoinsTable extends Migration
             $table->id();
             $table->bigInteger('coin');
             $table->bigInteger('balance');
+            $table->string('code', 50);
             $table->timestamps();
         });
     }
