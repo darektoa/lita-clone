@@ -26,7 +26,8 @@ class PredefineCoinController extends Controller
 
             PredefineCoin::create([
                 'coin'      => $request->coin,
-                'balance'   => $request->balance
+                'balance'   => $request->balance,
+                'code'      => "{$request->coin}_coin",
             ]);
             Alert::success('Success', 'Coin created successfully');
         }catch(Exception $err){
