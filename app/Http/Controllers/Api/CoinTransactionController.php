@@ -18,14 +18,14 @@ class CoinTransactionController extends Controller
     public function index(Request $request) {
         $user               = auth()->user();
         $status             = $request->status;
-        $type               = (int) $request->type;
+        $types              = explode(',', $request->type);
         $transactions       = CoinTransaction::where(function($query) use($user) {
             $query->where('receiver_id', $user->id)
                 ->orWhere('sender_id', $user->id);
         });
         
-        if($status) $transactions    = $transactions->where('status', $status);
-        if($type >= 0) $transactions = $transactions->where('type', $type);
+        if($status) $transactions     = $transactions->where('status', $status);
+        if($types >= 0) $transactions = $transactions->whereIn('type', $types);
             
         $transactions = $transactions
             ->latest()
