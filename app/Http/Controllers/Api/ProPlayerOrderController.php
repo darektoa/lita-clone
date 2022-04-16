@@ -262,6 +262,7 @@ class ProPlayerOrderController extends Controller
             $reportData = [
                 'reporter_id'   => auth()->id(),
                 'report'        => $request->report,
+                'type'          => 2,
                 'status'        => 0,
             ];
 
