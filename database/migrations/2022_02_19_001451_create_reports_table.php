@@ -19,6 +19,7 @@ class CreateReportsTable extends Migration
             $table->uuidMorphs('reportable');
             $table->text('report');
             $table->text('proof')->nullable();
+            $table->smallInteger('type');
             $table->smallInteger('status')->default(0);
             $table->timestamps();
         });
