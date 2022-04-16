@@ -20,4 +20,18 @@ class Report extends Model
     public function reportable() {
         return $this->morphTo();
     }
+    
+    
+    public function getTypeNameAttribute() {
+        $typeName = null;
+
+        switch($this->type) {
+            case 1: $typeName = 'Player'; break;
+            case 2: $typeName = 'Order'; break;
+            case 3: $typeName = 'Chat'; break;
+            default: $typeName = 'Unknown'; break;
+        }
+
+        return $typeName;
+    }
 }
