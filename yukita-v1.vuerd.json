@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 4000,
     "height": 4000,
-    "scrollTop": -1717.833333333333,
-    "scrollLeft": -565,
-    "zoomLevel": 0.9,
+    "scrollTop": -1610.833333333333,
+    "scrollLeft": -1297,
+    "zoomLevel": 0.2,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -5895,6 +5895,29 @@
             "id": "30e3c0af-dc12-4e14-82b1-6338fa181e18"
           },
           {
+            "name": "type",
+            "comment": "",
+            "dataType": "SMALLINT(6)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 81.4599609375,
+              "widthDefault": 60
+            },
+            "id": "a1c1f79d-d944-4ac1-b9c5-19164138fd1c"
+          },
+          {
             "name": "status",
             "comment": "",
             "dataType": "SMALLINT(6)",
@@ -5968,7 +5991,7 @@
           "active": false,
           "left": 624.6109,
           "top": 1848.583,
-          "zIndex": 75,
+          "zIndex": 80,
           "widthName": 60,
           "widthComment": 60
         },
@@ -6988,7 +7011,7 @@
             "11674471-df82-49de-b113-720aa9754b4d"
           ],
           "x": 1025.4107046875001,
-          "y": 1975.333,
+          "y": 1985.583,
           "direction": "right"
         },
         "constraintName": "fk_users_to_user_reports",
