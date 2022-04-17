@@ -133,6 +133,7 @@ class ChatController extends Controller
             $report = $chat->report()->create([
                 'reporter_id'   => auth()->id(),
                 'report'        => $request->report,
+                'type'          => 3,
                 'status'        => 0,
             ]);
 
