@@ -28,6 +28,7 @@ class PlayerController extends Controller
             $reportData = [
                 'reporter_id'   => auth()->id(),
                 'report'        => $request->report,
+                'type'          => 1,
                 'status'        => 0,
             ];
 
