@@ -59,6 +59,11 @@ Route::middleware(['auth'])->group(function() {
       Route::get('/', [ProfileController::class, 'index'])->name('index');
       Route::put('/', [ProfileController::class, 'update'])->name('update');
     });
+
+    // REPORT
+    Route::prefix('/reports')->name('reports.')->group(function() {
+      Route::get('/', [ReportController::class, 'index'])->name('index');
+    });
     
     // SETTING
     Route::prefix('/setting')->name('setting.')->group(function() {
