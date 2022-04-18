@@ -92,6 +92,12 @@
     icon="fa-bell"
     name="Notifications" 
     route="{{ route('notifications.index') }}" />
+  
+    <x-sidebar.nav-item
+    active="{{ Request::is('reports') }}"
+    icon="fa-exclamation-circle"
+    name="Reports" 
+    route="{{ route('reports.index') }}" />
   @endisset
 
 
