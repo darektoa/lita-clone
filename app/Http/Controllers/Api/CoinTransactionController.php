@@ -75,6 +75,7 @@ class CoinTransactionController extends Controller
                 'player_id'     => $loggedIn ? 'nullable' : 'required|exists:players,id',
                 'coin'          => 'required|numeric|digits_between:0,18',
                 'description'   => 'nullable|max:255',
+                'merchant'      => 'nullable|in:google',
             ]);
             
             if($validator->fails()) {
@@ -90,7 +91,8 @@ class CoinTransactionController extends Controller
                 auth()->login($user);
             }
 
-            $player = auth()->user()->player;
+            $player        = auth()->user()->player;
+            $merchant      = $request->merchant;
             $referralCode  = $request->referral_code;
             $predefineCoin = PredefineCoin::where('coin', $request->coin)->first();
             $coinToBalance = AppSetting::first()->coin_conversion * $request->coin;
@@ -108,14 +110,26 @@ class CoinTransactionController extends Controller
                 'referral_code' => $referralValidator->fails() ? null : $referralCode,
             ]);
             
-            $transaction = CoinTransaction::with(['receiver'])->find($transaction->id);
-            $invoice     = XenditTrait::invoice($transaction);
-            $status      = Str::lower($invoice['status']);
-            
-            $transaction->update([
-                'invoice' => [$status => $invoice],
-                'status'  => $status
-            ]);
+            if($merchant) {
+                $transaction->update([
+                    'status'  => 'success',
+                    'invoice' => ['paid' => [
+                        'status'            => 'PAID',
+                        'merchant_name'     => ucfirst($merchant),
+                        'payment_method'    => null,
+                        'payment_channel'   => null,
+                    ]],
+                ]);
+            }else {
+                $transaction = CoinTransaction::with(['receiver'])->find($transaction->id);
+                $invoice     = XenditTrait::invoice($transaction);
+                $status      = Str::lower($invoice['status']);
+                
+                $transaction->update([
+                    'status'  => $status,
+                    'invoice' => [$status => $invoice],
+                ]);
+            }
 
             return response()->json([
                 'status'    => 200,
