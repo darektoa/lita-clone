@@ -103,10 +103,10 @@ class ProfileController extends Controller
             'name'      => $request->name ?? $user->name,
             'username'  => $request->username ?? $user->username,
             'email'     => $request->email ?? $user->email,
-            'gender_id' => $request->gender_id,
-            'birthday'  => $request->birthday,
-            'bio'       => $request->bio,
-            'phone'     => $request->phone,
+            'gender_id' => $request->gender_id ?? $user->gender_id,
+            'birthday'  => $request->birthday ?? $user->birthday,
+            'bio'       => $request->bio ?? $user->bio,
+            'phone'     => $request->phone ?? $user->phone,
         ];
 
         if($profilePhoto) $updateData['profile_photo'] = $profilePhotoPath;
@@ -114,7 +114,7 @@ class ProfileController extends Controller
 
         $user->update($updateData);
         $user->player->update([
-            'voice' => $voicePath,
+            'voice' => $voicePath ?? $user->voice,
         ]);
         
         return [
