@@ -51,10 +51,9 @@ class ProfileController extends Controller
 
         // PRO PLAYER VALIDATION
         $proPlayerValidator = Validator::make($user->toArray(), [
-            'profile_photo' => 'required',
-            'cover_photo'   => 'required',
-            'phone'         => 'required',
-            'player.voice'  => 'required',
+            'profile_photo' => isset($user->profile_photo) ? 'nullable' : 'required',
+            'cover_photo'   => isset($user->cover_photo) ? 'nullable' : 'required',
+            'player.voice'  => isset($user->voice) ? 'nullable' : 'required',
         ]);
         
         if($proPlayer && !$validator->fails() && $proPlayerValidator->fails()) {
