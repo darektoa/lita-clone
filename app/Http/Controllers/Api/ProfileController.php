@@ -39,12 +39,12 @@ class ProfileController extends Controller
             'name'          => 'nullable|min:2|max:30|regex:/[a-z ]*/i',
             'username'      => 'nullable|regex:/^[0-9a-z\._]{5,15}$/i|unique:username_exceptions,username|unique:users,username,'.$user->id,
             'email'         => 'nullable|email|unique:users,email,'.$user->id,
-            'gender_id'     => 'required|exists:genders,id',
+            'gender_id'     => 'exists:genders,id|' . $user->email ? 'nullable' : 'required',
             'profile_photo' => 'nullable|image|max:10240',
             'cover_photo'   => 'nullable|image:max:10240',
             'birthday'      => 'nullable|date',
             'bio'           => 'nullable|max:255',
-            'phone'         => 'required|min:10|max:18',
+            'phone'         => 'min:10|max:18|' . $user->phone ? 'nullable' : 'required',
             'voice'         => 'nullable|file|mimes:mp4,mpeg,wave',
         ]);
 
