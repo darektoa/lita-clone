@@ -18,11 +18,11 @@ class ProfileController extends Controller
 
     public function update(Request $request) {
         try{
-            $user   = auth()->user();
+            $user = User::find(auth()->id());
             $request->validate([
-                'name'              => 'bail|required|min:2|max:30|regex:/[a-z ]*/i',
-                'username'          => "required|required|regex:/[0-9a-z\._]{5,15}/i|unique:users,username,{$user->id}",
-                'email'             => 'required|email',
+                'name'              => 'bail|nullable|min:2|max:30|regex:/[a-z ]*/i',
+                'username'          => "nullable|regex:/[0-9a-z\._]{5,15}/i|unique:users,username,{$user->id}",
+                'email'             => 'nullable|email',
                 'new_password'      => 'nullable|min:5|max:16',
                 'confirm_password'  => 'same:new_password'
             ]);
@@ -32,16 +32,12 @@ class ProfileController extends Controller
             if($currPassword && !(Hash::check($currPassword, $user->password)))
                 throw new Exception('Current password is wrong');
 
-            $user       = User::find($user->id);
-            $updateData = [
-                'name'      => $request->name,
-                'username'  => $request->username,
-                'email'     => $request->email,
-            ];
-
-            if($newPassword) $updateData['password'] = Hash::make($newPassword);
-
-            $user->update($updateData);
+            $user->update([
+                'name'      => $request->name ?? $user->name,
+                'username'  => $request->username ?? $user->username,
+                'email'     => $request->email ?? $user->email,
+                'password'  => $newPassword ? Hash::make($newPassword) : $user->password
+            ]);
 
             Alert::success('Success', 'Profile updated successfully');
             return back();
