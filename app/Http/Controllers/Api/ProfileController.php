@@ -113,7 +113,7 @@ class ProfileController extends Controller
 
         $user->update($updateData);
         $user->player->update([
-            'voice' => $voicePath ?? $user->voice,
+            'voice' => $voicePath ?? $user->player->voice,
         ]);
         
         return [
